@@ -40,6 +40,36 @@ function isLiveServersResponse(value: unknown): value is LiveServersResponse {
   );
 }
 
+async function copyTextToClipboard(text: string) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {
+      // Keep a legacy fallback for browsers that block async clipboard access.
+    }
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.inset = "0";
+  textarea.style.opacity = "0";
+  textarea.style.pointerEvents = "none";
+
+  document.body.appendChild(textarea);
+  textarea.select();
+  textarea.setSelectionRange(0, text.length);
+
+  const didCopy = document.execCommand("copy");
+  document.body.removeChild(textarea);
+
+  if (!didCopy) {
+    throw new Error("Clipboard copy failed");
+  }
+}
+
 export function ServerGrid() {
   const t = useTranslations("Servers");
   const [serverStatuses, setServerStatuses] = useState<Partial<Record<LiveServerKey, LiveServerStatus>>>({});
@@ -88,7 +118,7 @@ export function ServerGrid() {
 
   async function handleCopyAddress(key: LiveServerKey, address: string) {
     try {
-      await navigator.clipboard.writeText(address);
+      await copyTextToClipboard(address);
       setCopiedServer(key);
       window.setTimeout(() => setCopiedServer((current) => (current === key ? null : current)), 1800);
     } catch {
@@ -221,7 +251,7 @@ export function ServerGrid() {
                     />
                   </div>
 
-                  <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-1">
                     <button
                       type="button"
                       onClick={() => void handleCopyAddress(server.key, address)}
