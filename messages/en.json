@@ -127,6 +127,9 @@
       "connect": "Connect",
       "loading": "Checking",
       "offline": "Offline",
+      "copyIp": "Copy IP",
+      "copied": "Copied",
+      "copyIpFor": "Copy IP for {server}",
       "connectTo": "Connect to {server}"
     },
     "loading": {
@@ -240,7 +243,9 @@
       "eyebrow": "Community Hub",
       "labels": {
         "online": "Online",
-        "endpoint": "Endpoint"
+        "endpoint": "Endpoint",
+        "status": "Status",
+        "channels": "Channels"
       },
       "channels": {
         "discord": {
@@ -250,10 +255,17 @@
           "cta": "Join Discord"
         },
         "teamspeak": {
-          "title": "TeamSpeak",
-          "copy": "Stable voice for mixes, wars, staff rooms, and competitive coordination with a cyber esports atmosphere.",
-          "status": "Voice live",
-          "cta": "Connect TS3"
+          "title": "FREE-ARENA.RO TeamSpeak",
+          "copy": "Stable voice for public rooms, CS mixes, admin support, and the VIP lounge, ready for real status once backend wiring arrives.",
+          "status": "Online",
+          "cta": "Join TeamSpeak",
+          "channels": {
+            "public": "Public",
+            "cs16": "CS 1.6",
+            "cs2": "CS2",
+            "adminSupport": "Admin Support",
+            "vipLounge": "VIP Lounge"
+          }
         }
       }
     }

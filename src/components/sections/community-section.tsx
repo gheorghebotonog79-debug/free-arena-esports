@@ -80,10 +80,10 @@ export function CommunitySection() {
                   <div className="mt-5 grid grid-cols-2 gap-2">
                     <div className="premium-card rounded-lg bg-black/28 p-3">
                       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
-                        {t("hub.labels.online")}
+                        {channel.key === "teamspeak" ? t("hub.labels.status") : t("hub.labels.online")}
                       </p>
                       <p className="stat-value mt-2 font-display text-3xl font-black text-white">
-                        {channel.members}
+                        {channel.key === "teamspeak" ? t("hub.channels.teamspeak.status") : channel.members}
                       </p>
                     </div>
                     <div className="premium-card min-w-0 rounded-lg bg-black/28 p-3">
@@ -95,6 +95,24 @@ export function CommunitySection() {
                       </p>
                     </div>
                   </div>
+
+                  {channel.channels ? (
+                    <div className="mt-4 rounded-lg border border-white/10 bg-black/24 p-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
+                        {t("hub.labels.channels")}
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {channel.channels.map((item) => (
+                          <span
+                            key={item}
+                            className="rounded-lg border border-arena-cyan/20 bg-arena-cyan/10 px-2.5 py-1 text-xs font-bold text-arena-cyan"
+                          >
+                            {t(`hub.channels.${channel.key}.channels.${item}`)}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
 
                   <a
                     href={channel.href}

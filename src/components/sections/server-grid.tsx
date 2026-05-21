@@ -2,7 +2,16 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { ArrowRight, Gamepad2, RadioTower, Server, ShieldCheck, UsersRound } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  Copy,
+  Gamepad2,
+  RadioTower,
+  Server,
+  ShieldCheck,
+  UsersRound,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import { MotionCard } from "@/components/ui/motion-card";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -34,6 +43,7 @@ export function ServerGrid() {
   const t = useTranslations("Servers");
   const [serverStatuses, setServerStatuses] = useState<Partial<Record<LiveServerKey, LiveServerStatus>>>({});
   const [isLoading, setIsLoading] = useState(true);
+  const [copiedServer, setCopiedServer] = useState<LiveServerKey | null>(null);
 
   useEffect(() => {
     let isActive = true;
@@ -75,6 +85,16 @@ export function ServerGrid() {
     };
   }, []);
 
+  async function handleCopyAddress(key: LiveServerKey, address: string) {
+    try {
+      await navigator.clipboard.writeText(address);
+      setCopiedServer(key);
+      window.setTimeout(() => setCopiedServer((current) => (current === key ? null : current)), 1800);
+    } catch {
+      setCopiedServer(null);
+    }
+  }
+
   return (
     <section id="servers" className="cinematic-section bg-[#080909] px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
@@ -105,6 +125,7 @@ export function ServerGrid() {
                 : t("fallback.ping");
             const address = liveServer?.address || server.address;
             const connectHref = liveServer?.connectUrl || server.connectHref;
+            const isCopied = copiedServer === server.key;
 
             return (
               <MotionCard
@@ -194,26 +215,40 @@ export function ServerGrid() {
                     />
                   </div>
 
-                  {server.connectable && isOnline ? (
-                    <a
-                      href={connectHref}
-                      className="button-glow mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-arena-green px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
-                      aria-label={t("actions.connectTo", {
+                  <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                    <button
+                      type="button"
+                      onClick={() => void handleCopyAddress(server.key, address)}
+                      className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                      aria-label={t("actions.copyIpFor", {
                         server: serverName,
                       })}
                     >
-                      {t("actions.connect")}
-                      <ArrowRight size={17} aria-hidden="true" />
-                    </a>
-                  ) : (
-                    <button
-                      type="button"
-                      disabled
-                      className="mt-4 inline-flex w-full cursor-not-allowed items-center justify-center rounded-lg border border-white/12 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white/42"
-                    >
-                      {status === "loading" ? t("actions.loading") : t("actions.offline")}
+                      {isCopied ? <Check size={17} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
+                      {isCopied ? t("actions.copied") : t("actions.copyIp")}
                     </button>
-                  )}
+
+                    {server.connectable && isOnline ? (
+                      <a
+                        href={connectHref}
+                        className="button-glow inline-flex w-full items-center justify-center gap-2 rounded-lg bg-arena-green px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
+                        aria-label={t("actions.connectTo", {
+                          server: serverName,
+                        })}
+                      >
+                        {t("actions.connect")}
+                        <ArrowRight size={17} aria-hidden="true" />
+                      </a>
+                    ) : (
+                      <button
+                        type="button"
+                        disabled
+                        className="inline-flex w-full cursor-not-allowed items-center justify-center rounded-lg border border-white/12 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white/42"
+                      >
+                        {status === "loading" ? t("actions.loading") : t("actions.offline")}
+                      </button>
+                    )}
+                  </div>
                 </div>
               </MotionCard>
             );

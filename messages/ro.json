@@ -79,15 +79,15 @@
     "heading": {
       "eyebrow": "Servere live",
       "title": "LIVE SERVERS conectate la status real",
-      "copy": "Cardurile interogheaz? serverele FREE-ARENA.RO ?n timp real pentru hart?, juc?tori, ping ?i stare online/offline."
+      "copy": "Cardurile interoghează serverele FREE-ARENA.RO în timp real pentru hartă, jucători, ping și stare online/offline."
     },
     "labels": {
-      "players": "Juc?tori",
-      "map": "Hart?",
+      "players": "Jucători",
+      "map": "Hartă",
       "ping": "Ping"
     },
     "status": {
-      "loading": "Se ?ncarc?",
+      "loading": "Se încarcă",
       "online": "Online",
       "offline": "Offline"
     },
@@ -124,10 +124,13 @@
       "events": "Evenimente"
     },
     "actions": {
-      "connect": "Conecteaz?-te",
-      "loading": "Se verific?",
+      "connect": "Conectează-te",
+      "loading": "Se verifică",
       "offline": "Offline",
-      "connectTo": "Conecteaz?-te la {server}"
+      "copyIp": "Copiază IP",
+      "copied": "Copiat",
+      "copyIpFor": "Copiază IP pentru {server}",
+      "connectTo": "Conectează-te la {server}"
     },
     "loading": {
       "value": "..."
@@ -240,7 +243,9 @@
       "eyebrow": "Community Hub",
       "labels": {
         "online": "Online",
-        "endpoint": "Adresă"
+        "endpoint": "Adresă",
+        "status": "Status",
+        "channels": "Canale"
       },
       "channels": {
         "discord": {
@@ -250,10 +255,17 @@
           "cta": "Intră pe Discord"
         },
         "teamspeak": {
-          "title": "TeamSpeak",
-          "copy": "Voice stabil pentru mixuri, war-uri, staff rooms și coordonare competitivă cu atmosferă cyber/esports.",
-          "status": "Voice live",
-          "cta": "Conectează TS3"
+          "title": "FREE-ARENA.RO TeamSpeak",
+          "copy": "Voice stabil pentru public, mixuri CS, suport admin și lounge VIP, pregătit pentru status real când backendul va fi conectat.",
+          "status": "Online",
+          "cta": "Intră pe TeamSpeak",
+          "channels": {
+            "public": "Public",
+            "cs16": "CS 1.6",
+            "cs2": "CS2",
+            "adminSupport": "Admin Support",
+            "vipLounge": "VIP Lounge"
+          }
         }
       }
     }

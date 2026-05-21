@@ -113,6 +113,7 @@ type CommunityChannel = {
   external: boolean;
   iconClass: string;
   statusClass: string;
+  channels?: readonly string[];
 };
 
 export const communityChannels: CommunityChannel[] = [
@@ -130,11 +131,12 @@ export const communityChannels: CommunityChannel[] = [
     key: "teamspeak",
     icon: Headphones,
     endpoint: "ts.free-arena.ro",
-    members: "76",
+    members: "Online",
     href: "ts3server://ts.free-arena.ro",
     external: false,
     iconClass: "bg-arena-cyan/12 text-arena-cyan border border-arena-cyan/30",
     statusClass: "bg-arena-cyan/12 text-arena-cyan border border-arena-cyan/30",
+    channels: ["public", "cs16", "cs2", "adminSupport", "vipLounge"],
   },
 ];
 
