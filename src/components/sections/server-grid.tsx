@@ -7,11 +7,16 @@ import {
   Check,
   Copy,
   Gamepad2,
+  Info,
   RadioTower,
   Server,
   ShieldCheck,
   UsersRound,
 } from "lucide-react";
+import {
+  ServerDetailsModal,
+  type ServerDetailsModalServer,
+} from "@/components/servers/ServerDetailsModal";
 import { useTranslations } from "next-intl";
 import { MotionCard } from "@/components/ui/motion-card";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -75,6 +80,7 @@ export function ServerGrid() {
   const [serverStatuses, setServerStatuses] = useState<Partial<Record<LiveServerKey, LiveServerStatus>>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [copiedServer, setCopiedServer] = useState<LiveServerKey | null>(null);
+  const [selectedServerKey, setSelectedServerKey] = useState<LiveServerKey | null>(null);
 
   useEffect(() => {
     let isActive = true;
@@ -126,6 +132,60 @@ export function ServerGrid() {
     }
   }
 
+  const serverCards = gameServers.map((server): ServerDetailsModalServer & {
+    icon: string;
+    region: string;
+  } => {
+    const liveServer = serverStatuses[server.key];
+    const isPendingServer = "pending" in server && server.pending === true;
+    const status: LiveServerStatusKind = isPendingServer
+      ? "pending"
+      : isLoading && !liveServer
+        ? "loading"
+        : liveServer?.status ?? "offline";
+    const isOnline = status === "online";
+    const displayName = t(`items.${server.key}.name`);
+    const serverName = liveServer?.serverName || displayName;
+    const map = status === "pending"
+      ? t("fallback.unavailable")
+      : status === "loading"
+        ? t("loading.value")
+        : liveServer?.map || t("fallback.map");
+    const players = status === "pending"
+      ? t("fallback.unavailable")
+      : status === "loading"
+        ? t("loading.value")
+        : liveServer
+          ? `${liveServer.players}/${liveServer.maxPlayers}`
+          : t("fallback.players");
+    const ping = status === "pending"
+      ? t("fallback.unavailable")
+      : status === "loading"
+        ? t("loading.value")
+        : liveServer?.ping !== null && liveServer?.ping !== undefined
+          ? `${liveServer.ping}ms`
+          : t("fallback.ping");
+
+    return {
+      key: server.key,
+      icon: server.icon,
+      displayName,
+      serverName,
+      status,
+      statusLabel: t(`status.${status}`),
+      address: liveServer?.address || server.address,
+      map,
+      players,
+      ping,
+      connectHref: liveServer?.connectUrl || server.connectHref,
+      connectable: server.connectable,
+      isOnline,
+      region: t(`items.${server.key}.region`),
+      translatedTags: server.tags.map((tag) => t(`tags.${tag}`)),
+    };
+  });
+  const selectedServer = serverCards.find((server) => server.key === selectedServerKey) ?? null;
+
   return (
     <section id="servers" className="cinematic-section bg-[#080909] px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
@@ -136,38 +196,7 @@ export function ServerGrid() {
         />
 
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {gameServers.map((server, index) => {
-            const liveServer = serverStatuses[server.key];
-            const isPendingServer = "pending" in server && server.pending === true;
-            const status: LiveServerStatusKind = isPendingServer
-              ? "pending"
-              : isLoading && !liveServer
-                ? "loading"
-                : liveServer?.status ?? "offline";
-            const isOnline = status === "online";
-            const displayName = t(`items.${server.key}.name`);
-            const serverName = liveServer?.serverName || displayName;
-            const map = status === "pending"
-              ? t("fallback.unavailable")
-              : status === "loading"
-                ? t("loading.value")
-              : liveServer?.map || t("fallback.map");
-            const players = status === "pending"
-              ? t("fallback.unavailable")
-              : status === "loading"
-                ? t("loading.value")
-              : liveServer
-                ? `${liveServer.players}/${liveServer.maxPlayers}`
-                : t("fallback.players");
-            const ping = status === "pending"
-              ? t("fallback.unavailable")
-              : status === "loading"
-                ? t("loading.value")
-              : liveServer?.ping !== null && liveServer?.ping !== undefined
-                ? `${liveServer.ping}ms`
-                : t("fallback.ping");
-            const address = liveServer?.address || server.address;
-            const connectHref = liveServer?.connectUrl || server.connectHref;
+          {serverCards.map((server, index) => {
             const isCopied = copiedServer === server.key;
 
             return (
@@ -190,31 +219,31 @@ export function ServerGrid() {
                     <div className="min-w-0">
                       <h3
                         className="line-clamp-2 font-display text-xl font-black leading-tight text-white sm:text-2xl"
-                        title={serverName}
+                        title={server.serverName}
                       >
-                        {displayName}
+                        {server.displayName}
                       </h3>
                       <p className="mt-1 text-sm font-semibold uppercase tracking-[0.16em] text-white/42">
-                        {t(`items.${server.key}.region`)}
+                        {server.region}
                       </p>
                     </div>
                   </div>
-                  <span className={`live-badge inline-flex shrink-0 items-center rounded-lg px-2.5 py-1 text-xs font-black uppercase tracking-[0.14em] ${isOnline ? "live-pulse status-active" : ""} ${statusClasses[status]}`}>
-                    {isOnline ? (
+                  <span className={`live-badge inline-flex shrink-0 items-center rounded-lg px-2.5 py-1 text-xs font-black uppercase tracking-[0.14em] ${server.isOnline ? "live-pulse status-active" : ""} ${statusClasses[server.status]}`}>
+                    {server.isOnline ? (
                       <span className="signal-bars mr-2" aria-hidden="true">
                         <span />
                         <span />
                         <span />
                       </span>
                     ) : null}
-                    {t(`status.${status}`)}
+                    {server.statusLabel}
                   </span>
                 </div>
 
                 <div className="mt-6 grid grid-cols-3 gap-2">
                   <div className="premium-card flex min-h-28 flex-col rounded-lg bg-black/28 p-3">
                     <UsersRound size={18} className="text-arena-cyan" aria-hidden="true" />
-                    <p className="mt-auto font-display text-xl font-black leading-tight text-white sm:text-2xl">{players}</p>
+                    <p className="mt-auto font-display text-xl font-black leading-tight text-white sm:text-2xl">{server.players}</p>
                     <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
                       {t("labels.players")}
                     </p>
@@ -223,9 +252,9 @@ export function ServerGrid() {
                     <Gamepad2 size={18} className="text-arena-green" aria-hidden="true" />
                     <p
                       className="mt-auto line-clamp-2 text-sm font-black uppercase leading-tight text-white sm:text-base"
-                      title={map}
+                      title={server.map}
                     >
-                      {map}
+                      {server.map}
                     </p>
                     <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
                       {t("labels.map")}
@@ -233,7 +262,7 @@ export function ServerGrid() {
                   </div>
                   <div className="premium-card flex min-h-28 flex-col rounded-lg bg-black/28 p-3">
                     <RadioTower size={18} className="text-arena-red" aria-hidden="true" />
-                    <p className="mt-auto font-display text-xl font-black leading-tight text-white sm:text-2xl">{ping}</p>
+                    <p className="mt-auto font-display text-xl font-black leading-tight text-white sm:text-2xl">{server.ping}</p>
                     <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
                       {t("labels.ping")}
                     </p>
@@ -241,12 +270,12 @@ export function ServerGrid() {
                 </div>
 
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {server.tags.map((tag) => (
+                  {server.translatedTags.map((tag) => (
                     <span
                       key={tag}
                       className="rounded-lg border border-white/10 bg-white/[0.045] px-2.5 py-1 text-xs font-bold text-white/62 shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur"
                     >
-                      {t(`tags.${tag}`)}
+                      {tag}
                     </span>
                   ))}
                 </div>
@@ -255,11 +284,11 @@ export function ServerGrid() {
                   <div className="flex items-center justify-between gap-4 border-t border-white/10 pt-4">
                     <div className="flex min-w-0 items-center gap-2 text-sm font-semibold text-white/64">
                       <Server size={17} className="text-white/42" aria-hidden="true" />
-                      <span className="truncate">{address}</span>
+                      <span className="truncate">{server.address}</span>
                     </div>
                     <ShieldCheck
                       size={20}
-                      className={`shrink-0 ${isOnline ? "text-arena-green" : "text-white/28"}`}
+                      className={`shrink-0 ${server.isOnline ? "text-arena-green" : "text-white/28"}`}
                       aria-hidden="true"
                     />
                   </div>
@@ -267,22 +296,22 @@ export function ServerGrid() {
                   <div className="mt-4 grid gap-2 sm:grid-cols-2">
                     <button
                       type="button"
-                      onClick={() => void handleCopyAddress(server.key, address)}
+                      onClick={() => void handleCopyAddress(server.key, server.address)}
                       className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
                       aria-label={t("actions.copyIpFor", {
-                        server: serverName,
+                        server: server.displayName,
                       })}
                     >
                       {isCopied ? <Check size={17} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
                       {isCopied ? t("actions.copied") : t("actions.copyIp")}
                     </button>
 
-                    {server.connectable && isOnline ? (
+                    {server.connectable && server.isOnline ? (
                       <a
-                        href={connectHref}
+                        href={server.connectHref}
                         className="button-glow inline-flex w-full items-center justify-center gap-2 rounded-lg bg-arena-green px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
                         aria-label={t("actions.connectTo", {
-                          server: displayName,
+                          server: server.displayName,
                         })}
                       >
                         {t("actions.connect")}
@@ -294,19 +323,38 @@ export function ServerGrid() {
                         disabled
                         className="inline-flex w-full cursor-not-allowed items-center justify-center rounded-lg border border-white/12 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white/42"
                       >
-                        {status === "loading"
+                        {server.status === "loading"
                           ? t("actions.loading")
-                          : status === "pending"
+                          : server.status === "pending"
                             ? t("actions.pending")
                             : t("actions.offline")}
                       </button>
                     )}
+
+                    <button
+                      type="button"
+                      onClick={() => setSelectedServerKey(server.key)}
+                      className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-green/60 hover:bg-arena-green/10 sm:col-span-2"
+                      aria-label={t("actions.detailsFor", {
+                        server: server.displayName,
+                      })}
+                    >
+                      <Info size={17} aria-hidden="true" />
+                      {t("actions.details")}
+                    </button>
                   </div>
                 </div>
               </MotionCard>
             );
           })}
         </div>
+
+        <ServerDetailsModal
+          server={selectedServer}
+          isCopied={selectedServer ? copiedServer === selectedServer.key : false}
+          onClose={() => setSelectedServerKey(null)}
+          onCopy={handleCopyAddress}
+        />
       </div>
     </section>
   );

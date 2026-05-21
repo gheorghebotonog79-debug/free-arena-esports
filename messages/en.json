@@ -84,7 +84,9 @@
     "labels": {
       "players": "Players",
       "map": "Map",
-      "ping": "Ping"
+      "ping": "Ping",
+      "host": "Host/IP",
+      "tags": "Tags"
     },
     "status": {
       "loading": "Loading",
@@ -132,7 +134,10 @@
       "copied": "Copied",
       "copyIpFor": "Copy IP for {server}",
       "connectTo": "Connect to {server}",
-      "pending": "Coming soon"
+      "pending": "Coming soon",
+      "details": "Details",
+      "detailsFor": "View details for {server}",
+      "closeDetails": "Close server details"
     },
     "loading": {
       "value": "..."
@@ -142,6 +147,11 @@
       "players": "0/0",
       "ping": "--",
       "unavailable": "—"
+    },
+    "modal": {
+      "eyebrow": "Server details",
+      "pendingMessage": "This server is being prepared and will be connected when the slot becomes active.",
+      "offlineMessage": "The server is not responding right now. You can copy the address and try again later."
     }
   },
   "Tournaments": {

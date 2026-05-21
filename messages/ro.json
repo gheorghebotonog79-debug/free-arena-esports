@@ -84,7 +84,9 @@
     "labels": {
       "players": "Jucători",
       "map": "Hartă",
-      "ping": "Ping"
+      "ping": "Ping",
+      "host": "Host/IP",
+      "tags": "Taguri"
     },
     "status": {
       "loading": "Se încarcă",
@@ -132,7 +134,10 @@
       "copied": "Copiat",
       "copyIpFor": "Copiază IP pentru {server}",
       "connectTo": "Conectează-te la {server}",
-      "pending": "În curând"
+      "pending": "În curând",
+      "details": "Detalii",
+      "detailsFor": "Vezi detalii pentru {server}",
+      "closeDetails": "Închide detaliile serverului"
     },
     "loading": {
       "value": "..."
@@ -142,6 +147,11 @@
       "players": "0/0",
       "ping": "--",
       "unavailable": "—"
+    },
+    "modal": {
+      "eyebrow": "Detalii server",
+      "pendingMessage": "Acest server este în pregătire și va fi conectat când slotul devine activ.",
+      "offlineMessage": "Serverul nu răspunde momentan. Poți copia adresa și încerca mai târziu."
     }
   },
   "Tournaments": {
