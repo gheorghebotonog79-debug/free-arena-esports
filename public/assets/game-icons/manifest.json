@@ -1,0 +1,207 @@
+﻿[
+    {
+        "label":  "D",
+        "box":  205,
+        "cx":  111,
+        "file":  "D.png",
+        "cy":  244
+    },
+    {
+        "label":  "F",
+        "box":  205,
+        "cx":  324,
+        "file":  "F.png",
+        "cy":  244
+    },
+    {
+        "label":  "A",
+        "box":  205,
+        "cx":  537,
+        "file":  "A.png",
+        "cy":  244
+    },
+    {
+        "label":  "SM",
+        "box":  205,
+        "cx":  750,
+        "file":  "SM.png",
+        "cy":  244
+    },
+    {
+        "label":  "M",
+        "box":  205,
+        "cx":  963,
+        "file":  "M.png",
+        "cy":  244
+    },
+    {
+        "label":  "H",
+        "box":  205,
+        "cx":  1176,
+        "file":  "H.png",
+        "cy":  244
+    },
+    {
+        "label":  "TS",
+        "box":  205,
+        "cx":  1387,
+        "file":  "TS.png",
+        "cy":  244
+    },
+    {
+        "label":  "P",
+        "box":  205,
+        "cx":  111,
+        "file":  "P.png",
+        "cy":  459
+    },
+    {
+        "label":  "DM",
+        "box":  205,
+        "cx":  324,
+        "file":  "DM.png",
+        "cy":  459
+    },
+    {
+        "label":  "T",
+        "box":  205,
+        "cx":  537,
+        "file":  "T.png",
+        "cy":  459
+    },
+    {
+        "label":  "INT",
+        "box":  205,
+        "cx":  750,
+        "file":  "INT.png",
+        "cy":  459
+    },
+    {
+        "label":  "PUB",
+        "box":  205,
+        "cx":  963,
+        "file":  "PUB.png",
+        "cy":  459
+    },
+    {
+        "label":  "S",
+        "box":  205,
+        "cx":  1176,
+        "file":  "S.png",
+        "cy":  459
+    },
+    {
+        "label":  "BOT",
+        "box":  205,
+        "cx":  1387,
+        "file":  "BOT.png",
+        "cy":  459
+    },
+    {
+        "label":  "CS",
+        "box":  200,
+        "cx":  111,
+        "file":  "CS.png",
+        "cy":  682
+    },
+    {
+        "label":  "GL",
+        "box":  200,
+        "cx":  324,
+        "file":  "GL.png",
+        "cy":  682
+    },
+    {
+        "label":  "RES",
+        "box":  200,
+        "cx":  537,
+        "file":  "RES.png",
+        "cy":  682
+    },
+    {
+        "label":  "VAL",
+        "box":  200,
+        "cx":  750,
+        "file":  "VAL.png",
+        "cy":  682
+    },
+    {
+        "label":  "WZ",
+        "box":  200,
+        "cx":  963,
+        "file":  "WZ.png",
+        "cy":  682
+    },
+    {
+        "label":  "FN",
+        "box":  200,
+        "cx":  1176,
+        "file":  "FN.png",
+        "cy":  682
+    },
+    {
+        "label":  "MC",
+        "box":  200,
+        "cx":  1387,
+        "file":  "MC.png",
+        "cy":  682
+    },
+    {
+        "label":  "LOL",
+        "box":  200,
+        "cx":  218,
+        "file":  "LOL.png",
+        "cy":  852
+    },
+    {
+        "label":  "APEX",
+        "box":  200,
+        "cx":  431,
+        "file":  "APEX.png",
+        "cy":  852
+    },
+    {
+        "label":  "GTA",
+        "box":  200,
+        "cx":  644,
+        "file":  "GTA.png",
+        "cy":  852
+    },
+    {
+        "label":  "PUBG",
+        "box":  200,
+        "cx":  857,
+        "file":  "PUBG.png",
+        "cy":  852
+    },
+    {
+        "label":  "BF",
+        "box":  200,
+        "cx":  1070,
+        "file":  "BF.png",
+        "cy":  852
+    },
+    {
+        "label":  "RL",
+        "box":  200,
+        "cx":  1283,
+        "file":  "RL.png",
+        "cy":  852
+    },
+    {
+        "cx":  0,
+        "label":  "CS2",
+        "cy":  0,
+        "derivedFrom":  "CS.png",
+        "box":  0,
+        "file":  "CS2.png"
+    },
+    {
+        "cx":  0,
+        "label":  "MB",
+        "cy":  0,
+        "derivedFrom":  "BOT.png",
+        "box":  0,
+        "file":  "MB.png"
+    }
+]
