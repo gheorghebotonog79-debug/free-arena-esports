@@ -135,7 +135,7 @@ export function ServerGrid() {
           copy={t("heading.copy")}
         />
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {gameServers.map((server, index) => {
             const liveServer = serverStatuses[server.key];
             const isPendingServer = "pending" in server && server.pending === true;
@@ -145,17 +145,24 @@ export function ServerGrid() {
                 ? "loading"
                 : liveServer?.status ?? "offline";
             const isOnline = status === "online";
-            const serverName = liveServer?.serverName || t(`items.${server.key}.name`);
-            const map = status === "loading" || status === "pending"
-              ? t("loading.value")
+            const displayName = t(`items.${server.key}.name`);
+            const serverName = liveServer?.serverName || displayName;
+            const map = status === "pending"
+              ? t("fallback.unavailable")
+              : status === "loading"
+                ? t("loading.value")
               : liveServer?.map || t("fallback.map");
-            const players = status === "loading" || status === "pending"
-              ? t("loading.value")
+            const players = status === "pending"
+              ? t("fallback.unavailable")
+              : status === "loading"
+                ? t("loading.value")
               : liveServer
                 ? `${liveServer.players}/${liveServer.maxPlayers}`
                 : t("fallback.players");
-            const ping = status === "loading" || status === "pending"
-              ? t("loading.value")
+            const ping = status === "pending"
+              ? t("fallback.unavailable")
+              : status === "loading"
+                ? t("loading.value")
               : liveServer?.ping !== null && liveServer?.ping !== undefined
                 ? `${liveServer.ping}ms`
                 : t("fallback.ping");
@@ -169,7 +176,7 @@ export function ServerGrid() {
                 delay={index * 0.06}
                 className="premium-card glass-panel flex h-full flex-col rounded-lg p-5"
               >
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex items-start justify-between gap-3">
                   <div className="flex min-w-0 items-center gap-3">
                     <span className="animated-border grid size-14 shrink-0 place-items-center rounded-lg border border-white/10 bg-black/30 shadow-[0_0_34px_rgba(56,213,255,0.1)]">
                       <Image
@@ -181,8 +188,11 @@ export function ServerGrid() {
                       />
                     </span>
                     <div className="min-w-0">
-                      <h3 className="break-words font-display text-2xl font-black text-white">
-                        {serverName}
+                      <h3
+                        className="line-clamp-2 font-display text-xl font-black leading-tight text-white sm:text-2xl"
+                        title={serverName}
+                      >
+                        {displayName}
                       </h3>
                       <p className="mt-1 text-sm font-semibold uppercase tracking-[0.16em] text-white/42">
                         {t(`items.${server.key}.region`)}
@@ -202,26 +212,29 @@ export function ServerGrid() {
                 </div>
 
                 <div className="mt-6 grid grid-cols-3 gap-2">
-                  <div className="premium-card rounded-lg bg-black/28 p-3">
+                  <div className="premium-card flex min-h-28 flex-col rounded-lg bg-black/28 p-3">
                     <UsersRound size={18} className="text-arena-cyan" aria-hidden="true" />
-                    <p className="mt-3 font-display text-xl font-black text-white sm:text-2xl">{players}</p>
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
+                    <p className="mt-auto font-display text-xl font-black leading-tight text-white sm:text-2xl">{players}</p>
+                    <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
                       {t("labels.players")}
                     </p>
                   </div>
-                  <div className="premium-card min-w-0 rounded-lg bg-black/28 p-3">
+                  <div className="premium-card flex min-h-28 min-w-0 flex-col rounded-lg bg-black/28 p-3">
                     <Gamepad2 size={18} className="text-arena-green" aria-hidden="true" />
-                    <p className="mt-3 truncate font-display text-xl font-black text-white sm:text-2xl" title={map}>
+                    <p
+                      className="mt-auto line-clamp-2 text-sm font-black uppercase leading-tight text-white sm:text-base"
+                      title={map}
+                    >
                       {map}
                     </p>
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
+                    <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
                       {t("labels.map")}
                     </p>
                   </div>
-                  <div className="premium-card rounded-lg bg-black/28 p-3">
+                  <div className="premium-card flex min-h-28 flex-col rounded-lg bg-black/28 p-3">
                     <RadioTower size={18} className="text-arena-red" aria-hidden="true" />
-                    <p className="mt-3 font-display text-xl font-black text-white sm:text-2xl">{ping}</p>
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
+                    <p className="mt-auto font-display text-xl font-black leading-tight text-white sm:text-2xl">{ping}</p>
+                    <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
                       {t("labels.ping")}
                     </p>
                   </div>
@@ -251,7 +264,7 @@ export function ServerGrid() {
                     />
                   </div>
 
-                  <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-1">
+                  <div className="mt-4 grid gap-2 sm:grid-cols-2">
                     <button
                       type="button"
                       onClick={() => void handleCopyAddress(server.key, address)}
@@ -269,7 +282,7 @@ export function ServerGrid() {
                         href={connectHref}
                         className="button-glow inline-flex w-full items-center justify-center gap-2 rounded-lg bg-arena-green px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
                         aria-label={t("actions.connectTo", {
-                          server: serverName,
+                          server: displayName,
                         })}
                       >
                         {t("actions.connect")}

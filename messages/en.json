@@ -138,9 +138,10 @@
       "value": "..."
     },
     "fallback": {
-      "map": "--",
+      "map": "Unknown",
       "players": "0/0",
-      "ping": "--"
+      "ping": "--",
+      "unavailable": "—"
     }
   },
   "Tournaments": {

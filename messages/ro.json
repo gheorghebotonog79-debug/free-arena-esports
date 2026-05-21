@@ -87,10 +87,10 @@
       "ping": "Ping"
     },
     "status": {
-      "loading": "Se ?ncarc?",
+      "loading": "Se încarcă",
       "online": "Online",
       "offline": "Offline",
-      "pending": "?n a?teptare"
+      "pending": "În așteptare"
     },
     "items": {
       "cs16": {
@@ -99,7 +99,7 @@
       },
       "global": {
         "name": "Global",
-        "region": "?n cur?nd"
+        "region": "În curând"
       },
       "cs2": {
         "name": "CS2",
@@ -107,7 +107,7 @@
       },
       "respawn": {
         "name": "Respawn",
-        "region": "Rom?nia"
+        "region": "România"
       }
     },
     "tags": {
@@ -132,15 +132,16 @@
       "copied": "Copiat",
       "copyIpFor": "Copiază IP pentru {server}",
       "connectTo": "Conectează-te la {server}",
-      "pending": "?n cur?nd"
+      "pending": "În curând"
     },
     "loading": {
       "value": "..."
     },
     "fallback": {
-      "map": "--",
+      "map": "Necunoscută",
       "players": "0/0",
-      "ping": "--"
+      "ping": "--",
+      "unavailable": "—"
     }
   },
   "Tournaments": {
