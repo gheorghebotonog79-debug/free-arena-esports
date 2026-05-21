@@ -77,9 +77,9 @@
   },
   "Servers": {
     "heading": {
-      "eyebrow": "Live network",
-      "title": "Server stack prepared for real player data",
-      "copy": "Structured server cards are ready to connect to backend status, population, queue, and map APIs."
+      "eyebrow": "Live servers",
+      "title": "LIVE SERVERS for every play style",
+      "copy": "Cards use static data for now: IP, status, player counts, and connect buttons prepared for future backend wiring."
     },
     "labels": {
       "players": "Players",
@@ -89,32 +89,44 @@
     "status": {
       "online": "Online",
       "warmup": "Warmup",
-      "queue": "Queue"
+      "comingSoon": "Coming soon"
     },
     "items": {
-      "cs16Classic": {
-        "name": "CS 1.6 Classic",
+      "cs16": {
+        "name": "CS 1.6",
         "region": "Romania"
       },
-      "cs2Premier": {
-        "name": "CS2 Premier",
+      "global": {
+        "name": "Global",
+        "region": "International mix"
+      },
+      "cs2": {
+        "name": "CS2",
         "region": "EU Central"
       },
-      "mixedArena": {
-        "name": "Mixed Arena",
-        "region": "Global"
+      "respawn": {
+        "name": "Respawn",
+        "region": "Coming soon"
       }
     },
     "tags": {
       "classic": "Classic",
       "ranked": "Ranked",
       "vip": "VIP",
-      "premier": "Premier",
-      "faceitStyle": "Faceit style",
-      "antiCheat": "Anti-cheat",
-      "events": "Events",
+      "global": "Global",
       "scrims": "Scrims",
-      "community": "Community"
+      "community": "Community",
+      "premier": "Premier",
+      "faceitStyle": "FACEIT style",
+      "antiCheat": "Anti-cheat",
+      "respawn": "Respawn",
+      "soon": "Soon",
+      "events": "Events"
+    },
+    "actions": {
+      "connect": "Connect",
+      "comingSoon": "Coming soon",
+      "connectTo": "Connect to {server}"
     }
   },
   "Tournaments": {
@@ -174,9 +186,9 @@
   },
   "Community": {
     "heading": {
-      "eyebrow": "Community layer",
-      "title": "Ready for accounts, VIP, and operations",
-      "copy": "The interface is organized around reusable data modules that can receive authenticated player state when the backend arrives."
+      "eyebrow": "Community Hub",
+      "title": "Discord and TeamSpeak at the center of the arena",
+      "copy": "Two fast channels for players, voice, announcements, mixes, events, and staff coordination, ready for backend integration."
     },
     "cta": {
       "community": "Community hub",
@@ -214,6 +226,27 @@
       "copy": "Game icons are available locally under public assets for pages, dashboards, rankings, and server identity.",
       "chat": "Chat",
       "store": "Store"
+    },
+    "hub": {
+      "eyebrow": "Community Hub",
+      "labels": {
+        "online": "Online",
+        "endpoint": "Endpoint"
+      },
+      "channels": {
+        "discord": {
+          "title": "Discord",
+          "copy": "Announcements, support, teams, events, and active community energy in a social hub prepared for automated roles.",
+          "status": "Online",
+          "cta": "Join Discord"
+        },
+        "teamspeak": {
+          "title": "TeamSpeak",
+          "copy": "Stable voice for mixes, wars, staff rooms, and competitive coordination with a cyber esports atmosphere.",
+          "status": "Voice live",
+          "cta": "Connect TS3"
+        }
+      }
     }
   },
   "NotFound": {

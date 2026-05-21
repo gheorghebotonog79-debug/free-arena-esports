@@ -5,7 +5,7 @@ import { MotionCard } from "@/components/ui/motion-card";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Link } from "@/i18n/navigation";
-import { communityPillars } from "@/data/platform";
+import { communityChannels, communityPillars } from "@/data/platform";
 import { routes } from "@/lib/routes";
 
 export function CommunitySection() {
@@ -42,27 +42,95 @@ export function CommunitySection() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
+          {communityChannels.map((channel, index) => {
+            const Icon = channel.icon;
+
+            return (
+              <MotionCard
+                key={channel.key}
+                delay={0.08 + index * 0.07}
+                className="premium-card glass-panel animated-border group h-full rounded-lg p-5"
+              >
+                <div className="absolute inset-0 bg-arena-grid bg-[size:32px_32px] opacity-[0.08]" aria-hidden="true" />
+                <div className="relative">
+                  <div className="flex items-start justify-between gap-4">
+                    <span className={`grid size-12 place-items-center rounded-lg ${channel.iconClass}`}>
+                      <Icon size={24} aria-hidden="true" />
+                    </span>
+                    <span className={`live-badge live-pulse inline-flex items-center rounded-lg px-2.5 py-1 text-xs font-black uppercase tracking-[0.14em] ${channel.statusClass}`}>
+                      <span className="signal-bars mr-2" aria-hidden="true">
+                        <span />
+                        <span />
+                        <span />
+                      </span>
+                      {t(`hub.channels.${channel.key}.status`)}
+                    </span>
+                  </div>
+
+                  <p className="mt-5 text-xs font-black uppercase tracking-[0.2em] text-arena-green">
+                    {t("hub.eyebrow")}
+                  </p>
+                  <h3 className="mt-2 font-display text-3xl font-black uppercase text-white">
+                    {t(`hub.channels.${channel.key}.title`)}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-white/62">
+                    {t(`hub.channels.${channel.key}.copy`)}
+                  </p>
+
+                  <div className="mt-5 grid grid-cols-2 gap-2">
+                    <div className="premium-card rounded-lg bg-black/28 p-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
+                        {t("hub.labels.online")}
+                      </p>
+                      <p className="stat-value mt-2 font-display text-3xl font-black text-white">
+                        {channel.members}
+                      </p>
+                    </div>
+                    <div className="premium-card min-w-0 rounded-lg bg-black/28 p-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
+                        {t("hub.labels.endpoint")}
+                      </p>
+                      <p className="mt-3 truncate text-sm font-bold text-white/72">
+                        {channel.endpoint}
+                      </p>
+                    </div>
+                  </div>
+
+                  <a
+                    href={channel.href}
+                    target={channel.external ? "_blank" : undefined}
+                    rel={channel.external ? "noreferrer" : undefined}
+                    className="button-glow mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-arena-green"
+                  >
+                    {t(`hub.channels.${channel.key}.cta`)}
+                    <ArrowRight size={17} aria-hidden="true" />
+                  </a>
+                </div>
+              </MotionCard>
+            );
+          })}
+
           {communityPillars.map((pillar, index) => {
             const Icon = pillar.icon;
 
             return (
               <MotionCard
                 key={pillar.key}
-                delay={index * 0.07}
+                delay={0.2 + index * 0.06}
                 className="premium-card glass-panel h-full rounded-lg p-5"
               >
-                  <div className="flex items-center justify-between gap-4">
-                    <span className={`animated-border grid size-12 place-items-center rounded-lg ${pillar.iconClass}`}>
-                      <Icon size={24} aria-hidden="true" />
-                    </span>
-                    <BadgeCheck size={20} className="text-arena-green" aria-hidden="true" />
-                  </div>
-                  <h3 className="mt-5 font-display text-2xl font-black text-white">
-                    {t(`pillars.${pillar.key}.title`)}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-white/62">
-                    {t(`pillars.${pillar.key}.copy`)}
-                  </p>
+                <div className="flex items-center justify-between gap-4">
+                  <span className={`animated-border grid size-12 place-items-center rounded-lg ${pillar.iconClass}`}>
+                    <Icon size={24} aria-hidden="true" />
+                  </span>
+                  <BadgeCheck size={20} className="text-arena-green" aria-hidden="true" />
+                </div>
+                <h3 className="mt-5 font-display text-2xl font-black text-white">
+                  {t(`pillars.${pillar.key}.title`)}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-white/62">
+                  {t(`pillars.${pillar.key}.copy`)}
+                </p>
               </MotionCard>
             );
           })}

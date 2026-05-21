@@ -77,9 +77,9 @@
   },
   "Servers": {
     "heading": {
-      "eyebrow": "Rețea live",
-      "title": "Stack de servere pregătit pentru date reale de jucători",
-      "copy": "Cardurile de server sunt structurate pentru conectare la API-uri de status, populație, coadă și hartă."
+      "eyebrow": "Servere live",
+      "title": "LIVE SERVERS pentru fiecare stil de joc",
+      "copy": "Cardurile folosesc date statice pentru moment: IP, status, jucători și butoane de conectare pregătite pentru backend."
     },
     "labels": {
       "players": "Jucători",
@@ -89,32 +89,44 @@
     "status": {
       "online": "Online",
       "warmup": "Încălzire",
-      "queue": "Coadă"
+      "comingSoon": "În curând"
     },
     "items": {
-      "cs16Classic": {
-        "name": "CS 1.6 Classic",
+      "cs16": {
+        "name": "CS 1.6",
         "region": "România"
       },
-      "cs2Premier": {
-        "name": "CS2 Premier",
+      "global": {
+        "name": "Global",
+        "region": "Mix internațional"
+      },
+      "cs2": {
+        "name": "CS2",
         "region": "EU Central"
       },
-      "mixedArena": {
-        "name": "Mixed Arena",
-        "region": "Global"
+      "respawn": {
+        "name": "Respawn",
+        "region": "În curând"
       }
     },
     "tags": {
       "classic": "Clasic",
       "ranked": "Ranked",
       "vip": "VIP",
+      "global": "Global",
+      "scrims": "Scrims",
+      "community": "Comunitate",
       "premier": "Premier",
       "faceitStyle": "Stil FACEIT",
       "antiCheat": "Anti-cheat",
-      "events": "Evenimente",
-      "scrims": "Scrims",
-      "community": "Comunitate"
+      "respawn": "Respawn",
+      "soon": "În curând",
+      "events": "Evenimente"
+    },
+    "actions": {
+      "connect": "Conectează-te",
+      "comingSoon": "În curând",
+      "connectTo": "Conectează-te la {server}"
     }
   },
   "Tournaments": {
@@ -174,9 +186,9 @@
   },
   "Community": {
     "heading": {
-      "eyebrow": "Strat de comunitate",
-      "title": "Pregătit pentru conturi, VIP și operațiuni",
-      "copy": "Interfața este organizată în jurul modulelor reutilizabile de date care pot primi starea autentificată a jucătorului când backendul este disponibil."
+      "eyebrow": "Community Hub",
+      "title": "Discord și TeamSpeak în centrul arenei",
+      "copy": "Două canale rapide pentru jucători, voice, anunțuri, mixuri, evenimente și coordonare staff, pregătite pentru integrare backend."
     },
     "cta": {
       "community": "Hub comunitate",
@@ -214,6 +226,27 @@
       "copy": "Iconițele de joc sunt disponibile local în public assets pentru pagini, dashboarduri, clasamente și identitatea serverelor.",
       "chat": "Chat",
       "store": "Magazin"
+    },
+    "hub": {
+      "eyebrow": "Community Hub",
+      "labels": {
+        "online": "Online",
+        "endpoint": "Adresă"
+      },
+      "channels": {
+        "discord": {
+          "title": "Discord",
+          "copy": "Anunțuri, suport, echipe, evenimente și comunitate activă într-un hub social pregătit pentru roluri automate.",
+          "status": "Online",
+          "cta": "Intră pe Discord"
+        },
+        "teamspeak": {
+          "title": "TeamSpeak",
+          "copy": "Voice stabil pentru mixuri, war-uri, staff rooms și coordonare competitivă cu atmosferă cyber/esports.",
+          "status": "Voice live",
+          "cta": "Conectează TS3"
+        }
+      }
     }
   },
   "NotFound": {
