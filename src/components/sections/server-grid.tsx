@@ -29,6 +29,7 @@ const statusClasses: Record<LiveServerStatusKind, string> = {
   loading: "bg-white/8 text-white/58 border border-white/14",
   online: "bg-arena-green/12 text-arena-green border border-arena-green/30",
   offline: "bg-arena-red/12 text-arena-red border border-arena-red/30",
+  pending: "bg-arena-gold/12 text-arena-gold border border-arena-gold/30",
 };
 
 function isLiveServersResponse(value: unknown): value is LiveServersResponse {
@@ -107,18 +108,23 @@ export function ServerGrid() {
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {gameServers.map((server, index) => {
             const liveServer = serverStatuses[server.key];
-            const status: LiveServerStatusKind = isLoading && !liveServer
-              ? "loading"
-              : liveServer?.status ?? "offline";
+            const isPendingServer = "pending" in server && server.pending === true;
+            const status: LiveServerStatusKind = isPendingServer
+              ? "pending"
+              : isLoading && !liveServer
+                ? "loading"
+                : liveServer?.status ?? "offline";
             const isOnline = status === "online";
             const serverName = liveServer?.serverName || t(`items.${server.key}.name`);
-            const map = status === "loading" ? t("loading.value") : liveServer?.map || t("fallback.map");
-            const players = status === "loading"
+            const map = status === "loading" || status === "pending"
+              ? t("loading.value")
+              : liveServer?.map || t("fallback.map");
+            const players = status === "loading" || status === "pending"
               ? t("loading.value")
               : liveServer
                 ? `${liveServer.players}/${liveServer.maxPlayers}`
                 : t("fallback.players");
-            const ping = status === "loading"
+            const ping = status === "loading" || status === "pending"
               ? t("loading.value")
               : liveServer?.ping !== null && liveServer?.ping !== undefined
                 ? `${liveServer.ping}ms`
@@ -245,7 +251,11 @@ export function ServerGrid() {
                         disabled
                         className="inline-flex w-full cursor-not-allowed items-center justify-center rounded-lg border border-white/12 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white/42"
                       >
-                        {status === "loading" ? t("actions.loading") : t("actions.offline")}
+                        {status === "loading"
+                          ? t("actions.loading")
+                          : status === "pending"
+                            ? t("actions.pending")
+                            : t("actions.offline")}
                       </button>
                     )}
                   </div>

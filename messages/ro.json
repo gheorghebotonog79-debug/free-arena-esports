@@ -87,9 +87,10 @@
       "ping": "Ping"
     },
     "status": {
-      "loading": "Se încarcă",
+      "loading": "Se ?ncarc?",
       "online": "Online",
-      "offline": "Offline"
+      "offline": "Offline",
+      "pending": "?n a?teptare"
     },
     "items": {
       "cs16": {
@@ -98,7 +99,7 @@
       },
       "global": {
         "name": "Global",
-        "region": "Mix internațional"
+        "region": "?n cur?nd"
       },
       "cs2": {
         "name": "CS2",
@@ -106,7 +107,7 @@
       },
       "respawn": {
         "name": "Respawn",
-        "region": "În curând"
+        "region": "Rom?nia"
       }
     },
     "tags": {
@@ -130,7 +131,8 @@
       "copyIp": "Copiază IP",
       "copied": "Copiat",
       "copyIpFor": "Copiază IP pentru {server}",
-      "connectTo": "Conectează-te la {server}"
+      "connectTo": "Conectează-te la {server}",
+      "pending": "?n cur?nd"
     },
     "loading": {
       "value": "..."

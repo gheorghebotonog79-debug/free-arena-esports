@@ -10,7 +10,7 @@ const QUERY_TIMEOUT_MS = 2_400;
 const ATTEMPT_TIMEOUT_MS = 4_200;
 
 function buildAddress(target: LiveServerTarget) {
-  return `${target.host}:${target.port}`;
+  return `${target.displayHost ?? target.host}:${target.port}`;
 }
 
 function normalizeNumber(value: unknown, fallback: number) {
@@ -61,7 +61,7 @@ async function queryServer(target: LiveServerTarget): Promise<LiveServerStatus> 
       maxPlayers: normalizeNumber(state.maxplayers, target.fallbackMaxPlayers),
       ping: normalizeNumber(state.ping, 0),
       address,
-      connectUrl: state.connect ? `steam://connect/${state.connect}` : `steam://connect/${address}`,
+      connectUrl: `steam://connect/${address}`,
       checkedAt,
     };
   } catch {

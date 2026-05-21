@@ -1,11 +1,12 @@
 export type LiveServerKey = "cs16" | "global" | "cs2" | "respawn";
 
-export type LiveServerStatusKind = "loading" | "online" | "offline";
+export type LiveServerStatusKind = "loading" | "online" | "offline" | "pending";
 
 export type LiveServerTarget = {
   key: LiveServerKey;
   gameType: "counterstrike16" | "counterstrike2";
   host: string;
+  displayHost?: string;
   port: number;
   fallbackName: string;
   fallbackMaxPlayers: number;
@@ -40,11 +41,12 @@ export const liveServerTargets = [
     fallbackMaxPlayers: 32,
   },
   {
-    key: "global",
+    key: "respawn",
     gameType: "counterstrike16",
     host: "global.free-arena.ro",
+    displayHost: "respawn.free-arena.ro",
     port: 27015,
-    fallbackName: "FREE-ARENA.RO Global",
+    fallbackName: "FREE-ARENA.RO Respawn",
     fallbackMaxPlayers: 32,
   },
   {
@@ -53,14 +55,6 @@ export const liveServerTargets = [
     host: "cs2.free-arena.ro",
     port: 27015,
     fallbackName: "FREE-ARENA.RO CS2",
-    fallbackMaxPlayers: 32,
-  },
-  {
-    key: "respawn",
-    gameType: "counterstrike16",
-    host: "respawn.free-arena.ro",
-    port: 27015,
-    fallbackName: "FREE-ARENA.RO Respawn",
     fallbackMaxPlayers: 32,
   },
 ] as const satisfies readonly LiveServerTarget[];

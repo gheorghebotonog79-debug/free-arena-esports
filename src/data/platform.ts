@@ -18,6 +18,7 @@ type GameServerCard = {
   address: string;
   connectHref: string;
   connectable: boolean;
+  pending?: boolean;
   tags: readonly string[];
 };
 
@@ -55,12 +56,12 @@ export const gameServers = [
     tags: ["classic", "ranked", "vip"],
   },
   {
-    key: "global",
-    icon: `${iconBase}/GL.png`,
-    address: "global.free-arena.ro:27015",
-    connectHref: "steam://connect/global.free-arena.ro:27015",
+    key: "respawn",
+    icon: `${iconBase}/RES.png`,
+    address: "respawn.free-arena.ro:27015",
+    connectHref: "steam://connect/respawn.free-arena.ro:27015",
     connectable: true,
-    tags: ["global", "scrims", "community"],
+    tags: ["respawn", "ranked", "vip"],
   },
   {
     key: "cs2",
@@ -71,12 +72,13 @@ export const gameServers = [
     tags: ["premier", "faceitStyle", "antiCheat"],
   },
   {
-    key: "respawn",
-    icon: `${iconBase}/RES.png`,
-    address: "respawn.free-arena.ro:27015",
-    connectHref: "steam://connect/respawn.free-arena.ro:27015",
-    connectable: true,
-    tags: ["respawn", "soon", "events"],
+    key: "global",
+    icon: `${iconBase}/GL.png`,
+    address: "global.free-arena.ro:27015",
+    connectHref: "",
+    connectable: false,
+    pending: true,
+    tags: ["global", "soon", "community"],
   },
 ] as const satisfies readonly GameServerCard[];
 

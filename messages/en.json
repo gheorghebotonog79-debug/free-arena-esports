@@ -89,7 +89,8 @@
     "status": {
       "loading": "Loading",
       "online": "Online",
-      "offline": "Offline"
+      "offline": "Offline",
+      "pending": "Pending"
     },
     "items": {
       "cs16": {
@@ -98,7 +99,7 @@
       },
       "global": {
         "name": "Global",
-        "region": "International mix"
+        "region": "Coming soon"
       },
       "cs2": {
         "name": "CS2",
@@ -106,7 +107,7 @@
       },
       "respawn": {
         "name": "Respawn",
-        "region": "Coming soon"
+        "region": "Romania"
       }
     },
     "tags": {
@@ -130,7 +131,8 @@
       "copyIp": "Copy IP",
       "copied": "Copied",
       "copyIpFor": "Copy IP for {server}",
-      "connectTo": "Connect to {server}"
+      "connectTo": "Connect to {server}",
+      "pending": "Coming soon"
     },
     "loading": {
       "value": "..."
