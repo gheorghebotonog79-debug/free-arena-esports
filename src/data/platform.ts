@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import type { LiveServerKey } from "@/lib/live-server-targets";
 import {
   Crown,
   Headphones,
@@ -10,6 +11,15 @@ import {
 } from "lucide-react";
 
 const iconBase = "/assets/game-icons";
+
+type GameServerCard = {
+  key: LiveServerKey;
+  icon: string;
+  address: string;
+  connectHref: string;
+  connectable: boolean;
+  tags: readonly string[];
+};
 
 export const platformStats = [
   { key: "players", value: "24K" },
@@ -38,25 +48,15 @@ export const spotlightMatch = {
 export const gameServers = [
   {
     key: "cs16",
-    statusKey: "online",
-    statusClass: "bg-arena-green/12 text-arena-green border border-arena-green/30",
     icon: `${iconBase}/CS.png`,
-    players: "29/32",
-    tickrate: "100",
-    ping: "12ms",
-    address: "play.free-arena.ro:27015",
-    connectHref: "steam://connect/play.free-arena.ro:27015",
+    address: "cs.free-arena.ro:27015",
+    connectHref: "steam://connect/cs.free-arena.ro:27015",
     connectable: true,
     tags: ["classic", "ranked", "vip"],
   },
   {
     key: "global",
-    statusKey: "online",
-    statusClass: "bg-arena-cyan/12 text-arena-cyan border border-arena-cyan/30",
     icon: `${iconBase}/GL.png`,
-    players: "54/64",
-    tickrate: "100",
-    ping: "18ms",
     address: "global.free-arena.ro:27015",
     connectHref: "steam://connect/global.free-arena.ro:27015",
     connectable: true,
@@ -64,12 +64,7 @@ export const gameServers = [
   },
   {
     key: "cs2",
-    statusKey: "warmup",
-    statusClass: "bg-arena-gold/12 text-arena-gold border border-arena-gold/30",
     icon: `${iconBase}/CS2.png`,
-    players: "9/10",
-    tickrate: "128",
-    ping: "21ms",
     address: "cs2.free-arena.ro:27015",
     connectHref: "steam://connect/cs2.free-arena.ro:27015",
     connectable: true,
@@ -77,18 +72,13 @@ export const gameServers = [
   },
   {
     key: "respawn",
-    statusKey: "comingSoon",
-    statusClass: "bg-white/8 text-white/58 border border-white/14",
     icon: `${iconBase}/RES.png`,
-    players: "0/32",
-    tickrate: "100",
-    ping: "--",
     address: "respawn.free-arena.ro:27015",
-    connectHref: "",
-    connectable: false,
+    connectHref: "steam://connect/respawn.free-arena.ro:27015",
+    connectable: true,
     tags: ["respawn", "soon", "events"],
   },
-] as const;
+] as const satisfies readonly GameServerCard[];
 
 export const tournamentCards = [
   {

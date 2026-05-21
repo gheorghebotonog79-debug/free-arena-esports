@@ -78,18 +78,18 @@
   "Servers": {
     "heading": {
       "eyebrow": "Servere live",
-      "title": "LIVE SERVERS pentru fiecare stil de joc",
-      "copy": "Cardurile folosesc date statice pentru moment: IP, status, jucători și butoane de conectare pregătite pentru backend."
+      "title": "LIVE SERVERS conectate la status real",
+      "copy": "Cardurile interogheaz? serverele FREE-ARENA.RO ?n timp real pentru hart?, juc?tori, ping ?i stare online/offline."
     },
     "labels": {
-      "players": "Jucători",
-      "tick": "Tick",
+      "players": "Juc?tori",
+      "map": "Hart?",
       "ping": "Ping"
     },
     "status": {
+      "loading": "Se ?ncarc?",
       "online": "Online",
-      "warmup": "Încălzire",
-      "comingSoon": "În curând"
+      "offline": "Offline"
     },
     "items": {
       "cs16": {
@@ -124,9 +124,18 @@
       "events": "Evenimente"
     },
     "actions": {
-      "connect": "Conectează-te",
-      "comingSoon": "În curând",
-      "connectTo": "Conectează-te la {server}"
+      "connect": "Conecteaz?-te",
+      "loading": "Se verific?",
+      "offline": "Offline",
+      "connectTo": "Conecteaz?-te la {server}"
+    },
+    "loading": {
+      "value": "..."
+    },
+    "fallback": {
+      "map": "--",
+      "players": "0/0",
+      "ping": "--"
     }
   },
   "Tournaments": {

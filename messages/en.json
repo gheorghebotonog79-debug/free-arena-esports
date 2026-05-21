@@ -78,18 +78,18 @@
   "Servers": {
     "heading": {
       "eyebrow": "Live servers",
-      "title": "LIVE SERVERS for every play style",
-      "copy": "Cards use static data for now: IP, status, player counts, and connect buttons prepared for future backend wiring."
+      "title": "LIVE SERVERS connected to real status",
+      "copy": "Cards query FREE-ARENA.RO servers in real time for map, players, ping, and online/offline status."
     },
     "labels": {
       "players": "Players",
-      "tick": "Tick",
+      "map": "Map",
       "ping": "Ping"
     },
     "status": {
+      "loading": "Loading",
       "online": "Online",
-      "warmup": "Warmup",
-      "comingSoon": "Coming soon"
+      "offline": "Offline"
     },
     "items": {
       "cs16": {
@@ -125,8 +125,17 @@
     },
     "actions": {
       "connect": "Connect",
-      "comingSoon": "Coming soon",
+      "loading": "Checking",
+      "offline": "Offline",
       "connectTo": "Connect to {server}"
+    },
+    "loading": {
+      "value": "..."
+    },
+    "fallback": {
+      "map": "--",
+      "players": "0/0",
+      "ping": "--"
     }
   },
   "Tournaments": {
