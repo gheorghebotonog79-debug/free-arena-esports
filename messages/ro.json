@@ -157,6 +157,16 @@
     },
     "modal": {
       "eyebrow": "Detalii server",
+      "statusSummaryLabel": "Status live",
+      "lastChecked": "Ultima verificare",
+      "lastCheckedUnavailable": "în așteptare",
+      "refreshingHint": "Datele live se actualizează. Valorile se vor sincroniza automat.",
+      "summary": {
+        "loading": "Verificăm statusul pentru {server} și păstrăm cardul stabil până sosește răspunsul.",
+        "online": "{server} este online și răspunde cu date live pentru hartă, jucători și ping.",
+        "offline": "{server} nu răspunde momentan la interogarea live.",
+        "pending": "{server} este marcat ca slot viitor și nu este interogat prin GameDig."
+      },
       "pendingMessage": "Acest server este în pregătire și va fi conectat când slotul devine activ.",
       "offlineMessage": "Serverul nu răspunde momentan. Poți copia adresa și încerca mai târziu."
     }

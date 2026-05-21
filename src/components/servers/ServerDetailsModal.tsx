@@ -3,8 +3,10 @@
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  Activity,
   ArrowRight,
   Check,
+  Clock3,
   Copy,
   Gamepad2,
   RadioTower,
@@ -13,7 +15,7 @@ import {
   UsersRound,
   X,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import type { LiveServerKey, LiveServerStatusKind } from "@/lib/live-server-targets";
 
 const statusClasses: Record<LiveServerStatusKind, string> = {
@@ -33,6 +35,7 @@ export type ServerDetailsModalServer = {
   map: string;
   players: string;
   ping: string;
+  lastCheckedAt: string | null;
   connectHref: string;
   connectable: boolean;
   isOnline: boolean;
@@ -42,6 +45,7 @@ export type ServerDetailsModalServer = {
 type ServerDetailsModalProps = {
   server: ServerDetailsModalServer | null;
   isCopied: boolean;
+  isRefreshing: boolean;
   onClose: () => void;
   onCopy: (key: LiveServerKey, address: string) => void | Promise<void>;
 };
@@ -49,10 +53,12 @@ type ServerDetailsModalProps = {
 export function ServerDetailsModal({
   server,
   isCopied,
+  isRefreshing,
   onClose,
   onCopy,
 }: ServerDetailsModalProps) {
   const t = useTranslations("Servers");
+  const locale = useLocale();
 
   useEffect(() => {
     if (!server) {
@@ -89,6 +95,14 @@ export function ServerDetailsModal({
       : server.status === "offline"
         ? t("modal.offlineMessage")
         : null;
+  const lastCheckedDate = server?.lastCheckedAt ? new Date(server.lastCheckedAt) : null;
+  const lastCheckedLabel = lastCheckedDate && !Number.isNaN(lastCheckedDate.getTime())
+    ? new Intl.DateTimeFormat(locale, {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      }).format(lastCheckedDate)
+    : t("modal.lastCheckedUnavailable");
 
   return (
     <AnimatePresence>
@@ -145,6 +159,35 @@ export function ServerDetailsModal({
                   </button>
                 </div>
               </div>
+
+              <div className="mt-5 grid gap-3 rounded-lg border border-white/10 bg-white/[0.045] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:grid-cols-[1fr_auto] sm:items-center">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-white/38">
+                    <Activity size={16} className={server.isOnline ? "text-arena-green" : "text-arena-gold"} aria-hidden="true" />
+                    {t("modal.statusSummaryLabel")}
+                  </div>
+                  <p className="mt-2 text-sm font-semibold leading-relaxed text-white/72">
+                    {t(`modal.summary.${server.status}`, {
+                      server: server.displayName,
+                    })}
+                  </p>
+                </div>
+                <div className="rounded-lg border border-white/10 bg-black/24 px-3 py-2">
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.14em] text-white/38">
+                    <Clock3 size={15} className="text-arena-cyan" aria-hidden="true" />
+                    {t("modal.lastChecked")}
+                  </div>
+                  <p className="mt-1 font-mono text-sm font-bold text-white">
+                    {lastCheckedLabel}
+                  </p>
+                </div>
+              </div>
+
+              {isRefreshing ? (
+                <div className="mt-3 rounded-lg border border-arena-cyan/20 bg-arena-cyan/10 px-4 py-3 text-sm font-semibold text-arena-cyan">
+                  {t("modal.refreshingHint")}
+                </div>
+              ) : null}
 
               {fallbackMessage ? (
                 <div className="mt-5 rounded-lg border border-arena-gold/20 bg-arena-gold/10 px-4 py-3 text-sm font-semibold text-arena-gold">

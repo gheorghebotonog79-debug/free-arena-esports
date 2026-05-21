@@ -215,6 +215,7 @@ export function ServerGrid() {
       map,
       players,
       ping,
+      lastCheckedAt: liveServer?.checkedAt ?? null,
       connectHref: liveServer?.connectUrl || server.connectHref,
       connectable: server.connectable,
       isOnline,
@@ -426,6 +427,7 @@ export function ServerGrid() {
         <ServerDetailsModal
           server={selectedServer}
           isCopied={selectedServer ? copiedServer === selectedServer.key : false}
+          isRefreshing={isLoading || isRefreshing}
           onClose={() => setSelectedServerKey(null)}
           onCopy={handleCopyAddress}
         />

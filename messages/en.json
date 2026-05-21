@@ -157,6 +157,16 @@
     },
     "modal": {
       "eyebrow": "Server details",
+      "statusSummaryLabel": "Live status",
+      "lastChecked": "Last checked",
+      "lastCheckedUnavailable": "pending",
+      "refreshingHint": "Live data is refreshing. Values will sync automatically.",
+      "summary": {
+        "loading": "Checking {server} status while keeping the card stable until the response arrives.",
+        "online": "{server} is online and responding with live map, player, and ping data.",
+        "offline": "{server} is not responding to the live query right now.",
+        "pending": "{server} is marked as a future slot and is not queried through GameDig."
+      },
       "pendingMessage": "This server is being prepared and will be connected when the slot becomes active.",
       "offlineMessage": "The server is not responding right now. You can copy the address and try again later."
     }
