@@ -1,14 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   Check,
+  Clock3,
   Copy,
   Gamepad2,
   Info,
   RadioTower,
+  RefreshCw,
   Server,
   ShieldCheck,
   UsersRound,
@@ -17,7 +19,7 @@ import {
   ServerDetailsModal,
   type ServerDetailsModalServer,
 } from "@/components/servers/ServerDetailsModal";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { MotionCard } from "@/components/ui/motion-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { gameServers } from "@/data/platform";
@@ -77,50 +79,78 @@ async function copyTextToClipboard(text: string) {
 
 export function ServerGrid() {
   const t = useTranslations("Servers");
+  const locale = useLocale();
+  const isMountedRef = useRef(false);
+  const isRequestingRef = useRef(false);
   const [serverStatuses, setServerStatuses] = useState<Partial<Record<LiveServerKey, LiveServerStatus>>>({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [lastUpdatedAt, setLastUpdatedAt] = useState<Date | null>(null);
   const [copiedServer, setCopiedServer] = useState<LiveServerKey | null>(null);
   const [selectedServerKey, setSelectedServerKey] = useState<LiveServerKey | null>(null);
 
-  useEffect(() => {
-    let isActive = true;
+  const loadServerStatuses = useCallback(async ({ initial = false }: { initial?: boolean } = {}) => {
+    if (isRequestingRef.current) {
+      return;
+    }
 
-    async function loadServerStatuses() {
-      try {
-        const response = await fetch("/api/servers");
+    isRequestingRef.current = true;
 
-        if (!response.ok) {
-          throw new Error("Server status request failed");
-        }
+    if (initial) {
+      setIsLoading(true);
+    } else {
+      setIsRefreshing(true);
+    }
 
-        const payload: unknown = await response.json();
+    try {
+      const response = await fetch("/api/servers", { cache: "no-store" });
 
-        if (!isActive || !isLiveServersResponse(payload)) {
-          return;
-        }
+      if (!response.ok) {
+        throw new Error("Server status request failed");
+      }
 
-        setServerStatuses(
-          Object.fromEntries(payload.servers.map((server) => [server.key, server])),
-        );
-      } catch {
-        if (isActive) {
-          setServerStatuses({});
-        }
-      } finally {
-        if (isActive) {
+      const payload: unknown = await response.json();
+
+      if (!isMountedRef.current || !isLiveServersResponse(payload)) {
+        return;
+      }
+
+      const checkedAtDate = new Date(payload.checkedAt);
+
+      setServerStatuses(
+        Object.fromEntries(payload.servers.map((server) => [server.key, server])),
+      );
+      setLastUpdatedAt(Number.isNaN(checkedAtDate.getTime()) ? new Date() : checkedAtDate);
+    } catch {
+      if (isMountedRef.current && initial) {
+        setServerStatuses({});
+      }
+    } finally {
+      isRequestingRef.current = false;
+
+      if (isMountedRef.current) {
+        if (initial) {
           setIsLoading(false);
+        } else {
+          setIsRefreshing(false);
         }
       }
     }
+  }, []);
 
-    void loadServerStatuses();
-    const interval = window.setInterval(loadServerStatuses, REFRESH_INTERVAL_MS);
+  useEffect(() => {
+    isMountedRef.current = true;
+
+    void loadServerStatuses({ initial: true });
+    const interval = window.setInterval(() => {
+      void loadServerStatuses();
+    }, REFRESH_INTERVAL_MS);
 
     return () => {
-      isActive = false;
+      isMountedRef.current = false;
       window.clearInterval(interval);
     };
-  }, []);
+  }, [loadServerStatuses]);
 
   async function handleCopyAddress(key: LiveServerKey, address: string) {
     try {
@@ -131,6 +161,14 @@ export function ServerGrid() {
       setCopiedServer(null);
     }
   }
+
+  const formattedLastUpdatedAt = lastUpdatedAt
+    ? new Intl.DateTimeFormat(locale, {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      }).format(lastUpdatedAt)
+    : t("refresh.never");
 
   const serverCards = gameServers.map((server): ServerDetailsModalServer & {
     icon: string;
@@ -187,13 +225,43 @@ export function ServerGrid() {
   const selectedServer = serverCards.find((server) => server.key === selectedServerKey) ?? null;
 
   return (
-    <section id="servers" className="cinematic-section bg-[#080909] px-4 py-20 sm:px-6 lg:px-8">
+    <section
+      id="servers"
+      className="cinematic-section bg-[#080909] px-4 py-20 sm:px-6 lg:px-8"
+      aria-busy={isLoading || isRefreshing}
+    >
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeading
           eyebrow={t("heading.eyebrow")}
           title={t("heading.title")}
           copy={t("heading.copy")}
         />
+
+        <div className="mt-8 flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex min-w-0 items-center gap-2 text-sm font-semibold text-white/58" aria-live="polite">
+            <Clock3 size={17} className="shrink-0 text-arena-cyan" aria-hidden="true" />
+            <span className="min-w-0 truncate">
+              {t("refresh.lastUpdated")}{" "}
+              <time dateTime={lastUpdatedAt?.toISOString()}>
+                {formattedLastUpdatedAt}
+              </time>
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => void loadServerStatuses()}
+            disabled={isLoading || isRefreshing}
+            className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-black/24 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10 disabled:cursor-not-allowed disabled:text-white/42 sm:w-auto"
+            aria-label={t("refresh.aria")}
+          >
+            <RefreshCw
+              size={17}
+              className={isLoading || isRefreshing ? "animate-spin text-arena-cyan" : "text-arena-cyan"}
+              aria-hidden="true"
+            />
+            {isLoading || isRefreshing ? t("refresh.refreshing") : t("refresh.button")}
+          </button>
+        </div>
 
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {serverCards.map((server, index) => {
@@ -203,8 +271,14 @@ export function ServerGrid() {
               <MotionCard
                 key={server.key}
                 delay={index * 0.06}
-                className="premium-card glass-panel flex h-full flex-col rounded-lg p-5"
+                className="premium-card glass-panel relative flex h-full flex-col overflow-hidden rounded-lg p-5"
               >
+                {isRefreshing ? (
+                  <span
+                    className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-arena-cyan/70 to-transparent opacity-80"
+                    aria-hidden="true"
+                  />
+                ) : null}
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex min-w-0 items-center gap-3">
                     <span className="animated-border grid size-14 shrink-0 place-items-center rounded-lg border border-white/10 bg-black/30 shadow-[0_0_34px_rgba(56,213,255,0.1)]">

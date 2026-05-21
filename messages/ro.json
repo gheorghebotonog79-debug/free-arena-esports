@@ -139,6 +139,13 @@
       "detailsFor": "Vezi detalii pentru {server}",
       "closeDetails": "Închide detaliile serverului"
     },
+    "refresh": {
+      "lastUpdated": "Ultima actualizare:",
+      "button": "Refresh",
+      "refreshing": "Se actualizează",
+      "never": "în curs",
+      "aria": "Actualizează statusul serverelor"
+    },
     "loading": {
       "value": "..."
     },

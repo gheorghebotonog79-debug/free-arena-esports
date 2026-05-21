@@ -139,6 +139,13 @@
       "detailsFor": "View details for {server}",
       "closeDetails": "Close server details"
     },
+    "refresh": {
+      "lastUpdated": "Last updated:",
+      "button": "Refresh",
+      "refreshing": "Refreshing",
+      "never": "pending",
+      "aria": "Refresh server status"
+    },
     "loading": {
       "value": "..."
     },
