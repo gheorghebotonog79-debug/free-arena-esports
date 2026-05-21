@@ -1,0 +1,225 @@
+{
+  "Metadata": {
+    "title": "FREE-ARENA.RO | Platformă Esports",
+    "template": "%s | FREE-ARENA.RO",
+    "description": "Hub esports FREE-ARENA.RO pentru servere competitive, turnee, clasamente și evenimente de comunitate.",
+    "openGraphTitle": "Platformă Esports FREE-ARENA.RO",
+    "openGraphDescription": "Rețea competitivă de servere, turnee, clasamente și instrumente de comunitate pentru FREE-ARENA.RO.",
+    "imageAlt": "Previzualizare pachet iconițe esports FREE-ARENA.RO"
+  },
+  "Navigation": {
+    "aria": {
+      "main": "Navigație principală"
+    },
+    "brandSubtitle": "Rețea Esports",
+    "items": {
+      "servers": "Servere",
+      "events": "Evenimente",
+      "community": "Comunitate"
+    },
+    "live": "Live",
+    "join": "Intră"
+  },
+  "LocaleSwitcher": {
+    "label": "Schimbă limba",
+    "ro": "RO",
+    "en": "EN"
+  },
+  "Footer": {
+    "copy": "Infrastructură esports pregătită pentru clasamente, conturi, date de meci, module de magazin și operațiuni de comunitate.",
+    "links": {
+      "servers": "Servere",
+      "community": "Comunitate",
+      "home": "Acasă"
+    }
+  },
+  "Hero": {
+    "eyebrow": "Hub competitiv online",
+    "title": "FREE-ARENA.RO platformă esports",
+    "copy": "O arenă scalabilă pentru servere live, turnee, echipe, identitate de jucător și integrări backend viitoare în rețeaua FREE-ARENA.RO.",
+    "cta": {
+      "servers": "Vezi serverele",
+      "events": "Program evenimente"
+    },
+    "stats": {
+      "players": "Jucători",
+      "servers": "Servere",
+      "cups": "Cupe",
+      "uptime": "Disponibilitate"
+    },
+    "spotlight": {
+      "eyebrow": "Meci principal",
+      "title": "Derby Free Arena",
+      "mode": "Cel mai bun din 3",
+      "slots": "10 jucători",
+      "status": "Admin pregătit",
+      "versus": "VS",
+      "teams": {
+        "alphaFive": {
+          "name": "Alpha Five",
+          "record": "8V - 2Î"
+        },
+        "nightCore": {
+          "name": "Night Core",
+          "record": "7V - 3Î"
+        }
+      }
+    },
+    "gameIconAlt": {
+      "CS2": "Arenă CS2",
+      "VAL": "Arenă Valorant",
+      "LOL": "Arenă League of Legends"
+    },
+    "season": {
+      "eyebrow": "Sezon Alpha",
+      "copy": "Clasamentele ranked și cupele sunt pregătite pentru date API."
+    }
+  },
+  "Servers": {
+    "heading": {
+      "eyebrow": "Rețea live",
+      "title": "Stack de servere pregătit pentru date reale de jucători",
+      "copy": "Cardurile de server sunt structurate pentru conectare la API-uri de status, populație, coadă și hartă."
+    },
+    "labels": {
+      "players": "Jucători",
+      "tick": "Tick",
+      "ping": "Ping"
+    },
+    "status": {
+      "online": "Online",
+      "warmup": "Încălzire",
+      "queue": "Coadă"
+    },
+    "items": {
+      "cs16Classic": {
+        "name": "CS 1.6 Classic",
+        "region": "România"
+      },
+      "cs2Premier": {
+        "name": "CS2 Premier",
+        "region": "EU Central"
+      },
+      "mixedArena": {
+        "name": "Mixed Arena",
+        "region": "Global"
+      }
+    },
+    "tags": {
+      "classic": "Clasic",
+      "ranked": "Ranked",
+      "vip": "VIP",
+      "premier": "Premier",
+      "faceitStyle": "Stil FACEIT",
+      "antiCheat": "Anti-cheat",
+      "events": "Evenimente",
+      "scrims": "Scrims",
+      "community": "Comunitate"
+    }
+  },
+  "Tournaments": {
+    "heading": {
+      "eyebrow": "Operațiuni competiții",
+      "title": "Module de turneu cu limite curate de date",
+      "copy": "Programările, bracketurile, premiile, înscrierea echipelor și stările de meci sunt separate pentru integrare backend viitoare."
+    },
+    "featured": {
+      "eyebrow": "Cupă recomandată",
+      "title": "Arena Masters",
+      "stats": {
+        "window": {
+          "label": "Perioadă",
+          "value": "Vin - Dum"
+        },
+        "format": {
+          "label": "Format",
+          "value": "5v5 Swiss"
+        },
+        "prize": {
+          "label": "Premiu",
+          "value": "VIP + Credite"
+        },
+        "ruleset": {
+          "label": "Reguli",
+          "value": "Verificat de admin"
+        }
+      }
+    },
+    "labels": {
+      "status": "Status",
+      "slots": "Locuri"
+    },
+    "status": {
+      "open": "Deschis",
+      "active": "Activ",
+      "ready": "Pregătit"
+    },
+    "cards": {
+      "saturdayBracket": {
+        "label": "Bracket de sâmbătă",
+        "title": "Cupa Weekend Counter-Strike",
+        "copy": "Înscrierea echipelor, veto-ul de hărți, starea meciului și verificarea rezultatului sunt pregătite pentru conectare la servicii."
+      },
+      "monthlyLadder": {
+        "label": "Ladder lunar",
+        "title": "FREE-ARENA.RO Season Ladder",
+        "copy": "Clasamentele ranked sunt structurate pentru scor backend, resetări de sezon, recompense și audit."
+      },
+      "communityEvent": {
+        "label": "Eveniment comunitar",
+        "title": "VIP Night Showmatch",
+        "copy": "Metadata evenimentelor susține gazde, premii, participanți și rezumate de meci pregătite pentru broadcast."
+      }
+    }
+  },
+  "Community": {
+    "heading": {
+      "eyebrow": "Strat de comunitate",
+      "title": "Pregătit pentru conturi, VIP și operațiuni",
+      "copy": "Interfața este organizată în jurul modulelor reutilizabile de date care pot primi starea autentificată a jucătorului când backendul este disponibil."
+    },
+    "cta": {
+      "community": "Hub comunitate",
+      "servers": "Stack servere"
+    },
+    "pillars": {
+      "playerIdentity": {
+        "title": "Identitate jucător",
+        "copy": "Profilurile pot conecta Steam, rankuri, sancțiuni, echipe și progresie pe toată platforma."
+      },
+      "vipEconomy": {
+        "title": "Economie VIP",
+        "copy": "Suprafețele de magazin sunt pregătite pentru credite, beneficii, inventar, facturi și verificări de acces."
+      },
+      "adminControl": {
+        "title": "Control admin",
+        "copy": "Operațiunile pot crește în cozi de moderare, acțiuni pe server, istoric ban și audit logs."
+      },
+      "communityFeed": {
+        "title": "Feed comunitate",
+        "copy": "Știrile, evenimentele Discord, patch notes, câștigătorii și anunțurile staff au o cale curată de conținut."
+      },
+      "rewards": {
+        "title": "Recompense",
+        "copy": "Badge-urile, misiunile și datele tip battle pass se pot conecta la această structură fără rescrieri UI."
+      },
+      "staffRoles": {
+        "title": "Roluri staff",
+        "copy": "Navigația pe roluri și zonele de dashboard cu permisiuni pot fi adăugate pe măsură ce backendul se maturizează."
+      }
+    },
+    "asset": {
+      "alt": "Iconițe de joc generate pentru FREE-ARENA.RO",
+      "title": "Pachetul de asseturi generate este instalat",
+      "copy": "Iconițele de joc sunt disponibile local în public assets pentru pagini, dashboarduri, clasamente și identitatea serverelor.",
+      "chat": "Chat",
+      "store": "Magazin"
+    }
+  },
+  "NotFound": {
+    "eyebrow": "404",
+    "title": "Ruta arenei nu a fost găsită",
+    "copy": "Pagina cerută nu este disponibilă în buildul curent al platformei.",
+    "back": "Înapoi la hub"
+  }
+}

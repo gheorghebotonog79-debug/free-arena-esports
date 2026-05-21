@@ -1,0 +1,225 @@
+{
+  "Metadata": {
+    "title": "FREE-ARENA.RO | Esports Platform",
+    "template": "%s | FREE-ARENA.RO",
+    "description": "FREE-ARENA.RO esports hub for competitive servers, tournaments, rankings, and community events.",
+    "openGraphTitle": "FREE-ARENA.RO Esports Platform",
+    "openGraphDescription": "Competitive server network, tournaments, rankings, and community tools for FREE-ARENA.RO.",
+    "imageAlt": "FREE-ARENA.RO esports icon pack preview"
+  },
+  "Navigation": {
+    "aria": {
+      "main": "Main navigation"
+    },
+    "brandSubtitle": "Esports Network",
+    "items": {
+      "servers": "Servers",
+      "events": "Events",
+      "community": "Community"
+    },
+    "live": "Live",
+    "join": "Join"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "ro": "RO",
+    "en": "EN"
+  },
+  "Footer": {
+    "copy": "Esports infrastructure prepared for rankings, accounts, match data, store modules, and community operations.",
+    "links": {
+      "servers": "Servers",
+      "community": "Community",
+      "home": "Home"
+    }
+  },
+  "Hero": {
+    "eyebrow": "Competitive hub online",
+    "title": "FREE-ARENA.RO esports platform",
+    "copy": "A scalable arena for live servers, tournaments, squads, player identity, and future backend integrations across the FREE-ARENA.RO network.",
+    "cta": {
+      "servers": "View servers",
+      "events": "Event schedule"
+    },
+    "stats": {
+      "players": "Players",
+      "servers": "Servers",
+      "cups": "Cups",
+      "uptime": "Uptime"
+    },
+    "spotlight": {
+      "eyebrow": "Spotlight match",
+      "title": "Free Arena Derby",
+      "mode": "Best of 3",
+      "slots": "10 players",
+      "status": "Admin ready",
+      "versus": "VS",
+      "teams": {
+        "alphaFive": {
+          "name": "Alpha Five",
+          "record": "8W - 2L"
+        },
+        "nightCore": {
+          "name": "Night Core",
+          "record": "7W - 3L"
+        }
+      }
+    },
+    "gameIconAlt": {
+      "CS2": "CS2 arena",
+      "VAL": "Valorant arena",
+      "LOL": "League of Legends arena"
+    },
+    "season": {
+      "eyebrow": "Season Alpha",
+      "copy": "Ranked ladders and cups ready for API data."
+    }
+  },
+  "Servers": {
+    "heading": {
+      "eyebrow": "Live network",
+      "title": "Server stack prepared for real player data",
+      "copy": "Structured server cards are ready to connect to backend status, population, queue, and map APIs."
+    },
+    "labels": {
+      "players": "Players",
+      "tick": "Tick",
+      "ping": "Ping"
+    },
+    "status": {
+      "online": "Online",
+      "warmup": "Warmup",
+      "queue": "Queue"
+    },
+    "items": {
+      "cs16Classic": {
+        "name": "CS 1.6 Classic",
+        "region": "Romania"
+      },
+      "cs2Premier": {
+        "name": "CS2 Premier",
+        "region": "EU Central"
+      },
+      "mixedArena": {
+        "name": "Mixed Arena",
+        "region": "Global"
+      }
+    },
+    "tags": {
+      "classic": "Classic",
+      "ranked": "Ranked",
+      "vip": "VIP",
+      "premier": "Premier",
+      "faceitStyle": "Faceit style",
+      "antiCheat": "Anti-cheat",
+      "events": "Events",
+      "scrims": "Scrims",
+      "community": "Community"
+    }
+  },
+  "Tournaments": {
+    "heading": {
+      "eyebrow": "Competition ops",
+      "title": "Tournament modules with clean data boundaries",
+      "copy": "Schedules, brackets, prize pools, team entry, and match states are separated for future backend integration."
+    },
+    "featured": {
+      "eyebrow": "Featured cup",
+      "title": "Arena Masters",
+      "stats": {
+        "window": {
+          "label": "Window",
+          "value": "Fri - Sun"
+        },
+        "format": {
+          "label": "Format",
+          "value": "5v5 Swiss"
+        },
+        "prize": {
+          "label": "Prize",
+          "value": "VIP + Credits"
+        },
+        "ruleset": {
+          "label": "Ruleset",
+          "value": "Admin verified"
+        }
+      }
+    },
+    "labels": {
+      "status": "Status",
+      "slots": "Slots"
+    },
+    "status": {
+      "open": "Open",
+      "active": "Active",
+      "ready": "Ready"
+    },
+    "cards": {
+      "saturdayBracket": {
+        "label": "Saturday bracket",
+        "title": "Counter-Strike Weekend Cup",
+        "copy": "Team registration, map veto, match state, and result verification are ready for service wiring."
+      },
+      "monthlyLadder": {
+        "label": "Monthly ladder",
+        "title": "FREE-ARENA.RO Season Ladder",
+        "copy": "Ranked standings are structured for backend scoring, season resets, rewards, and audit trails."
+      },
+      "communityEvent": {
+        "label": "Community event",
+        "title": "VIP Night Showmatch",
+        "copy": "Event metadata supports hosts, prizes, participants, and broadcast-ready match summaries."
+      }
+    }
+  },
+  "Community": {
+    "heading": {
+      "eyebrow": "Community layer",
+      "title": "Ready for accounts, VIP, and operations",
+      "copy": "The interface is organized around reusable data modules that can receive authenticated player state when the backend arrives."
+    },
+    "cta": {
+      "community": "Community hub",
+      "servers": "Server stack"
+    },
+    "pillars": {
+      "playerIdentity": {
+        "title": "Player identity",
+        "copy": "Profiles can connect Steam, ranks, sanctions, teams, and platform-wide progression."
+      },
+      "vipEconomy": {
+        "title": "VIP economy",
+        "copy": "Store surfaces are prepared for credits, perks, inventory, invoices, and entitlement checks."
+      },
+      "adminControl": {
+        "title": "Admin control",
+        "copy": "Operations can expand into moderation queues, server actions, ban history, and audit logs."
+      },
+      "communityFeed": {
+        "title": "Community feed",
+        "copy": "News, Discord events, patch notes, winners, and staff announcements have a clean content path."
+      },
+      "rewards": {
+        "title": "Rewards",
+        "copy": "Badge, mission, and battle pass style data can plug into this structure without UI rewrites."
+      },
+      "staffRoles": {
+        "title": "Staff roles",
+        "copy": "Role-aware navigation and permissioned dashboard areas can be added as the backend matures."
+      }
+    },
+    "asset": {
+      "alt": "FREE-ARENA.RO generated game icons",
+      "title": "Generated asset pack installed",
+      "copy": "Game icons are available locally under public assets for pages, dashboards, rankings, and server identity.",
+      "chat": "Chat",
+      "store": "Store"
+    }
+  },
+  "NotFound": {
+    "eyebrow": "404",
+    "title": "Arena route not found",
+    "copy": "The requested page is not available in the current platform build.",
+    "back": "Back to hub"
+  }
+}
