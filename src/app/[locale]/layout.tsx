@@ -6,7 +6,7 @@ import { CinematicInteractions } from "@/components/ui/cinematic-interactions";
 import { routing, type Locale } from "@/i18n/routing";
 import "../globals.css";
 
-const siteUrl = "https://free-arena.ro";
+const siteUrl = "https://play.free-arena.ro";
 
 const openGraphLocales: Record<Locale, string> = {
   ro: "ro_RO",
@@ -105,4 +105,3 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     </html>
   );
 }
-

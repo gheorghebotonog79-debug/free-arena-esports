@@ -20,18 +20,54 @@ npm run typecheck
 npm run build
 ```
 
+## Vercel Deployment
+
+The repository is ready for Vercel as a standard Next.js project.
+
+Recommended Vercel settings:
+
+- Framework Preset: `Next.js`
+- Install Command: `npm ci`
+- Build Command: `npm run build`
+- Development Command: `npm run dev`
+- Output Directory: leave empty/default
+- Node.js Version: `20.x` or newer
+- Root Directory: repository root
+
+No production environment variables are required for the current frontend. The app uses static localized message files and does not require API keys, database URLs, or backend credentials.
+
+After importing the GitHub repository into Vercel:
+
+1. Deploy the `main` branch.
+2. Open the generated Vercel preview URL.
+3. Verify `/ro`, `/en`, and `/` work as expected.
+4. Add `play.free-arena.ro` in Project Settings -> Domains.
+5. Configure DNS for the `play` subdomain with the CNAME record shown by Vercel. For external DNS this is usually `play CNAME cname.vercel-dns-0.com`, but use the exact value shown in Vercel for the project.
+6. Wait for DNS and TLS verification to complete in Vercel.
+
+## Custom Domain Checks
+
+After `play.free-arena.ro` is connected to Vercel, verify:
+
+- `https://play.free-arena.ro/` redirects to `/ro`
+- `https://play.free-arena.ro/ro` returns `200`
+- `https://play.free-arena.ro/en` returns `200`
+- `https://play.free-arena.ro/sitemap.xml` is reachable
+- `https://play.free-arena.ro/robots.txt` is reachable
+- alternate locale links are present for Romanian, English, and `x-default`
+
 ## Start Next.js
 
 Run the app behind a reverse proxy on localhost:
 
 ```bash
-NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 npx next start --hostname 127.0.0.1 --port 3000
+NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 npm run start -- --hostname 127.0.0.1 --port 3000
 ```
 
 Recommended process manager example with PM2:
 
 ```bash
-pm2 start "npx next start --hostname 127.0.0.1 --port 3000" --name free-arena-ro
+pm2 start "npm run start -- --hostname 127.0.0.1 --port 3000" --name free-arena-ro
 pm2 save
 ```
 

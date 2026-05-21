@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://free-arena.ro/sitemap.xml",
+    sitemap: "https://play.free-arena.ro/sitemap.xml",
   };
 }
