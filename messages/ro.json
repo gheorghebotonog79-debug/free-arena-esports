@@ -272,6 +272,9 @@
           "copy": "Voice stabil pentru public, mixuri CS, suport admin și lounge VIP, pregătit pentru status real când backendul va fi conectat.",
           "status": "Online",
           "cta": "Intră pe TeamSpeak",
+          "copyAddress": "Copiază adresa",
+          "copied": "Copiat",
+          "copyAddressFor": "Copiază adresa TeamSpeak {address}",
           "channels": {
             "public": "Public",
             "cs16": "CS 1.6",

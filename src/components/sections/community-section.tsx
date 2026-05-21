@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
-import { ArrowRight, BadgeCheck, Disc3, MessageSquare, WalletCards } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, BadgeCheck, Check, Copy, Disc3, MessageSquare, WalletCards } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { MotionCard } from "@/components/ui/motion-card";
 import { MotionReveal } from "@/components/ui/motion-reveal";
@@ -8,8 +11,51 @@ import { Link } from "@/i18n/navigation";
 import { communityChannels, communityPillars } from "@/data/platform";
 import { routes } from "@/lib/routes";
 
+async function copyTextToClipboard(text: string) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {
+      // Fall back below when async clipboard access is blocked.
+    }
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.inset = "0";
+  textarea.style.opacity = "0";
+  textarea.style.pointerEvents = "none";
+
+  document.body.appendChild(textarea);
+  textarea.select();
+  textarea.setSelectionRange(0, text.length);
+
+  const didCopy = document.execCommand("copy");
+  document.body.removeChild(textarea);
+
+  if (!didCopy) {
+    throw new Error("Clipboard copy failed");
+  }
+}
+
 export function CommunitySection() {
   const t = useTranslations("Community");
+  const [copiedChannel, setCopiedChannel] = useState<string | null>(null);
+
+  async function handleCopyAddress(channelKey: string, endpoint: string) {
+    try {
+      await copyTextToClipboard(endpoint);
+      setCopiedChannel(channelKey);
+      window.setTimeout(() => {
+        setCopiedChannel((current) => (current === channelKey ? null : current));
+      }, 1800);
+    } catch {
+      setCopiedChannel(null);
+    }
+  }
 
   return (
     <section id="community" className="cinematic-section bg-[#080808] px-4 py-20 sm:px-6 lg:px-8">
@@ -114,15 +160,37 @@ export function CommunitySection() {
                     </div>
                   ) : null}
 
-                  <a
-                    href={channel.href}
-                    target={channel.external ? "_blank" : undefined}
-                    rel={channel.external ? "noreferrer" : undefined}
-                    className="button-glow mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-arena-green"
-                  >
-                    {t(`hub.channels.${channel.key}.cta`)}
-                    <ArrowRight size={17} aria-hidden="true" />
-                  </a>
+                  <div className="mt-5 grid gap-2">
+                    {channel.key === "teamspeak" ? (
+                      <button
+                        type="button"
+                        onClick={() => void handleCopyAddress(channel.key, channel.endpoint)}
+                        className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                        aria-label={t("hub.channels.teamspeak.copyAddressFor", {
+                          address: channel.endpoint,
+                        })}
+                      >
+                        {copiedChannel === channel.key ? (
+                          <Check size={17} aria-hidden="true" />
+                        ) : (
+                          <Copy size={17} aria-hidden="true" />
+                        )}
+                        {copiedChannel === channel.key
+                          ? t("hub.channels.teamspeak.copied")
+                          : t("hub.channels.teamspeak.copyAddress")}
+                      </button>
+                    ) : null}
+
+                    <a
+                      href={channel.href}
+                      target={channel.external ? "_blank" : undefined}
+                      rel={channel.external ? "noreferrer" : undefined}
+                      className="button-glow inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-arena-green"
+                    >
+                      {t(`hub.channels.${channel.key}.cta`)}
+                      <ArrowRight size={17} aria-hidden="true" />
+                    </a>
+                  </div>
                 </div>
               </MotionCard>
             );

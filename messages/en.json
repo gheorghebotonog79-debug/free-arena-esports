@@ -272,6 +272,9 @@
           "copy": "Stable voice for public rooms, CS mixes, admin support, and the VIP lounge, ready for real status once backend wiring arrives.",
           "status": "Online",
           "cta": "Join TeamSpeak",
+          "copyAddress": "Copy address",
+          "copied": "Copied",
+          "copyAddressFor": "Copy TeamSpeak address {address}",
           "channels": {
             "public": "Public",
             "cs16": "CS 1.6",
