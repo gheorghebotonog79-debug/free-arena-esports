@@ -1,59 +1,50 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BadgeCheck, Check, Copy, Disc3, MessageSquare, WalletCards } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { CopyToast } from "@/components/ui/copy-toast";
 import { MotionCard } from "@/components/ui/motion-card";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Link } from "@/i18n/navigation";
 import { communityChannels, communityPillars } from "@/data/platform";
+import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
 import { routes } from "@/lib/routes";
-
-async function copyTextToClipboard(text: string) {
-  if (navigator.clipboard?.writeText) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return;
-    } catch {
-      // Fall back below when async clipboard access is blocked.
-    }
-  }
-
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  textarea.setAttribute("readonly", "");
-  textarea.style.position = "fixed";
-  textarea.style.inset = "0";
-  textarea.style.opacity = "0";
-  textarea.style.pointerEvents = "none";
-
-  document.body.appendChild(textarea);
-  textarea.select();
-  textarea.setSelectionRange(0, text.length);
-
-  const didCopy = document.execCommand("copy");
-  document.body.removeChild(textarea);
-
-  if (!didCopy) {
-    throw new Error("Clipboard copy failed");
-  }
-}
 
 export function CommunitySection() {
   const t = useTranslations("Community");
+  const copyToastTimeoutRef = useRef<number | null>(null);
   const [copiedChannel, setCopiedChannel] = useState<string | null>(null);
+  const [copyToastMessage, setCopyToastMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (copyToastTimeoutRef.current !== null) {
+        window.clearTimeout(copyToastTimeoutRef.current);
+      }
+    };
+  }, []);
 
   async function handleCopyAddress(channelKey: string, endpoint: string) {
     try {
       await copyTextToClipboard(endpoint);
       setCopiedChannel(channelKey);
+      setCopyToastMessage(t("hub.channels.teamspeak.toastCopied", { address: endpoint }));
       window.setTimeout(() => {
         setCopiedChannel((current) => (current === channelKey ? null : current));
       }, 1800);
+      if (copyToastTimeoutRef.current !== null) {
+        window.clearTimeout(copyToastTimeoutRef.current);
+      }
+      copyToastTimeoutRef.current = window.setTimeout(() => {
+        setCopyToastMessage(null);
+        copyToastTimeoutRef.current = null;
+      }, 2400);
     } catch {
       setCopiedChannel(null);
+      setCopyToastMessage(null);
     }
   }
 
@@ -252,6 +243,7 @@ export function CommunitySection() {
           </MotionReveal>
         </div>
       </div>
+      <CopyToast message={copyToastMessage} />
     </section>
   );
 }

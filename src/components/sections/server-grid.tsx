@@ -19,10 +19,12 @@ import {
   ServerDetailsModal,
   type ServerDetailsModalServer,
 } from "@/components/servers/ServerDetailsModal";
+import { CopyToast } from "@/components/ui/copy-toast";
 import { useLocale, useTranslations } from "next-intl";
 import { MotionCard } from "@/components/ui/motion-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { gameServers } from "@/data/platform";
+import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
 import type {
   LiveServerKey,
   LiveServersResponse,
@@ -47,46 +49,18 @@ function isLiveServersResponse(value: unknown): value is LiveServersResponse {
   );
 }
 
-async function copyTextToClipboard(text: string) {
-  if (navigator.clipboard?.writeText) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return;
-    } catch {
-      // Keep a legacy fallback for browsers that block async clipboard access.
-    }
-  }
-
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  textarea.setAttribute("readonly", "");
-  textarea.style.position = "fixed";
-  textarea.style.inset = "0";
-  textarea.style.opacity = "0";
-  textarea.style.pointerEvents = "none";
-
-  document.body.appendChild(textarea);
-  textarea.select();
-  textarea.setSelectionRange(0, text.length);
-
-  const didCopy = document.execCommand("copy");
-  document.body.removeChild(textarea);
-
-  if (!didCopy) {
-    throw new Error("Clipboard copy failed");
-  }
-}
-
 export function ServerGrid() {
   const t = useTranslations("Servers");
   const locale = useLocale();
   const isMountedRef = useRef(false);
   const isRequestingRef = useRef(false);
+  const copyToastTimeoutRef = useRef<number | null>(null);
   const [serverStatuses, setServerStatuses] = useState<Partial<Record<LiveServerKey, LiveServerStatus>>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [lastUpdatedAt, setLastUpdatedAt] = useState<Date | null>(null);
   const [copiedServer, setCopiedServer] = useState<LiveServerKey | null>(null);
+  const [copyToastMessage, setCopyToastMessage] = useState<string | null>(null);
   const [selectedServerKey, setSelectedServerKey] = useState<LiveServerKey | null>(null);
 
   const loadServerStatuses = useCallback(async ({ initial = false }: { initial?: boolean } = {}) => {
@@ -149,6 +123,9 @@ export function ServerGrid() {
     return () => {
       isMountedRef.current = false;
       window.clearInterval(interval);
+      if (copyToastTimeoutRef.current !== null) {
+        window.clearTimeout(copyToastTimeoutRef.current);
+      }
     };
   }, [loadServerStatuses]);
 
@@ -156,9 +133,18 @@ export function ServerGrid() {
     try {
       await copyTextToClipboard(address);
       setCopiedServer(key);
+      setCopyToastMessage(t("toast.serverCopied", { address }));
       window.setTimeout(() => setCopiedServer((current) => (current === key ? null : current)), 1800);
+      if (copyToastTimeoutRef.current !== null) {
+        window.clearTimeout(copyToastTimeoutRef.current);
+      }
+      copyToastTimeoutRef.current = window.setTimeout(() => {
+        setCopyToastMessage(null);
+        copyToastTimeoutRef.current = null;
+      }, 2400);
     } catch {
       setCopiedServer(null);
+      setCopyToastMessage(null);
     }
   }
 
@@ -431,6 +417,7 @@ export function ServerGrid() {
           onClose={() => setSelectedServerKey(null)}
           onCopy={handleCopyAddress}
         />
+        <CopyToast message={copyToastMessage} />
       </div>
     </section>
   );

@@ -146,6 +146,9 @@
       "never": "pending",
       "aria": "Refresh server status"
     },
+    "toast": {
+      "serverCopied": "Server IP copied: {address}"
+    },
     "loading": {
       "value": "..."
     },
@@ -292,6 +295,7 @@
           "copyAddress": "Copy address",
           "copied": "Copied",
           "copyAddressFor": "Copy TeamSpeak address {address}",
+          "toastCopied": "Address copied: {address}",
           "channels": {
             "public": "Public",
             "cs16": "CS 1.6",

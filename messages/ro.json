@@ -146,6 +146,9 @@
       "never": "în curs",
       "aria": "Actualizează statusul serverelor"
     },
+    "toast": {
+      "serverCopied": "IP copiat: {address}"
+    },
     "loading": {
       "value": "..."
     },
@@ -292,6 +295,7 @@
           "copyAddress": "Copiază adresa",
           "copied": "Copiat",
           "copyAddressFor": "Copiază adresa TeamSpeak {address}",
+          "toastCopied": "Adresă copiată: {address}",
           "channels": {
             "public": "Public",
             "cs16": "CS 1.6",
