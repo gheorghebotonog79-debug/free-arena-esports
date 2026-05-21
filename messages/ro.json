@@ -278,6 +278,7 @@
         "online": "Online",
         "endpoint": "Adresă",
         "status": "Status",
+        "users": "Utilizatori",
         "channels": "Canale"
       },
       "channels": {
@@ -291,6 +292,11 @@
           "title": "FREE-ARENA.RO TeamSpeak",
           "copy": "Voice stabil pentru public, mixuri CS, suport admin și lounge VIP, pregătit pentru status real când backendul va fi conectat.",
           "status": "Online",
+          "statusLoading": "Se verifică",
+          "statusOffline": "Offline",
+          "loadingValue": "...",
+          "offlineValue": "0/0",
+          "fallback": "Statusul TeamSpeak nu este disponibil momentan. Copierea adresei și conectarea rămân active.",
           "cta": "Intră pe TeamSpeak",
           "copyAddress": "Copiază adresa",
           "copied": "Copiat",

@@ -278,6 +278,7 @@
         "online": "Online",
         "endpoint": "Endpoint",
         "status": "Status",
+        "users": "Users",
         "channels": "Channels"
       },
       "channels": {
@@ -291,6 +292,11 @@
           "title": "FREE-ARENA.RO TeamSpeak",
           "copy": "Stable voice for public rooms, CS mixes, admin support, and the VIP lounge, ready for real status once backend wiring arrives.",
           "status": "Online",
+          "statusLoading": "Checking",
+          "statusOffline": "Offline",
+          "loadingValue": "...",
+          "offlineValue": "0/0",
+          "fallback": "TeamSpeak status is not available right now. Copy address and join actions remain active.",
           "cta": "Join TeamSpeak",
           "copyAddress": "Copy address",
           "copied": "Copied",

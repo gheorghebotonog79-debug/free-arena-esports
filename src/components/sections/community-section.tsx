@@ -12,18 +12,76 @@ import { Link } from "@/i18n/navigation";
 import { communityChannels, communityPillars } from "@/data/platform";
 import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
 import { routes } from "@/lib/routes";
+import type { TeamSpeakStatusResponse } from "@/lib/teamspeak-status";
+
+const TEAMSPEAK_REFRESH_INTERVAL_MS = 60_000;
+
+const teamSpeakStatusClasses = {
+  loading: "bg-white/8 text-white/58 border border-white/14",
+  online: "bg-arena-green/12 text-arena-green border border-arena-green/30",
+  offline: "bg-arena-red/12 text-arena-red border border-arena-red/30",
+};
+
+function isTeamSpeakStatusResponse(value: unknown): value is TeamSpeakStatusResponse {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    typeof (value as TeamSpeakStatusResponse).online === "boolean" &&
+    typeof (value as TeamSpeakStatusResponse).serverName === "string"
+  );
+}
 
 export function CommunitySection() {
   const t = useTranslations("Community");
   const copyToastTimeoutRef = useRef<number | null>(null);
   const [copiedChannel, setCopiedChannel] = useState<string | null>(null);
   const [copyToastMessage, setCopyToastMessage] = useState<string | null>(null);
+  const [teamSpeakStatus, setTeamSpeakStatus] = useState<TeamSpeakStatusResponse | null>(null);
+  const [isTeamSpeakLoading, setIsTeamSpeakLoading] = useState(true);
 
   useEffect(() => {
     return () => {
       if (copyToastTimeoutRef.current !== null) {
         window.clearTimeout(copyToastTimeoutRef.current);
       }
+    };
+  }, []);
+
+  useEffect(() => {
+    let isActive = true;
+
+    async function loadTeamSpeakStatus() {
+      try {
+        const response = await fetch("/api/teamspeak", { cache: "no-store" });
+
+        if (!response.ok) {
+          throw new Error("TeamSpeak status request failed");
+        }
+
+        const payload: unknown = await response.json();
+
+        if (isActive && isTeamSpeakStatusResponse(payload)) {
+          setTeamSpeakStatus(payload);
+        }
+      } catch {
+        if (isActive) {
+          setTeamSpeakStatus(null);
+        }
+      } finally {
+        if (isActive) {
+          setIsTeamSpeakLoading(false);
+        }
+      }
+    }
+
+    void loadTeamSpeakStatus();
+    const interval = window.setInterval(() => {
+      void loadTeamSpeakStatus();
+    }, TEAMSPEAK_REFRESH_INTERVAL_MS);
+
+    return () => {
+      isActive = false;
+      window.clearInterval(interval);
     };
   }, []);
 
@@ -81,6 +139,37 @@ export function CommunitySection() {
         <div className="grid gap-4 sm:grid-cols-2">
           {communityChannels.map((channel, index) => {
             const Icon = channel.icon;
+            const isTeamSpeak = channel.key === "teamspeak";
+            const teamSpeakStatusKind = isTeamSpeakLoading
+              ? "loading"
+              : teamSpeakStatus?.online
+                ? "online"
+                : "offline";
+            const statusLabel = isTeamSpeak
+              ? teamSpeakStatusKind === "loading"
+                ? t("hub.channels.teamspeak.statusLoading")
+                : teamSpeakStatusKind === "online"
+                  ? t("hub.channels.teamspeak.status")
+                  : t("hub.channels.teamspeak.statusOffline")
+              : t(`hub.channels.${channel.key}.status`);
+            const statusClass = isTeamSpeak
+              ? teamSpeakStatusClasses[teamSpeakStatusKind]
+              : channel.statusClass;
+            const shouldAnimateStatus = !isTeamSpeak || teamSpeakStatusKind === "online";
+            const memberLabel = isTeamSpeak ? t("hub.labels.users") : t("hub.labels.online");
+            const memberValue = isTeamSpeak
+              ? teamSpeakStatusKind === "loading"
+                ? t("hub.channels.teamspeak.loadingValue")
+                : teamSpeakStatus?.online
+                  ? `${teamSpeakStatus.users}/${teamSpeakStatus.maxUsers || "--"}`
+                  : t("hub.channels.teamspeak.offlineValue")
+              : channel.members;
+            const title = isTeamSpeak && teamSpeakStatus?.serverName
+              ? teamSpeakStatus.serverName
+              : t(`hub.channels.${channel.key}.title`);
+            const liveChannels = isTeamSpeak ? teamSpeakStatus?.channels ?? [] : [];
+            const channelCount = isTeamSpeak ? teamSpeakStatus?.channelCount ?? 0 : channel.channels?.length ?? 0;
+            const channelItems = liveChannels.length > 0 ? liveChannels : channel.channels ?? [];
 
             return (
               <MotionCard
@@ -94,13 +183,15 @@ export function CommunitySection() {
                     <span className={`grid size-12 place-items-center rounded-lg ${channel.iconClass}`}>
                       <Icon size={24} aria-hidden="true" />
                     </span>
-                    <span className={`live-badge live-pulse inline-flex items-center rounded-lg px-2.5 py-1 text-xs font-black uppercase tracking-[0.14em] ${channel.statusClass}`}>
-                      <span className="signal-bars mr-2" aria-hidden="true">
-                        <span />
-                        <span />
-                        <span />
-                      </span>
-                      {t(`hub.channels.${channel.key}.status`)}
+                    <span className={`live-badge inline-flex items-center rounded-lg px-2.5 py-1 text-xs font-black uppercase tracking-[0.14em] ${shouldAnimateStatus ? "live-pulse" : ""} ${statusClass}`}>
+                      {shouldAnimateStatus ? (
+                        <span className="signal-bars mr-2" aria-hidden="true">
+                          <span />
+                          <span />
+                          <span />
+                        </span>
+                      ) : null}
+                      {statusLabel}
                     </span>
                   </div>
 
@@ -108,7 +199,7 @@ export function CommunitySection() {
                     {t("hub.eyebrow")}
                   </p>
                   <h3 className="mt-2 font-display text-3xl font-black uppercase text-white">
-                    {t(`hub.channels.${channel.key}.title`)}
+                    {title}
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-white/62">
                     {t(`hub.channels.${channel.key}.copy`)}
@@ -117,10 +208,10 @@ export function CommunitySection() {
                   <div className="mt-5 grid grid-cols-2 gap-2">
                     <div className="premium-card rounded-lg bg-black/28 p-3">
                       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
-                        {channel.key === "teamspeak" ? t("hub.labels.status") : t("hub.labels.online")}
+                        {memberLabel}
                       </p>
                       <p className="stat-value mt-2 font-display text-3xl font-black text-white">
-                        {channel.key === "teamspeak" ? t("hub.channels.teamspeak.status") : channel.members}
+                        {memberValue}
                       </p>
                     </div>
                     <div className="premium-card min-w-0 rounded-lg bg-black/28 p-3">
@@ -128,23 +219,32 @@ export function CommunitySection() {
                         {t("hub.labels.endpoint")}
                       </p>
                       <p className="mt-3 truncate text-sm font-bold text-white/72">
-                        {channel.endpoint}
+                        {isTeamSpeak ? teamSpeakStatus?.address || channel.endpoint : channel.endpoint}
                       </p>
                     </div>
                   </div>
 
-                  {channel.channels ? (
+                  {isTeamSpeak && teamSpeakStatusKind === "offline" ? (
+                    <div className="mt-4 rounded-lg border border-arena-red/20 bg-arena-red/10 px-3 py-2 text-sm font-semibold text-arena-red">
+                      {t("hub.channels.teamspeak.fallback")}
+                    </div>
+                  ) : null}
+
+                  {channelItems.length > 0 ? (
                     <div className="mt-4 rounded-lg border border-white/10 bg-black/24 p-3">
                       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
                         {t("hub.labels.channels")}
+                        {isTeamSpeak && channelCount > 0 ? ` (${channelCount})` : ""}
                       </p>
                       <div className="mt-3 flex flex-wrap gap-2">
-                        {channel.channels.map((item) => (
+                        {channelItems.map((item) => (
                           <span
                             key={item}
                             className="rounded-lg border border-arena-cyan/20 bg-arena-cyan/10 px-2.5 py-1 text-xs font-bold text-arena-cyan"
                           >
-                            {t(`hub.channels.${channel.key}.channels.${item}`)}
+                            {isTeamSpeak && liveChannels.length > 0
+                              ? item
+                              : t(`hub.channels.${channel.key}.channels.${item}`)}
                           </span>
                         ))}
                       </div>
