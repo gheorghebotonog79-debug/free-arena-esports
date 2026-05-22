@@ -290,7 +290,7 @@
         },
         "teamspeak": {
           "title": "FREE-ARENA.RO TeamSpeak",
-          "copy": "Stable voice for public rooms, CS mixes, admin support, and the VIP lounge, ready for real status once backend wiring arrives.",
+          "copy": "Stable voice for public rooms, CS mixes, admin support, and the VIP lounge, connected to live TeamSpeak status.",
           "status": "Online",
           "statusLoading": "Checking",
           "statusOffline": "Offline",

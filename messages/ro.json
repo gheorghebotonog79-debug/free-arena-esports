@@ -290,7 +290,7 @@
         },
         "teamspeak": {
           "title": "FREE-ARENA.RO TeamSpeak",
-          "copy": "Voice stabil pentru public, mixuri CS, suport admin și lounge VIP, pregătit pentru status real când backendul va fi conectat.",
+          "copy": "Voice stabil pentru public, mixuri CS, suport admin și lounge VIP, conectat la status live TeamSpeak.",
           "status": "Online",
           "statusLoading": "Se verifică",
           "statusOffline": "Offline",
