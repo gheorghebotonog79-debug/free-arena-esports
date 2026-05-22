@@ -36,17 +36,21 @@ function readNumber(value: unknown): number | undefined {
 }
 
 function getForumConfig(): ForumConfig | null {
-  const apiKey = process.env.FORUM_API_KEY?.trim();
+  const apiKey = cleanEnvValue(process.env.FORUM_API_KEY);
 
   if (!apiKey) {
     return null;
   }
 
   return {
-    baseUrl: (process.env.FORUM_BASE_URL || DEFAULT_FORUM_BASE_URL).replace(/\/+$/, ""),
-    apiUrl: process.env.FORUM_API_URL || DEFAULT_FORUM_API_URL,
+    baseUrl: cleanEnvValue(process.env.FORUM_BASE_URL, DEFAULT_FORUM_BASE_URL).replace(/\/+$/, ""),
+    apiUrl: cleanEnvValue(process.env.FORUM_API_URL, DEFAULT_FORUM_API_URL),
     apiKey,
   };
+}
+
+function cleanEnvValue(value: string | undefined, fallback = "") {
+  return (value || fallback).replace(/^\uFEFF/, "").trim();
 }
 
 function buildIpsUrl(config: ForumConfig, route: string, params: Record<string, string> = {}) {
@@ -195,7 +199,7 @@ function fallbackForumStatus(
   return {
     status,
     ok: false,
-    forumUrl: process.env.FORUM_BASE_URL || DEFAULT_FORUM_BASE_URL,
+    forumUrl: cleanEnvValue(process.env.FORUM_BASE_URL, DEFAULT_FORUM_BASE_URL),
     latestTopics: [],
     checkedAt: new Date().toISOString(),
     message,
