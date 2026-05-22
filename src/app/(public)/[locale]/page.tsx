@@ -3,8 +3,12 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { CommunitySection } from "@/components/sections/community-section";
 import { HeroSection } from "@/components/sections/hero-section";
+import { NewsSection } from "@/components/sections/news-section";
 import { ServerGrid } from "@/components/sections/server-grid";
 import { TournamentSection } from "@/components/sections/tournament-section";
+import { getPublishedNews } from "@/lib/public-news";
+
+export const revalidate = 60;
 
 type HomeProps = {
   params: Promise<{ locale: string }>;
@@ -13,6 +17,7 @@ type HomeProps = {
 export default async function Home({ params }: HomeProps) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const newsPosts = await getPublishedNews(locale);
 
   return (
     <>
@@ -21,10 +26,10 @@ export default async function Home({ params }: HomeProps) {
         <HeroSection />
         <ServerGrid />
         <TournamentSection />
+        <NewsSection locale={locale} posts={newsPosts} />
         <CommunitySection />
       </main>
       <SiteFooter />
     </>
   );
 }
-

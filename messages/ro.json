@@ -232,6 +232,27 @@
       }
     }
   },
+  "News": {
+    "heading": {
+      "eyebrow": "Noutăți din arenă",
+      "title": "Anunțuri oficiale și update-uri live",
+      "copy": "Feed-ul public este conectat la admin, astfel încât staff-ul poate publica rapid noutăți despre servere, turnee, VIP, mentenanță și evenimente importante."
+    },
+    "status": {
+      "live": "Feed live",
+      "ready": "Pregătit"
+    },
+    "card": {
+      "eyebrow": "Update oficial",
+      "authorFallback": "FREE-ARENA Staff",
+      "reading": "Publicat"
+    },
+    "empty": {
+      "title": "Feed-ul public este pregătit",
+      "copy": "Nu există încă postări publicate pentru această limbă. Când staff-ul publică un anunț din dashboard, acesta apare automat aici fără modificări de cod.",
+      "badge": "Admin ready"
+    }
+  },
   "Community": {
     "heading": {
       "eyebrow": "Community Hub",

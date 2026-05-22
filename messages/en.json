@@ -232,6 +232,27 @@
       }
     }
   },
+  "News": {
+    "heading": {
+      "eyebrow": "Arena news",
+      "title": "Official announcements and live updates",
+      "copy": "The public feed is connected to admin, so staff can publish server updates, tournaments, VIP changes, maintenance notes, and major community news without code changes."
+    },
+    "status": {
+      "live": "Live feed",
+      "ready": "Ready"
+    },
+    "card": {
+      "eyebrow": "Official update",
+      "authorFallback": "FREE-ARENA Staff",
+      "reading": "Published"
+    },
+    "empty": {
+      "title": "The public feed is ready",
+      "copy": "There are no published posts for this language yet. When staff publishes an announcement from the dashboard, it will appear here automatically without code changes.",
+      "badge": "Admin ready"
+    }
+  },
   "Community": {
     "heading": {
       "eyebrow": "Community Hub",
