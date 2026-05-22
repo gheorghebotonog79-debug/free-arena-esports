@@ -45,16 +45,23 @@ Implemented foundation:
 - `/api/admin/auth/login` credentials login endpoint.
 - `/api/admin/auth/logout` logout endpoint.
 - `/api/admin/session` protected session inspection endpoint.
+- `/api/admin/servers` and `/api/admin/servers/[id]` CRUD foundation.
+- `/api/admin/news` and `/api/admin/news/[id]` CRUD foundation.
+- `/api/admin/tournaments` and `/api/admin/tournaments/[id]` CRUD foundation.
+- `/api/admin/vip` and `/api/admin/vip/[id]` CRUD foundation.
+- `/api/admin/settings` and `/api/admin/settings/[id]` CRUD foundation.
 - Middleware guard for `/admin/*`.
 - Database-backed `AdminSession` records.
 - HTTP-only admin session cookie.
 - Login/logout audit events in `AdminAuditLog`.
 - In-memory login rate limit foundation.
-- Page-level RBAC checks for admin read areas.
+- Page-level and API-level RBAC checks for admin areas.
+- Same-origin protection for admin API mutations.
+- Validation helpers for admin write payloads.
 
 Still pending:
 
-- Real CRUD write operations for servers, news, tournaments, VIP, settings, and audit management.
+- Wiring admin UI forms to the protected CRUD endpoints.
 - Durable distributed rate limiting backed by Redis or a managed edge store.
 - Optional Steam and Discord OAuth providers.
 - Two-factor authentication for high-impact admin actions.

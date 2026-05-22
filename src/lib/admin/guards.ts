@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import type { AdminPermission } from "@/lib/admin/rbac";
 import { hasAdminPermission } from "@/lib/admin/rbac";
 import { ADMIN_SESSION_COOKIE } from "@/lib/admin/auth-constants";
+import { isSameOriginRequest } from "@/lib/admin/request";
 import { getAdminSessionByToken, requireAdminSession } from "@/lib/admin/session";
 
 export async function requireAdminPageAccess(requiredPermission?: AdminPermission) {
@@ -27,6 +28,13 @@ export async function requireAdminApiAccess(
   request: NextRequest,
   requiredPermission?: AdminPermission,
 ) {
+  if (request.method !== "GET" && !isSameOriginRequest(request)) {
+    return {
+      response: NextResponse.json({ ok: false, error: "csrf" }, { status: 403 }),
+      session: null,
+    };
+  }
+
   const session = await getAdminSessionByToken(request.cookies.get(ADMIN_SESSION_COOKIE)?.value);
 
   if (!session) {
