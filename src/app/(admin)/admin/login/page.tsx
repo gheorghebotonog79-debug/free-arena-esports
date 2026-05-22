@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { LockKeyhole, ShieldCheck } from "lucide-react";
 import { redirect } from "next/navigation";
 import { getCurrentAdminSession } from "@/lib/admin/session";
@@ -142,6 +143,13 @@ export default async function AdminLoginPage({ searchParams }: AdminLoginPagePro
               >
                 Intra in admin
               </button>
+
+              <Link
+                className="mt-4 block text-center text-xs font-black uppercase tracking-[0.18em] text-zinc-500 transition hover:text-red-100"
+                href="/admin/setup"
+              >
+                Verifica setup backend
+              </Link>
             </form>
           </div>
         </div>

@@ -45,6 +45,8 @@ Implemented foundation:
 - `/api/admin/auth/login` credentials login endpoint.
 - `/api/admin/auth/logout` logout endpoint.
 - `/api/admin/session` protected session inspection endpoint.
+- `/admin/setup` public-safe backend readiness page.
+- `/api/admin/setup/status` public-safe backend readiness JSON endpoint.
 - `/api/admin/servers` and `/api/admin/servers/[id]` CRUD foundation.
 - `/api/admin/news` and `/api/admin/news/[id]` CRUD foundation.
 - `/api/admin/tournaments` and `/api/admin/tournaments/[id]` CRUD foundation.
@@ -60,6 +62,7 @@ Implemented foundation:
 - Validation helpers for admin write payloads.
 - Admin create forms wired to protected CRUD endpoints for servers, news, tournaments, VIP, and settings.
 - Admin edit and delete controls wired to protected CRUD endpoints for existing records.
+- Setup readiness checks for database URL, auth secret, admin seed ENV, migrations, and seed.
 
 Still pending:
 

@@ -22,7 +22,7 @@ export default function middleware(request: NextRequest) {
   }
 
   if (pathname.startsWith("/admin/")) {
-    if (pathname === "/admin/login") {
+    if (pathname === "/admin/login" || pathname === "/admin/setup") {
       return NextResponse.next();
     }
 

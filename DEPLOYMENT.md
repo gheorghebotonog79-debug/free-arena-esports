@@ -98,8 +98,10 @@ npm run db:seed
 Admin routes:
 
 - Login: `https://play.free-arena.ro/admin/login`
+- Setup status: `https://play.free-arena.ro/admin/setup`
 - Dashboard: `https://play.free-arena.ro/admin/dashboard`
 - Session check: `https://play.free-arena.ro/api/admin/session`
+- Backend setup JSON: `https://play.free-arena.ro/api/admin/setup/status`
 
 Without a configured database and seeded admin account, `/admin/login` renders but login will not succeed. This is intentional and keeps production safe until credentials are explicitly configured.
 
