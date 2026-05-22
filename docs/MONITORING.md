@@ -51,6 +51,32 @@ Recommended checks:
 - `https://play.free-arena.ro/api/servers`
 - `https://play.free-arena.ro/api/teamspeak`
 
+## Smoke Testing
+
+Run the project smoke checks after deploys:
+
+```bash
+npm run smoke:admin -- https://play.free-arena.ro
+```
+
+For local production builds:
+
+```bash
+npm run build
+npm run start -- --hostname 127.0.0.1 --port 3000
+npm run smoke:admin
+```
+
+The smoke script checks:
+
+- RO and EN public pages render.
+- Admin login and setup pages render.
+- Admin setup JSON responds without exposing secrets.
+- Protected admin pages redirect to login without a session.
+- Protected admin APIs return `401` without a session.
+- Admin mutations reject cross-origin requests with `403`.
+- `/api/health` returns a valid health payload.
+
 Recommended interval:
 
 - 1-5 minutes for `/api/health`

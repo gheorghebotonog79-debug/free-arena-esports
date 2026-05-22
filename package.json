@@ -19,7 +19,8 @@
     "db:migrate:dev": "prisma migrate dev",
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
-    "auth:hash-password": "node scripts/hash-admin-password.mjs"
+    "auth:hash-password": "node scripts/hash-admin-password.mjs",
+    "smoke:admin": "node scripts/smoke-admin-routes.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
