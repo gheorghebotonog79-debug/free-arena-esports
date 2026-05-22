@@ -56,6 +56,22 @@ TEAMSPEAK_STATUS_TOKEN=
 
 When `TEAMSPEAK_STATUS_URL` is present, `/api/teamspeak` reads that JSON endpoint first. If the proxy is unavailable, the app falls back gracefully to the direct ServerQuery path or an offline state.
 
+Recommended production variables for the backend foundation:
+
+```text
+DATABASE_URL=
+AUTH_SECRET=
+NEXTAUTH_URL=https://play.free-arena.ro
+ADMIN_SEED_EMAIL=
+ADMIN_SEED_USERNAME=
+ADMIN_SEED_PASSWORD_HASH=
+DISCORD_CLIENT_ID=
+DISCORD_CLIENT_SECRET=
+STEAM_API_KEY=
+```
+
+Do not store real passwords, database URLs, OAuth secrets, or bot tokens in Git. The first admin seed expects a password hash, not a raw password.
+
 After importing the GitHub repository into Vercel:
 
 1. Deploy the `main` branch.

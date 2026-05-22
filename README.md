@@ -18,6 +18,7 @@ FREE-ARENA.RO is a cinematic esports platform frontend for a competitive gaming 
 messages/          Locale message files
 public/            Static assets and generated game icons
 docs/              Monitoring and next-phase backend/Discord plans
+prisma/            PostgreSQL schema, migrations, and seed foundation
 src/app/           App Router pages, layouts, sitemap, robots, global CSS
 src/components/    Layout, section, and UI components
 src/data/          Static data definitions ready for backend replacement
@@ -78,6 +79,19 @@ Game server status is served by `/api/servers`.
 TeamSpeak status is served by `/api/teamspeak`. Direct ServerQuery uses environment variables only. If production hosting cannot reach the TeamSpeak TCP query port, configure `TEAMSPEAK_STATUS_URL` to read a trusted HTTPS proxy instead.
 
 Health monitoring is available at `/api/health` and checks localized pages, game server status, and TeamSpeak status.
+
+## Backend Foundation
+
+The project includes a PostgreSQL + Prisma foundation for the next admin/backend phase.
+
+```bash
+npm run db:validate
+npm run db:generate
+npm run db:migrate
+npm run db:seed
+```
+
+Database documentation lives in `docs/DATABASE_ARCHITECTURE.md`.
 
 ## Production Build
 
