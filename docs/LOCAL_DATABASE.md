@@ -29,6 +29,24 @@ npm run db:local:verify
 npm run backend:preflight:local
 ```
 
+Create a local co-owner admin:
+
+```bash
+npm run admin:local:seed
+```
+
+Credentials are written to:
+
+```bash
+tmp/local-admin-credentials.txt
+```
+
+Run the local login smoke test after starting the app with the local database URL:
+
+```bash
+npm run smoke:admin:login:local -- http://127.0.0.1:3001
+```
+
 View logs:
 
 ```bash
