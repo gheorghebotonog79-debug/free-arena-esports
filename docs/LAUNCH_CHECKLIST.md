@@ -48,6 +48,12 @@ ADMIN_SEED_USERNAME=
 ADMIN_SEED_PASSWORD_HASH=
 ```
 
+Generate the auth secret locally:
+
+```bash
+npm run auth:generate-secret
+```
+
 Generate the admin password hash locally:
 
 ```bash
