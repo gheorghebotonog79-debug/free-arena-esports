@@ -1,11 +1,11 @@
 {
   "Metadata": {
-    "title": "FREE-ARENA.RO | Esports Platform",
+    "title": "FREE-ARENA.RO | Competitive Gaming Hub",
     "template": "%s | FREE-ARENA.RO",
-    "description": "FREE-ARENA.RO esports hub for competitive servers, tournaments, rankings, and community events.",
-    "openGraphTitle": "FREE-ARENA.RO Esports Platform",
-    "openGraphDescription": "Competitive server network, tournaments, rankings, and community tools for FREE-ARENA.RO.",
-    "imageAlt": "FREE-ARENA.RO esports icon pack preview"
+    "description": "FREE-ARENA.RO is the competitive hub for live servers, tournaments, voice, community, and the next generation of gaming services.",
+    "openGraphTitle": "FREE-ARENA.RO Play Platform",
+    "openGraphDescription": "Enter the FREE-ARENA.RO arena: live servers, TeamSpeak, Discord, tournaments, and infrastructure ready for accounts, VIP, and real competitions.",
+    "imageAlt": "FREE-ARENA.RO Play Platform social preview"
   },
   "Navigation": {
     "aria": {
@@ -26,20 +26,23 @@
     "en": "EN"
   },
   "Footer": {
-    "copy": "Esports infrastructure prepared for rankings, accounts, match data, store modules, and community operations.",
+    "copy": "Gaming infrastructure prepared for live servers, accounts, rankings, VIP, tournaments, and community operations.",
     "links": {
       "servers": "Servers",
       "community": "Community",
-      "home": "Home"
+      "home": "Home",
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "contact": "Contact"
     }
   },
   "Hero": {
-    "eyebrow": "Competitive hub online",
+    "eyebrow": "Arena online",
     "title": "FREE-ARENA.RO esports platform",
-    "copy": "A scalable arena for live servers, tournaments, squads, player identity, and future backend integrations across the FREE-ARENA.RO network.",
+    "copy": "A fast entry point for live servers, voice community, tournaments, and player identity across the next phase of FREE-ARENA.",
     "cta": {
       "servers": "View servers",
-      "events": "Event schedule"
+      "events": "View tournaments"
     },
     "stats": {
       "players": "Players",
@@ -72,14 +75,14 @@
     },
     "season": {
       "eyebrow": "Season Alpha",
-      "copy": "Ranked ladders and cups ready for API data."
+      "copy": "Ranked ladders, cups, and progression are ready for API integration."
     }
   },
   "Servers": {
     "heading": {
       "eyebrow": "Live servers",
-      "title": "LIVE SERVERS connected to real status",
-      "copy": "Cards query FREE-ARENA.RO servers in real time for map, players, ping, and online/offline status."
+      "title": "Live servers with real status",
+      "copy": "Pick the right server and see map, players, ping, and online/offline status before you connect."
     },
     "labels": {
       "players": "Players",
@@ -170,15 +173,15 @@
         "offline": "{server} is not responding to the live query right now.",
         "pending": "{server} is marked as a future slot and is not queried through GameDig."
       },
-      "pendingMessage": "This server is being prepared and will be connected when the slot becomes active.",
+      "pendingMessage": "This slot is reserved for the next FREE-ARENA.RO server and will receive live status when it becomes active.",
       "offlineMessage": "The server is not responding right now. You can copy the address and try again later."
     }
   },
   "Tournaments": {
     "heading": {
-      "eyebrow": "Competition ops",
-      "title": "Tournament modules with clean data boundaries",
-      "copy": "Schedules, brackets, prize pools, team entry, and match states are separated for future backend integration."
+      "eyebrow": "Tournaments and competition",
+      "title": "Competition ready for serious play",
+      "copy": "Tournament structure is prepared for registrations, brackets, prizes, result verification, and clean admin workflows when the backend goes live."
     },
     "featured": {
       "eyebrow": "Featured cup",
@@ -215,17 +218,17 @@
       "saturdayBracket": {
         "label": "Saturday bracket",
         "title": "Counter-Strike Weekend Cup",
-        "copy": "Team registration, map veto, match state, and result verification are ready for service wiring."
+        "copy": "Teams, map veto, match state, and result confirmation are designed for a complete competitive flow."
       },
       "monthlyLadder": {
         "label": "Monthly ladder",
         "title": "FREE-ARENA.RO Season Ladder",
-        "copy": "Ranked standings are structured for backend scoring, season resets, rewards, and audit trails."
+        "copy": "Ranked standings are ready for real scoring, season resets, rewards, and transparent audit trails."
       },
       "communityEvent": {
         "label": "Community event",
         "title": "VIP Night Showmatch",
-        "copy": "Event metadata supports hosts, prizes, participants, and broadcast-ready match summaries."
+        "copy": "Community events can connect hosts, prizes, participants, and clean summaries for announcements or broadcasts."
       }
     }
   },
@@ -233,7 +236,7 @@
     "heading": {
       "eyebrow": "Community Hub",
       "title": "Discord and TeamSpeak at the center of the arena",
-      "copy": "Two fast channels for players, voice, announcements, mixes, events, and staff coordination, ready for backend integration."
+      "copy": "Discord and TeamSpeak keep the community close: stable voice, announcements, mixes, support, events, and staff coordination."
     },
     "cta": {
       "community": "Community hub",
@@ -242,33 +245,33 @@
     "pillars": {
       "playerIdentity": {
         "title": "Player identity",
-        "copy": "Profiles can connect Steam, ranks, sanctions, teams, and platform-wide progression."
+        "copy": "Profiles will connect Steam, ranks, teams, sanctions, and progression into a clear identity for every player."
       },
       "vipEconomy": {
         "title": "VIP economy",
-        "copy": "Store surfaces are prepared for credits, perks, inventory, invoices, and entitlement checks."
+        "copy": "The VIP area is prepared for credits, perks, inventory, invoices, and access checks without compromise."
       },
       "adminControl": {
         "title": "Admin control",
-        "copy": "Operations can expand into moderation queues, server actions, ban history, and audit logs."
+        "copy": "Staff will have room for moderation, server actions, sanction history, and clean audit logs."
       },
       "communityFeed": {
         "title": "Community feed",
-        "copy": "News, Discord events, patch notes, winners, and staff announcements have a clean content path."
+        "copy": "News, Discord events, patch notes, winners, and staff announcements already have a clean content path."
       },
       "rewards": {
         "title": "Rewards",
-        "copy": "Badge, mission, and battle pass style data can plug into this structure without UI rewrites."
+        "copy": "Badges, missions, and battle-pass style progression can plug in without rebuilding the visual experience."
       },
       "staffRoles": {
         "title": "Staff roles",
-        "copy": "Role-aware navigation and permissioned dashboard areas can be added as the backend matures."
+        "copy": "Roles and permissioned dashboards can grow gradually as the backend becomes real."
       }
     },
     "asset": {
       "alt": "FREE-ARENA.RO generated game icons",
-      "title": "Generated asset pack installed",
-      "copy": "Game icons are available locally under public assets for pages, dashboards, rankings, and server identity.",
+      "title": "Local assets for FREE-ARENA identity",
+      "copy": "Game icons are available locally for pages, dashboards, rankings, and every server identity.",
       "chat": "Chat",
       "store": "Store"
     },
@@ -284,7 +287,7 @@
       "channels": {
         "discord": {
           "title": "Discord",
-          "copy": "Announcements, support, teams, events, and active community energy in a social hub prepared for automated roles.",
+          "copy": "Announcements, support, teams, events, and community energy in a hub prepared for automated roles.",
           "status": "Online",
           "cta": "Join Discord"
         },
@@ -309,6 +312,82 @@
             "adminSupport": "Admin Support",
             "vipLounge": "VIP Lounge"
           }
+        }
+      }
+    }
+  },
+  "Legal": {
+    "terms": {
+      "meta": {
+        "title": "Terms of Use",
+        "description": "Usage rules for the FREE-ARENA.RO platform and community.",
+        "imageAlt": "FREE-ARENA.RO terms of use"
+      },
+      "eyebrow": "Community rules",
+      "title": "Terms of Use",
+      "intro": "FREE-ARENA.RO is a competitive gaming community. These rules keep the experience fair for players, staff, and partners.",
+      "updated": "Updated: May 22, 2026",
+      "sections": {
+        "administrator": {
+          "title": "Community administrator",
+          "body": "The platform is administered by the FREE-ARENA.RO team. For account, server, moderation, or content issues, use the official contact: {contactEmail}."
+        },
+        "access": {
+          "title": "Platform access",
+          "body": "You can use the site for information about servers, TeamSpeak, Discord, tournaments, and community services. Future account, VIP, or admin features may require authentication and additional rules."
+        },
+        "conduct": {
+          "title": "Community conduct",
+          "body": "Cheats, abuse, spam, impersonation, extreme toxicity, and attempts to disrupt services are not accepted. Staff may restrict access when community safety requires it."
+        },
+        "servers": {
+          "title": "Servers and external services",
+          "body": "Server status, Steam links, TeamSpeak, and Discord depend on external services. FREE-ARENA.RO shows clean fallbacks when a service does not respond."
+        },
+        "limits": {
+          "title": "Limitations",
+          "body": "Site content is provided for information and community coordination. Features marked as future work are not commercial commitments until the real backend is launched."
+        },
+        "contact": {
+          "title": "Contact",
+          "body": "For reports, questions, or community requests, write to {contactEmail}. Include enough detail so staff can verify the situation quickly."
+        }
+      }
+    },
+    "privacy": {
+      "meta": {
+        "title": "Privacy Policy",
+        "description": "How FREE-ARENA.RO handles minimal data used for the site, servers, and community.",
+        "imageAlt": "FREE-ARENA.RO privacy policy"
+      },
+      "eyebrow": "Trust and data",
+      "title": "Privacy Policy",
+      "intro": "FREE-ARENA.RO keeps data limited to what is needed for platform operation and community protection.",
+      "updated": "Updated: May 22, 2026",
+      "sections": {
+        "administrator": {
+          "title": "Who administers the data",
+          "body": "The platform is administered by the FREE-ARENA.RO team. For questions about data or content, contact us at {contactEmail}."
+        },
+        "data": {
+          "title": "Data collected",
+          "body": "The public site may process basic technical data such as IP address, user-agent, language, timestamp, and request logs. Server integrations display only public game and TeamSpeak status."
+        },
+        "usage": {
+          "title": "How data is used",
+          "body": "Technical data is used for security, diagnostics, uptime, anti-abuse protection, and experience improvements. We do not sell community data."
+        },
+        "cookies": {
+          "title": "Cookies and analytics",
+          "body": "The platform does not require tracking cookies for the current public features. If analytics or login features are introduced later, this page will be updated before use."
+        },
+        "retention": {
+          "title": "Data retention",
+          "body": "Technical logs are kept only as long as needed for security and operation. Account, VIP, or admin data will receive clear rules when the real backend is launched."
+        },
+        "contact": {
+          "title": "Rights and contact",
+          "body": "For questions, corrections, or data requests, write to {contactEmail}. We will handle reasonable requests transparently."
         }
       }
     }

@@ -1,7 +1,7 @@
-import { Disc3, Home, Server } from "lucide-react";
+import { Disc3, FileText, Home, Mail, Server, Shield } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { routes } from "@/lib/routes";
+import { contactEmail, routes } from "@/lib/routes";
 
 export function SiteFooter() {
   const t = useTranslations("Footer");
@@ -37,6 +37,27 @@ export function SiteFooter() {
             <Home size={17} aria-hidden="true" />
             {t("links.home")}
           </Link>
+          <Link
+            href={routes.terms}
+            className="button-ghost inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.035] px-3 py-2 text-sm font-semibold text-white/70 transition hover:border-arena-green/50 hover:text-white"
+          >
+            <FileText size={17} aria-hidden="true" />
+            {t("links.terms")}
+          </Link>
+          <Link
+            href={routes.privacy}
+            className="button-ghost inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.035] px-3 py-2 text-sm font-semibold text-white/70 transition hover:border-arena-green/50 hover:text-white"
+          >
+            <Shield size={17} aria-hidden="true" />
+            {t("links.privacy")}
+          </Link>
+          <a
+            href={`mailto:${contactEmail}`}
+            className="button-ghost inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.035] px-3 py-2 text-sm font-semibold text-white/70 transition hover:border-arena-green/50 hover:text-white"
+          >
+            <Mail size={17} aria-hidden="true" />
+            {t("links.contact")}
+          </a>
         </div>
       </div>
     </footer>

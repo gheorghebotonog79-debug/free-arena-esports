@@ -1,11 +1,11 @@
 {
   "Metadata": {
-    "title": "FREE-ARENA.RO | Platformă Esports",
+    "title": "FREE-ARENA.RO | Hub competitiv de gaming",
     "template": "%s | FREE-ARENA.RO",
-    "description": "Hub esports FREE-ARENA.RO pentru servere competitive, turnee, clasamente și evenimente de comunitate.",
-    "openGraphTitle": "Platformă Esports FREE-ARENA.RO",
-    "openGraphDescription": "Rețea competitivă de servere, turnee, clasamente și instrumente de comunitate pentru FREE-ARENA.RO.",
-    "imageAlt": "Previzualizare pachet iconițe esports FREE-ARENA.RO"
+    "description": "FREE-ARENA.RO este hub-ul competitiv pentru servere live, turnee, voice, comunitate și următoarea generație de servicii gaming.",
+    "openGraphTitle": "FREE-ARENA.RO Play Platform",
+    "openGraphDescription": "Intră în arena FREE-ARENA.RO: servere live, TeamSpeak, Discord, turnee și infrastructură pregătită pentru conturi, VIP și competiții reale.",
+    "imageAlt": "Previzualizare socială FREE-ARENA.RO Play Platform"
   },
   "Navigation": {
     "aria": {
@@ -26,20 +26,23 @@
     "en": "EN"
   },
   "Footer": {
-    "copy": "Infrastructură esports pregătită pentru clasamente, conturi, date de meci, module de magazin și operațiuni de comunitate.",
+    "copy": "Infrastructură gaming pregătită pentru servere live, conturi, clasamente, VIP, turnee și operațiuni de comunitate.",
     "links": {
       "servers": "Servere",
       "community": "Comunitate",
-      "home": "Acasă"
+      "home": "Acasă",
+      "terms": "Termeni",
+      "privacy": "Confidențialitate",
+      "contact": "Contact"
     }
   },
   "Hero": {
-    "eyebrow": "Hub competitiv online",
+    "eyebrow": "Arena este online",
     "title": "FREE-ARENA.RO platformă esports",
-    "copy": "O arenă scalabilă pentru servere live, turnee, echipe, identitate de jucător și integrări backend viitoare în rețeaua FREE-ARENA.RO.",
+    "copy": "Locul unde intri rapid pe servere live, găsești comunitatea pe voice, urmărești turneele și îți pregătești identitatea de jucător pentru următoarea fază FREE-ARENA.",
     "cta": {
       "servers": "Vezi serverele",
-      "events": "Program evenimente"
+      "events": "Vezi turneele"
     },
     "stats": {
       "players": "Jucători",
@@ -72,14 +75,14 @@
     },
     "season": {
       "eyebrow": "Sezon Alpha",
-      "copy": "Clasamentele ranked și cupele sunt pregătite pentru date API."
+      "copy": "Clasamentele, cupele și progresia sunt pregătite pentru integrarea API."
     }
   },
   "Servers": {
     "heading": {
       "eyebrow": "Servere live",
-      "title": "LIVE SERVERS conectate la status real",
-      "copy": "Cardurile interoghează serverele FREE-ARENA.RO în timp real pentru hartă, jucători, ping și stare online/offline."
+      "title": "Servere live cu status real",
+      "copy": "Alege serverul potrivit și vezi instant harta, jucătorii, ping-ul și starea online/offline înainte să intri în joc."
     },
     "labels": {
       "players": "Jucători",
@@ -170,15 +173,15 @@
         "offline": "{server} nu răspunde momentan la interogarea live.",
         "pending": "{server} este marcat ca slot viitor și nu este interogat prin GameDig."
       },
-      "pendingMessage": "Acest server este în pregătire și va fi conectat când slotul devine activ.",
+      "pendingMessage": "Acest slot este rezervat pentru următorul server FREE-ARENA.RO și va primi status live când devine activ.",
       "offlineMessage": "Serverul nu răspunde momentan. Poți copia adresa și încerca mai târziu."
     }
   },
   "Tournaments": {
     "heading": {
-      "eyebrow": "Operațiuni competiții",
-      "title": "Module de turneu cu limite curate de date",
-      "copy": "Programările, bracketurile, premiile, înscrierea echipelor și stările de meci sunt separate pentru integrare backend viitoare."
+      "eyebrow": "Turnee și competiții",
+      "title": "Competiții pregătite pentru joc serios",
+      "copy": "Structura de turnee este pregătită pentru înscrieri, bracketuri, premii, verificare de rezultate și administrare corectă când backend-ul intră în producție."
     },
     "featured": {
       "eyebrow": "Cupă recomandată",
@@ -215,17 +218,17 @@
       "saturdayBracket": {
         "label": "Bracket de sâmbătă",
         "title": "Cupa Weekend Counter-Strike",
-        "copy": "Înscrierea echipelor, veto-ul de hărți, starea meciului și verificarea rezultatului sunt pregătite pentru conectare la servicii."
+        "copy": "Echipele, veto-ul de hărți, statusul meciului și confirmarea rezultatelor sunt gândite pentru flux competitiv complet."
       },
       "monthlyLadder": {
         "label": "Ladder lunar",
         "title": "FREE-ARENA.RO Season Ladder",
-        "copy": "Clasamentele ranked sunt structurate pentru scor backend, resetări de sezon, recompense și audit."
+        "copy": "Clasamentele ranked sunt pregătite pentru scor real, resetări de sezon, recompense și audit transparent."
       },
       "communityEvent": {
         "label": "Eveniment comunitar",
         "title": "VIP Night Showmatch",
-        "copy": "Metadata evenimentelor susține gazde, premii, participanți și rezumate de meci pregătite pentru broadcast."
+        "copy": "Evenimentele comunității pot lega gazde, premii, participanți și rezumate curate pentru anunțuri sau broadcast."
       }
     }
   },
@@ -233,7 +236,7 @@
     "heading": {
       "eyebrow": "Community Hub",
       "title": "Discord și TeamSpeak în centrul arenei",
-      "copy": "Două canale rapide pentru jucători, voice, anunțuri, mixuri, evenimente și coordonare staff, pregătite pentru integrare backend."
+      "copy": "Discord și TeamSpeak țin comunitatea aproape: voice stabil, anunțuri, mixuri, suport, evenimente și coordonare staff."
     },
     "cta": {
       "community": "Hub comunitate",
@@ -242,33 +245,33 @@
     "pillars": {
       "playerIdentity": {
         "title": "Identitate jucător",
-        "copy": "Profilurile pot conecta Steam, rankuri, sancțiuni, echipe și progresie pe toată platforma."
+        "copy": "Profilurile vor lega Steam, rankuri, echipe, sancțiuni și progresie într-o identitate clară pentru fiecare jucător."
       },
       "vipEconomy": {
         "title": "Economie VIP",
-        "copy": "Suprafețele de magazin sunt pregătite pentru credite, beneficii, inventar, facturi și verificări de acces."
+        "copy": "Zona VIP este pregătită pentru credite, beneficii, inventar, facturi și verificări de acces fără compromisuri."
       },
       "adminControl": {
         "title": "Control admin",
-        "copy": "Operațiunile pot crește în cozi de moderare, acțiuni pe server, istoric ban și audit logs."
+        "copy": "Staff-ul va avea spațiu pentru moderare, acțiuni pe server, istoric de sancțiuni și audit logs curate."
       },
       "communityFeed": {
         "title": "Feed comunitate",
-        "copy": "Știrile, evenimentele Discord, patch notes, câștigătorii și anunțurile staff au o cale curată de conținut."
+        "copy": "Știrile, evenimentele Discord, patch notes, câștigătorii și anunțurile staff au deja un traseu clar de conținut."
       },
       "rewards": {
         "title": "Recompense",
-        "copy": "Badge-urile, misiunile și datele tip battle pass se pot conecta la această structură fără rescrieri UI."
+        "copy": "Badge-urile, misiunile și progresia tip battle pass se pot conecta fără să refacem experiența vizuală."
       },
       "staffRoles": {
         "title": "Roluri staff",
-        "copy": "Navigația pe roluri și zonele de dashboard cu permisiuni pot fi adăugate pe măsură ce backendul se maturizează."
+        "copy": "Rolurile și dashboard-urile cu permisiuni pot crește gradual, pe măsură ce backend-ul devine real."
       }
     },
     "asset": {
       "alt": "Iconițe de joc generate pentru FREE-ARENA.RO",
-      "title": "Pachetul de asseturi generate este instalat",
-      "copy": "Iconițele de joc sunt disponibile local în public assets pentru pagini, dashboarduri, clasamente și identitatea serverelor.",
+      "title": "Asseturi locale pentru identitatea FREE-ARENA",
+      "copy": "Iconițele de joc sunt disponibile local pentru pagini, dashboard-uri, clasamente și identitatea fiecărui server.",
       "chat": "Chat",
       "store": "Magazin"
     },
@@ -284,7 +287,7 @@
       "channels": {
         "discord": {
           "title": "Discord",
-          "copy": "Anunțuri, suport, echipe, evenimente și comunitate activă într-un hub social pregătit pentru roluri automate.",
+          "copy": "Anunțuri, suport, echipe, evenimente și energie de comunitate într-un hub pregătit pentru roluri automate.",
           "status": "Online",
           "cta": "Intră pe Discord"
         },
@@ -309,6 +312,82 @@
             "adminSupport": "Admin Support",
             "vipLounge": "VIP Lounge"
           }
+        }
+      }
+    }
+  },
+  "Legal": {
+    "terms": {
+      "meta": {
+        "title": "Termeni de utilizare",
+        "description": "Reguli de utilizare pentru platforma și comunitatea FREE-ARENA.RO.",
+        "imageAlt": "FREE-ARENA.RO termeni de utilizare"
+      },
+      "eyebrow": "Reguli comunitate",
+      "title": "Termeni de utilizare",
+      "intro": "FREE-ARENA.RO este o comunitate gaming competitivă. Regulile de mai jos păstrează experiența corectă pentru jucători, staff și parteneri.",
+      "updated": "Actualizat: 22 mai 2026",
+      "sections": {
+        "administrator": {
+          "title": "Administratorul comunității",
+          "body": "Platforma este administrată de echipa FREE-ARENA.RO. Pentru probleme de cont, server, moderare sau conținut, folosește contactul oficial: {contactEmail}."
+        },
+        "access": {
+          "title": "Acces la platformă",
+          "body": "Poți folosi site-ul pentru informații despre servere, TeamSpeak, Discord, turnee și servicii comunitare. Accesul la funcții viitoare de cont, VIP sau admin poate necesita autentificare și reguli suplimentare."
+        },
+        "conduct": {
+          "title": "Comportament în comunitate",
+          "body": "Nu sunt acceptate cheat-uri, abuzuri, spam, impersonare, toxicitate extremă sau încercări de a afecta serviciile. Staff-ul poate restricționa accesul când siguranța comunității o cere."
+        },
+        "servers": {
+          "title": "Servere și servicii externe",
+          "body": "Statusul serverelor, linkurile Steam, TeamSpeak și Discord depind de servicii externe. FREE-ARENA.RO afișează fallback-uri curate când un serviciu nu răspunde."
+        },
+        "limits": {
+          "title": "Limitări",
+          "body": "Conținutul site-ului este oferit pentru informare și coordonare comunitară. Funcțiile marcate ca viitoare nu reprezintă promisiuni comerciale până când backend-ul real este lansat."
+        },
+        "contact": {
+          "title": "Contact",
+          "body": "Pentru raportări, întrebări sau cereri legate de comunitate, scrie la {contactEmail}. Include cât mai multe detalii ca staff-ul să poată verifica rapid situația."
+        }
+      }
+    },
+    "privacy": {
+      "meta": {
+        "title": "Politica de confidențialitate",
+        "description": "Cum tratează FREE-ARENA.RO datele minime folosite pentru site, servere și comunitate.",
+        "imageAlt": "FREE-ARENA.RO politica de confidențialitate"
+      },
+      "eyebrow": "Încredere și date",
+      "title": "Politica de confidențialitate",
+      "intro": "FREE-ARENA.RO păstrează datele la minimul necesar pentru funcționarea platformei și pentru protejarea comunității.",
+      "updated": "Actualizat: 22 mai 2026",
+      "sections": {
+        "administrator": {
+          "title": "Cine administrează datele",
+          "body": "Platforma este administrată de echipa FREE-ARENA.RO. Pentru întrebări despre date sau conținut, contactează-ne la {contactEmail}."
+        },
+        "data": {
+          "title": "Date colectate",
+          "body": "Site-ul public poate prelucra date tehnice de bază precum IP, user-agent, limbă, timestamp și loguri de cereri. Integrarea serverelor afișează doar status public despre joc și TeamSpeak."
+        },
+        "usage": {
+          "title": "Cum folosim datele",
+          "body": "Datele tehnice sunt folosite pentru securitate, diagnostic, uptime, protecție anti-abuz și îmbunătățirea experienței. Nu vindem datele comunității."
+        },
+        "cookies": {
+          "title": "Cookies și analytics",
+          "body": "Platforma nu necesită cookies de tracking pentru funcțiile actuale. Dacă analytics sau login vor fi introduse în viitor, această pagină va fi actualizată înainte de folosire."
+        },
+        "retention": {
+          "title": "Păstrarea datelor",
+          "body": "Logurile tehnice sunt păstrate doar cât este necesar pentru securitate și operare. Datele de cont, VIP sau admin vor avea reguli clare când backend-ul real va fi lansat."
+        },
+        "contact": {
+          "title": "Drepturi și contact",
+          "body": "Pentru întrebări, corecturi sau cereri legate de date, scrie la {contactEmail}. Vom trata cererile rezonabil și transparent."
         }
       }
     }

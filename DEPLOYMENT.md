@@ -148,6 +148,23 @@ After deployment, verify:
 - `/` redirects to `/ro`
 - pages include `canonical` and `hreflang` links for `ro`, `en`, and `x-default`
 - `sitemap.xml` includes both localized URLs
+- social previews use `/og/free-arena-play-og.png` and do not show default Next/Vercel metadata
+
+## Monitoring Checks
+
+Use the health endpoint for external uptime tools:
+
+```text
+https://play.free-arena.ro/api/health
+```
+
+Recommended monitors:
+
+- UptimeRobot
+- BetterStack
+- HetrixTools
+
+Monitor `/api/health` first, then add direct checks for `/ro`, `/en`, `/api/servers`, and `/api/teamspeak` if separate alerts are needed. Full monitoring notes are in `docs/MONITORING.md`.
 
 ## Rollback
 
