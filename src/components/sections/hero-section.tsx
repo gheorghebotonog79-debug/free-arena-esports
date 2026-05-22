@@ -10,6 +10,7 @@ import {
   UsersRound,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { ForumDerbyPanel } from "@/components/sections/forum-derby-panel";
 import { MotionCard } from "@/components/ui/motion-card";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { Link } from "@/i18n/navigation";
@@ -140,6 +141,8 @@ export function HeroSection() {
                     {t(`spotlight.${spotlightMatch.statusKey}`)}
                   </div>
                 </div>
+
+                <ForumDerbyPanel />
               </div>
 
               <div className="grid grid-cols-3 gap-3">

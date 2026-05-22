@@ -76,6 +76,32 @@
     "season": {
       "eyebrow": "Sezon Alpha",
       "copy": "Clasamentele, cupele și progresia sunt pregătite pentru integrarea API."
+    },
+    "forum": {
+      "eyebrow": "Forum live",
+      "title": "Activitate forum",
+      "loading": "Se verifică",
+      "loadingCopy": "Citim activitatea forumului în timp real.",
+      "status": {
+        "online": "Online",
+        "degraded": "Limitat",
+        "offline": "Offline",
+        "missing_config": "Config lipsă"
+      },
+      "stats": {
+        "members": "Membri",
+        "topics": "Topicuri",
+        "posts": "Postări"
+      },
+      "latest": "Ultimele topicuri",
+      "latestFallback": "Forum",
+      "checked": "Live",
+      "unknown": "--",
+      "fallback": "Forum API nu răspunde încă. Verifică permisiunile read-only din AdminCP.",
+      "permissionFallback": "Cheia API există, dar endpointurile read-only nu sunt încă activate.",
+      "rateLimitFallback": "Forum API a limitat temporar cererile. Revine automat.",
+      "open": "Intră pe forum",
+      "replies": "{count} răspunsuri"
     }
   },
   "Servers": {

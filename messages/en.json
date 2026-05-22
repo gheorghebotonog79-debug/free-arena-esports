@@ -76,6 +76,32 @@
     "season": {
       "eyebrow": "Season Alpha",
       "copy": "Ranked ladders, cups, and progression are ready for API integration."
+    },
+    "forum": {
+      "eyebrow": "Live forum",
+      "title": "Forum activity",
+      "loading": "Checking",
+      "loadingCopy": "Reading live forum activity.",
+      "status": {
+        "online": "Online",
+        "degraded": "Limited",
+        "offline": "Offline",
+        "missing_config": "Missing config"
+      },
+      "stats": {
+        "members": "Members",
+        "topics": "Topics",
+        "posts": "Posts"
+      },
+      "latest": "Latest topics",
+      "latestFallback": "Forum",
+      "checked": "Live",
+      "unknown": "--",
+      "fallback": "Forum API is not responding yet. Check the read-only permissions in AdminCP.",
+      "permissionFallback": "The API key exists, but read-only endpoints are not enabled yet.",
+      "rateLimitFallback": "Forum API temporarily rate-limited requests. It will retry automatically.",
+      "open": "Open forum",
+      "replies": "{count} replies"
     }
   },
   "Servers": {
