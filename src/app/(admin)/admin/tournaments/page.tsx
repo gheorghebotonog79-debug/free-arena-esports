@@ -6,7 +6,7 @@ import {
   AdminPanel,
   AdminShell,
 } from "@/components/admin/admin-shell";
-import { AdminApiForm } from "@/components/admin/admin-api-form";
+import { AdminApiForm, AdminDeleteButton } from "@/components/admin/admin-api-form";
 import { requireAdminPageAccess } from "@/lib/admin/guards";
 import { hasAdminPermission } from "@/lib/admin/rbac";
 import { db } from "@/lib/db";
@@ -26,6 +26,10 @@ function formatDate(value: Date | null) {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(value);
+}
+
+function toDateTimeLocalValue(value: Date | null) {
+  return value ? value.toISOString().slice(0, 16) : "";
 }
 
 export default async function AdminTournamentsPage() {
@@ -80,6 +84,51 @@ export default async function AdminTournamentsPage() {
                       <p className="mt-1">{tournament.prizePool ?? "fara prize pool setat"}</p>
                     </div>
                   </div>
+
+                  {canWrite ? (
+                    <details className="mt-4 rounded-2xl border border-white/10 bg-black/20 p-4">
+                      <summary className="cursor-pointer text-xs font-black uppercase tracking-[0.18em] text-zinc-300">
+                        Editeaza turneu
+                      </summary>
+                      <div className="mt-5 space-y-5">
+                        <AdminApiForm
+                          endpoint={`/api/admin/tournaments/${tournament.id}`}
+                          fields={[
+                            { defaultValue: tournament.title, label: "Titlu", name: "title", required: true, type: "text" },
+                            { defaultValue: tournament.slug, label: "Slug", name: "slug", required: true, type: "text" },
+                            { defaultValue: tournament.game, label: "Game", name: "game", required: true, type: "text" },
+                            {
+                              defaultValue: tournament.status,
+                              label: "Status",
+                              name: "status",
+                              options: [
+                                { label: "Draft", value: "draft" },
+                                { label: "Scheduled", value: "scheduled" },
+                                { label: "Live", value: "live" },
+                                { label: "Completed", value: "completed" },
+                                { label: "Cancelled", value: "cancelled" },
+                              ],
+                              required: true,
+                              type: "select",
+                            },
+                            { defaultValue: toDateTimeLocalValue(tournament.startsAt), label: "Starts at", name: "startsAt", type: "datetime-local" },
+                            { defaultValue: toDateTimeLocalValue(tournament.endsAt), label: "Ends at", name: "endsAt", type: "datetime-local" },
+                            { defaultValue: tournament.prizePool ?? "", label: "Prize pool", name: "prizePool", type: "text" },
+                            { defaultValue: tournament.description ?? "", label: "Descriere", name: "description", rows: 5, type: "textarea" },
+                          ]}
+                          method="PATCH"
+                          resetOnSuccess={false}
+                          submitLabel="Salveaza turneu"
+                          successMessage="Turneul a fost actualizat."
+                        />
+                        <AdminDeleteButton
+                          confirmMessage={`Stergi turneul ${tournament.title}?`}
+                          endpoint={`/api/admin/tournaments/${tournament.id}`}
+                          successMessage="Turneul a fost sters."
+                        />
+                      </div>
+                    </details>
+                  ) : null}
                 </article>
               ))}
             </div>

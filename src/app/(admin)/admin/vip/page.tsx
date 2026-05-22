@@ -6,7 +6,7 @@ import {
   AdminPanel,
   AdminShell,
 } from "@/components/admin/admin-shell";
-import { AdminApiForm } from "@/components/admin/admin-api-form";
+import { AdminApiForm, AdminDeleteButton } from "@/components/admin/admin-api-form";
 import { requireAdminPageAccess } from "@/lib/admin/guards";
 import { hasAdminPermission } from "@/lib/admin/rbac";
 import { db } from "@/lib/db";
@@ -68,6 +68,43 @@ export default async function AdminVipPage() {
                   <pre className="mt-4 max-h-44 overflow-auto rounded-2xl border border-white/10 bg-black/35 p-3 text-xs leading-5 text-zinc-400">
                     {JSON.stringify(vipPackage.perks, null, 2)}
                   </pre>
+
+                  {canWrite ? (
+                    <details className="mt-4 rounded-2xl border border-white/10 bg-black/20 p-4">
+                      <summary className="cursor-pointer text-xs font-black uppercase tracking-[0.18em] text-zinc-300">
+                        Editeaza pachet
+                      </summary>
+                      <div className="mt-5 space-y-5">
+                        <AdminApiForm
+                          endpoint={`/api/admin/vip/${vipPackage.id}`}
+                          fields={[
+                            { defaultValue: vipPackage.name, label: "Nume", name: "name", required: true, type: "text" },
+                            { defaultValue: vipPackage.durationDays, label: "Durata zile", min: 1, name: "durationDays", required: true, type: "number" },
+                            { defaultValue: String(vipPackage.price), label: "Pret RON", min: 0, name: "price", required: true, step: "0.01", type: "number" },
+                            { defaultValue: vipPackage.enabled, label: "Enabled", name: "enabled", type: "checkbox" },
+                            {
+                              defaultValue: JSON.stringify(vipPackage.perks, null, 2),
+                              helper: "JSON valid cu perk-urile pachetului.",
+                              label: "Perks JSON",
+                              name: "perks",
+                              required: true,
+                              rows: 8,
+                              type: "json",
+                            },
+                          ]}
+                          method="PATCH"
+                          resetOnSuccess={false}
+                          submitLabel="Salveaza pachet"
+                          successMessage="Pachetul VIP a fost actualizat."
+                        />
+                        <AdminDeleteButton
+                          confirmMessage={`Stergi pachetul ${vipPackage.name}?`}
+                          endpoint={`/api/admin/vip/${vipPackage.id}`}
+                          successMessage="Pachetul VIP a fost sters."
+                        />
+                      </div>
+                    </details>
+                  ) : null}
                 </article>
               ))}
             </div>

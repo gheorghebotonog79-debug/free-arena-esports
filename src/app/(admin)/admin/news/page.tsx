@@ -6,7 +6,7 @@ import {
   AdminPanel,
   AdminShell,
 } from "@/components/admin/admin-shell";
-import { AdminApiForm } from "@/components/admin/admin-api-form";
+import { AdminApiForm, AdminDeleteButton } from "@/components/admin/admin-api-form";
 import { requireAdminPageAccess } from "@/lib/admin/guards";
 import { hasAdminPermission } from "@/lib/admin/rbac";
 import { db } from "@/lib/db";
@@ -94,6 +94,46 @@ export default async function AdminNewsPage() {
                       </p>
                     </div>
                   </div>
+
+                  {canWrite ? (
+                    <details className="mt-4 rounded-2xl border border-white/10 bg-black/20 p-4">
+                      <summary className="cursor-pointer text-xs font-black uppercase tracking-[0.18em] text-zinc-300">
+                        Editeaza postarea
+                      </summary>
+                      <div className="mt-5 space-y-5">
+                        <AdminApiForm
+                          endpoint={`/api/admin/news/${post.id}`}
+                          fields={[
+                            {
+                              defaultValue: post.locale,
+                              label: "Locale",
+                              name: "locale",
+                              options: [
+                                { label: "Romana", value: "ro" },
+                                { label: "English", value: "en" },
+                              ],
+                              required: true,
+                              type: "select",
+                            },
+                            { defaultValue: post.slug, label: "Slug", name: "slug", required: true, type: "text" },
+                            { defaultValue: post.title, label: "Titlu", name: "title", required: true, type: "text" },
+                            { defaultValue: post.excerpt, label: "Excerpt", name: "excerpt", required: true, rows: 3, type: "textarea" },
+                            { defaultValue: post.content, label: "Content", name: "content", required: true, rows: 8, type: "textarea" },
+                            { defaultValue: post.published, label: "Published", name: "published", type: "checkbox" },
+                          ]}
+                          method="PATCH"
+                          resetOnSuccess={false}
+                          submitLabel="Salveaza postarea"
+                          successMessage="Postarea a fost actualizata."
+                        />
+                        <AdminDeleteButton
+                          confirmMessage={`Stergi postarea ${post.title}?`}
+                          endpoint={`/api/admin/news/${post.id}`}
+                          successMessage="Postarea a fost stearsa."
+                        />
+                      </div>
+                    </details>
+                  ) : null}
                 </article>
               ))}
             </div>

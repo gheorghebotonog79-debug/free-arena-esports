@@ -6,7 +6,7 @@ import {
   AdminPanel,
   AdminShell,
 } from "@/components/admin/admin-shell";
-import { AdminApiForm } from "@/components/admin/admin-api-form";
+import { AdminApiForm, AdminDeleteButton } from "@/components/admin/admin-api-form";
 import { requireAdminPageAccess } from "@/lib/admin/guards";
 import { hasAdminPermission } from "@/lib/admin/rbac";
 import { db } from "@/lib/db";
@@ -54,12 +54,46 @@ export default async function AdminSettingsPage() {
                         {JSON.stringify(setting.value, null, 2)}
                       </pre>
                     </div>
-                    <p className="shrink-0 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
-                      updated {setting.updatedAt.toISOString()}
-                    </p>
-                  </div>
-                </article>
-              ))}
+                  <p className="shrink-0 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
+                    updated {setting.updatedAt.toISOString()}
+                  </p>
+                </div>
+
+                {canWrite ? (
+                  <details className="mt-4 rounded-2xl border border-white/10 bg-black/20 p-4">
+                    <summary className="cursor-pointer text-xs font-black uppercase tracking-[0.18em] text-zinc-300">
+                      Editeaza setare
+                    </summary>
+                    <div className="mt-5 space-y-5">
+                      <AdminApiForm
+                        endpoint={`/api/admin/settings/${setting.id}`}
+                        fields={[
+                          { defaultValue: setting.key, label: "Key", name: "key", required: true, type: "text" },
+                          {
+                            defaultValue: JSON.stringify(setting.value, null, 2),
+                            helper: "Valoarea poate fi obiect, array, string, number sau boolean JSON.",
+                            label: "Value JSON",
+                            name: "value",
+                            required: true,
+                            rows: 8,
+                            type: "json",
+                          },
+                        ]}
+                        method="PATCH"
+                        resetOnSuccess={false}
+                        submitLabel="Salveaza setare"
+                        successMessage="Setarea a fost actualizata."
+                      />
+                      <AdminDeleteButton
+                        confirmMessage={`Stergi setarea ${setting.key}?`}
+                        endpoint={`/api/admin/settings/${setting.id}`}
+                        successMessage="Setarea a fost stearsa."
+                      />
+                    </div>
+                  </details>
+                ) : null}
+              </article>
+            ))}
             </div>
           ) : (
             <AdminEmptyState message="Nu exista setari in baza de date. Ruleaza seed-ul backend dupa configurarea DB." />

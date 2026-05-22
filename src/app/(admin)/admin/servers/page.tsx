@@ -6,7 +6,7 @@ import {
   AdminPanel,
   AdminShell,
 } from "@/components/admin/admin-shell";
-import { AdminApiForm } from "@/components/admin/admin-api-form";
+import { AdminApiForm, AdminDeleteButton } from "@/components/admin/admin-api-form";
 import { requireAdminPageAccess } from "@/lib/admin/guards";
 import { hasAdminPermission } from "@/lib/admin/rbac";
 import { db } from "@/lib/db";
@@ -71,6 +71,37 @@ export default async function AdminServersPage() {
                       </span>
                     </div>
                   </div>
+
+                  {canWrite ? (
+                    <details className="mt-4 rounded-2xl border border-white/10 bg-black/20 p-4">
+                      <summary className="cursor-pointer text-xs font-black uppercase tracking-[0.18em] text-zinc-300">
+                        Editeaza server
+                      </summary>
+                      <div className="mt-5 space-y-5">
+                        <AdminApiForm
+                          endpoint={`/api/admin/servers/${server.id}`}
+                          fields={[
+                            { defaultValue: server.name, label: "Nume", name: "name", required: true, type: "text" },
+                            { defaultValue: server.game, label: "Game key", name: "game", required: true, type: "text" },
+                            { defaultValue: server.host, label: "Host", name: "host", required: true, type: "text" },
+                            { defaultValue: server.port, label: "Port", min: 1, name: "port", required: true, type: "number" },
+                            { defaultValue: server.displayOrder, label: "Display order", name: "displayOrder", type: "number" },
+                            { defaultValue: server.featured, label: "Featured", name: "featured", type: "checkbox" },
+                            { defaultValue: server.maintenance, label: "Maintenance", name: "maintenance", type: "checkbox" },
+                          ]}
+                          method="PATCH"
+                          resetOnSuccess={false}
+                          submitLabel="Salveaza server"
+                          successMessage="Serverul a fost actualizat."
+                        />
+                        <AdminDeleteButton
+                          confirmMessage={`Stergi serverul ${server.name}?`}
+                          endpoint={`/api/admin/servers/${server.id}`}
+                          successMessage="Serverul a fost sters."
+                        />
+                      </div>
+                    </details>
+                  ) : null}
                 </article>
               ))}
             </div>

@@ -59,10 +59,11 @@ Implemented foundation:
 - Same-origin protection for admin API mutations.
 - Validation helpers for admin write payloads.
 - Admin create forms wired to protected CRUD endpoints for servers, news, tournaments, VIP, and settings.
+- Admin edit and delete controls wired to protected CRUD endpoints for existing records.
 
 Still pending:
 
-- Admin edit/delete UI controls for existing records.
+- Production database activation and real admin login test.
 - Durable distributed rate limiting backed by Redis or a managed edge store.
 - Optional Steam and Discord OAuth providers.
 - Two-factor authentication for high-impact admin actions.

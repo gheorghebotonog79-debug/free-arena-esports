@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
-type AdminApiFormField = {
+export type AdminApiFormField = {
   defaultValue?: string | number | boolean;
   helper?: string;
   label: string;
@@ -21,7 +21,16 @@ type AdminApiFormField = {
 type AdminApiFormProps = {
   endpoint: string;
   fields: AdminApiFormField[];
+  method?: "PATCH" | "POST";
+  resetOnSuccess?: boolean;
   submitLabel: string;
+  successMessage: string;
+};
+
+type AdminDeleteButtonProps = {
+  confirmMessage: string;
+  endpoint: string;
+  label?: string;
   successMessage: string;
 };
 
@@ -139,6 +148,8 @@ function renderField(field: AdminApiFormField) {
 export function AdminApiForm({
   endpoint,
   fields,
+  method = "POST",
+  resetOnSuccess,
   submitLabel,
   successMessage,
 }: AdminApiFormProps) {
@@ -167,7 +178,7 @@ export function AdminApiForm({
         headers: {
           "Content-Type": "application/json",
         },
-        method: "POST",
+        method,
       });
 
       const result = (await response.json().catch(() => null)) as
@@ -179,7 +190,10 @@ export function AdminApiForm({
         return;
       }
 
-      formRef.current?.reset();
+      if (resetOnSuccess ?? method === "POST") {
+        formRef.current?.reset();
+      }
+
       setMessage(successMessage);
       router.refresh();
     } catch (caughtError) {
@@ -213,5 +227,75 @@ export function AdminApiForm({
         {isSubmitting ? "Se salveaza..." : submitLabel}
       </button>
     </form>
+  );
+}
+
+export function AdminDeleteButton({
+  confirmMessage,
+  endpoint,
+  label = "Sterge",
+  successMessage,
+}: AdminDeleteButtonProps) {
+  const router = useRouter();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleDelete() {
+    setError(null);
+    setMessage(null);
+
+    if (!window.confirm(confirmMessage)) {
+      return;
+    }
+
+    setIsDeleting(true);
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "DELETE",
+      });
+
+      const result = (await response.json().catch(() => null)) as
+        | { details?: string[]; error?: string; ok?: boolean }
+        | null;
+
+      if (!response.ok || !result?.ok) {
+        setError(result?.details?.join(" ") || result?.error || "Stergerea nu a reusit.");
+        return;
+      }
+
+      setMessage(successMessage);
+      router.refresh();
+    } catch (caughtError) {
+      setError(caughtError instanceof Error ? caughtError.message : "Stergerea nu a reusit.");
+    } finally {
+      setIsDeleting(false);
+    }
+  }
+
+  return (
+    <div className="space-y-3">
+      <button
+        className="rounded-2xl border border-red-300/20 bg-red-500/10 px-4 py-3 text-xs font-black uppercase tracking-[0.18em] text-red-100 transition hover:border-red-300/40 hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={isDeleting}
+        onClick={handleDelete}
+        type="button"
+      >
+        {isDeleting ? "Se sterge..." : label}
+      </button>
+
+      {error ? (
+        <div className="rounded-2xl border border-red-300/20 bg-red-500/10 px-4 py-3 text-sm leading-6 text-red-100">
+          {error}
+        </div>
+      ) : null}
+
+      {message ? (
+        <div className="rounded-2xl border border-emerald-300/20 bg-emerald-500/10 px-4 py-3 text-sm leading-6 text-emerald-100">
+          {message}
+        </div>
+      ) : null}
+    </div>
   );
 }
