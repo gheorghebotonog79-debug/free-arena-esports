@@ -250,7 +250,7 @@ export function ServerGrid() {
           </button>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="server-card-grid mt-10">
           {serverCards.map((server, index) => {
             const isCopied = copiedServer === server.key;
 
@@ -258,28 +258,28 @@ export function ServerGrid() {
               <MotionCard
                 key={server.key}
                 delay={index * 0.06}
-                className="premium-card glass-panel relative flex h-full flex-col overflow-hidden rounded-lg p-5"
+                className="premium-card glass-panel relative flex h-full min-w-0 flex-col overflow-hidden rounded-lg p-4 2xl:p-5"
               >
                 {isRefreshing ? (
                   <span
-                    className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-arena-cyan/70 to-transparent opacity-80"
+                    className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-arena-cyan/70 to-transparent opacity-80 2xl:inset-x-5"
                     aria-hidden="true"
                   />
                 ) : null}
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex min-w-0 items-start justify-between gap-3">
                   <div className="flex min-w-0 items-center gap-3">
-                    <span className="animated-border grid size-14 shrink-0 place-items-center rounded-lg border border-white/10 bg-black/30 shadow-[0_0_34px_rgba(56,213,255,0.1)]">
+                    <span className="animated-border grid size-12 shrink-0 place-items-center rounded-lg border border-white/10 bg-black/30 shadow-[0_0_34px_rgba(56,213,255,0.1)] 2xl:size-14">
                       <Image
                         src={server.icon}
                         alt=""
                         width={44}
                         height={44}
-                        className="h-11 w-11 object-contain"
+                        className="h-10 w-10 object-contain 2xl:h-11 2xl:w-11"
                       />
                     </span>
                     <div className="min-w-0">
                       <h3
-                        className="line-clamp-2 font-display text-xl font-black leading-tight text-white sm:text-2xl"
+                        className="line-clamp-2 font-display text-xl font-black leading-tight text-white 2xl:text-2xl"
                         title={server.serverName}
                       >
                         {server.displayName}
@@ -301,18 +301,18 @@ export function ServerGrid() {
                   </span>
                 </div>
 
-                <div className="mt-6 grid grid-cols-3 gap-2">
-                  <div className="premium-card flex min-h-28 flex-col rounded-lg bg-black/28 p-3">
+                <div className="mt-5 grid grid-cols-3 gap-2">
+                  <div className="premium-card flex min-h-24 flex-col rounded-lg bg-black/28 p-3 2xl:min-h-28">
                     <UsersRound size={18} className="text-arena-cyan" aria-hidden="true" />
-                    <p className="mt-auto font-display text-xl font-black leading-tight text-white sm:text-2xl">{server.players}</p>
+                    <p className="mt-auto font-display text-xl font-black leading-tight text-white 2xl:text-2xl">{server.players}</p>
                     <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
                       {t("labels.players")}
                     </p>
                   </div>
-                  <div className="premium-card flex min-h-28 min-w-0 flex-col rounded-lg bg-black/28 p-3">
+                  <div className="premium-card flex min-h-24 min-w-0 flex-col rounded-lg bg-black/28 p-3 2xl:min-h-28">
                     <Gamepad2 size={18} className="text-arena-green" aria-hidden="true" />
                     <p
-                      className="mt-auto line-clamp-2 text-sm font-black uppercase leading-tight text-white sm:text-base"
+                      className="mt-auto line-clamp-2 text-sm font-black uppercase leading-tight text-white 2xl:text-base"
                       title={server.map}
                     >
                       {server.map}
@@ -321,9 +321,9 @@ export function ServerGrid() {
                       {t("labels.map")}
                     </p>
                   </div>
-                  <div className="premium-card flex min-h-28 flex-col rounded-lg bg-black/28 p-3">
+                  <div className="premium-card flex min-h-24 flex-col rounded-lg bg-black/28 p-3 2xl:min-h-28">
                     <RadioTower size={18} className="text-arena-red" aria-hidden="true" />
-                    <p className="mt-auto font-display text-xl font-black leading-tight text-white sm:text-2xl">{server.ping}</p>
+                    <p className="mt-auto font-display text-xl font-black leading-tight text-white 2xl:text-2xl">{server.ping}</p>
                     <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/38">
                       {t("labels.ping")}
                     </p>
@@ -354,7 +354,7 @@ export function ServerGrid() {
                     />
                   </div>
 
-                  <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  <div className="mt-4 grid gap-2 2xl:grid-cols-2">
                     <button
                       type="button"
                       onClick={() => void handleCopyAddress(server.key, server.address)}
@@ -370,7 +370,7 @@ export function ServerGrid() {
                     {server.connectable && server.isOnline ? (
                       <a
                         href={server.connectHref}
-                        className="button-glow inline-flex w-full items-center justify-center gap-2 rounded-lg bg-arena-green px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
+                        className="button-glow inline-flex w-full items-center justify-center gap-2 rounded-lg border border-transparent bg-arena-green px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
                         aria-label={t("actions.connectTo", {
                           server: server.displayName,
                         })}
@@ -395,7 +395,7 @@ export function ServerGrid() {
                     <button
                       type="button"
                       onClick={() => setSelectedServerKey(server.key)}
-                      className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-green/60 hover:bg-arena-green/10 sm:col-span-2"
+                      className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-green/60 hover:bg-arena-green/10 2xl:col-span-2"
                       aria-label={t("actions.detailsFor", {
                         server: server.displayName,
                       })}
