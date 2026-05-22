@@ -35,6 +35,13 @@ npm run backend:preflight
 npm run vercel:env:audit
 ```
 
+Optional local PostgreSQL test environment:
+
+```bash
+npm run db:local:check
+npm run db:local:bootstrap
+```
+
 ## Backend Activation Blockers
 
 Admin login is intentionally not activated until the production database and secrets are configured.
