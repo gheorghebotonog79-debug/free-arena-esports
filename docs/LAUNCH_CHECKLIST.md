@@ -32,6 +32,7 @@ Optional backend readiness check:
 
 ```bash
 npm run backend:preflight
+npm run vercel:env:audit
 ```
 
 ## Backend Activation Blockers
@@ -63,6 +64,7 @@ npm run auth:hash-password -- "replace-with-strong-password"
 After ENV is configured:
 
 ```bash
+npm run vercel:env:audit:strict
 npm run backend:preflight:strict
 npm run db:migrate
 npm run db:seed
