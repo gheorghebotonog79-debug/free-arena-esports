@@ -10,5 +10,5 @@ export type TeamSpeakStatusResponse = {
   channelCount: number;
   channels: string[];
   checkedAt: string;
-  message?: "missing_config" | "query_failed";
+  message?: "missing_config" | "query_failed" | "proxy_failed";
 };

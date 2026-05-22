@@ -5,6 +5,7 @@ const DEFAULT_TEAMSPEAK_HOST = "ts.free-arena.ro";
 const DEFAULT_VOICE_PORT = 9987;
 const DEFAULT_QUERY_PORT = 10011;
 const QUERY_TIMEOUT_MS = 6_000;
+const PROXY_TIMEOUT_MS = 5_000;
 const CHANNEL_PREVIEW_LIMIT = 8;
 
 type TeamSpeakConfig = {
@@ -17,6 +18,11 @@ type TeamSpeakConfig = {
 };
 
 type ParsedQueryItem = Record<string, string>;
+
+type TeamSpeakProxyConfig = {
+  url: string;
+  token?: string;
+};
 
 function readPort(value: string | undefined, fallback: number) {
   const port = Number(value);
@@ -43,6 +49,19 @@ function getTeamSpeakConfig(): TeamSpeakConfig | null {
     queryUser,
     queryPassword,
     virtualServerId: process.env.TEAMSPEAK_VIRTUAL_SERVER_ID,
+  };
+}
+
+function getTeamSpeakProxyConfig(): TeamSpeakProxyConfig | null {
+  const url = process.env.TEAMSPEAK_STATUS_URL;
+
+  if (!url) {
+    return null;
+  }
+
+  return {
+    url,
+    token: process.env.TEAMSPEAK_STATUS_TOKEN,
   };
 }
 
@@ -145,6 +164,86 @@ function parseQueryRows(lines: string[]) {
 function readNumber(value: string | undefined, fallback = 0) {
   const number = Number(value);
   return Number.isFinite(number) ? number : fallback;
+}
+
+function readPayloadNumber(value: unknown, fallback = 0) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : fallback;
+}
+
+function readPayloadString(value: unknown, fallback = "") {
+  return typeof value === "string" && value.trim() ? value.trim() : fallback;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function normalizeProxyStatus(payload: unknown): TeamSpeakStatusResponse | null {
+  if (!isRecord(payload) || typeof payload.online !== "boolean") {
+    return null;
+  }
+
+  const usersPayload = isRecord(payload.users) ? payload.users : null;
+  const users = usersPayload ? usersPayload.online : payload.users;
+  const maxUsers = usersPayload ? usersPayload.max : payload.maxUsers;
+  const channels = Array.isArray(payload.channels)
+    ? payload.channels.filter((channel): channel is string => typeof channel === "string")
+    : [];
+
+  return {
+    status: payload.online ? "online" : "offline",
+    online: payload.online,
+    serverName: readPayloadString(payload.serverName, "FREE-ARENA.RO TeamSpeak"),
+    address: readPayloadString(
+      payload.address,
+      `${process.env.TEAMSPEAK_HOST || DEFAULT_TEAMSPEAK_HOST}:${readPort(
+        process.env.TEAMSPEAK_VOICE_PORT,
+        DEFAULT_VOICE_PORT,
+      )}`,
+    ),
+    users: readPayloadNumber(users),
+    maxUsers: readPayloadNumber(maxUsers),
+    channelCount: readPayloadNumber(payload.channelCount, channels.length),
+    channels: channels.slice(0, CHANNEL_PREVIEW_LIMIT),
+    checkedAt: readPayloadString(payload.checkedAt, new Date().toISOString()),
+    message:
+      payload.message === "missing_config" ||
+      payload.message === "query_failed" ||
+      payload.message === "proxy_failed"
+        ? payload.message
+        : undefined,
+  };
+}
+
+async function queryProxyTeamSpeakStatus(config: TeamSpeakProxyConfig) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), PROXY_TIMEOUT_MS);
+
+  try {
+    const response = await fetch(config.url, {
+      cache: "no-store",
+      headers: {
+        Accept: "application/json",
+        ...(config.token ? { Authorization: `Bearer ${config.token}` } : {}),
+      },
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      throw new Error("TeamSpeak proxy request failed");
+    }
+
+    const status = normalizeProxyStatus(await response.json());
+
+    if (!status) {
+      throw new Error("TeamSpeak proxy returned invalid payload");
+    }
+
+    return status;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 class TeamSpeakQueryConnection {
@@ -250,6 +349,18 @@ function waitUntil<T>(readValue: () => T | null | false, timeoutMs: number) {
 }
 
 export async function queryTeamSpeakStatus(): Promise<TeamSpeakStatusResponse> {
+  const proxyConfig = getTeamSpeakProxyConfig();
+
+  if (proxyConfig) {
+    try {
+      return await queryProxyTeamSpeakStatus(proxyConfig);
+    } catch {
+      if (!getTeamSpeakConfig()) {
+        return createFallbackStatus("proxy_failed");
+      }
+    }
+  }
+
   const config = getTeamSpeakConfig();
 
   if (!config) {

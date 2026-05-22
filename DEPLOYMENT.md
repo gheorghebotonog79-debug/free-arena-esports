@@ -34,7 +34,27 @@ Recommended Vercel settings:
 - Node.js Version: `20.x` or newer
 - Root Directory: repository root
 
-No production environment variables are required for the current frontend. The app uses static localized message files and does not require API keys, database URLs, or backend credentials.
+The base frontend can deploy without database or auth credentials. Live TeamSpeak status is optional and should be configured with environment variables only.
+
+Recommended production variables for TeamSpeak:
+
+```text
+TEAMSPEAK_HOST=ts.free-arena.ro
+TEAMSPEAK_VOICE_PORT=9987
+TEAMSPEAK_QUERY_PORT=10011
+TEAMSPEAK_QUERY_USER=
+TEAMSPEAK_QUERY_PASSWORD=
+TEAMSPEAK_VIRTUAL_SERVER_ID=1
+```
+
+If the hosting provider cannot reach the TeamSpeak ServerQuery TCP port directly, expose a small trusted HTTPS status proxy and configure:
+
+```text
+TEAMSPEAK_STATUS_URL=https://your-status-proxy.example.com/teamspeak
+TEAMSPEAK_STATUS_TOKEN=
+```
+
+When `TEAMSPEAK_STATUS_URL` is present, `/api/teamspeak` reads that JSON endpoint first. If the proxy is unavailable, the app falls back gracefully to the direct ServerQuery path or an offline state.
 
 After importing the GitHub repository into Vercel:
 

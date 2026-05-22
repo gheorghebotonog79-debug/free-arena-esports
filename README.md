@@ -21,7 +21,7 @@ src/app/           App Router pages, layouts, sitemap, robots, global CSS
 src/components/    Layout, section, and UI components
 src/data/          Static data definitions ready for backend replacement
 src/i18n/          next-intl routing, navigation, and request config
-src/lib/           Shared route constants
+src/lib/           Shared route constants and live status utilities
 DEPLOYMENT.md      Deployment notes for play.free-arena.ro
 ```
 
@@ -69,6 +69,12 @@ npm run lint
 npm run typecheck
 npm run build
 ```
+
+## Live Integrations
+
+Game server status is served by `/api/servers`.
+
+TeamSpeak status is served by `/api/teamspeak`. Direct ServerQuery uses environment variables only. If production hosting cannot reach the TeamSpeak TCP query port, configure `TEAMSPEAK_STATUS_URL` to read a trusted HTTPS proxy instead.
 
 ## Production Build
 
