@@ -8,6 +8,7 @@ ROOT = pathlib.Path("/opt/cs16-platform")
 COMPOSE_PATH = ROOT / "docker-compose.yml"
 NGINX_CONF_PATH = ROOT / "infrastructure/nginx/conf.d/default.conf"
 ENV_PATH = ROOT / ".env"
+RUNTIME_ENV_PATH = ROOT / "services/teamspeak-status-proxy/.env.runtime"
 
 SERVICE_BLOCK = """  teamspeak-status-proxy:
     build:
@@ -15,15 +16,8 @@ SERVICE_BLOCK = """  teamspeak-status-proxy:
       dockerfile: Dockerfile
     container_name: cs16_teamspeak_status_proxy
     restart: unless-stopped
-    environment:
-      - PORT=8787
-      - TEAMSPEAK_HOST=${TEAMSPEAK_HOST}
-      - TEAMSPEAK_VOICE_PORT=${TEAMSPEAK_VOICE_PORT}
-      - TEAMSPEAK_QUERY_PORT=${TEAMSPEAK_QUERY_PORT}
-      - TEAMSPEAK_QUERY_USER=${TEAMSPEAK_QUERY_USER}
-      - TEAMSPEAK_QUERY_PASSWORD=${TEAMSPEAK_QUERY_PASSWORD}
-      - TEAMSPEAK_VIRTUAL_SERVER_ID=${TEAMSPEAK_VIRTUAL_SERVER_ID}
-      - STATUS_TOKEN=${TEAMSPEAK_STATUS_PROXY_TOKEN}
+    env_file:
+      - ./services/teamspeak-status-proxy/.env.runtime
     networks: [cs16_net]
 
 """
@@ -90,19 +84,43 @@ def upsert_env(values):
     ENV_PATH.write_text("\n".join(next_lines) + "\n")
 
 
+def write_runtime_env(values):
+    RUNTIME_ENV_PATH.parent.mkdir(parents=True, exist_ok=True)
+    runtime_values = {
+        "PORT": "8787",
+        "TEAMSPEAK_HOST": values["TEAMSPEAK_HOST"],
+        "TEAMSPEAK_VOICE_PORT": values["TEAMSPEAK_VOICE_PORT"],
+        "TEAMSPEAK_QUERY_PORT": values["TEAMSPEAK_QUERY_PORT"],
+        "TEAMSPEAK_QUERY_USER": values["TEAMSPEAK_QUERY_USER"],
+        "TEAMSPEAK_QUERY_PASSWORD": values["TEAMSPEAK_QUERY_PASSWORD"],
+        "TEAMSPEAK_VIRTUAL_SERVER_ID": values["TEAMSPEAK_VIRTUAL_SERVER_ID"],
+        "STATUS_TOKEN": values["TEAMSPEAK_STATUS_PROXY_TOKEN"],
+    }
+    RUNTIME_ENV_PATH.write_text("\n".join("{}={}".format(key, value) for key, value in runtime_values.items()) + "\n")
+    RUNTIME_ENV_PATH.chmod(0o600)
+
+
 def ensure_compose_service():
     compose = COMPOSE_PATH.read_text()
 
-    if "teamspeak-status-proxy:" in compose:
+    if SERVICE_BLOCK in compose:
         return False
 
     backup(COMPOSE_PATH)
 
+    start = compose.find("  teamspeak-status-proxy:\n")
     marker = "  nginx:\n"
-    if marker not in compose:
-        raise RuntimeError("Could not find nginx service marker in docker-compose.yml")
 
-    COMPOSE_PATH.write_text(compose.replace(marker, SERVICE_BLOCK + marker, 1))
+    if start != -1:
+        end = compose.find(marker, start)
+        if end == -1:
+            raise RuntimeError("Could not find nginx service marker after teamspeak proxy")
+        COMPOSE_PATH.write_text(compose[:start] + SERVICE_BLOCK + compose[end:])
+    else:
+        if marker not in compose:
+            raise RuntimeError("Could not find nginx service marker in docker-compose.yml")
+        COMPOSE_PATH.write_text(compose.replace(marker, SERVICE_BLOCK + marker, 1))
+
     return True
 
 
@@ -134,14 +152,20 @@ def main():
         "TEAMSPEAK_QUERY_USER",
         "TEAMSPEAK_QUERY_PASSWORD",
         "TEAMSPEAK_VIRTUAL_SERVER_ID",
-        "TEAMSPEAK_STATUS_PROXY_TOKEN",
     }
+    existing_values = read_env_file(ENV_PATH) if ENV_PATH.exists() else {}
+
+    if "TEAMSPEAK_STATUS_PROXY_TOKEN" not in values and "TEAMSPEAK_STATUS_PROXY_TOKEN" in existing_values:
+        values["TEAMSPEAK_STATUS_PROXY_TOKEN"] = existing_values["TEAMSPEAK_STATUS_PROXY_TOKEN"]
+    required.add("TEAMSPEAK_STATUS_PROXY_TOKEN")
+
     missing = sorted(required.difference(values))
 
     if missing:
         raise RuntimeError("Missing env keys: {}".format(", ".join(missing)))
 
     upsert_env(values)
+    write_runtime_env(values)
     changed_compose = ensure_compose_service()
     changed_nginx = ensure_nginx_location()
     print("teamspeak proxy config ready")

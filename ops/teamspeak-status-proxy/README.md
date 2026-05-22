@@ -27,3 +27,9 @@ The VPS deploy helper wires this proxy into the existing `/opt/cs16-platform` Do
 ```text
 https://dashboard.free-arena.ro/api/teamspeak-status
 ```
+
+Runtime secrets are written on the VPS to:
+
+```text
+/opt/cs16-platform/services/teamspeak-status-proxy/.env.runtime
+```
