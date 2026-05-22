@@ -11,7 +11,7 @@ import {
   openGraphLocales,
   siteUrl,
 } from "@/lib/seo";
-import "../globals.css";
+import "../../globals.css";
 
 type LocaleLayoutProps = Readonly<{
   children: React.ReactNode;

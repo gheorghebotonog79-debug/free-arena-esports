@@ -65,12 +65,43 @@ NEXTAUTH_URL=https://play.free-arena.ro
 ADMIN_SEED_EMAIL=
 ADMIN_SEED_USERNAME=
 ADMIN_SEED_PASSWORD_HASH=
+ADMIN_SESSION_MAX_AGE_SECONDS=28800
 DISCORD_CLIENT_ID=
 DISCORD_CLIENT_SECRET=
 STEAM_API_KEY=
 ```
 
 Do not store real passwords, database URLs, OAuth secrets, or bot tokens in Git. The first admin seed expects a password hash, not a raw password.
+
+### Admin Authentication Setup
+
+The protected admin foundation uses database-backed sessions and a secure HTTP-only cookie.
+
+Before enabling admin access in production:
+
+1. Create a PostgreSQL database and add `DATABASE_URL` in Vercel.
+2. Generate a strong `AUTH_SECRET` and add it in Vercel.
+3. Generate the first admin password hash locally:
+
+```bash
+npm run auth:hash-password -- "replace-with-a-long-temporary-password"
+```
+
+4. Add `ADMIN_SEED_EMAIL`, `ADMIN_SEED_USERNAME`, and `ADMIN_SEED_PASSWORD_HASH` in Vercel.
+5. Run migrations and seed after the production database is connected:
+
+```bash
+npm run db:migrate
+npm run db:seed
+```
+
+Admin routes:
+
+- Login: `https://play.free-arena.ro/admin/login`
+- Dashboard: `https://play.free-arena.ro/admin/dashboard`
+- Session check: `https://play.free-arena.ro/api/admin/session`
+
+Without a configured database and seeded admin account, `/admin/login` renders but login will not succeed. This is intentional and keeps production safe until credentials are explicitly configured.
 
 After importing the GitHub repository into Vercel:
 

@@ -20,6 +20,7 @@ model User {
   isActive      Boolean         @default(true)
   adminRole     AdminRole       @relation(fields: [role], references: [name], onUpdate: Cascade)
   auditLogs     AdminAuditLog[]
+  adminSessions AdminSession[]
   newsPosts     NewsPost[]
   playerProfile PlayerProfile?
 
@@ -53,6 +54,22 @@ model AdminAuditLog {
   @@index([action])
   @@index([target])
   @@index([createdAt])
+}
+
+model AdminSession {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  ip        String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  lastSeenAt DateTime @default(now())
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@index([lastSeenAt])
 }
 
 model NewsPost {

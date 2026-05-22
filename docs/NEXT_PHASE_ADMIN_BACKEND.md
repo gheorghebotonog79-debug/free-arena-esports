@@ -30,6 +30,27 @@ Admin route structure:
 - `/admin/discord`
 - `/api/admin/*`
 
+## Current Implementation Checkpoint
+
+Implemented foundation:
+
+- `/admin/login` server-rendered login page.
+- `/admin/dashboard` protected operational overview.
+- `/api/admin/auth/login` credentials login endpoint.
+- `/api/admin/auth/logout` logout endpoint.
+- `/api/admin/session` protected session inspection endpoint.
+- Middleware guard for `/admin/*`.
+- Database-backed `AdminSession` records.
+- HTTP-only admin session cookie.
+- Login/logout audit events in `AdminAuditLog`.
+
+Still pending:
+
+- Real CRUD pages for `/admin/servers`, `/admin/events`, `/admin/vip`, `/admin/discord`, `/admin/settings`, and `/admin/audit`.
+- Rate limiting for login attempts.
+- Optional Steam and Discord OAuth providers.
+- Two-factor authentication for high-impact admin actions.
+
 ## Admin Login
 
 Recommended approach:
