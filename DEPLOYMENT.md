@@ -50,7 +50,7 @@ TEAMSPEAK_VIRTUAL_SERVER_ID=1
 If the hosting provider cannot reach the TeamSpeak ServerQuery TCP port directly, expose a small trusted HTTPS status proxy and configure:
 
 ```text
-TEAMSPEAK_STATUS_URL=https://your-status-proxy.example.com/teamspeak
+TEAMSPEAK_STATUS_URL=https://dashboard.free-arena.ro/api/teamspeak-status
 TEAMSPEAK_STATUS_TOKEN=
 ```
 
