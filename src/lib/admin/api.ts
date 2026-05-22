@@ -2,8 +2,17 @@ import type { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { writeAdminAuditLog } from "@/lib/admin/audit";
 
+export const ADMIN_API_NO_STORE_HEADERS = {
+  "Cache-Control": "no-store, max-age=0, must-revalidate",
+  Expires: "0",
+  Pragma: "no-cache",
+};
+
 export function adminJson(data: unknown, status = 200) {
-  return NextResponse.json(data, { status });
+  return NextResponse.json(data, {
+    headers: ADMIN_API_NO_STORE_HEADERS,
+    status,
+  });
 }
 
 export function adminError(error: string, status = 400, details?: string[]) {
@@ -13,7 +22,10 @@ export function adminError(error: string, status = 400, details?: string[]) {
       error,
       ...(details?.length ? { details } : {}),
     },
-    { status },
+    {
+      headers: ADMIN_API_NO_STORE_HEADERS,
+      status,
+    },
   );
 }
 

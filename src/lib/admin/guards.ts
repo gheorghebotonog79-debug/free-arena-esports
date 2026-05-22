@@ -1,5 +1,5 @@
 import type { NextRequest } from "next/server";
-import { NextResponse } from "next/server";
+import { adminError } from "@/lib/admin/api";
 import type { AdminPermission } from "@/lib/admin/rbac";
 import { hasAdminPermission } from "@/lib/admin/rbac";
 import { ADMIN_SESSION_COOKIE } from "@/lib/admin/auth-constants";
@@ -30,7 +30,7 @@ export async function requireAdminApiAccess(
 ) {
   if (request.method !== "GET" && !isSameOriginRequest(request)) {
     return {
-      response: NextResponse.json({ ok: false, error: "csrf" }, { status: 403 }),
+      response: adminError("csrf", 403),
       session: null,
     };
   }
@@ -39,14 +39,14 @@ export async function requireAdminApiAccess(
 
   if (!session) {
     return {
-      response: NextResponse.json({ ok: false, error: "unauthorized" }, { status: 401 }),
+      response: adminError("unauthorized", 401),
       session: null,
     };
   }
 
   if (requiredPermission && !hasAdminPermission(session.user.permissions, requiredPermission)) {
     return {
-      response: NextResponse.json({ ok: false, error: "forbidden" }, { status: 403 }),
+      response: adminError("forbidden", 403),
       session,
     };
   }

@@ -35,6 +35,7 @@ const checks = [
     path: "/api/admin/setup/status",
     expectedStatus: 200,
     json: (payload) => Boolean(payload?.checks?.database && payload?.checks?.authSecret),
+    cacheControlIncludes: "no-store",
   },
   {
     name: "Admin servers page protected",
@@ -53,6 +54,7 @@ const checks = [
     path: "/api/admin/servers",
     expectedStatus: 401,
     json: (payload) => payload?.ok === false && payload?.error === "unauthorized",
+    cacheControlIncludes: "no-store",
   },
   {
     name: "Admin mutation CSRF",
@@ -65,6 +67,7 @@ const checks = [
     },
     expectedStatus: 403,
     json: (payload) => payload?.ok === false && payload?.error === "csrf",
+    cacheControlIncludes: "no-store",
   },
   {
     name: "Health endpoint responds",
@@ -145,6 +148,14 @@ async function runCheck(check) {
 
     if (check.json && !check.json(json)) {
       errors.push("JSON payload did not match expected shape");
+    }
+
+    if (check.cacheControlIncludes) {
+      const cacheControl = response.headers.get("cache-control") || "";
+
+      if (!cacheControl.includes(check.cacheControlIncludes)) {
+        errors.push(`Cache-Control header did not include "${check.cacheControlIncludes}"`);
+      }
     }
 
     if (check.allowDegraded && json?.status === "degraded") {
