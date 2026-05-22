@@ -3,10 +3,37 @@ import { useTranslations } from "next-intl";
 import { MotionCard } from "@/components/ui/motion-card";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { tournamentCards } from "@/data/platform";
+import type { PublicTournament } from "@/lib/public-tournaments";
 
-export function TournamentSection() {
+type TournamentSectionProps = {
+  locale: string;
+  tournaments: PublicTournament[];
+};
+
+const fallbackCards = ["registration", "brackets", "rewards"] as const;
+
+function formatTournamentDate(value: Date | null, locale: string) {
+  if (!value) {
+    return null;
+  }
+
+  return new Intl.DateTimeFormat(locale === "ro" ? "ro-RO" : "en-US", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  }).format(value);
+}
+
+export function TournamentSection({ locale, tournaments }: TournamentSectionProps) {
   const t = useTranslations("Tournaments");
+  const featuredTournament = tournaments[0];
+  const secondaryTournaments = tournaments.slice(1);
+  const hasTournaments = Boolean(featuredTournament);
+  const featuredStart = featuredTournament
+    ? formatTournamentDate(featuredTournament.startsAt, locale)
+    : null;
+  const featuredEnd = featuredTournament
+    ? formatTournamentDate(featuredTournament.endsAt, locale)
+    : null;
 
   return (
     <section id="events" className="cinematic-section border-y border-white/10 bg-arena-black px-4 py-20 sm:px-6 lg:px-8">
@@ -26,8 +53,17 @@ export function TournamentSection() {
                     {t("featured.eyebrow")}
                   </p>
                   <h3 className="mt-3 font-display text-4xl font-black text-white">
-                    {t("featured.title")}
+                    {featuredTournament?.title ?? t("featured.emptyTitle")}
                   </h3>
+                  {featuredTournament?.description ? (
+                    <p className="mt-3 max-w-xl text-sm leading-6 text-white/62">
+                      {featuredTournament.description}
+                    </p>
+                  ) : !hasTournaments ? (
+                    <p className="mt-3 max-w-xl text-sm leading-6 text-white/62">
+                      {t("featured.emptyCopy")}
+                    </p>
+                  ) : null}
                 </div>
                 <Trophy size={42} className="text-arena-gold" aria-hidden="true" />
               </div>
@@ -39,7 +75,11 @@ export function TournamentSection() {
                     {t("featured.stats.window.label")}
                   </dt>
                   <dd className="mt-3 text-lg font-bold text-white">
-                    {t("featured.stats.window.value")}
+                    {featuredStart
+                      ? featuredEnd
+                        ? `${featuredStart} - ${featuredEnd}`
+                        : featuredStart
+                      : t("featured.stats.window.emptyValue")}
                   </dd>
                 </div>
                 <div className="premium-card rounded-lg bg-black/28 p-4">
@@ -48,7 +88,7 @@ export function TournamentSection() {
                     {t("featured.stats.format.label")}
                   </dt>
                   <dd className="mt-3 text-lg font-bold text-white">
-                    {t("featured.stats.format.value")}
+                    {featuredTournament?.game ?? t("featured.stats.format.emptyValue")}
                   </dd>
                 </div>
                 <div className="premium-card rounded-lg bg-black/28 p-4">
@@ -57,7 +97,7 @@ export function TournamentSection() {
                     {t("featured.stats.prize.label")}
                   </dt>
                   <dd className="mt-3 text-lg font-bold text-white">
-                    {t("featured.stats.prize.value")}
+                    {featuredTournament?.prizePool ?? t("featured.stats.prize.emptyValue")}
                   </dd>
                 </div>
                 <div className="premium-card rounded-lg bg-black/28 p-4">
@@ -66,7 +106,9 @@ export function TournamentSection() {
                     {t("featured.stats.ruleset.label")}
                   </dt>
                   <dd className="mt-3 text-lg font-bold text-white">
-                    {t("featured.stats.ruleset.value")}
+                    {featuredTournament
+                      ? t(`status.${featuredTournament.status}`)
+                      : t("featured.stats.ruleset.emptyValue")}
                   </dd>
                 </div>
               </dl>
@@ -74,22 +116,22 @@ export function TournamentSection() {
           </MotionReveal>
 
           <div className="grid gap-4">
-            {tournamentCards.map((card, index) => (
+            {secondaryTournaments.length > 0 ? secondaryTournaments.map((tournament, index) => (
               <MotionCard
-                key={card.key}
+                key={tournament.id}
                 delay={index * 0.08}
                 className="premium-card glass-panel rounded-lg p-5"
               >
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/42">
-                        {t(`cards.${card.key}.label`)}
+                        {tournament.game}
                       </p>
                       <h3 className="mt-2 font-display text-2xl font-black text-white">
-                        {t(`cards.${card.key}.title`)}
+                        {tournament.title}
                       </h3>
                       <p className="mt-2 text-sm leading-6 text-white/62">
-                        {t(`cards.${card.key}.copy`)}
+                        {tournament.description ?? t("cards.liveFallback.copy")}
                       </p>
                     </div>
                     <div className="grid w-full grid-cols-2 gap-2 sm:w-56">
@@ -98,14 +140,52 @@ export function TournamentSection() {
                           {t("labels.status")}
                         </p>
                         <p className="mt-2 font-bold text-arena-green">
-                          {t(`status.${card.statusKey}`)}
+                          {t(`status.${tournament.status}`)}
                         </p>
                       </div>
                       <div className="premium-card rounded-lg bg-black/30 p-3">
                         <p className="text-xs font-bold uppercase tracking-[0.14em] text-white/38">
-                          {t("labels.slots")}
+                          {t("labels.starts")}
                         </p>
-                        <p className="mt-2 font-bold text-white">{card.slots}</p>
+                        <p className="mt-2 font-bold text-white">
+                          {formatTournamentDate(tournament.startsAt, locale) ?? t("labels.unscheduled")}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+              </MotionCard>
+            )) : fallbackCards.map((card, index) => (
+              <MotionCard
+                key={card}
+                delay={index * 0.08}
+                className="premium-card glass-panel rounded-lg p-5"
+              >
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/42">
+                        {t(`cards.${card}.label`)}
+                      </p>
+                      <h3 className="mt-2 font-display text-2xl font-black text-white">
+                        {t(`cards.${card}.title`)}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-white/62">
+                        {t(`cards.${card}.copy`)}
+                      </p>
+                    </div>
+                    <div className="grid w-full grid-cols-2 gap-2 sm:w-56">
+                      <div className="premium-card rounded-lg bg-black/30 p-3">
+                        <p className="text-xs font-bold uppercase tracking-[0.14em] text-white/38">
+                          {t("labels.status")}
+                        </p>
+                        <p className="mt-2 font-bold text-arena-green">
+                          {t("status.ready")}
+                        </p>
+                      </div>
+                      <div className="premium-card rounded-lg bg-black/30 p-3">
+                        <p className="text-xs font-bold uppercase tracking-[0.14em] text-white/38">
+                          {t("labels.source")}
+                        </p>
+                        <p className="mt-2 font-bold text-white">{t("labels.admin")}</p>
                       </div>
                     </div>
                   </div>

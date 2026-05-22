@@ -186,49 +186,67 @@
     "featured": {
       "eyebrow": "Cupă recomandată",
       "title": "Arena Masters",
+      "emptyTitle": "Turneele reale se publică din admin",
+      "emptyCopy": "Nu există momentan un turneu public programat. Când staff-ul creează un turneu cu status scheduled sau live, acesta apare automat aici.",
       "stats": {
         "window": {
           "label": "Perioadă",
-          "value": "Vin - Dum"
+          "value": "Vin - Dum",
+          "emptyValue": "Neprogramat"
         },
         "format": {
           "label": "Format",
-          "value": "5v5 Swiss"
+          "value": "5v5 Swiss",
+          "emptyValue": "Stabilit de staff"
         },
         "prize": {
           "label": "Premiu",
-          "value": "VIP + Credite"
+          "value": "VIP + Credite",
+          "emptyValue": "Anunțat la publicare"
         },
         "ruleset": {
           "label": "Reguli",
-          "value": "Verificat de admin"
+          "value": "Verificat de admin",
+          "emptyValue": "Pregătit"
         }
       }
     },
     "labels": {
       "status": "Status",
-      "slots": "Locuri"
+      "slots": "Locuri",
+      "starts": "Start",
+      "unscheduled": "Nesetat",
+      "source": "Sursă",
+      "admin": "Admin"
     },
     "status": {
       "open": "Deschis",
       "active": "Activ",
-      "ready": "Pregătit"
+      "ready": "Pregătit",
+      "draft": "Draft",
+      "scheduled": "Programat",
+      "live": "Live",
+      "completed": "Finalizat",
+      "cancelled": "Anulat"
     },
     "cards": {
-      "saturdayBracket": {
-        "label": "Bracket de sâmbătă",
-        "title": "Cupa Weekend Counter-Strike",
-        "copy": "Echipele, veto-ul de hărți, statusul meciului și confirmarea rezultatelor sunt gândite pentru flux competitiv complet."
+      "registration": {
+        "label": "Flux competițional",
+        "title": "Înscrieri pregătite pentru activare",
+        "copy": "Structura de turnee folosește baza reală, statusuri clare și admin audit pentru fiecare acțiune importantă."
       },
-      "monthlyLadder": {
-        "label": "Ladder lunar",
-        "title": "FREE-ARENA.RO Season Ladder",
-        "copy": "Clasamentele ranked sunt pregătite pentru scor real, resetări de sezon, recompense și audit transparent."
+      "brackets": {
+        "label": "Administrare",
+        "title": "Bracketuri și rezultate în faza următoare",
+        "copy": "Turneele pot crește natural spre bracketuri, confirmare rezultate, scoruri și pagini dedicate pentru fiecare competiție."
       },
-      "communityEvent": {
-        "label": "Eveniment comunitar",
-        "title": "VIP Night Showmatch",
-        "copy": "Evenimentele comunității pot lega gazde, premii, participanți și rezumate curate pentru anunțuri sau broadcast."
+      "rewards": {
+        "label": "Recompense",
+        "title": "Premii și VIP conectate la backend",
+        "copy": "Prize pool-ul și beneficiile VIP pot fi publicate din admin când comunitatea stabilește competițiile oficiale."
+      },
+      "liveFallback": {
+        "copy": "Turneu publicat din dashboard-ul FREE-ARENA.RO."
       }
     }
   },

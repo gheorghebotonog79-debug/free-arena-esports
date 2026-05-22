@@ -186,49 +186,67 @@
     "featured": {
       "eyebrow": "Featured cup",
       "title": "Arena Masters",
+      "emptyTitle": "Real tournaments publish from admin",
+      "emptyCopy": "There is no public tournament scheduled right now. When staff creates a tournament with scheduled or live status, it appears here automatically.",
       "stats": {
         "window": {
           "label": "Window",
-          "value": "Fri - Sun"
+          "value": "Fri - Sun",
+          "emptyValue": "Unscheduled"
         },
         "format": {
           "label": "Format",
-          "value": "5v5 Swiss"
+          "value": "5v5 Swiss",
+          "emptyValue": "Staff defined"
         },
         "prize": {
           "label": "Prize",
-          "value": "VIP + Credits"
+          "value": "VIP + Credits",
+          "emptyValue": "Announced on publish"
         },
         "ruleset": {
           "label": "Ruleset",
-          "value": "Admin verified"
+          "value": "Admin verified",
+          "emptyValue": "Ready"
         }
       }
     },
     "labels": {
       "status": "Status",
-      "slots": "Slots"
+      "slots": "Slots",
+      "starts": "Starts",
+      "unscheduled": "Unset",
+      "source": "Source",
+      "admin": "Admin"
     },
     "status": {
       "open": "Open",
       "active": "Active",
-      "ready": "Ready"
+      "ready": "Ready",
+      "draft": "Draft",
+      "scheduled": "Scheduled",
+      "live": "Live",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
     },
     "cards": {
-      "saturdayBracket": {
-        "label": "Saturday bracket",
-        "title": "Counter-Strike Weekend Cup",
-        "copy": "Teams, map veto, match state, and result confirmation are designed for a complete competitive flow."
+      "registration": {
+        "label": "Competition flow",
+        "title": "Registrations ready for activation",
+        "copy": "Tournament structure now uses the real database, clear statuses, and admin audit for every important action."
       },
-      "monthlyLadder": {
-        "label": "Monthly ladder",
-        "title": "FREE-ARENA.RO Season Ladder",
-        "copy": "Ranked standings are ready for real scoring, season resets, rewards, and transparent audit trails."
+      "brackets": {
+        "label": "Operations",
+        "title": "Brackets and results in the next phase",
+        "copy": "Tournaments can grow naturally into brackets, result confirmation, scores, and dedicated pages for each competition."
       },
-      "communityEvent": {
-        "label": "Community event",
-        "title": "VIP Night Showmatch",
-        "copy": "Community events can connect hosts, prizes, participants, and clean summaries for announcements or broadcasts."
+      "rewards": {
+        "label": "Rewards",
+        "title": "Prizes and VIP connected to backend",
+        "copy": "Prize pools and VIP benefits can publish from admin once the community confirms official competitions."
+      },
+      "liveFallback": {
+        "copy": "Tournament published from the FREE-ARENA.RO dashboard."
       }
     }
   },

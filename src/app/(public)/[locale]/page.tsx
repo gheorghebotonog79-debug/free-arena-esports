@@ -7,6 +7,7 @@ import { NewsSection } from "@/components/sections/news-section";
 import { ServerGrid } from "@/components/sections/server-grid";
 import { TournamentSection } from "@/components/sections/tournament-section";
 import { getPublishedNews } from "@/lib/public-news";
+import { getPublicTournaments } from "@/lib/public-tournaments";
 
 export const revalidate = 60;
 
@@ -17,7 +18,10 @@ type HomeProps = {
 export default async function Home({ params }: HomeProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const newsPosts = await getPublishedNews(locale);
+  const [newsPosts, tournaments] = await Promise.all([
+    getPublishedNews(locale),
+    getPublicTournaments(),
+  ]);
 
   return (
     <>
@@ -25,7 +29,7 @@ export default async function Home({ params }: HomeProps) {
       <main>
         <HeroSection />
         <ServerGrid />
-        <TournamentSection />
+        <TournamentSection locale={locale} tournaments={tournaments} />
         <NewsSection locale={locale} posts={newsPosts} />
         <CommunitySection />
       </main>
