@@ -72,9 +72,9 @@ export function AdminShell({
   );
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white">
+    <main className="min-h-screen bg-[#020711] text-white">
       <div className="pointer-events-none fixed inset-0">
-        <div className="absolute left-1/4 top-0 h-[28rem] w-[28rem] rounded-full bg-red-600/15 blur-[130px]" />
+        <div className="absolute left-1/4 top-0 h-[28rem] w-[28rem] rounded-full bg-cyan-400/15 blur-[130px]" />
         <div className="absolute bottom-0 right-0 h-[30rem] w-[30rem] rounded-full bg-cyan-400/10 blur-[140px]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),transparent_36%),radial-gradient(circle_at_top,rgba(255,255,255,0.07),transparent_34%)]" />
       </div>

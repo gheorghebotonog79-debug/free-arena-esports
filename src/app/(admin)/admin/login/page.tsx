@@ -61,11 +61,11 @@ export default async function AdminLoginPage({ searchParams }: AdminLoginPagePro
   const nextPath = getSafeNextPath(params.next);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#050505] text-white">
+    <main className="min-h-screen overflow-hidden bg-[#020711] text-white">
       <div className="pointer-events-none fixed inset-0">
         <div className="absolute left-1/2 top-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-red-600/20 blur-[140px]" />
         <div className="absolute bottom-0 right-0 h-[28rem] w-[28rem] rounded-full bg-sky-500/10 blur-[130px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_34%),linear-gradient(180deg,rgba(5,5,5,0.1),#050505_82%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,216,255,0.1),transparent_34%),linear-gradient(180deg,rgba(2,7,17,0.1),#020711_82%)]" />
       </div>
 
       <section className="relative mx-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-5 py-10">

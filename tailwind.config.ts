@@ -11,19 +11,19 @@ const config: Config = {
     extend: {
       colors: {
         arena: {
-          ash: "#101010",
-          black: "#050505",
-          carbon: "#171717",
-          red: "#e11d35",
-          green: "#23d18b",
-          cyan: "#38d5ff",
-          gold: "#f7c948",
-          steel: "#c7ced8",
+          ash: "#06131d",
+          black: "#020711",
+          carbon: "#0a1f2c",
+          red: "#0b8cff",
+          green: "#11f0ff",
+          cyan: "#00d8ff",
+          gold: "#ffd34d",
+          steel: "#b8d7e8",
         },
       },
       boxShadow: {
         panel: "0 18px 60px rgba(0, 0, 0, 0.36)",
-        pulse: "0 0 0 1px rgba(35, 209, 139, 0.18), 0 20px 80px rgba(35, 209, 139, 0.08)",
+        pulse: "0 0 0 1px rgba(17, 240, 255, 0.18), 0 20px 80px rgba(0, 216, 255, 0.08)",
       },
       fontFamily: {
         sans: [
