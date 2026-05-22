@@ -46,51 +46,40 @@ npm run backend:preflight:local
 
 ## Backend Activation Blockers
 
-Admin login is intentionally not activated until the production database and secrets are configured.
+Production admin login is activated.
 
-Required Vercel ENV values:
-
-```bash
-DATABASE_URL=
-AUTH_SECRET=
-ADMIN_SEED_EMAIL=
-ADMIN_SEED_USERNAME=
-ADMIN_SEED_PASSWORD_HASH=
-```
-
-Generate the auth secret locally:
+Configured Vercel Production ENV values:
 
 ```bash
-npm run auth:generate-secret
+DATABASE_URL
+AUTH_SECRET
+ADMIN_SEED_EMAIL
+ADMIN_SEED_USERNAME
+ADMIN_SEED_PASSWORD_HASH
+NEXTAUTH_URL
+ADMIN_SESSION_MAX_AGE_SECONDS
 ```
 
-Generate the admin password hash locally:
+Production database status:
 
-```bash
-npm run auth:hash-password -- "replace-with-strong-password"
-```
+- Neon PostgreSQL resource connected through Vercel Marketplace.
+- Prisma migrations applied.
+- Production database seeded.
+- Initial co-owner admin login verified on `https://play.free-arena.ro`.
 
-After ENV is configured:
+Production admin credentials:
+
+- Stored locally only in ignored `tmp/production-admin-credentials.txt`.
+- Never commit or paste the password into source files, docs, or chat.
+
+Before any future backend deploy, verify:
 
 ```bash
 npm run vercel:env:audit:strict
-npm run backend:preflight:strict
-npm run db:migrate
-npm run db:seed
+node scripts/backend-preflight.mjs --strict --check-db
+npm run smoke:admin -- https://play.free-arena.ro
+npm run smoke:headers -- https://play.free-arena.ro
 ```
-
-If using Neon through Vercel Marketplace, accept the marketplace terms first, then create/connect the database:
-
-```bash
-vercel integration add neon --name free-arena-postgres --plan free_v3 -e production -m region=iad1 -m auth=false --format json
-```
-
-Then verify:
-
-- `/admin/setup` shows all backend checks as ready.
-- `/admin/login` accepts the seeded co-owner account.
-- `/admin/dashboard` opens after login.
-- Admin CRUD actions write audit logs.
 
 ## Release Checklist
 

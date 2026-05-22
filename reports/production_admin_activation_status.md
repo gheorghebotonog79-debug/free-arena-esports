@@ -2,7 +2,7 @@
 
 Date: 2026-05-22
 
-## Completed
+## Completed Production Activation
 
 - Generated production `AUTH_SECRET`.
 - Generated production admin seed hash.
@@ -14,39 +14,33 @@ Date: 2026-05-22
   - `ADMIN_SEED_PASSWORD_HASH`
   - `NEXTAUTH_URL`
   - `ADMIN_SESSION_MAX_AGE_SECONDS`
+- Accepted Neon Marketplace terms in Vercel.
+- Created and connected the Neon PostgreSQL resource `free-arena-postgres`.
+- Confirmed Vercel Production `DATABASE_URL` is present.
+- Applied production Prisma migrations:
+  - `20260522101500_init_backend_foundation`
+  - `20260522104000_add_admin_sessions`
+- Seeded production database with:
+  - admin roles
+  - game server records
+  - system settings
+  - initial co-owner admin account
+- Redeployed production to `https://play.free-arena.ro`.
+- Verified live admin login, session API, and dashboard access.
 
-## Current Blocker
+## Production Verification
 
-`DATABASE_URL` is still missing.
+Passed:
 
-Vercel Marketplace requires Neon terms acceptance before the database resource can be created from CLI:
-
-```text
-https://vercel.com/gheorghebotonog79-debugs-projects/~/integrations/accept-terms/neon?source=cli
-```
-
-No production database was created yet because this requires browser/legal confirmation.
-
-## Next Commands After Terms Are Accepted
-
-```bash
-vercel integration add neon --name free-arena-postgres --plan free_v3 -e production -m region=iad1 -m auth=false --format json
-npm run vercel:env:audit:strict
-npm run backend:preflight:strict
-npm run db:migrate
-npm run db:seed
-```
-
-Then redeploy and verify:
-
-```bash
-vercel deploy --prod --yes
-npm run smoke:admin -- https://play.free-arena.ro
-npm run smoke:headers -- https://play.free-arena.ro
-```
+- `npm run vercel:env:audit:strict`
+- `node scripts/backend-preflight.mjs --strict --check-db`
+- `npm run smoke:admin -- https://play.free-arena.ro`
+- `npm run smoke:headers -- https://play.free-arena.ro`
+- `npm run smoke:admin:login:local -- https://play.free-arena.ro` using production credentials from ignored local `tmp`.
 
 ## Safety
 
 - No production secret values are committed.
 - `tmp/` is ignored by Git.
-- Production admin credentials are stored only locally until the production database is created and seeded.
+- Production admin credentials are stored only locally in ignored `tmp/production-admin-credentials.txt`.
+- Optional Discord and Steam ENV values remain intentionally unset until those integrations are implemented.

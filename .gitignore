@@ -46,5 +46,3 @@ coverage/
 playwright-report/
 test-results/
 .codex-git-tool/
-
-.vercel
