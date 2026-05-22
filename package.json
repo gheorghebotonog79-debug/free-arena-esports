@@ -22,7 +22,8 @@
     "auth:hash-password": "node scripts/hash-admin-password.mjs",
     "backend:preflight": "node scripts/backend-preflight.mjs",
     "backend:preflight:strict": "node scripts/backend-preflight.mjs --strict --check-db",
-    "smoke:admin": "node scripts/smoke-admin-routes.mjs"
+    "smoke:admin": "node scripts/smoke-admin-routes.mjs",
+    "smoke:headers": "node scripts/smoke-security-headers.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
