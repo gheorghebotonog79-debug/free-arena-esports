@@ -79,6 +79,12 @@ npm run db:migrate
 npm run db:seed
 ```
 
+If using Neon through Vercel Marketplace, accept the marketplace terms first, then create/connect the database:
+
+```bash
+vercel integration add neon --name free-arena-postgres --plan free_v3 -e production -m region=iad1 -m auth=false --format json
+```
+
 Then verify:
 
 - `/admin/setup` shows all backend checks as ready.
