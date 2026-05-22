@@ -22,6 +22,13 @@ Check container status:
 npm run db:local:status
 ```
 
+Verify migrated and seeded data:
+
+```bash
+npm run db:local:verify
+npm run backend:preflight:local
+```
+
 View logs:
 
 ```bash

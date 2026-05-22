@@ -78,6 +78,38 @@ function waitForPort(host, port, timeoutMs = 60_000) {
   });
 }
 
+function waitForContainerHealth(containerName, timeoutMs = 60_000) {
+  const startedAt = Date.now();
+
+  return new Promise((resolveWait, rejectWait) => {
+    const check = () => {
+      const result = spawnSync(
+        "docker",
+        ["inspect", containerName, "--format", "{{.State.Health.Status}}"],
+        {
+          cwd: cwd(),
+          encoding: "utf8",
+        },
+      );
+      const status = result.stdout.trim();
+
+      if (status === "healthy") {
+        resolveWait();
+        return;
+      }
+
+      if (Date.now() - startedAt > timeoutMs) {
+        rejectWait(new Error(`${containerName} did not become healthy. Last status: ${status || "unknown"}.`));
+        return;
+      }
+
+      setTimeout(check, 1000);
+    };
+
+    check();
+  });
+}
+
 function parsePortFromDatabaseUrl(value) {
   try {
     return Number(new URL(value).port || 5432);
@@ -113,6 +145,7 @@ try {
 
   printEnvWarning();
   run("docker", ["compose", "-f", composeFile, "up", "-d"]);
+  await waitForContainerHealth("free-arena-postgres");
   await waitForPort("127.0.0.1", parsePortFromDatabaseUrl(databaseUrl));
 
   run(prisma.command, [...prisma.args, "migrate", "deploy"]);

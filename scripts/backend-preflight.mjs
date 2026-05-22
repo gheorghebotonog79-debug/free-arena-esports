@@ -9,8 +9,15 @@ const root = cwd();
 const args = new Set(process.argv.slice(2));
 const strict = args.has("--strict");
 const checkDb = args.has("--check-db");
+const local = args.has("--local");
 const env = { ...process.env };
 const checks = [];
+const localDatabaseUrl =
+  "postgresql://free_arena:free_arena@localhost:5432/free_arena?schema=public";
+
+if (local && !env.DATABASE_URL) {
+  env.DATABASE_URL = env.LOCAL_DATABASE_URL || localDatabaseUrl;
+}
 
 function loadEnvFile(filename) {
   const filePath = resolve(root, filename);
@@ -56,6 +63,22 @@ function getEnv(name) {
 
 function isPlaceholder(value) {
   return /USER|PASSWORD|HOST|CHANGE_ME|example|localhost/i.test(value);
+}
+
+function isLocalDatabaseUrl(value) {
+  return /localhost|127\.0\.0\.1|\[::1\]/i.test(value);
+}
+
+function isUsableDatabaseUrl(value) {
+  if (!value) {
+    return false;
+  }
+
+  if (local && isLocalDatabaseUrl(value)) {
+    return true;
+  }
+
+  return !isPlaceholder(value);
 }
 
 function addCheck({ detail, name, ok, strictRequired = false, warning = false }) {
@@ -143,11 +166,13 @@ function checkEnv() {
 
   addCheck({
     detail:
-      databaseUrl && !isPlaceholder(databaseUrl)
-        ? "DATABASE_URL is configured and does not look like a placeholder."
+      isUsableDatabaseUrl(databaseUrl)
+        ? local && isLocalDatabaseUrl(databaseUrl)
+          ? "DATABASE_URL is configured for local PostgreSQL."
+          : "DATABASE_URL is configured and does not look like a placeholder."
         : "DATABASE_URL is missing or still looks like a placeholder.",
     name: "DATABASE_URL",
-    ok: Boolean(databaseUrl) && !isPlaceholder(databaseUrl),
+    ok: isUsableDatabaseUrl(databaseUrl),
     strictRequired: true,
   });
 
@@ -217,7 +242,7 @@ function checkDatabaseConnection() {
     return;
   }
 
-  if (!databaseUrl || isPlaceholder(databaseUrl)) {
+  if (!isUsableDatabaseUrl(databaseUrl)) {
     addCheck({
       detail: "Database connection check cannot run until DATABASE_URL is configured.",
       name: "Database connection",
@@ -244,7 +269,9 @@ function printSummary() {
   const warnings = checks.filter((check) => check.status === "WARN");
 
   console.log("FREE-ARENA backend preflight");
-  console.log(`Mode: ${strict ? "strict" : "advisory"}${checkDb ? " + database check" : ""}`);
+  console.log(
+    `Mode: ${strict ? "strict" : "advisory"}${local ? " + local" : ""}${checkDb ? " + database check" : ""}`,
+  );
   console.log("");
 
   for (const check of checks) {

@@ -40,6 +40,8 @@ Optional local PostgreSQL test environment:
 ```bash
 npm run db:local:check
 npm run db:local:bootstrap
+npm run db:local:verify
+npm run backend:preflight:local
 ```
 
 ## Backend Activation Blockers
