@@ -6,7 +6,9 @@ import {
   AdminPanel,
   AdminShell,
 } from "@/components/admin/admin-shell";
+import { AdminApiForm } from "@/components/admin/admin-api-form";
 import { requireAdminPageAccess } from "@/lib/admin/guards";
+import { hasAdminPermission } from "@/lib/admin/rbac";
 import { db } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -45,6 +47,7 @@ export default async function AdminNewsPage() {
     orderBy: [{ updatedAt: "desc" }],
     take: 30,
   });
+  const canWrite = hasAdminPermission(access.session.user.permissions, "news:write");
 
   return (
     <AdminShell
@@ -53,45 +56,80 @@ export default async function AdminNewsPage() {
       session={access.session}
       title="News"
     >
-      <AdminPanel icon={Newspaper} title="Ultimele postari">
-        {posts.length > 0 ? (
-          <div className="grid gap-3">
-            {posts.map((post) => (
-              <article className="rounded-2xl border border-white/10 bg-black/25 p-4" key={post.id}>
-                <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-                  <div>
-                    <div className="mb-2 flex flex-wrap gap-2">
-                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-zinc-300">
-                        {post.locale}
-                      </span>
-                      <span
-                        className={[
-                          "rounded-full border px-3 py-1 text-xs font-black uppercase tracking-[0.14em]",
-                          post.published
-                            ? "border-emerald-300/20 bg-emerald-500/10 text-emerald-100"
-                            : "border-zinc-300/15 bg-zinc-500/10 text-zinc-300",
-                        ].join(" ")}
-                      >
-                        {post.published ? "published" : "draft"}
-                      </span>
+      <div className="grid gap-5">
+        <AdminPanel icon={Newspaper} title="Ultimele postari">
+          {posts.length > 0 ? (
+            <div className="grid gap-3">
+              {posts.map((post) => (
+                <article
+                  className="rounded-2xl border border-white/10 bg-black/25 p-4"
+                  key={post.id}
+                >
+                  <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+                    <div>
+                      <div className="mb-2 flex flex-wrap gap-2">
+                        <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-zinc-300">
+                          {post.locale}
+                        </span>
+                        <span
+                          className={[
+                            "rounded-full border px-3 py-1 text-xs font-black uppercase tracking-[0.14em]",
+                            post.published
+                              ? "border-emerald-300/20 bg-emerald-500/10 text-emerald-100"
+                              : "border-zinc-300/15 bg-zinc-500/10 text-zinc-300",
+                          ].join(" ")}
+                        >
+                          {post.published ? "published" : "draft"}
+                        </span>
+                      </div>
+                      <h2 className="text-base font-black uppercase text-white">{post.title}</h2>
+                      <p className="mt-2 max-w-3xl text-sm leading-6 text-zinc-400">
+                        {post.excerpt}
+                      </p>
                     </div>
-                    <h2 className="text-base font-black uppercase text-white">{post.title}</h2>
-                    <p className="mt-2 max-w-3xl text-sm leading-6 text-zinc-400">
-                      {post.excerpt}
-                    </p>
+                    <div className="text-left text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500 lg:text-right">
+                      <p>{formatDate(post.publishedAt)}</p>
+                      <p className="mt-1">
+                        {post.author?.username ?? post.author?.email ?? "system"}
+                      </p>
+                    </div>
                   </div>
-                  <div className="text-left text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500 lg:text-right">
-                    <p>{formatDate(post.publishedAt)}</p>
-                    <p className="mt-1">{post.author?.username ?? post.author?.email ?? "system"}</p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <AdminEmptyState message="Nu exista inca news posts in baza de date." />
-        )}
-      </AdminPanel>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <AdminEmptyState message="Nu exista inca news posts in baza de date." />
+          )}
+        </AdminPanel>
+
+        {canWrite ? (
+          <AdminPanel icon={Newspaper} title="Adauga news post">
+            <AdminApiForm
+              endpoint="/api/admin/news"
+              fields={[
+                {
+                  defaultValue: "ro",
+                  label: "Locale",
+                  name: "locale",
+                  options: [
+                    { label: "Romana", value: "ro" },
+                    { label: "English", value: "en" },
+                  ],
+                  required: true,
+                  type: "select",
+                },
+                { label: "Slug", name: "slug", placeholder: "update-servere-free-arena", required: true, type: "text" },
+                { label: "Titlu", name: "title", required: true, type: "text" },
+                { label: "Excerpt", name: "excerpt", required: true, rows: 3, type: "textarea" },
+                { label: "Content", name: "content", required: true, rows: 8, type: "textarea" },
+                { label: "Published", name: "published", type: "checkbox" },
+              ]}
+              submitLabel="Creeaza postare"
+              successMessage="Postarea a fost creata."
+            />
+          </AdminPanel>
+        ) : null}
+      </div>
     </AdminShell>
   );
 }

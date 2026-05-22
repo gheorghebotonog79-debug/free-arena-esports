@@ -58,10 +58,11 @@ Implemented foundation:
 - Page-level and API-level RBAC checks for admin areas.
 - Same-origin protection for admin API mutations.
 - Validation helpers for admin write payloads.
+- Admin create forms wired to protected CRUD endpoints for servers, news, tournaments, VIP, and settings.
 
 Still pending:
 
-- Wiring admin UI forms to the protected CRUD endpoints.
+- Admin edit/delete UI controls for existing records.
 - Durable distributed rate limiting backed by Redis or a managed edge store.
 - Optional Steam and Discord OAuth providers.
 - Two-factor authentication for high-impact admin actions.
