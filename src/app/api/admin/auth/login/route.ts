@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { writeAdminAuditLog } from "@/lib/admin/audit";
 import { ADMIN_SESSION_COOKIE } from "@/lib/admin/auth-constants";
 import { verifyAdminPassword } from "@/lib/admin/password";
+import { checkAdminLoginRateLimit, clearAdminLoginRateLimit } from "@/lib/admin/rate-limit";
 import {
   getRequestIp,
   getRequestUserAgent,
@@ -41,6 +42,23 @@ export async function POST(request: NextRequest) {
       return redirectWithError(request, "invalid");
     }
 
+    const rateLimitKey = `${ip ?? "unknown"}:${normalizedIdentifier}`;
+    const rateLimit = checkAdminLoginRateLimit(rateLimitKey);
+
+    if (!rateLimit.allowed) {
+      await writeSafeLoginAudit({
+        action: "auth.login.rate_limited",
+        target: "AdminAuth",
+        metadata: {
+          identifier: normalizedIdentifier,
+          retryAfterSeconds: rateLimit.retryAfterSeconds,
+        },
+        ip,
+      });
+
+      return redirectWithError(request, "rate_limit");
+    }
+
     const user = await db.user.findFirst({
       where: {
         OR: [
@@ -76,6 +94,8 @@ export async function POST(request: NextRequest) {
 
       return redirectWithError(request, "invalid");
     }
+
+    clearAdminLoginRateLimit(rateLimitKey);
 
     const adminSession = await createAdminSession(user.id, { ip, userAgent });
 

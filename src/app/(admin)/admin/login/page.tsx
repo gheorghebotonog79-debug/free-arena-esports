@@ -25,6 +25,10 @@ function getLoginErrorMessage(error: string | undefined) {
     return "Serviciul admin nu poate valida autentificarea acum. Verifica baza de date si configurarea ENV.";
   }
 
+  if (error === "rate_limit") {
+    return "Prea multe incercari de autentificare. Asteapta cateva minute si incearca din nou.";
+  }
+
   if (error === "session") {
     return "Sesiunea admin nu mai este valida. Autentifica-te din nou.";
   }

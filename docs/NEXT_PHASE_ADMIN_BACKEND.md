@@ -36,6 +36,12 @@ Implemented foundation:
 
 - `/admin/login` server-rendered login page.
 - `/admin/dashboard` protected operational overview.
+- `/admin/servers` protected database read view.
+- `/admin/news` protected database read view.
+- `/admin/tournaments` protected database read view.
+- `/admin/vip` protected database read view.
+- `/admin/settings` protected database read view.
+- `/admin/audit` protected audit log view.
 - `/api/admin/auth/login` credentials login endpoint.
 - `/api/admin/auth/logout` logout endpoint.
 - `/api/admin/session` protected session inspection endpoint.
@@ -43,11 +49,13 @@ Implemented foundation:
 - Database-backed `AdminSession` records.
 - HTTP-only admin session cookie.
 - Login/logout audit events in `AdminAuditLog`.
+- In-memory login rate limit foundation.
+- Page-level RBAC checks for admin read areas.
 
 Still pending:
 
-- Real CRUD pages for `/admin/servers`, `/admin/events`, `/admin/vip`, `/admin/discord`, `/admin/settings`, and `/admin/audit`.
-- Rate limiting for login attempts.
+- Real CRUD write operations for servers, news, tournaments, VIP, settings, and audit management.
+- Durable distributed rate limiting backed by Redis or a managed edge store.
 - Optional Steam and Discord OAuth providers.
 - Two-factor authentication for high-impact admin actions.
 
