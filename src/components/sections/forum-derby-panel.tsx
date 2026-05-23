@@ -78,7 +78,7 @@ export function ForumDerbyPanel() {
   );
 
   return (
-    <div className="mt-5 rounded-lg border border-arena-cyan/20 bg-arena-cyan/[0.055] p-4 shadow-[0_18px_52px_rgba(0,216,255,0.08)]">
+    <div className="rounded-lg border border-arena-cyan/20 bg-arena-cyan/[0.055] p-4 shadow-[0_18px_52px_rgba(0,216,255,0.08)]">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.2em] text-arena-cyan">

@@ -1,20 +1,14 @@
-import Image from "next/image";
 import {
   Activity,
   ArrowRight,
   CalendarClock,
-  Crown,
-  ShieldCheck,
-  Swords,
-  Trophy,
-  UsersRound,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { ForumDerbyPanel } from "@/components/sections/forum-derby-panel";
 import { MotionCard } from "@/components/ui/motion-card";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { Link } from "@/i18n/navigation";
-import { platformStats, spotlightMatch } from "@/data/platform";
+import { platformStats } from "@/data/platform";
 import { routes } from "@/lib/routes";
 
 export function HeroSection() {
@@ -87,91 +81,7 @@ export function HeroSection() {
 
         <MotionCard as="div" delay={0.18} initialVisible className="lg:justify-self-end">
           <div className="hero-float clip-corner premium-card glass-panel animated-border relative overflow-hidden p-4">
-            <div className="grid gap-4">
-              <div className="premium-card rounded-lg border border-white/10 bg-black/45 p-4 shadow-[0_20px_70px_rgba(0,0,0,0.42)]">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-arena-gold">
-                      {t("spotlight.eyebrow")}
-                    </p>
-                    <h2 className="mt-3 font-display text-3xl font-black text-white">
-                      {t(`spotlight.${spotlightMatch.titleKey}`)}
-                    </h2>
-                  </div>
-                  <Trophy className="text-arena-gold" size={34} aria-hidden="true" />
-                </div>
-
-                <div className="mt-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
-                  {spotlightMatch.teams.map((team) => (
-                    <div
-                      key={team.key}
-                      className="premium-card rounded-lg border border-white/10 bg-white/[0.06] p-3 text-center"
-                    >
-                      <Image
-                        src={team.icon}
-                        alt=""
-                        width={74}
-                        height={74}
-                        className="mx-auto h-[74px] w-[74px] object-contain"
-                      />
-                      <p className="mt-3 text-sm font-bold text-white">
-                        {t(`spotlight.teams.${team.key}.name`)}
-                      </p>
-                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/42">
-                        {t(`spotlight.teams.${team.key}.record`)}
-                      </p>
-                    </div>
-                  ))}
-                  <div className="flex size-12 items-center justify-center rounded-lg border border-arena-red/40 bg-arena-red/15 font-display text-lg font-black text-arena-red">
-                    {t("spotlight.versus")}
-                  </div>
-                </div>
-
-                <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                  <div className="flex items-center gap-2 rounded-lg bg-white/[0.055] px-3 py-2 text-sm text-white/72">
-                    <Swords size={17} className="text-arena-red" aria-hidden="true" />
-                    {t(`spotlight.${spotlightMatch.modeKey}`)}
-                  </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-white/[0.055] px-3 py-2 text-sm text-white/72">
-                    <UsersRound size={17} className="text-arena-cyan" aria-hidden="true" />
-                    {t(`spotlight.${spotlightMatch.slotsKey}`)}
-                  </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-white/[0.055] px-3 py-2 text-sm text-white/72">
-                    <ShieldCheck size={17} className="text-arena-green" aria-hidden="true" />
-                    {t(`spotlight.${spotlightMatch.statusKey}`)}
-                  </div>
-                </div>
-
-                <ForumDerbyPanel />
-              </div>
-
-              <div className="grid grid-cols-3 gap-3">
-                {["CS2", "VAL", "LOL"].map((icon) => (
-                  <div
-                    key={icon}
-                    className="premium-card grid aspect-square place-items-center rounded-lg border border-white/10 bg-white/[0.045]"
-                  >
-                    <Image
-                      src={`/assets/game-icons/${icon}.png`}
-                      alt={t(`gameIconAlt.${icon}`)}
-                      width={90}
-                      height={90}
-                      className="h-[72px] w-[72px] object-contain sm:h-[90px] sm:w-[90px]"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              <div className="premium-card flex items-center justify-between gap-4 rounded-lg border border-arena-green/25 bg-arena-green/10 px-4 py-3">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-arena-green">
-                    {t("season.eyebrow")}
-                  </p>
-                  <p className="mt-1 text-sm text-white/64">{t("season.copy")}</p>
-                </div>
-                <Crown className="shrink-0 text-arena-gold" size={28} aria-hidden="true" />
-              </div>
-            </div>
+            <ForumDerbyPanel />
           </div>
         </MotionCard>
       </div>
