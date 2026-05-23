@@ -35,6 +35,14 @@ function readNumber(value: unknown): number | undefined {
   return Number.isFinite(number) ? number : undefined;
 }
 
+function readIdentifier(value: unknown): string | undefined {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return String(value);
+  }
+
+  return readString(value);
+}
+
 function getForumConfig(): ForumConfig | null {
   const apiKey = cleanEnvValue(process.env.FORUM_API_KEY);
 
@@ -156,7 +164,7 @@ function normalizeTopic(topic: unknown, baseUrl: string): ForumTopic | null {
     return null;
   }
 
-  const id = readString(topic.id) ?? readString(topic.tid) ?? readString(topic.topic_id);
+  const id = readIdentifier(topic.id) ?? readIdentifier(topic.tid) ?? readIdentifier(topic.topic_id);
   const title = readString(topic.title) ?? readString(topic.name);
 
   if (!id || !title) {
@@ -177,6 +185,8 @@ function normalizeTopic(topic: unknown, baseUrl: string): ForumTopic | null {
       readNestedString(topic.author, ["name"]) ??
       readNestedString(topic.startedBy, ["name"]) ??
       readNestedString(topic.lastPoster, ["name"]) ??
+      readNestedString(topic.lastPost, ["author", "name"]) ??
+      readNestedString(topic.firstPost, ["author", "name"]) ??
       readString(topic.authorName),
     replies:
       readNumber(topic.replies) ??
@@ -186,6 +196,8 @@ function normalizeTopic(topic: unknown, baseUrl: string): ForumTopic | null {
     views: readNumber(topic.views) ?? readNumber(topic.viewsCount),
     lastPostAt:
       readString(topic.lastPost) ??
+      readNestedString(topic.lastPost, ["date"]) ??
+      readNestedString(topic.firstPost, ["date"]) ??
       readString(topic.last_post) ??
       readString(topic.updated) ??
       readString(topic.date),
