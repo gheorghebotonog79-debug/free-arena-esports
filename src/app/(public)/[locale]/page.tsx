@@ -1,4 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
+import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { CommunitySection } from "@/components/sections/community-section";
@@ -34,6 +35,7 @@ export default async function Home({ params }: HomeProps) {
         <CommunitySection />
       </main>
       <SiteFooter />
+      <LiveChatLauncher />
     </>
   );
 }

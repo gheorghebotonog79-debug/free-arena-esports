@@ -1,5 +1,6 @@
 import { CalendarClock, Medal, Shield, Swords, Trophy } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { CommunityLivePanel } from "@/components/chat/community-live-panel";
 import { MotionCard } from "@/components/ui/motion-card";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -193,6 +194,10 @@ export function TournamentSection({ locale, tournaments }: TournamentSectionProp
             ))}
           </div>
         </div>
+
+        <MotionReveal delay={0.16}>
+          <CommunityLivePanel />
+        </MotionReveal>
       </div>
     </section>
   );

@@ -381,6 +381,57 @@
       }
     }
   },
+  "LiveChat": {
+    "launcher": {
+      "open": "Deschide chatul live FREE-ARENA",
+      "close": "Inchide chatul live FREE-ARENA"
+    },
+    "panel": {
+      "eyebrow": "Live chat",
+      "title": "Community live",
+      "status": "Online",
+      "copy": "Chatul real cu conturi va intra in faza de backend. Pana atunci, jucatorii pot intra rapid pe Discord, TeamSpeak sau forum pentru suport si discutii live."
+    },
+    "actions": {
+      "discord": {
+        "title": "Discord live",
+        "copy": "Anunturi, suport si comunitate."
+      },
+      "teamspeak": {
+        "title": "TeamSpeak voice",
+        "copy": "Voice rapid pentru mixuri si suport."
+      },
+      "forum": {
+        "title": "Forum FREE-ARENA",
+        "copy": "Topicuri, reguli si cereri staff."
+      }
+    },
+    "card": {
+      "eyebrow": "Community live",
+      "title": "Intra direct in comunitate",
+      "copy": "Zona de competitie ramane conectata la canalele reale ale comunitatii: forum pentru anunturi, Discord pentru discutii si TeamSpeak pentru voice.",
+      "channels": {
+        "discord": {
+          "title": "Discord",
+          "copy": "Chat comunitate si anunturi rapide.",
+          "status": "Live",
+          "cta": "Intra"
+        },
+        "teamspeak": {
+          "title": "TeamSpeak",
+          "copy": "Voice pentru public, CS si suport.",
+          "status": "Voice",
+          "cta": "Conecteaza"
+        },
+        "forum": {
+          "title": "Forum",
+          "copy": "Reguli, cereri si topicuri active.",
+          "status": "Online",
+          "cta": "Deschide"
+        }
+      }
+    }
+  },
   "Legal": {
     "terms": {
       "meta": {

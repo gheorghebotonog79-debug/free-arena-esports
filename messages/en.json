@@ -381,6 +381,57 @@
       }
     }
   },
+  "LiveChat": {
+    "launcher": {
+      "open": "Open FREE-ARENA live chat",
+      "close": "Close FREE-ARENA live chat"
+    },
+    "panel": {
+      "eyebrow": "Live chat",
+      "title": "Community live",
+      "status": "Online",
+      "copy": "Real account-based chat will arrive with the backend phase. Until then, players can jump into Discord, TeamSpeak, or the forum for support and live community talk."
+    },
+    "actions": {
+      "discord": {
+        "title": "Discord live",
+        "copy": "Announcements, support, and community."
+      },
+      "teamspeak": {
+        "title": "TeamSpeak voice",
+        "copy": "Fast voice for mixes and support."
+      },
+      "forum": {
+        "title": "FREE-ARENA forum",
+        "copy": "Topics, rules, and staff requests."
+      }
+    },
+    "card": {
+      "eyebrow": "Community live",
+      "title": "Jump straight into the community",
+      "copy": "The competition area stays connected to the real community channels: forum for announcements, Discord for chat, and TeamSpeak for voice.",
+      "channels": {
+        "discord": {
+          "title": "Discord",
+          "copy": "Community chat and quick announcements.",
+          "status": "Live",
+          "cta": "Join"
+        },
+        "teamspeak": {
+          "title": "TeamSpeak",
+          "copy": "Voice for public rooms, CS, and support.",
+          "status": "Voice",
+          "cta": "Connect"
+        },
+        "forum": {
+          "title": "Forum",
+          "copy": "Rules, requests, and active topics.",
+          "status": "Online",
+          "cta": "Open"
+        }
+      }
+    }
+  },
   "Legal": {
     "terms": {
       "meta": {
