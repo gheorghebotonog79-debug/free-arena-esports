@@ -496,6 +496,59 @@
       }
     }
   },
+  "PlayerProgress": {
+    "heading": {
+      "eyebrow": "Player Progress",
+      "title": "Live leaderboard from Rank System Ultimate",
+      "copy": "Real RSU MySQL data: XP, frags, headshots, played time, and quick player search."
+    },
+    "status": {
+      "live": "RSU live"
+    },
+    "actions": {
+      "refresh": "Refresh stats",
+      "refreshing": "Refreshing"
+    },
+    "stats": {
+      "players": "Players",
+      "kills": "Kills",
+      "headshots": "Headshots",
+      "played": "Played time"
+    },
+    "states": {
+      "loadingValue": "...",
+      "notAvailable": "--",
+      "error": "RSU statistics could not be loaded right now. The site will retry automatically.",
+      "empty": "No leaderboard players are available yet."
+    },
+    "leaderboard": {
+      "eyebrow": "Top 15",
+      "title": "Active players",
+      "updated": "Updated: {time}"
+    },
+    "player": {
+      "xp": "XP",
+      "kills": "Kills",
+      "kd": "K/D",
+      "hs": "HS",
+      "played": "Time"
+    },
+    "feature": {
+      "eyebrow": "Player of the moment",
+      "empty": "Pending"
+    },
+    "search": {
+      "label": "Search player",
+      "placeholder": "Nick or SteamID",
+      "min": "Type at least 2 characters.",
+      "loading": "Searching RSU...",
+      "error": "Search is not available right now.",
+      "empty": "No player found."
+    },
+    "community": {
+      "eyebrow": "Connect the community"
+    }
+  },
   "LiveChat": {
     "launcher": {
       "open": "Open FREE-ARENA live chat",

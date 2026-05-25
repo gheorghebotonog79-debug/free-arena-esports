@@ -2,7 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { CommunitySection } from "@/components/sections/community-section";
+import { PlayerProgressHub } from "@/components/progress/PlayerProgressHub";
 import { HeroSection } from "@/components/sections/hero-section";
 import { NewsSection } from "@/components/sections/news-section";
 import { ServerGrid } from "@/components/sections/server-grid";
@@ -32,7 +32,7 @@ export default async function Home({ params }: HomeProps) {
         <ServerGrid />
         <TournamentSection locale={locale} tournaments={tournaments} />
         <NewsSection locale={locale} posts={newsPosts} />
-        <CommunitySection />
+        <PlayerProgressHub />
       </main>
       <SiteFooter />
       <LiveChatLauncher />

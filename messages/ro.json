@@ -496,6 +496,59 @@
       }
     }
   },
+  "PlayerProgress": {
+    "heading": {
+      "eyebrow": "Player Progress",
+      "title": "Clasament live din Rank System Ultimate",
+      "copy": "Date reale din RSU MySQL: XP, fraguri, headshot-uri, timp jucat si cautare rapida dupa jucator."
+    },
+    "status": {
+      "live": "RSU live"
+    },
+    "actions": {
+      "refresh": "Refresh stats",
+      "refreshing": "Se actualizeaza"
+    },
+    "stats": {
+      "players": "Jucatori",
+      "kills": "Kill-uri",
+      "headshots": "Headshot-uri",
+      "played": "Timp jucat"
+    },
+    "states": {
+      "loadingValue": "...",
+      "notAvailable": "--",
+      "error": "Statisticile RSU nu au putut fi incarcate acum. Reincercam automat.",
+      "empty": "Nu exista inca jucatori in clasament."
+    },
+    "leaderboard": {
+      "eyebrow": "Top 15",
+      "title": "Jucatori activi",
+      "updated": "Actualizat: {time}"
+    },
+    "player": {
+      "xp": "XP",
+      "kills": "Kills",
+      "kd": "K/D",
+      "hs": "HS",
+      "played": "Timp"
+    },
+    "feature": {
+      "eyebrow": "Player of the moment",
+      "empty": "In asteptare"
+    },
+    "search": {
+      "label": "Cauta jucator",
+      "placeholder": "Nick sau SteamID",
+      "min": "Tasteaza cel putin 2 caractere.",
+      "loading": "Cautam in RSU...",
+      "error": "Cautarea nu este disponibila momentan.",
+      "empty": "Niciun jucator gasit."
+    },
+    "community": {
+      "eyebrow": "Conecteaza comunitatea"
+    }
+  },
   "LiveChat": {
     "launcher": {
       "open": "Deschide chatul live FREE-ARENA",
