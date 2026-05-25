@@ -410,6 +410,49 @@
       "title": "Feed-ul public este pregătit",
       "copy": "Nu există încă postări publicate pentru această limbă. Când staff-ul publică un anunț din dashboard, acesta apare automat aici fără modificări de cod.",
       "badge": "Admin ready"
+    },
+    "ops": {
+      "eyebrow": "Live Ops",
+      "title": "Status platformă",
+      "copy": "Un panou rapid pentru ce este live acum și ce intră în următoarea fază FREE-ARENA.",
+      "items": {
+        "rsu": {
+          "label": "Progres jucători RSU",
+          "status": "Live"
+        },
+        "servers": {
+          "label": "Pagini servere",
+          "status": "Live"
+        },
+        "forum": {
+          "label": "Forum API",
+          "status": "Live"
+        },
+        "teamspeak": {
+          "label": "TeamSpeak status",
+          "status": "Live"
+        },
+        "battlepass": {
+          "label": "Reset BattlePass",
+          "status": "1 iunie 2026"
+        },
+        "steam": {
+          "label": "Login Steam",
+          "status": "Faza următoare"
+        }
+      },
+      "roadmap": {
+        "title": "Ce urmează",
+        "items": {
+          "profiles": "Profiluri jucători",
+          "battlepass": "Sezon BattlePass",
+          "steam": "Conectare Steam"
+        }
+      },
+      "cta": {
+        "progress": "Vezi progresul",
+        "forum": "Citește forumul"
+      }
     }
   },
   "Community": {

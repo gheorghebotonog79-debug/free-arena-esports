@@ -410,6 +410,49 @@
       "title": "The public feed is ready",
       "copy": "There are no published posts for this language yet. When staff publishes an announcement from the dashboard, it will appear here automatically without code changes.",
       "badge": "Admin ready"
+    },
+    "ops": {
+      "eyebrow": "Live Ops",
+      "title": "Platform status",
+      "copy": "A quick board for what is live now and what moves into the next FREE-ARENA phase.",
+      "items": {
+        "rsu": {
+          "label": "RSU Player Progress",
+          "status": "Live"
+        },
+        "servers": {
+          "label": "Server detail pages",
+          "status": "Live"
+        },
+        "forum": {
+          "label": "Forum API",
+          "status": "Live"
+        },
+        "teamspeak": {
+          "label": "TeamSpeak status",
+          "status": "Live"
+        },
+        "battlepass": {
+          "label": "BattlePass reset",
+          "status": "June 1, 2026"
+        },
+        "steam": {
+          "label": "Steam login",
+          "status": "Next phase"
+        }
+      },
+      "roadmap": {
+        "title": "Next up",
+        "items": {
+          "profiles": "Player profiles",
+          "battlepass": "BattlePass season",
+          "steam": "Steam linking"
+        }
+      },
+      "cta": {
+        "progress": "View progress",
+        "forum": "Read forum"
+      }
     }
   },
   "Community": {
