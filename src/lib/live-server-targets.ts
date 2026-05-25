@@ -1,19 +1,23 @@
-export type LiveServerKey = "cs16" | "global" | "cs2" | "respawn";
+import { publicServers, type PublicServerConfig, type PublicServerSlug } from "@/lib/servers";
+
+export type LiveServerKey = PublicServerSlug;
 
 export type LiveServerStatusKind = "loading" | "online" | "offline" | "pending";
 
-export type LiveServerTarget = {
-  key: LiveServerKey;
+export type LiveServerTarget = PublicServerConfig & {
   gameType: "counterstrike16" | "counterstrike2";
-  host: string;
-  displayHost?: string;
-  port: number;
-  fallbackName: string;
-  fallbackMaxPlayers: number;
 };
 
 export type LiveServerStatus = {
   key: LiveServerKey;
+  id: LiveServerKey;
+  slug: LiveServerKey;
+  name: string;
+  game: string;
+  region: string;
+  host: string;
+  port: number;
+  tags: readonly string[];
   status: Exclude<LiveServerStatusKind, "loading">;
   online: boolean;
   serverName: string;
@@ -24,6 +28,9 @@ export type LiveServerStatus = {
   address: string;
   connectUrl: string;
   checkedAt: string;
+  lastUpdated: string;
+  connectable: boolean;
+  pending: boolean;
 };
 
 export type LiveServersResponse = {
@@ -31,30 +38,6 @@ export type LiveServersResponse = {
   checkedAt: string;
 };
 
-export const liveServerTargets = [
-  {
-    key: "cs16",
-    gameType: "counterstrike16",
-    host: "cs.free-arena.ro",
-    port: 27015,
-    fallbackName: "FREE-ARENA.RO CS 1.6",
-    fallbackMaxPlayers: 32,
-  },
-  {
-    key: "respawn",
-    gameType: "counterstrike16",
-    host: "global.free-arena.ro",
-    displayHost: "respawn.free-arena.ro",
-    port: 27015,
-    fallbackName: "FREE-ARENA.RO Respawn",
-    fallbackMaxPlayers: 32,
-  },
-  {
-    key: "cs2",
-    gameType: "counterstrike2",
-    host: "cs2.free-arena.ro",
-    port: 27015,
-    fallbackName: "FREE-ARENA.RO CS2",
-    fallbackMaxPlayers: 32,
-  },
-] as const satisfies readonly LiveServerTarget[];
+export const liveServerTargets = publicServers.filter(
+  (server): server is LiveServerTarget => server.liveQueryable && Boolean(server.gameType),
+);

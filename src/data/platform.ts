@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
-import type { LiveServerKey } from "@/lib/live-server-targets";
+import type { PublicServerSlug } from "@/lib/servers";
+import { publicServers } from "@/lib/servers";
 import {
   Crown,
   Headphones,
@@ -10,10 +11,8 @@ import {
   WalletCards,
 } from "lucide-react";
 
-const iconBase = "/assets/game-icons";
-
 type GameServerCard = {
-  key: LiveServerKey;
+  key: PublicServerSlug;
   icon: string;
   address: string;
   connectHref: string;
@@ -37,50 +36,24 @@ export const spotlightMatch = {
   teams: [
     {
       key: "alphaFive",
-      icon: `${iconBase}/CS2.png`,
+      icon: "/assets/game-icons/CS2.png",
     },
     {
       key: "nightCore",
-      icon: `${iconBase}/VAL.png`,
+      icon: "/assets/game-icons/VAL.png",
     },
   ],
 } as const;
 
-export const gameServers = [
-  {
-    key: "cs16",
-    icon: `${iconBase}/CS.png`,
-    address: "cs.free-arena.ro:27015",
-    connectHref: "steam://connect/cs.free-arena.ro:27015",
-    connectable: true,
-    tags: ["classic", "ranked", "vip"],
-  },
-  {
-    key: "respawn",
-    icon: `${iconBase}/RES.png`,
-    address: "respawn.free-arena.ro:27015",
-    connectHref: "steam://connect/respawn.free-arena.ro:27015",
-    connectable: true,
-    tags: ["respawn", "ranked", "vip"],
-  },
-  {
-    key: "cs2",
-    icon: `${iconBase}/CS2.png`,
-    address: "cs2.free-arena.ro:27015",
-    connectHref: "steam://connect/cs2.free-arena.ro:27015",
-    connectable: true,
-    tags: ["premier", "faceitStyle", "antiCheat"],
-  },
-  {
-    key: "global",
-    icon: `${iconBase}/GL.png`,
-    address: "global.free-arena.ro:27015",
-    connectHref: "",
-    connectable: false,
-    pending: true,
-    tags: ["global", "soon", "community"],
-  },
-] as const satisfies readonly GameServerCard[];
+export const gameServers = publicServers.map((server) => ({
+  key: server.key,
+  icon: server.icon,
+  address: server.address,
+  connectHref: server.connectHref,
+  connectable: server.connectable,
+  pending: server.pending,
+  tags: server.tags,
+})) satisfies readonly GameServerCard[];
 
 export const tournamentCards = [
   {

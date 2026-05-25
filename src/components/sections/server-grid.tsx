@@ -15,15 +15,12 @@ import {
   ShieldCheck,
   UsersRound,
 } from "lucide-react";
-import {
-  ServerDetailsModal,
-  type ServerDetailsModalServer,
-} from "@/components/servers/ServerDetailsModal";
 import { CopyToast } from "@/components/ui/copy-toast";
 import { useLocale, useTranslations } from "next-intl";
 import { MotionCard } from "@/components/ui/motion-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { gameServers } from "@/data/platform";
+import { Link } from "@/i18n/navigation";
 import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
 import type {
   LiveServerKey,
@@ -61,7 +58,6 @@ export function ServerGrid() {
   const [lastUpdatedAt, setLastUpdatedAt] = useState<Date | null>(null);
   const [copiedServer, setCopiedServer] = useState<LiveServerKey | null>(null);
   const [copyToastMessage, setCopyToastMessage] = useState<string | null>(null);
-  const [selectedServerKey, setSelectedServerKey] = useState<LiveServerKey | null>(null);
 
   const loadServerStatuses = useCallback(async ({ initial = false }: { initial?: boolean } = {}) => {
     if (isRequestingRef.current) {
@@ -156,10 +152,7 @@ export function ServerGrid() {
       }).format(lastUpdatedAt)
     : t("refresh.never");
 
-  const serverCards = gameServers.map((server): ServerDetailsModalServer & {
-    icon: string;
-    region: string;
-  } => {
+  const serverCards = gameServers.map((server) => {
     const liveServer = serverStatuses[server.key];
     const isPendingServer = "pending" in server && server.pending === true;
     const status: LiveServerStatusKind = isPendingServer
@@ -209,7 +202,6 @@ export function ServerGrid() {
       translatedTags: server.tags.map((tag) => t(`tags.${tag}`)),
     };
   });
-  const selectedServer = serverCards.find((server) => server.key === selectedServerKey) ?? null;
 
   return (
     <section
@@ -392,9 +384,8 @@ export function ServerGrid() {
                       </button>
                     )}
 
-                    <button
-                      type="button"
-                      onClick={() => setSelectedServerKey(server.key)}
+                    <Link
+                      href={`/servers/${server.key}`}
                       className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-green/60 hover:bg-arena-green/10 2xl:col-span-2"
                       aria-label={t("actions.detailsFor", {
                         server: server.displayName,
@@ -402,7 +393,7 @@ export function ServerGrid() {
                     >
                       <Info size={17} aria-hidden="true" />
                       {t("actions.details")}
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </MotionCard>
@@ -410,13 +401,6 @@ export function ServerGrid() {
           })}
         </div>
 
-        <ServerDetailsModal
-          server={selectedServer}
-          isCopied={selectedServer ? copiedServer === selectedServer.key : false}
-          isRefreshing={isLoading || isRefreshing}
-          onClose={() => setSelectedServerKey(null)}
-          onCopy={handleCopyAddress}
-        />
         <CopyToast message={copyToastMessage} />
       </div>
     </section>

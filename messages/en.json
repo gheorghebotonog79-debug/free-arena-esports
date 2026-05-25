@@ -203,6 +203,121 @@
       "offlineMessage": "The server is not responding right now. You can copy the address and try again later."
     }
   },
+  "ServerDetail": {
+    "metadata": {
+      "title": "{server} server",
+      "imageAlt": "FREE-ARENA.RO {server}"
+    },
+    "hero": {
+      "eyebrow": "Server page",
+      "address": "Server IP"
+    },
+    "overview": {
+      "eyebrow": "Status and progress",
+      "title": "Live player data",
+      "copy": "This page uses the same live pipeline as the homepage, with clean fallbacks for offline and pending servers."
+    },
+    "stats": {
+      "title": "Live statistics",
+      "players": "Players",
+      "map": "Map",
+      "ping": "Ping",
+      "status": "Status",
+      "lastUpdated": "Last update"
+    },
+    "states": {
+      "loadingValue": "...",
+      "unknown": "Unknown",
+      "notAvailable": "--",
+      "offlinePlayers": "0/0",
+      "offline": "The server is not responding to the live query right now. The address remains available for copying.",
+      "error": "Live status could not be loaded right now. You can retry without leaving the page."
+    },
+    "pending": {
+      "title": "Pending / coming soon",
+      "copy": "This server is planned and is not queried live. Real statistics will appear when the slot becomes active."
+    },
+    "actions": {
+      "backToServers": "Back to servers",
+      "copyIp": "Copy IP",
+      "copied": "Copied",
+      "connect": "Connect",
+      "refresh": "Refresh status",
+      "refreshing": "Refreshing"
+    },
+    "toast": {
+      "copied": "IP copied: {address}"
+    },
+    "sections": {
+      "description": "Description",
+      "rules": "Rules",
+      "vipBenefits": "VIP benefits",
+      "planned": "Planned features"
+    },
+    "community": {
+      "eyebrow": "Community",
+      "title": "Continue in the FREE-ARENA hub",
+      "copy": "Use Discord, TeamSpeak, and the forum for support, announcements, voice, and staff conversations."
+    },
+    "items": {
+      "cs16": {
+        "description": "The classic FREE-ARENA.RO CS 1.6 server, with rank, VIP, stable maps, and an active community.",
+        "rules": [
+          "Respect players and admin decisions.",
+          "No cheats, exploits, abusive scripts, or advertising.",
+          "Play the map objective and keep chat clean."
+        ],
+        "vipBenefits": [
+          "Access to VIP benefits configured on the server.",
+          "Priority for community experiences and events.",
+          "Visible identity across the FREE-ARENA ecosystem."
+        ],
+        "plannedFeatures": []
+      },
+      "respawn": {
+        "description": "Respawn is the fast space for warmup, frags, steady progress, and short sessions.",
+        "rules": [
+          "No excessive camping or intentional flow blocking.",
+          "Respect the respawn pace and new players.",
+          "Report issues on Discord, TeamSpeak, or the forum."
+        ],
+        "vipBenefits": [
+          "VIP benefits adapted to respawn gameplay.",
+          "Access to quick bonuses and events.",
+          "Progress visible in the community hub."
+        ],
+        "plannedFeatures": []
+      },
+      "cs2": {
+        "description": "The CS2 server prepared for the modern FREE-ARENA experience, focused on competitive play and community.",
+        "rules": [
+          "Play fair and avoid toxic behavior.",
+          "Do not abuse bugs, exploits, or settings that damage play.",
+          "Respect teamwork, communication, and the objective."
+        ],
+        "vipBenefits": [
+          "VIP benefits for modern CS2 sessions.",
+          "Priority access to testing, events, and feedback.",
+          "Gradual integration with platform progression."
+        ],
+        "plannedFeatures": []
+      },
+      "global": {
+        "description": "Global is the planned slot for the next step of the FREE-ARENA.RO network.",
+        "rules": [
+          "Final rules will be published when the server becomes active.",
+          "Live access will be announced in the community.",
+          "No fake statistics are shown before launch."
+        ],
+        "vipBenefits": [],
+        "plannedFeatures": [
+          "Live status after activation.",
+          "Rules and game mode published ahead of time.",
+          "Integration with community and player progression."
+        ]
+      }
+    }
+  },
   "Tournaments": {
     "heading": {
       "eyebrow": "Tournaments and competition",

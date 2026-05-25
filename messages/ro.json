@@ -203,6 +203,121 @@
       "offlineMessage": "Serverul nu răspunde momentan. Poți copia adresa și încerca mai târziu."
     }
   },
+  "ServerDetail": {
+    "metadata": {
+      "title": "{server} server",
+      "imageAlt": "FREE-ARENA.RO {server}"
+    },
+    "hero": {
+      "eyebrow": "Pagina server",
+      "address": "IP server"
+    },
+    "overview": {
+      "eyebrow": "Status si progres",
+      "title": "Date live pentru jucatori",
+      "copy": "Pagina foloseste acelasi flux live ca homepage-ul, cu fallback curat pentru offline si pending."
+    },
+    "stats": {
+      "title": "Statistici live",
+      "players": "Jucatori",
+      "map": "Harta",
+      "ping": "Ping",
+      "status": "Status",
+      "lastUpdated": "Ultima actualizare"
+    },
+    "states": {
+      "loadingValue": "...",
+      "unknown": "Necunoscut",
+      "notAvailable": "--",
+      "offlinePlayers": "0/0",
+      "offline": "Serverul nu raspunde momentan la interogarea live. Adresa ramane disponibila pentru copiere.",
+      "error": "Statusul live nu a putut fi incarcat acum. Poti reincerca fara sa parasesti pagina."
+    },
+    "pending": {
+      "title": "Pending / coming soon",
+      "copy": "Acest server este planificat si nu este interogat live. Statisticile reale vor aparea cand slotul devine activ."
+    },
+    "actions": {
+      "backToServers": "Inapoi la servere",
+      "copyIp": "Copiaza IP",
+      "copied": "Copiat",
+      "connect": "Conecteaza-te",
+      "refresh": "Refresh status",
+      "refreshing": "Se actualizeaza"
+    },
+    "toast": {
+      "copied": "IP copiat: {address}"
+    },
+    "sections": {
+      "description": "Descriere",
+      "rules": "Reguli",
+      "vipBenefits": "Beneficii VIP",
+      "planned": "Functionalitati planificate"
+    },
+    "community": {
+      "eyebrow": "Comunitate",
+      "title": "Continua in hub-ul FREE-ARENA",
+      "copy": "Foloseste Discord, TeamSpeak si forumul pentru suport, anunturi, voice si discutii cu staff-ul."
+    },
+    "items": {
+      "cs16": {
+        "description": "Serverul clasic CS 1.6 FREE-ARENA.RO, cu rank, VIP, harti stabile si comunitate activa.",
+        "rules": [
+          "Respecta jucatorii si deciziile adminilor.",
+          "Fara coduri, exploituri, scripturi abuzive sau reclama.",
+          "Joaca obiectivul hartii si pastreaza chatul curat."
+        ],
+        "vipBenefits": [
+          "Acces la beneficii VIP configurate pe server.",
+          "Prioritate pentru experiente si evenimente comunitare.",
+          "Identitate vizibila in ecosistemul FREE-ARENA."
+        ],
+        "plannedFeatures": []
+      },
+      "respawn": {
+        "description": "Respawn este spatiul rapid pentru warmup, fraguri, progres constant si sesiuni scurte.",
+        "rules": [
+          "Fara camp excesiv sau blocarea intentionata a jocului.",
+          "Respecta ritmul modului respawn si jucatorii noi.",
+          "Raporteaza problemele pe Discord, TeamSpeak sau forum."
+        ],
+        "vipBenefits": [
+          "Beneficii VIP adaptate modului respawn.",
+          "Acces la bonusuri si evenimente rapide.",
+          "Progres vizibil in hub-ul comunitatii."
+        ],
+        "plannedFeatures": []
+      },
+      "cs2": {
+        "description": "Serverul CS2 pregatit pentru experienta moderna FREE-ARENA, cu focus pe competitivitate si comunitate.",
+        "rules": [
+          "Joaca fair si evita comportamentul toxic.",
+          "Nu abuza de buguri, exploituri sau setari care strica jocul.",
+          "Respecta echipa, comunicarea si obiectivul."
+        ],
+        "vipBenefits": [
+          "Beneficii VIP pentru sesiuni moderne CS2.",
+          "Acces prioritar la testari, evenimente si feedback.",
+          "Integrare treptata cu progresia platformei."
+        ],
+        "plannedFeatures": []
+      },
+      "global": {
+        "description": "Global este slotul planificat pentru urmatorul pas al retelei FREE-ARENA.RO.",
+        "rules": [
+          "Regulile finale vor fi publicate cand serverul devine activ.",
+          "Accesul live va fi anuntat pe comunitate.",
+          "Nu sunt afisate statistici false pana la lansare."
+        ],
+        "vipBenefits": [],
+        "plannedFeatures": [
+          "Status live dupa activare.",
+          "Reguli si mod de joc publicate din timp.",
+          "Integrare cu comunitatea si progresia jucatorilor."
+        ]
+      }
+    }
+  },
   "Tournaments": {
     "heading": {
       "eyebrow": "Turnee și competiții",
