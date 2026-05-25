@@ -21,11 +21,12 @@ const config: Config = {
           steel: "#b8d7e8",
         },
         cyber: {
-          red: "#ff2a1f",
+          red: "#ff0033",
           cyan: "#00e6ff",
-          amber: "#ffb000",
+          amber: "#ff6a00",
           steel: "#d8efff",
-          black: "#030405",
+          black: "#050509",
+          panel: "#0b0f16",
         },
       },
       boxShadow: {

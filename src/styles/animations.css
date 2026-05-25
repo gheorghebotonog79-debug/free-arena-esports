@@ -65,8 +65,8 @@
   width: var(--ember-size, 4px);
   height: var(--ember-size, 4px);
   border-radius: 999px;
-  background: #ff6b1a;
-  box-shadow: 0 0 16px rgba(255, 74, 32, 0.84), 0 0 30px rgba(255, 176, 0, 0.38);
+  background: #ff6a00;
+  box-shadow: 0 0 16px rgba(255, 106, 0, 0.84), 0 0 30px rgba(255, 0, 51, 0.24);
   animation: ember-rise var(--ember-duration, 8s) linear infinite;
   animation-delay: var(--ember-delay, 0s);
   left: var(--ember-left, 50%);
@@ -87,7 +87,7 @@
 }
 
 .glitch-text::before {
-  color: #ff2a1f;
+  color: #ff0033;
   clip-path: inset(12% 0 64% 0);
   animation: glitch-slice 4.6s infinite;
 }

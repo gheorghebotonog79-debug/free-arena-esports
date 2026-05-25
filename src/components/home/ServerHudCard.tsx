@@ -72,11 +72,11 @@ export function ServerHudCard({
 
   return (
     <article className="cyber-panel cyber-card group flex h-full min-w-0 flex-col p-4">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_10%,rgba(255,42,31,0.16),transparent_28%),radial-gradient(circle_at_88%_0%,rgba(0,230,255,0.12),transparent_26%)]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(0,230,255,0.12),transparent_30%),radial-gradient(circle_at_88%_0%,rgba(255,106,0,0.08),transparent_26%)]" aria-hidden="true" />
       <div className="cyber-scanline opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
-          <span className="grid size-14 shrink-0 place-items-center border border-cyber-red/34 bg-black/52 shadow-[0_0_30px_rgba(255,42,31,0.18)]">
+          <span className="grid size-14 shrink-0 place-items-center border border-cyber-cyan/24 bg-black/52 shadow-[0_0_30px_rgba(0,230,255,0.12)]">
             <Image src={icon} alt="" width={44} height={44} className="size-11 object-contain" />
           </span>
           <span className={`live-badge inline-flex shrink-0 items-center gap-2 border px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em] ${statusTone[status]}`}>
@@ -121,7 +121,7 @@ export function ServerHudCard({
         <div className="mt-auto pt-6">
           <p className="mb-3 text-xs font-black uppercase tracking-[0.16em] text-white/38">{labels.ip}</p>
           <div className="flex min-w-0 items-center gap-2 border border-cyber-red/24 bg-black/40 px-3 py-3">
-            <RadioTower size={16} className="shrink-0 text-cyber-red" aria-hidden="true" />
+            <RadioTower size={16} className="shrink-0 text-cyber-cyan" aria-hidden="true" />
             <span className="min-w-0 truncate font-mono text-sm font-black text-white">{address}</span>
           </div>
 
@@ -150,7 +150,7 @@ export function ServerHudCard({
             )}
             <Link
               href={`/servers/${serverKey}`}
-              className="scan-sweep inline-flex items-center justify-center gap-2 border border-cyber-red/32 bg-cyber-red/10 px-3 py-3 text-xs font-black uppercase tracking-[0.13em] text-white transition hover:border-cyber-red hover:bg-cyber-red/20 sm:col-span-2"
+              className="scan-sweep inline-flex items-center justify-center gap-2 border border-cyber-cyan/30 bg-cyber-cyan/8 px-3 py-3 text-xs font-black uppercase tracking-[0.13em] text-white transition hover:border-cyber-cyan hover:bg-cyber-cyan/14 sm:col-span-2"
               aria-label={detailsLabel}
             >
               {labels.details}

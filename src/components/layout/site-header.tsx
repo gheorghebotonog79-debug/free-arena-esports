@@ -11,7 +11,7 @@ const navigationItems = [
   { href: "https://free-arena.ro", key: "forum", external: true },
   { href: "https://discord.gg/freearena", key: "discord", external: true },
   { href: "ts3server://ts.free-arena.ro", key: "ts3", external: true },
-  { href: routes.community, key: "rankings", external: false },
+  { href: routes.rankings, key: "rankings", external: false },
   { href: routes.shop, key: "shop", external: false },
   { href: routes.about, key: "about", external: false },
 ] as const;
@@ -22,7 +22,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-cyber-red/35 bg-black/82 shadow-[0_20px_80px_rgba(0,0,0,0.58)] backdrop-blur-2xl">
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyber-red to-cyber-cyan opacity-80" aria-hidden="true" />
-      <div className="mx-auto flex min-h-20 w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-20 w-full max-w-7xl items-center justify-start gap-3 px-4 py-3 sm:justify-between sm:px-6 lg:px-8">
         <Link href="/" className="group flex min-w-0 items-center gap-3">
           <span className="cyber-panel grid size-12 shrink-0 place-items-center border-cyber-red/40 bg-black/70 shadow-[0_0_34px_rgba(255,42,31,0.22)]">
             <Image
@@ -66,7 +66,7 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="ml-1 flex shrink-0 items-center gap-2 sm:ml-0">
           <LanguageSwitcher />
           <span className="hidden items-center gap-2 rounded-none border border-cyber-cyan/30 bg-cyber-cyan/10 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyber-cyan shadow-[0_0_30px_rgba(0,230,255,0.12)] md:inline-flex">
             <RadioTower size={15} aria-hidden="true" />
@@ -74,11 +74,11 @@ export function SiteHeader() {
           </span>
           <Link
             href={routes.servers}
-            className="cyber-red-button pulse-red inline-flex items-center gap-2 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] transition hover:scale-[1.02] sm:px-4"
+            className="cyber-red-button pulse-red hidden size-10 items-center justify-center gap-2 p-0 text-xs font-black uppercase tracking-[0.14em] transition hover:scale-[1.02] min-[430px]:inline-flex sm:size-auto sm:px-4 sm:py-2"
+            aria-label={t("playNow")}
           >
             <Crosshair size={16} aria-hidden="true" />
             <span className="hidden sm:inline">{t("playNow")}</span>
-            <span className="sm:hidden">{t("playShort")}</span>
           </Link>
         </div>
       </div>
