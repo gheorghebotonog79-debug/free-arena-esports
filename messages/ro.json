@@ -13,12 +13,21 @@
     },
     "brandSubtitle": "Rețea Esports",
     "items": {
+      "home": "Acasă",
       "servers": "Servere",
       "events": "Evenimente",
-      "community": "Comunitate"
+      "community": "Comunitate",
+      "forum": "Forum",
+      "discord": "Discord",
+      "ts3": "TS3",
+      "rankings": "Clasamente",
+      "shop": "Shop",
+      "about": "Despre noi"
     },
     "live": "Live",
-    "join": "Intră"
+    "join": "Intră",
+    "playNow": "Joacă acum",
+    "playShort": "Joacă"
   },
   "LocaleSwitcher": {
     "label": "Schimbă limba",
@@ -34,6 +43,13 @@
       "terms": "Termeni",
       "privacy": "Confidențialitate",
       "contact": "Contact"
+    },
+    "status": {
+      "antiCheat": "Anti Cheat Protected",
+      "vip": "VIP Free 24/7",
+      "uptime": "Server Uptime 99.8%",
+      "backup": "Backup zilnic",
+      "support": "Suport rapid 24/7"
     }
   },
   "Hero": {
@@ -641,6 +657,116 @@
           "cta": "Deschide"
         }
       }
+    }
+  },
+  "WarRoom": {
+    "hero": {
+      "eyebrow": "Arena este deschisă",
+      "kicker": "Play.Free-Arena.ro",
+      "title": "FREE-ARENA.RO",
+      "subtitle": "ENTER THE WARZONE",
+      "copy": "Servere live, clasamente RSU, Discord, TeamSpeak și forum într-un portal cybernetic pentru comunitatea FREE-ARENA.",
+      "play": "Joacă acum",
+      "servers": "Vezi serverele",
+      "signals": {
+        "cs16": "CS 1.6",
+        "cs2": "CS2",
+        "discord": "Discord",
+        "ts3": "TS3",
+        "forum": "Forum"
+      }
+    },
+    "status": {
+      "eyebrow": "Warzone status",
+      "title": "Comandă live",
+      "playersOnline": "Jucători online",
+      "serversOnline": "Servere online",
+      "uptime": "Uptime",
+      "sync": "Sync live",
+      "loading": "Se sincronizează",
+      "fallback": "Monitorizare pregătită"
+    },
+    "servers": {
+      "eyebrow": "Server grid",
+      "title": "Serverele noastre",
+      "copy": "Alege frontul: CS 1.6, Respawn, CS2 sau slotul Global pregătit pentru lansare.",
+      "refresh": "Refresh",
+      "refreshing": "Scanare",
+      "updated": "Ultima scanare",
+      "details": "Detalii",
+      "copyIp": "Copiază IP",
+      "copied": "Copiat",
+      "connect": "Intră",
+      "planned": "Planificat",
+      "labels": {
+        "players": "Jucători",
+        "map": "Hartă",
+        "ping": "Ping",
+        "ip": "IP server"
+      }
+    },
+    "community": {
+      "eyebrow": "Community command",
+      "title": "Join the family",
+      "copy": "Top jucători RSU, căutare rapidă și canale oficiale pentru voice, suport și discuții.",
+      "topPlayers": "Top players",
+      "playerSearch": "Caută jucător",
+      "placeholder": "Nick sau SteamID",
+      "min": "Tastează minimum 2 caractere.",
+      "loading": "Se încarcă datele RSU",
+      "searching": "Căutăm în RSU",
+      "empty": "Nu avem rezultate încă.",
+      "error": "RSU nu răspunde momentan.",
+      "cards": {
+        "discord": {
+          "title": "Discord",
+          "copy": "Chat, anunțuri și suport comunitate.",
+          "cta": "Join us"
+        },
+        "teamspeak": {
+          "title": "TeamSpeak 3",
+          "copy": "Voice stabil pentru mixuri și suport.",
+          "cta": "Connect"
+        },
+        "forum": {
+          "title": "Forum",
+          "copy": "Reguli, cereri și discuții oficiale.",
+          "cta": "Deschide"
+        }
+      }
+    },
+    "news": {
+      "eyebrow": "Arena news",
+      "title": "Ultimele noutăți",
+      "copy": "Anunțuri oficiale, operațiuni live și fazele următoare ale platformei.",
+      "published": "Publicat",
+      "authorFallback": "FREE-ARENA Staff",
+      "live": "Live feed",
+      "emptyTitle": "Feed-ul este pregătit",
+      "emptyCopy": "Când staff-ul publică din admin, anunțurile apar aici automat.",
+      "fallback": {
+        "one": {
+          "date": "25 mai 2026",
+          "title": "RSU Player Progress este live",
+          "copy": "Clasamentul real din MySQL este conectat la Play Hub."
+        },
+        "two": {
+          "date": "25 mai 2026",
+          "title": "Pagini dedicate pentru servere",
+          "copy": "Fiecare server are status live, IP, reguli și beneficii VIP."
+        },
+        "three": {
+          "date": "1 iunie 2026",
+          "title": "Reset BattlePass",
+          "copy": "Sezonul pornește de la zero după restartul oficial."
+        }
+      }
+    },
+    "cta": {
+      "title": "Intri sau mori!",
+      "copy": "Alege serverul, intră pe voice și arată în clasament că meriți tagul FREE-ARENA.",
+      "play": "Intră în arenă",
+      "servers": "Vezi fronturile"
     }
   },
   "Legal": {

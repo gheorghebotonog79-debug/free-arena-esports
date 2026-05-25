@@ -1,14 +1,13 @@
 import { setRequestLocale } from "next-intl/server";
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
+import { CommunityPanel } from "@/components/home/CommunityPanel";
+import { HeroWarRoom } from "@/components/home/HeroWarRoom";
+import { NewsPanel } from "@/components/home/NewsPanel";
+import { ServerWarRoom } from "@/components/home/ServerWarRoom";
+import { WarRoomCta } from "@/components/home/WarRoomCta";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { PlayerProgressHub } from "@/components/progress/PlayerProgressHub";
-import { HeroSection } from "@/components/sections/hero-section";
-import { NewsSection } from "@/components/sections/news-section";
-import { ServerGrid } from "@/components/sections/server-grid";
-import { TournamentSection } from "@/components/sections/tournament-section";
 import { getPublishedNews } from "@/lib/public-news";
-import { getPublicTournaments } from "@/lib/public-tournaments";
 
 export const revalidate = 60;
 
@@ -19,20 +18,17 @@ type HomeProps = {
 export default async function Home({ params }: HomeProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const [newsPosts, tournaments] = await Promise.all([
-    getPublishedNews(locale),
-    getPublicTournaments(),
-  ]);
+  const newsPosts = await getPublishedNews(locale);
 
   return (
     <>
       <SiteHeader />
-      <main>
-        <HeroSection />
-        <ServerGrid />
-        <TournamentSection locale={locale} tournaments={tournaments} />
-        <NewsSection locale={locale} posts={newsPosts} />
-        <PlayerProgressHub />
+      <main className="cyber-root">
+        <HeroWarRoom />
+        <ServerWarRoom />
+        <CommunityPanel />
+        <NewsPanel locale={locale} posts={newsPosts} />
+        <WarRoomCta />
       </main>
       <SiteFooter />
       <LiveChatLauncher />

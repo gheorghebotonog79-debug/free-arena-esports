@@ -13,12 +13,21 @@
     },
     "brandSubtitle": "Esports Network",
     "items": {
+      "home": "Home",
       "servers": "Servers",
       "events": "Events",
-      "community": "Community"
+      "community": "Community",
+      "forum": "Forum",
+      "discord": "Discord",
+      "ts3": "TS3",
+      "rankings": "Rankings",
+      "shop": "Shop",
+      "about": "About us"
     },
     "live": "Live",
-    "join": "Join"
+    "join": "Join",
+    "playNow": "Play now",
+    "playShort": "Play"
   },
   "LocaleSwitcher": {
     "label": "Change language",
@@ -34,6 +43,13 @@
       "terms": "Terms",
       "privacy": "Privacy",
       "contact": "Contact"
+    },
+    "status": {
+      "antiCheat": "Anti Cheat Protected",
+      "vip": "VIP Free 24/7",
+      "uptime": "Server Uptime 99.8%",
+      "backup": "Daily Backup",
+      "support": "Fast Support 24/7"
     }
   },
   "Hero": {
@@ -641,6 +657,116 @@
           "cta": "Open"
         }
       }
+    }
+  },
+  "WarRoom": {
+    "hero": {
+      "eyebrow": "The arena is open",
+      "kicker": "Play.Free-Arena.ro",
+      "title": "FREE-ARENA.RO",
+      "subtitle": "ENTER THE WARZONE",
+      "copy": "Live servers, RSU rankings, Discord, TeamSpeak, and forum access inside one cybernetic command portal for FREE-ARENA.",
+      "play": "Play now",
+      "servers": "View servers",
+      "signals": {
+        "cs16": "CS 1.6",
+        "cs2": "CS2",
+        "discord": "Discord",
+        "ts3": "TS3",
+        "forum": "Forum"
+      }
+    },
+    "status": {
+      "eyebrow": "Warzone status",
+      "title": "Live command",
+      "playersOnline": "Players online",
+      "serversOnline": "Servers online",
+      "uptime": "Uptime",
+      "sync": "Live sync",
+      "loading": "Syncing",
+      "fallback": "Monitoring ready"
+    },
+    "servers": {
+      "eyebrow": "Server grid",
+      "title": "Our servers",
+      "copy": "Choose the front: CS 1.6, Respawn, CS2, or the Global slot prepared for launch.",
+      "refresh": "Refresh",
+      "refreshing": "Scanning",
+      "updated": "Last scan",
+      "details": "Details",
+      "copyIp": "Copy IP",
+      "copied": "Copied",
+      "connect": "Join",
+      "planned": "Planned",
+      "labels": {
+        "players": "Players",
+        "map": "Map",
+        "ping": "Ping",
+        "ip": "Server IP"
+      }
+    },
+    "community": {
+      "eyebrow": "Community command",
+      "title": "Join the family",
+      "copy": "RSU top players, fast search, and official channels for voice, support, and discussion.",
+      "topPlayers": "Top players",
+      "playerSearch": "Search player",
+      "placeholder": "Nick or SteamID",
+      "min": "Type at least 2 characters.",
+      "loading": "Loading RSU data",
+      "searching": "Searching RSU",
+      "empty": "No results yet.",
+      "error": "RSU is not responding right now.",
+      "cards": {
+        "discord": {
+          "title": "Discord",
+          "copy": "Chat, announcements, and community support.",
+          "cta": "Join us"
+        },
+        "teamspeak": {
+          "title": "TeamSpeak 3",
+          "copy": "Stable voice for mixes and support.",
+          "cta": "Connect"
+        },
+        "forum": {
+          "title": "Forum",
+          "copy": "Rules, requests, and official discussions.",
+          "cta": "Open"
+        }
+      }
+    },
+    "news": {
+      "eyebrow": "Arena news",
+      "title": "Latest updates",
+      "copy": "Official announcements, live operations, and the next phases of the platform.",
+      "published": "Published",
+      "authorFallback": "FREE-ARENA Staff",
+      "live": "Live feed",
+      "emptyTitle": "The feed is ready",
+      "emptyCopy": "When staff publishes from admin, announcements appear here automatically.",
+      "fallback": {
+        "one": {
+          "date": "May 25, 2026",
+          "title": "RSU Player Progress is live",
+          "copy": "The real MySQL leaderboard is connected to Play Hub."
+        },
+        "two": {
+          "date": "May 25, 2026",
+          "title": "Dedicated server pages",
+          "copy": "Every server has live status, IP, rules, and VIP benefits."
+        },
+        "three": {
+          "date": "June 1, 2026",
+          "title": "BattlePass reset",
+          "copy": "The season starts from zero after the official restart."
+        }
+      }
+    },
+    "cta": {
+      "title": "Enter or die!",
+      "copy": "Pick a server, jump on voice, and prove in the rankings that you deserve the FREE-ARENA tag.",
+      "play": "Enter the arena",
+      "servers": "View fronts"
     }
   },
   "Legal": {

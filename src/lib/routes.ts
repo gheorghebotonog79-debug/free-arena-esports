@@ -3,6 +3,8 @@ export const routes = {
   servers: "/#servers",
   events: "/#events",
   community: "/#community",
+  shop: "/#shop",
+  about: "/#about",
   terms: "/terms",
   privacy: "/privacy",
 } as const;

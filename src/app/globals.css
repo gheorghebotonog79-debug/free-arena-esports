@@ -1,3 +1,7 @@
+@import "../styles/cyber-theme.css";
+@import "../styles/animations.css";
+@import "../styles/hud.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,7 +13,7 @@
   --glass-border: rgba(0, 216, 255, 0.18);
   --glass-surface: rgba(0, 216, 255, 0.055);
   --green-glow: rgba(17, 240, 255, 0.42);
-  --red-glow: rgba(11, 140, 255, 0.36);
+  --red-glow: rgba(255, 42, 31, 0.36);
   --cyan-glow: rgba(0, 216, 255, 0.32);
   --cursor-x: 50vw;
   --cursor-y: 34vh;
@@ -24,7 +28,7 @@ body {
   overflow-x: hidden;
   background:
     radial-gradient(1200px 700px at 20% -10%, rgba(0, 216, 255, 0.18), transparent 58%),
-    radial-gradient(980px 620px at 82% 16%, rgba(11, 140, 255, 0.15), transparent 56%),
+    radial-gradient(980px 620px at 82% 16%, rgba(255, 42, 31, 0.12), transparent 56%),
     linear-gradient(180deg, rgba(0, 216, 255, 0.045) 0%, transparent 26%),
     var(--background);
   color: var(--foreground);

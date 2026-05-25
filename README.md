@@ -123,3 +123,15 @@ Before publishing or deploying, verify:
 - `/` redirects to `/ro`
 - `sitemap.xml` includes both localized URLs
 - generated folders such as `node_modules/`, `.next/`, logs, and local screenshots are not committed
+
+## Cyber War Room Redesign
+
+The public homepage now uses a Cyber War Room layout built from focused components:
+
+- `HeroWarRoom` for the cinematic landing area and live command status
+- `ServerWarRoom` and `ServerHudCard` for live server cards powered by `/api/servers`
+- `CommunityPanel` for RSU player progress, search, Discord, TeamSpeak, and forum CTAs
+- `NewsPanel` for admin-published news with polished fallback announcements
+- `WarRoomCta`, `ParticlesBackground`, `ScanlineOverlay`, and HUD theme styles for the red/cyan esports presentation
+
+The redesign keeps RO/EN routing, server detail pages, admin-published news, RSU progress APIs, and existing public API routes intact.

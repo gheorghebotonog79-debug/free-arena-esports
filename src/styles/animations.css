@@ -1,0 +1,118 @@
+@keyframes ember-rise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 42px, 0) scale(0.6);
+  }
+
+  16% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--ember-drift, 40px), -180px, 0) scale(1.15);
+  }
+}
+
+@keyframes cyber-sweep {
+  0%,
+  42% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes pulse-red {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 42, 31, 0.22), 0 0 42px rgba(0, 230, 255, 0.08);
+  }
+
+  50% {
+    box-shadow: 0 0 34px rgba(255, 42, 31, 0.42), 0 0 52px rgba(0, 230, 255, 0.12);
+  }
+}
+
+@keyframes glitch-slice {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+
+  8% {
+    transform: translate(2px, -1px);
+    opacity: 0.72;
+  }
+
+  11% {
+    transform: translate(-2px, 1px);
+    opacity: 0.24;
+  }
+
+  14% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+}
+
+.ember {
+  position: absolute;
+  bottom: -2rem;
+  width: var(--ember-size, 4px);
+  height: var(--ember-size, 4px);
+  border-radius: 999px;
+  background: #ff6b1a;
+  box-shadow: 0 0 16px rgba(255, 74, 32, 0.84), 0 0 30px rgba(255, 176, 0, 0.38);
+  animation: ember-rise var(--ember-duration, 8s) linear infinite;
+  animation-delay: var(--ember-delay, 0s);
+  left: var(--ember-left, 50%);
+  opacity: 0;
+}
+
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: attr(data-text);
+  opacity: 0;
+}
+
+.glitch-text::before {
+  color: #ff2a1f;
+  clip-path: inset(12% 0 64% 0);
+  animation: glitch-slice 4.6s infinite;
+}
+
+.glitch-text::after {
+  color: #00e6ff;
+  clip-path: inset(62% 0 18% 0);
+  animation: glitch-slice 5.3s infinite reverse;
+}
+
+.scan-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-sweep::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(110deg, transparent 20%, rgba(0, 230, 255, 0.24) 48%, transparent 62%);
+  transform: translateX(-120%);
+  animation: cyber-sweep 4.8s ease-in-out infinite;
+}
+
+.pulse-red {
+  animation: pulse-red 2.6s ease-in-out infinite;
+}
