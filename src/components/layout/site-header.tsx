@@ -23,7 +23,7 @@ export function SiteHeader() {
     <header className="neon-header sticky top-0 z-50">
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-300 to-fuchsia-400 opacity-80" aria-hidden="true" />
       <div className="mx-auto flex min-h-20 w-full max-w-7xl items-center justify-start gap-3 px-4 py-3 sm:justify-between sm:px-6 lg:px-8">
-        <Link href="/" className="group flex min-w-0 items-center gap-3">
+        <Link href="/" className="group flex shrink-0 items-center gap-3">
           <span className="neon-brand-mark grid size-12 shrink-0 place-items-center">
             <Image
               src="/assets/game-icons/CS.png"
@@ -34,9 +34,9 @@ export function SiteHeader() {
               priority
             />
           </span>
-          <span className="min-w-0">
-            <span className="block truncate font-display text-xl font-black uppercase leading-none tracking-[0.04em] text-white group-hover:text-cyan-200">
-              FREE-ARENA.RO
+          <span>
+            <span className="block whitespace-nowrap font-display text-xl font-black uppercase leading-none tracking-[0.04em] text-white group-hover:text-cyan-200">
+              FREE-ARENA
             </span>
             <span className="mt-1 hidden text-xs font-black uppercase tracking-[0.32em] text-fuchsia-300 sm:block">
               {t("brandSubtitle")}
