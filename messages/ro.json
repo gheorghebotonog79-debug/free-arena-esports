@@ -566,7 +566,7 @@
   "PlayerProgress": {
     "heading": {
       "eyebrow": "Player Progress",
-      "title": "Clasament live din Rank System Ultimate",
+      "title": "Clasament live",
       "copy": "Date reale din RSU MySQL: XP, fraguri, headshot-uri, timp jucat si cautare rapida dupa jucator."
     },
     "status": {

@@ -43,7 +43,7 @@ export function TopPlayersSection() {
 
   const loadProgress = useCallback(async () => {
     try {
-      const response = await fetch("/api/player-progress?limit=10", { cache: "no-store" });
+      const response = await fetch("/api/player-progress?limit=5", { cache: "no-store" });
 
       if (!response.ok) {
         throw new Error("Player progress failed");
@@ -123,8 +123,7 @@ export function TopPlayersSection() {
 
   const summary = progress?.summary;
   const players = progress?.players ?? [];
-  const podiumPlayers = players.slice(0, 3);
-  const tablePlayers = players.slice(3, 10);
+  const topPlayers = players.slice(0, 5);
   const searchActive = query.trim().length >= 2;
   const shownSearchResults = searchActive ? results : [];
 
@@ -167,39 +166,6 @@ export function TopPlayersSection() {
                 <span>{t("states.error")}</span>
               </div>
             ) : null}
-
-            <div className="mt-8">
-              {isLoading ? (
-                <LeaderboardSkeleton />
-              ) : players.length > 0 ? (
-                <>
-                  <div className="grid gap-4 md:grid-cols-3 md:items-end">
-                    {podiumPlayers.map((player, index) => (
-                      <PodiumCard key={player.player} player={player} rank={index + 1} />
-                    ))}
-                  </div>
-                  <div className="mt-6 overflow-hidden border border-cyan-300/16 bg-black/20">
-                    <div className="hidden grid-cols-[4rem_1fr_repeat(4,6.2rem)] gap-3 border-b border-cyan-300/12 bg-cyan-300/[0.035] px-4 py-3 text-[0.68rem] font-black uppercase tracking-[0.16em] text-slate-400 lg:grid">
-                      <span>#</span>
-                      <span>Player</span>
-                      <span>XP</span>
-                      <span>Kills</span>
-                      <span>HS</span>
-                      <span>Time</span>
-                    </div>
-                    <div className="grid gap-2 p-2">
-                      {tablePlayers.length > 0 ? tablePlayers.map((player, index) => (
-                        <PlayerRow key={player.player} player={player} rank={index + 4} />
-                      )) : (
-                        <p className="p-4 text-sm font-bold text-white/58">{t("states.empty")}</p>
-                      )}
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <p className="border border-white/10 bg-black/30 p-4 text-sm font-bold text-white/58">{t("states.empty")}</p>
-              )}
-            </div>
           </div>
 
           <aside className="neon-panel h-fit p-5">
@@ -234,6 +200,20 @@ export function TopPlayersSection() {
               </div>
             </div>
           </aside>
+
+          <div className="lg:col-span-2">
+            {isLoading ? (
+              <LeaderboardSkeleton />
+            ) : topPlayers.length > 0 ? (
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+                {topPlayers.map((player, index) => (
+                  <PodiumCard key={player.player} player={player} rank={index + 1} />
+                ))}
+              </div>
+            ) : (
+              <p className="border border-white/10 bg-black/30 p-4 text-sm font-bold text-white/58">{t("states.empty")}</p>
+            )}
+          </div>
         </div>
       </div>
     </section>
@@ -283,26 +263,6 @@ function PodiumCard({ player, rank }: { player: PlayerProgressPlayer; rank: numb
   );
 }
 
-function PlayerRow({ player, rank }: { player: PlayerProgressPlayer; rank: number }) {
-  return (
-    <article className="neon-table-row grid gap-3 p-3 transition hover:border-cyan-300/38 hover:bg-cyan-300/5 lg:grid-cols-[4rem_1fr_repeat(4,6.2rem)] lg:items-center">
-      <div className="grid size-11 place-items-center border border-fuchsia-300/28 bg-fuchsia-300/10 font-display text-lg font-black text-fuchsia-200">
-        {rank}
-      </div>
-      <div className="min-w-0">
-        <h3 className="truncate font-display text-xl font-black text-white">{player.nick}</h3>
-        <p className="mt-1 truncate font-mono text-xs text-white/36">{player.player}</p>
-      </div>
-      <dl className="contents">
-        <SmallMetric label="XP" value={formatCompactNumber(player.xp)} />
-        <SmallMetric label="Kills" value={formatCompactNumber(player.kills)} />
-        <SmallMetric label="HS" value={formatCompactNumber(player.headshots)} />
-        <SmallMetric label="Time" value={formatPlayedTime(player.playedTime)} />
-      </dl>
-    </article>
-  );
-}
-
 function CompactPlayer({ player }: { player: PlayerProgressPlayer }) {
   return (
     <article className="flex items-center justify-between gap-3 border border-white/10 bg-black/30 p-3">
@@ -326,10 +286,10 @@ function SmallMetric({ label, value }: { label: string; value: string }) {
 
 function LeaderboardSkeleton() {
   return (
-    <>
-      {Array.from({ length: 6 }).map((_, index) => (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      {Array.from({ length: 5 }).map((_, index) => (
         <div key={index} className="h-[5.2rem] animate-pulse border border-white/8 bg-white/[0.035]" />
       ))}
-    </>
+    </div>
   );
 }

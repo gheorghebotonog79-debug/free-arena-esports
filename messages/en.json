@@ -566,7 +566,7 @@
   "PlayerProgress": {
     "heading": {
       "eyebrow": "Player Progress",
-      "title": "Live leaderboard from Rank System Ultimate",
+      "title": "Live leaderboard",
       "copy": "Real RSU MySQL data: XP, frags, headshots, played time, and quick player search."
     },
     "status": {
