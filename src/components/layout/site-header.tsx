@@ -122,18 +122,18 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="neon-header header-hud sticky top-0 z-50">
+    <header className="neon-header header-hud header-launcher sticky top-0 z-50">
       <div className="header-hud__bottom-glow" aria-hidden="true" />
-      <div className="mx-auto flex min-h-[5.65rem] w-full max-w-[94rem] items-center gap-2 px-3 py-3 sm:gap-3 sm:px-6 lg:px-8">
+      <div className="header-launcher__frame mx-auto flex w-full max-w-[110rem] items-center gap-3 px-3 py-3 sm:px-5 lg:px-7">
         <Link href="/" className="header-brand group flex min-w-0 shrink-0 items-center gap-3 sm:gap-4" aria-label="FREE-ARENA">
-          <span className="neon-brand-mark header-brand__mark grid size-[3.25rem] shrink-0 place-items-center sm:size-14">
+          <span className="neon-brand-mark header-brand__mark grid shrink-0 place-items-center">
             <span className="header-brand__energy" aria-hidden="true" />
             <Image
-              src="/assets/game-icons/CS.png"
+              src="/assets/game-icons/F.png"
               alt=""
-              width={44}
-              height={44}
-              className="relative z-10 size-10 object-contain sm:size-11"
+              width={112}
+              height={112}
+              className="header-brand__crest relative z-10"
               priority
             />
           </span>
@@ -174,22 +174,28 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <LanguageSwitcher />
-          <span className="header-live-pill hidden min-h-12 items-center gap-2 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] md:inline-flex">
-            <span className="header-live-pulse" aria-hidden="true" />
-            <RadioTower size={15} aria-hidden="true" />
-            <span>{t("live")}</span>
-            {formattedLivePlayers ? <strong>{formattedLivePlayers}</strong> : null}
-          </span>
-          <Link
-            href={routes.servers}
-            className="header-play-button inline-flex size-11 items-center justify-center gap-2 p-0 text-xs font-black uppercase tracking-[0.12em] transition max-[359px]:hidden sm:h-12 sm:w-auto sm:px-5 sm:py-2"
-            aria-label={t("playNow")}
-          >
-            <Crosshair size={16} aria-hidden="true" />
-            <span className="hidden sm:inline">{t("playNow")}</span>
-          </Link>
+        <div className="header-actions ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <div className="header-actions__stack">
+            <div className="header-actions__top">
+              <LanguageSwitcher />
+            </div>
+            <div className="header-actions__bottom">
+              <span className="header-live-pill hidden min-h-12 items-center gap-2 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] md:inline-flex">
+                <span className="header-live-pulse" aria-hidden="true" />
+                <RadioTower size={15} aria-hidden="true" />
+                <span>{t("live")}</span>
+                {formattedLivePlayers ? <strong>{formattedLivePlayers}</strong> : null}
+              </span>
+              <Link
+                href={routes.servers}
+                className="header-play-button inline-flex size-11 items-center justify-center gap-2 p-0 text-xs font-black uppercase tracking-[0.12em] transition max-[359px]:hidden sm:h-12 sm:w-auto sm:px-5 sm:py-2"
+                aria-label={t("playNow")}
+              >
+                <Crosshair size={16} aria-hidden="true" />
+                <span className="hidden sm:inline">{t("playNow")}</span>
+              </Link>
+            </div>
+          </div>
           <button
             type="button"
             className="header-menu-button inline-flex size-10 items-center justify-center xl:hidden"
