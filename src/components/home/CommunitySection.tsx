@@ -28,6 +28,8 @@ const channels = [
   },
 ] as const;
 
+type CommunityChannelKey = (typeof channels)[number]["key"];
+
 export function CommunitySection() {
   const t = useTranslations("WarRoom.community");
 
@@ -39,7 +41,7 @@ export function CommunitySection() {
             <p className="neon-kicker px-4 py-2 text-xs font-black uppercase tracking-[0.22em]">
               {t("eyebrow")}
             </p>
-            <h2 className="neon-heading mt-5 max-w-2xl font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[0.84] text-white">
+            <h2 className="community-command-title mt-5 max-w-2xl font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[0.84]">
               {t("title")}
             </h2>
             <p className="mt-5 max-w-xl text-base font-semibold leading-7 text-white/62">
@@ -59,6 +61,7 @@ export function CommunitySection() {
                 status={channel.status}
                 title={t(`cards.${channel.key}.title`)}
                 tone={channel.tone}
+                variant={channel.key}
               />
             ))}
           </div>
@@ -77,6 +80,7 @@ function CommunityCard({
   status,
   title,
   tone,
+  variant,
 }: {
   Icon: LucideIcon;
   copy: string;
@@ -86,26 +90,30 @@ function CommunityCard({
   status: string;
   title: string;
   tone: string;
+  variant: CommunityChannelKey;
 }) {
   return (
     <a
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
-      className="neon-card community-portal-card group p-5"
+      className={`neon-card community-portal-card community-portal-card--${variant} group p-5`}
     >
+      <span className="community-card__backdrop" aria-hidden="true" />
+      <span className="community-card__scanline" aria-hidden="true" />
+      <span className="community-card__shine" aria-hidden="true" />
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
-          <span className="neon-icon-cell grid size-16 place-items-center">
+          <span className="community-card__icon neon-icon-cell grid size-16 place-items-center">
             <Icon size={36} className={tone} aria-hidden="true" />
           </span>
-          <span className="border border-cyan-300/20 bg-cyan-300/10 px-2 py-1 text-[0.62rem] font-black uppercase tracking-[0.16em] text-cyan-200">
+          <span className="community-card__status border px-2 py-1 text-[0.62rem] font-black uppercase tracking-[0.16em]">
             {status}
           </span>
         </div>
-        <h3 className="mt-8 font-display text-3xl font-black uppercase text-white">{title}</h3>
+        <h3 className="community-card__title mt-8 font-display font-black uppercase text-white">{title}</h3>
         <p className="mt-3 text-sm font-semibold leading-6 text-white/58">{copy}</p>
-        <span className="mt-auto inline-flex items-center gap-2 pt-6 text-xs font-black uppercase tracking-[0.18em] text-cyan-200">
+        <span className="community-card__cta mt-auto inline-flex items-center gap-2 pt-6 text-xs font-black uppercase tracking-[0.18em]">
           {cta}
           <ArrowRight size={18} className="transition group-hover:translate-x-1" aria-hidden="true" />
         </span>
