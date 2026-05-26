@@ -141,14 +141,12 @@ export function ServerWarRoom() {
           />
         </div>
 
-        <div id="servers" className="scroll-mt-28" aria-hidden="true" />
-
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <p className="neon-kicker px-4 py-2 text-xs font-black uppercase tracking-[0.22em]">
               {t("eyebrow")}
             </p>
-            <h2 className="neon-heading mt-4 font-display text-[clamp(2.7rem,7vw,6.2rem)] font-black uppercase leading-[0.86] text-white">
+            <h2 id="servers" className="neon-heading mt-4 scroll-mt-24 font-display text-[clamp(2.7rem,7vw,6.2rem)] font-black uppercase leading-[0.86] text-white">
               {t("title")}
             </h2>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-white/62">
