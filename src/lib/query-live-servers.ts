@@ -10,8 +10,24 @@ import { publicServers, type PublicServerConfig } from "@/lib/servers";
 const QUERY_TIMEOUT_MS = 5_000;
 const ATTEMPT_TIMEOUT_MS = 8_000;
 const LAST_KNOWN_ONLINE_TTL_MS = 10 * 60_000;
+const STATUS_BRIDGE_URL = "https://free-arena.ro/api/server-status.php";
 
 const lastKnownOnline = new Map<string, LiveServerStatus>();
+
+type BridgeServerStatus = {
+  ok?: boolean;
+  name?: string;
+  map?: string;
+  players?: number;
+  maxPlayers?: number;
+};
+
+type BridgeServerResponse = {
+  ok?: boolean;
+  checkedAt?: string;
+  server?: BridgeServerStatus;
+  servers?: Partial<Record<string, BridgeServerStatus>>;
+};
 
 function buildAddress(target: LiveServerTarget) {
   return target.address;
@@ -97,6 +113,43 @@ function lastKnownStatus(target: LiveServerTarget, checkedAt: string) {
   };
 }
 
+async function queryStatusBridge(target: LiveServerTarget, checkedAt: string) {
+  try {
+    const response = await fetch(`${STATUS_BRIDGE_URL}?server=${target.key}`, {
+      cache: "no-store",
+      signal: AbortSignal.timeout(5_000),
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const payload = await response.json() as BridgeServerResponse;
+    const bridgeStatus = payload.server ?? payload.servers?.[target.key];
+
+    if (!payload.ok || !bridgeStatus?.ok) {
+      return null;
+    }
+
+    const address = buildAddress(target);
+
+    return rememberOnlineStatus({
+      ...baseStatus(target, checkedAt),
+      lastUpdated: payload.checkedAt ?? checkedAt,
+      status: "online",
+      online: true,
+      serverName: bridgeStatus.name?.trim() || target.fallbackName,
+      map: bridgeStatus.map?.trim() || "--",
+      players: normalizeNumber(bridgeStatus.players, 0),
+      maxPlayers: normalizeNumber(bridgeStatus.maxPlayers, target.fallbackMaxPlayers),
+      ping: null,
+      connectUrl: `steam://connect/${address}`,
+    });
+  } catch {
+    return null;
+  }
+}
+
 async function queryServer(target: LiveServerTarget): Promise<LiveServerStatus> {
   const checkedAt = new Date().toISOString();
 
@@ -130,6 +183,12 @@ async function queryServer(target: LiveServerTarget): Promise<LiveServerStatus> 
     } catch {
       // Try the next host form, e.g. direct IP first and public DNS as fallback.
     }
+  }
+
+  const bridgeStatus = await queryStatusBridge(target, checkedAt);
+
+  if (bridgeStatus) {
+    return bridgeStatus;
   }
 
   return lastKnownStatus(target, checkedAt) ?? offlineStatus(target, checkedAt);
