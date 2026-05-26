@@ -1144,24 +1144,6 @@ body {
     0 0 22px rgba(0, 234, 255, 0.1);
 }
 
-.homepage-live-strip {
-  max-width: 66rem;
-}
-
-.homepage-live-strip__item {
-  min-height: 4.2rem;
-  padding-block: 0.72rem;
-  border-color: rgba(0, 234, 255, 0.26);
-  background:
-    linear-gradient(115deg, rgba(0, 234, 255, 0.12), transparent 44%, rgba(255, 0, 51, 0.09)),
-    rgba(4, 8, 14, 0.82);
-}
-
-.homepage-live-strip__icon {
-  width: 2.35rem;
-  height: 2.35rem;
-}
-
 .hero-cta-primary,
 .hero-cta-secondary {
   position: relative;

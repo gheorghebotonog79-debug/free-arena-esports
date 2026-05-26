@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Activity, Clock3, RadioTower, RefreshCw, UsersRound } from "lucide-react";
+import { Clock3, RefreshCw } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { ServerHudCard } from "@/components/home/ServerHudCard";
 import { CopyToast } from "@/components/ui/copy-toast";
@@ -21,7 +21,6 @@ function isLiveServersResponse(value: unknown): value is LiveServersResponse {
 
 export function ServerWarRoom() {
   const t = useTranslations("WarRoom.servers");
-  const statusT = useTranslations("WarRoom.status");
   const serverT = useTranslations("Servers");
   const locale = useLocale();
   const toastTimeoutRef = useRef<number | null>(null);
@@ -108,40 +107,9 @@ export function ServerWarRoom() {
       }).format(lastUpdatedAt)
     : "--";
 
-  const onlineServers = publicServers.reduce((count, server) => (
-    serverStatuses[server.key]?.status === "online" ? count + 1 : count
-  ), 0);
-  const liveServerCount = publicServers.filter((server) => !server.pending).length;
-  const totalPlayers = publicServers.reduce((count, server) => {
-    const live = serverStatuses[server.key];
-    return live?.status === "online" ? count + live.players : count;
-  }, 0);
-  const liveSyncLabel = isLoading || isRefreshing ? statusT("loading") : "LIVE";
-
   return (
-    <section className="neon-section px-4 pb-20 pt-0 sm:px-6 lg:px-8 lg:pb-24">
+    <section className="neon-section px-4 pb-20 pt-12 sm:px-6 lg:px-8 lg:pb-24 lg:pt-14">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="homepage-live-strip relative z-20 -mt-5 mb-9 grid gap-3 sm:grid-cols-3" aria-live="polite">
-          <LiveStripItem
-            Icon={Activity}
-            active={!isLoading}
-            label={statusT("sync")}
-            value={liveSyncLabel}
-          />
-          <LiveStripItem
-            Icon={RadioTower}
-            active={onlineServers > 0}
-            label={statusT("serversOnline")}
-            value={`${onlineServers}/${liveServerCount || 3}`}
-          />
-          <LiveStripItem
-            Icon={UsersRound}
-            active={totalPlayers > 0}
-            label={statusT("playersOnline")}
-            value={String(totalPlayers)}
-          />
-        </div>
-
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <p className="neon-kicker px-4 py-2 text-xs font-black uppercase tracking-[0.22em]">
@@ -236,34 +204,5 @@ export function ServerWarRoom() {
       </div>
       <CopyToast message={toastMessage} />
     </section>
-  );
-}
-
-function LiveStripItem({
-  Icon,
-  active,
-  label,
-  value,
-}: {
-  Icon: typeof Activity;
-  active: boolean;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="homepage-live-strip__item flex min-w-0 items-center gap-3 px-4 py-4">
-      <span className="homepage-live-strip__icon relative grid size-11 shrink-0 place-items-center">
-        <span className={active ? "homepage-live-strip__pulse" : "homepage-live-strip__pulse homepage-live-strip__pulse--muted"} aria-hidden="true" />
-        <Icon size={18} aria-hidden="true" />
-      </span>
-      <span className="min-w-0">
-        <span className="block text-[0.66rem] font-black uppercase tracking-[0.16em] text-white/48">
-          {label}
-        </span>
-        <strong className="mt-1 block truncate font-display text-2xl font-black uppercase leading-none text-white">
-          {value}
-        </strong>
-      </span>
-    </div>
   );
 }
