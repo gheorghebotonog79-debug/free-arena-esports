@@ -118,7 +118,7 @@ export function ServerWarRoom() {
   const liveSyncLabel = isLoading || isRefreshing ? statusT("loading") : "LIVE";
 
   return (
-    <section id="servers" className="neon-section scroll-mt-32 px-4 pb-20 pt-0 sm:px-6 lg:px-8 lg:pb-24">
+    <section className="neon-section px-4 pb-20 pt-0 sm:px-6 lg:px-8 lg:pb-24">
       <div className="mx-auto w-full max-w-7xl">
         <div className="homepage-live-strip relative z-20 -mt-8 mb-14 grid gap-3 sm:grid-cols-3" aria-live="polite">
           <LiveStripItem
@@ -140,6 +140,8 @@ export function ServerWarRoom() {
             value={String(totalPlayers)}
           />
         </div>
+
+        <div id="servers" className="scroll-mt-28" aria-hidden="true" />
 
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
