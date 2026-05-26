@@ -31,6 +31,7 @@ export const publicServers: readonly PublicServerConfig[] = [
     region: "Romania",
     address: "cs.free-arena.ro:27015",
     host: "cs.free-arena.ro",
+    queryHost: "217.156.22.74",
     port: 27015,
     gameType: "counterstrike16",
     fallbackName: "FREE-ARENA.RO CS 1.6",
