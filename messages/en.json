@@ -9,7 +9,9 @@
   },
   "Navigation": {
     "aria": {
-      "main": "Main navigation"
+      "main": "Main navigation",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu"
     },
     "brandSubtitle": "Gaming Community",
     "items": {

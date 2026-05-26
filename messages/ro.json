@@ -9,7 +9,9 @@
   },
   "Navigation": {
     "aria": {
-      "main": "Navigație principală"
+      "main": "Navigație principală",
+      "openMenu": "Deschide meniul",
+      "closeMenu": "Închide meniul"
     },
     "brandSubtitle": "Comunitate Gaming",
     "items": {
