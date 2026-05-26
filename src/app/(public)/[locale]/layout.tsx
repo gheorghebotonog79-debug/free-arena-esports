@@ -48,6 +48,9 @@ export async function generateMetadata({
     description: t("description"),
     applicationName: "FREE-ARENA",
     alternates: getLocalizedAlternates(safeLocale),
+    verification: {
+      google: "YPSDQtpKFKcdm_fRnLQ0w9osoavDxRefXTmptX6hTzI",
+    },
     icons: {
       icon: "/assets/game-icons/CS.png",
     },
