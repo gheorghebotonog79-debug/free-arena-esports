@@ -14,6 +14,7 @@ import { getPublishedNews } from "@/lib/public-news";
 import { getPublicTournaments } from "@/lib/public-tournaments";
 
 export const revalidate = 60;
+const SHOW_TOURNAMENTS_SECTION = false;
 
 type HomeProps = {
   params: Promise<{ locale: string }>;
@@ -24,7 +25,7 @@ export default async function Home({ params }: HomeProps) {
   setRequestLocale(locale);
   const [newsPosts, tournaments] = await Promise.all([
     getPublishedNews(locale),
-    getPublicTournaments(4),
+    SHOW_TOURNAMENTS_SECTION ? getPublicTournaments(4) : Promise.resolve([]),
   ]);
 
   return (
@@ -36,7 +37,7 @@ export default async function Home({ params }: HomeProps) {
         <ServerSection />
         <CommunitySection />
         <TopPlayersSection />
-        <TournamentSection locale={locale} tournaments={tournaments} />
+        {SHOW_TOURNAMENTS_SECTION ? <TournamentSection locale={locale} tournaments={tournaments} /> : null}
         <NewsSection locale={locale} posts={newsPosts} />
         <FinalCta />
       </main>
