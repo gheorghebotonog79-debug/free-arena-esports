@@ -81,7 +81,7 @@ export function ServerHudCard({
 
   return (
     <article
-      className={`server-tactical-card ${cardVariantClass[serverKey]} server-tactical-card--${status} group flex h-full min-w-0 flex-col p-4`}
+      className={`server-tactical-card ${cardVariantClass[serverKey]} server-tactical-card--${status} group flex h-full min-w-0 flex-col p-4 sm:p-5`}
       data-occupancy={occupancyTone}
       data-status={status}
     >
@@ -91,8 +91,8 @@ export function ServerHudCard({
       <div className="server-card__shine" aria-hidden="true" />
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
-          <span className="server-card__icon grid size-14 shrink-0 place-items-center">
-            <Image src={icon} alt="" width={44} height={44} className="size-11 object-contain" />
+          <span className="server-card__icon grid size-16 shrink-0 place-items-center">
+            <Image src={icon} alt="" width={52} height={52} className="size-12 object-contain" />
           </span>
           <span className="server-status-badge inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em]">
             <span className="server-status-badge__dot size-2 rounded-full" aria-hidden="true" />
@@ -100,13 +100,13 @@ export function ServerHudCard({
           </span>
         </div>
         <div className="mt-3 min-w-0">
-          <h3 className="server-card__title line-clamp-2 font-display text-xl font-black uppercase leading-none text-white 2xl:text-2xl">
+          <h3 className="server-card__title line-clamp-2 font-display text-2xl font-black uppercase leading-none text-white 2xl:text-[1.7rem]">
             {displayName}
           </h3>
           <p className="server-card__region mt-1 text-xs font-black uppercase tracking-[0.18em] text-white/42">{region}</p>
         </div>
 
-        <div className="server-player-core mt-6 min-h-32 p-4">
+        <div className="server-player-core mt-6 min-h-36 p-4">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-white/50">
               <UsersRound size={16} className="server-card__accent-icon" aria-hidden="true" />
@@ -148,37 +148,37 @@ export function ServerHudCard({
             <span className="min-w-0 truncate font-mono text-sm font-black text-white">{address}</span>
           </div>
 
-          <div className="mt-4 grid gap-2 sm:grid-cols-2">
-            <button
-              type="button"
-              onClick={onCopy}
-              className="server-copy-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.13em] transition"
-            >
-              {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
-              {copied ? labels.copied : labels.copyIp}
-            </button>
+          <div className="server-actions-grid mt-4 grid gap-2 sm:grid-cols-2">
             {connectable && isOnline ? (
               <a
                 href={connectHref}
-                className="server-join-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.13em] transition"
+                className="server-join-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition sm:col-span-2"
               >
                 {labels.connect}
                 <ExternalLink size={15} aria-hidden="true" />
               </a>
             ) : (
-              <span className="server-disabled-button inline-flex items-center justify-center px-3 py-3 text-xs font-black uppercase tracking-[0.13em] text-white/36">
+              <span className="server-disabled-button inline-flex items-center justify-center px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/36 sm:col-span-2">
                 <ShieldCheck size={15} className="mr-2" aria-hidden="true" />
                 {isPending ? labels.planned : statusLabel}
               </span>
             )}
             <Link
               href={`/servers/${serverKey}`}
-              className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.13em] text-white transition sm:col-span-2"
+              className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
               aria-label={detailsLabel}
             >
               {labels.details}
               <ArrowRight size={15} aria-hidden="true" />
             </Link>
+            <button
+              type="button"
+              onClick={onCopy}
+              className="server-copy-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
+            >
+              {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
+              {copied ? labels.copied : labels.copyIp}
+            </button>
           </div>
         </div>
       </div>

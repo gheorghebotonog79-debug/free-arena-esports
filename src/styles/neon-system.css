@@ -285,6 +285,84 @@ body {
     #050816;
 }
 
+.neon-hero--wow {
+  min-height: calc(100vh - 4.5rem);
+  background:
+    linear-gradient(180deg, rgba(10, 10, 15, 0.3), rgba(10, 10, 15, 0.94) 82%, #0a0a0f),
+    linear-gradient(112deg, rgba(255, 27, 54, 0.24), transparent 36%, rgba(0, 229, 255, 0.2) 76%, rgba(255, 122, 24, 0.1)),
+    #0a0a0f;
+}
+
+.neon-hero--wow::before,
+.neon-hero--wow::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+}
+
+.neon-hero--wow::before {
+  z-index: 0;
+  background:
+    radial-gradient(900px 520px at 16% 18%, rgba(255, 27, 54, 0.28), transparent 66%),
+    radial-gradient(820px 460px at 78% 20%, rgba(0, 229, 255, 0.22), transparent 62%),
+    radial-gradient(740px 420px at 54% 92%, rgba(255, 122, 24, 0.16), transparent 70%);
+  opacity: 0.94;
+}
+
+.neon-hero--wow::after {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(255, 27, 54, 0.16), transparent 18% 82%, rgba(0, 229, 255, 0.14)),
+    repeating-linear-gradient(90deg, transparent 0 92px, rgba(255, 255, 255, 0.035) 92px 93px),
+    repeating-linear-gradient(180deg, transparent 0 72px, rgba(255, 255, 255, 0.03) 72px 73px);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 78%, transparent 100%);
+  opacity: 0.42;
+}
+
+.neon-hero__target-grid,
+.neon-hero__cinematic-light {
+  position: absolute;
+  pointer-events: none;
+}
+
+.neon-hero__target-grid {
+  inset: 12% 5% 8%;
+  z-index: 1;
+  border: 1px solid rgba(0, 229, 255, 0.1);
+  background:
+    linear-gradient(90deg, transparent 0 49.8%, rgba(0, 229, 255, 0.16) 49.8% 50.2%, transparent 50.2%),
+    linear-gradient(180deg, transparent 0 49.8%, rgba(255, 27, 54, 0.13) 49.8% 50.2%, transparent 50.2%);
+  box-shadow:
+    inset 0 0 80px rgba(0, 0, 0, 0.4),
+    0 0 48px rgba(0, 229, 255, 0.08);
+  opacity: 0.34;
+  transform: skewY(-3deg);
+}
+
+.neon-hero__cinematic-light {
+  z-index: 1;
+  width: min(46rem, 58vw);
+  height: min(34rem, 52vh);
+  filter: blur(54px);
+  opacity: 0.68;
+  mix-blend-mode: screen;
+  animation: hero-light-drift 11s ease-in-out infinite alternate;
+}
+
+.neon-hero__cinematic-light--red {
+  left: -12%;
+  top: 5%;
+  background: radial-gradient(closest-side, rgba(255, 27, 54, 0.54), transparent);
+}
+
+.neon-hero__cinematic-light--cyan {
+  right: -14%;
+  top: 10%;
+  background: radial-gradient(closest-side, rgba(0, 229, 255, 0.46), transparent);
+  animation-delay: -4s;
+}
+
 .neon-hero__visual {
   position: absolute;
   inset: 8% 0 0 auto;
@@ -295,6 +373,90 @@ body {
     linear-gradient(100deg, transparent 0 28%, rgba(0, 229, 255, 0.13) 28% 29%, transparent 29% 100%),
     repeating-linear-gradient(90deg, transparent 0 44px, rgba(0, 229, 255, 0.08) 44px 46px, transparent 46px 92px);
   mask-image: linear-gradient(90deg, transparent, #000 24%, #000);
+}
+
+.hero-signal-rack {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 34px rgba(0, 229, 255, 0.08);
+}
+
+.hero-wow-title {
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.2),
+    0 0 42px rgba(255, 27, 54, 0.26),
+    0 0 62px rgba(0, 229, 255, 0.16),
+    0 8px 0 rgba(0, 0, 0, 0.5);
+}
+
+.hero-wow-subtitle {
+  filter: drop-shadow(0 0 22px rgba(0, 229, 255, 0.2)) drop-shadow(0 0 18px rgba(255, 27, 54, 0.14));
+}
+
+.hero-cta-primary,
+.hero-cta-secondary {
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  transform: translateZ(0);
+}
+
+.hero-cta-primary {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background:
+    linear-gradient(135deg, #ff1b36, #ff6a1a 46%, #00e5ff);
+  color: #fff;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 28px rgba(255, 27, 54, 0.34),
+    0 0 42px rgba(0, 229, 255, 0.14);
+}
+
+.hero-cta-secondary {
+  border: 1px solid rgba(0, 229, 255, 0.36);
+  background:
+    linear-gradient(90deg, rgba(0, 229, 255, 0.14), rgba(255, 255, 255, 0.045)),
+    rgba(4, 8, 14, 0.62);
+  color: #eaffff;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.045),
+    0 0 28px rgba(0, 229, 255, 0.12);
+  backdrop-filter: blur(16px);
+}
+
+.hero-cta-primary::after,
+.hero-cta-secondary::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(110deg, transparent 18%, rgba(255, 255, 255, 0.46) 45%, transparent 62%);
+  transform: translateX(-128%);
+  transition: transform 640ms ease;
+}
+
+.hero-cta-primary:hover,
+.hero-cta-secondary:hover {
+  transform: translateY(-3px);
+}
+
+.hero-cta-primary:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+    0 0 34px rgba(255, 27, 54, 0.44),
+    0 0 52px rgba(0, 229, 255, 0.22);
+}
+
+.hero-cta-secondary:hover {
+  border-color: rgba(0, 229, 255, 0.62);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.07),
+    0 0 34px rgba(0, 229, 255, 0.24);
+}
+
+.hero-cta-primary:hover::after,
+.hero-cta-secondary:hover::after {
+  transform: translateX(128%);
 }
 
 .neon-hero__soldier {
@@ -413,6 +575,16 @@ body {
   }
 }
 
+@keyframes hero-light-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(2rem, 1rem, 0) scale(1.06);
+  }
+}
+
 @media (max-width: 1023px) {
   .neon-hero__visual {
     width: 100vw;
@@ -425,11 +597,25 @@ body {
     height: 34rem;
     opacity: 0.34;
   }
+
+  .neon-hero__target-grid {
+    inset: 16% -18% 12%;
+    opacity: 0.24;
+  }
 }
 
 @media (max-width: 640px) {
   .neon-section {
     scroll-margin-top: 8rem;
+  }
+
+  .neon-hero--wow {
+    min-height: calc(100vh - 4rem);
+  }
+
+  .hero-cta-primary,
+  .hero-cta-secondary {
+    width: 100%;
   }
 
   .hof-podium-card[data-rank="1"] {
@@ -446,7 +632,16 @@ body {
   .neon-card:hover,
   .neon-button:hover,
   .neon-button-secondary:hover,
+  .hero-cta-primary:hover,
+  .hero-cta-secondary:hover,
   .hof-podium-card[data-rank="1"] {
     transform: none;
+  }
+
+  .neon-hero__cinematic-light,
+  .hero-cta-primary::after,
+  .hero-cta-secondary::after {
+    animation: none;
+    transition-duration: 0.01ms;
   }
 }

@@ -274,12 +274,14 @@
     linear-gradient(180deg, rgba(13, 18, 27, 0.95), rgba(4, 6, 11, 0.98));
   --occupancy-color: #00e6ff;
   position: relative;
-  min-height: 34.5rem;
+  min-width: 0;
+  min-height: 36rem;
   isolation: isolate;
   overflow: hidden;
   clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
-  border: 1px solid rgb(var(--card-glow-rgb) / 0.28);
+  border: 1px solid rgb(var(--card-glow-rgb) / 0.32);
   background: var(--card-bg);
+  backdrop-filter: blur(18px);
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.045),
     inset 0 -42px 90px rgba(0, 0, 0, 0.42),
@@ -342,7 +344,7 @@
     0 32px 100px rgba(0, 0, 0, 0.62),
     0 0 48px rgb(var(--card-glow-rgb) / 0.28),
     0 0 26px color-mix(in srgb, var(--card-accent-2) 42%, transparent);
-  transform: perspective(900px) translateY(-10px) scale(1.02) rotateX(1deg);
+  transform: perspective(900px) translateY(-10px) scale(1.018) rotateX(1deg);
 }
 
 .server-card--cs16 {
@@ -419,6 +421,56 @@
   animation: locked-pulse 3.8s ease-in-out infinite;
 }
 
+.homepage-live-strip__item {
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  border: 1px solid rgba(0, 230, 255, 0.2);
+  background:
+    linear-gradient(120deg, rgba(0, 230, 255, 0.12), transparent 44%, rgba(255, 27, 54, 0.1)),
+    rgba(5, 8, 13, 0.74);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 18px 54px rgba(0, 0, 0, 0.36),
+    0 0 28px rgba(0, 230, 255, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.homepage-live-strip__item::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  opacity: 0.5;
+  transform: translateX(-110%);
+  animation: live-strip-scan 4.8s ease-in-out infinite;
+}
+
+.homepage-live-strip__icon {
+  border: 1px solid rgba(0, 230, 255, 0.28);
+  background: rgba(0, 0, 0, 0.42);
+  color: #00e6ff;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.045),
+    0 0 24px rgba(0, 230, 255, 0.16);
+}
+
+.homepage-live-strip__pulse {
+  position: absolute;
+  inset: 0.35rem;
+  border-radius: inherit;
+  background: rgba(0, 230, 255, 0.2);
+  box-shadow: 0 0 22px rgba(0, 230, 255, 0.5);
+  animation: status-pulse 1.8s ease-in-out infinite;
+}
+
+.homepage-live-strip__pulse--muted {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.12);
+  animation: none;
+}
+
 .server-card__backdrop,
 .server-card__noise,
 .server-card__scanline,
@@ -481,7 +533,18 @@
     rgba(0, 0, 0, 0.5);
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.045),
-    0 0 30px rgb(var(--card-glow-rgb) / 0.18);
+    0 0 30px rgb(var(--card-glow-rgb) / 0.2),
+    0 0 52px color-mix(in srgb, var(--card-accent-2) 18%, transparent);
+  transform: translateZ(0);
+  transition: transform 240ms ease, box-shadow 240ms ease;
+}
+
+.server-tactical-card:hover .server-card__icon {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 36px rgb(var(--card-glow-rgb) / 0.32),
+    0 0 64px color-mix(in srgb, var(--card-accent-2) 24%, transparent);
 }
 
 .server-card__title {
@@ -510,6 +573,18 @@
     0 0 24px rgb(var(--card-glow-rgb) / 0.14);
 }
 
+.server-tactical-card--online .server-status-badge {
+  border-color: rgba(0, 230, 255, 0.5);
+  background:
+    linear-gradient(90deg, rgba(57, 255, 136, 0.18), rgba(0, 230, 255, 0.12)),
+    rgba(0, 0, 0, 0.3);
+  color: #39ff88;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 28px rgba(57, 255, 136, 0.18),
+    0 0 22px rgba(0, 230, 255, 0.12);
+}
+
 .server-status-badge__dot {
   background: currentColor;
   box-shadow: 0 0 14px currentColor;
@@ -524,9 +599,15 @@
 }
 
 .server-tactical-card--pending .server-status-badge {
-  border-color: rgba(255, 209, 102, 0.44);
-  background: rgba(255, 209, 102, 0.12);
-  color: #ffd166;
+  border-color: rgba(255, 122, 24, 0.52);
+  background:
+    linear-gradient(90deg, rgba(255, 122, 24, 0.16), rgba(255, 27, 54, 0.12)),
+    rgba(0, 0, 0, 0.3);
+  color: #ffb25c;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.045),
+    0 0 28px rgba(255, 122, 24, 0.18),
+    0 0 20px rgba(255, 27, 54, 0.12);
 }
 
 .server-tactical-card--offline .server-status-badge__dot,
@@ -608,9 +689,14 @@
 }
 
 .server-metric {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: inset 0 0 18px rgb(var(--card-glow-rgb) / 0.035);
+  overflow: hidden;
+  border: 1px solid rgb(var(--card-glow-rgb) / 0.12);
+  background:
+    linear-gradient(135deg, rgb(var(--card-glow-rgb) / 0.07), transparent 54%),
+    rgba(255, 255, 255, 0.04);
+  box-shadow:
+    inset 0 0 18px rgb(var(--card-glow-rgb) / 0.04),
+    0 0 18px rgba(0, 0, 0, 0.16);
 }
 
 .server-tag {
@@ -634,6 +720,7 @@
   min-height: 2.78rem;
   overflow: hidden;
   clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  white-space: nowrap;
 }
 
 .server-copy-button {
@@ -658,7 +745,8 @@
   color: #fff;
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.16),
-    0 0 28px rgb(var(--card-glow-rgb) / 0.24);
+    0 0 28px rgb(var(--card-glow-rgb) / 0.28),
+    0 0 42px color-mix(in srgb, var(--card-accent-2) 22%, transparent);
 }
 
 .server-join-button::after,
@@ -758,6 +846,17 @@
   }
 }
 
+@keyframes live-strip-scan {
+  0%,
+  38% {
+    transform: translateX(-110%);
+  }
+
+  100% {
+    transform: translateX(110%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .server-tactical-card,
   .server-tactical-card::before,
@@ -768,6 +867,8 @@
   .server-player-bar span,
   .server-join-button::after,
   .server-details-button::after,
+  .homepage-live-strip__item::after,
+  .homepage-live-strip__pulse,
   .server-details-button svg {
     animation: none;
     transition-duration: 0.01ms;
