@@ -48,7 +48,6 @@ export const publicServers: readonly PublicServerConfig[] = [
     region: "Romania",
     address: "respawn.free-arena.ro:27015",
     host: "respawn.free-arena.ro",
-    queryHost: "global.free-arena.ro",
     port: 27015,
     gameType: "counterstrike16",
     fallbackName: "FREE-ARENA.RO Respawn",
