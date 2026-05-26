@@ -915,6 +915,10 @@ body {
     #0a0a0f;
 }
 
+.neon-hero--compact {
+  min-height: clamp(29rem, 52vh, 34rem);
+}
+
 .neon-hero--wow::before,
 .neon-hero--wow::after {
   position: absolute;
@@ -1011,8 +1015,151 @@ body {
     0 8px 0 rgba(0, 0, 0, 0.5);
 }
 
+.hero-wow-title__energy {
+  position: relative;
+  display: inline-block;
+  background:
+    linear-gradient(90deg, #ffffff 0%, #ffffff 28%, #b9f8ff 38%, #ffffff 48%, #ffd7df 62%, #ffffff 78%, #ffffff 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow(0 0 20px rgba(255, 255, 255, 0.18))
+    drop-shadow(0 0 26px rgba(255, 0, 51, 0.18))
+    drop-shadow(0 0 28px rgba(0, 234, 255, 0.16));
+  animation:
+    hero-title-current 5.8s linear infinite,
+    hero-title-breathe 3.8s ease-in-out infinite;
+}
+
+.hero-wow-title__energy::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: attr(data-text);
+  color: rgba(0, 234, 255, 0.28);
+  text-shadow:
+    0 0 16px rgba(0, 234, 255, 0.36),
+    0 0 22px rgba(255, 0, 51, 0.2);
+  clip-path: inset(44% 0 46% 0);
+  mix-blend-mode: screen;
+  transform: translate3d(-0.08em, 0, 0);
+  animation: hero-title-slice 4.4s steps(1, end) infinite;
+}
+
 .hero-wow-subtitle {
   filter: drop-shadow(0 0 22px rgba(0, 229, 255, 0.2)) drop-shadow(0 0 18px rgba(255, 27, 54, 0.14));
+}
+
+.warzone-status-card {
+  position: relative;
+  min-height: 20.5rem;
+  border-color: rgba(0, 234, 255, 0.34);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 0, 51, 0.16), transparent 34%),
+    radial-gradient(circle at 88% 12%, rgba(0, 234, 255, 0.18), transparent 42%),
+    linear-gradient(145deg, rgba(0, 234, 255, 0.12), transparent 42%, rgba(255, 0, 51, 0.08)),
+    rgba(8, 14, 28, 0.86);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.055),
+    inset 0 -34px 76px rgba(0, 0, 0, 0.46),
+    0 0 46px rgba(0, 234, 255, 0.16),
+    0 24px 82px rgba(0, 0, 0, 0.48);
+}
+
+.warzone-status-card::after {
+  position: absolute;
+  inset: 0.7rem;
+  pointer-events: none;
+  content: "";
+  border: 1px solid rgba(0, 234, 255, 0.12);
+  clip-path: polygon(0 0, 42% 0, 42% 1px, 0 1px, 0 100%, 1px 100%, 1px 0, 0 0);
+}
+
+.warzone-status-card__radar {
+  position: absolute;
+  right: -4.5rem;
+  top: -4.5rem;
+  width: 13rem;
+  height: 13rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 234, 255, 0.14);
+  background:
+    repeating-radial-gradient(circle, rgba(0, 234, 255, 0.13) 0 1px, transparent 1px 24px),
+    conic-gradient(from 0deg, rgba(0, 234, 255, 0), rgba(0, 234, 255, 0.24), rgba(0, 234, 255, 0));
+  opacity: 0.72;
+  animation: status-radar-spin 8s linear infinite;
+}
+
+.warzone-status-card__meter {
+  height: 0.42rem;
+  overflow: hidden;
+  border: 1px solid rgba(0, 234, 255, 0.22);
+  background: rgba(0, 0, 0, 0.44);
+}
+
+.warzone-status-card__meter span {
+  display: block;
+  height: 100%;
+  min-width: 8%;
+  background: linear-gradient(90deg, #ff0033, #ff6600, #00eaff);
+  box-shadow:
+    0 0 18px rgba(255, 0, 51, 0.4),
+    0 0 20px rgba(0, 234, 255, 0.28);
+  transition: width 420ms ease;
+}
+
+.warzone-status-row {
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  background:
+    linear-gradient(90deg, rgba(0, 234, 255, 0.08), transparent 44%, rgba(255, 0, 51, 0.06)),
+    rgba(0, 0, 0, 0.34);
+}
+
+.warzone-status-row::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(110deg, transparent 12%, rgba(255, 255, 255, 0.12) 46%, transparent 68%);
+  opacity: 0;
+  transform: translateX(-120%);
+  transition: opacity 200ms ease, transform 620ms ease;
+}
+
+.warzone-status-row:hover::before {
+  opacity: 0.72;
+  transform: translateX(120%);
+}
+
+.warzone-status-row__icon {
+  border: 1px solid rgba(0, 234, 255, 0.18);
+  background: rgba(0, 0, 0, 0.32);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035),
+    0 0 22px rgba(0, 234, 255, 0.1);
+}
+
+.homepage-live-strip {
+  max-width: 66rem;
+}
+
+.homepage-live-strip__item {
+  min-height: 4.2rem;
+  padding-block: 0.72rem;
+  border-color: rgba(0, 234, 255, 0.26);
+  background:
+    linear-gradient(115deg, rgba(0, 234, 255, 0.12), transparent 44%, rgba(255, 0, 51, 0.09)),
+    rgba(4, 8, 14, 0.82);
+}
+
+.homepage-live-strip__icon {
+  width: 2.35rem;
+  height: 2.35rem;
 }
 
 .hero-cta-primary,
@@ -1175,6 +1322,62 @@ body {
   min-height: 19rem;
 }
 
+@keyframes hero-title-current {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 220% 50%;
+  }
+}
+
+@keyframes hero-title-breathe {
+  0%,
+  100% {
+    filter:
+      drop-shadow(0 0 18px rgba(255, 255, 255, 0.16))
+      drop-shadow(0 0 24px rgba(255, 0, 51, 0.16))
+      drop-shadow(0 0 26px rgba(0, 234, 255, 0.14));
+  }
+
+  50% {
+    filter:
+      drop-shadow(0 0 24px rgba(255, 255, 255, 0.22))
+      drop-shadow(0 0 34px rgba(255, 0, 51, 0.26))
+      drop-shadow(0 0 38px rgba(0, 234, 255, 0.22));
+  }
+}
+
+@keyframes hero-title-slice {
+  0%,
+  88%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+
+  90% {
+    opacity: 0.72;
+    transform: translate3d(-0.08em, 0, 0);
+  }
+
+  92% {
+    opacity: 0.5;
+    transform: translate3d(0.08em, 0, 0);
+  }
+}
+
+@keyframes status-radar-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes neon-gradient-drift {
   0% {
     filter: hue-rotate(0deg);
@@ -1261,8 +1464,11 @@ body {
   }
 
   .neon-hero__cinematic-light,
+  .hero-wow-title__energy,
+  .hero-wow-title__energy::after,
   .hero-cta-primary::after,
-  .hero-cta-secondary::after {
+  .hero-cta-secondary::after,
+  .warzone-status-card__radar {
     animation: none;
     transition-duration: 0.01ms;
   }

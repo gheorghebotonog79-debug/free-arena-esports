@@ -111,6 +111,7 @@ export function ServerWarRoom() {
   const onlineServers = publicServers.reduce((count, server) => (
     serverStatuses[server.key]?.status === "online" ? count + 1 : count
   ), 0);
+  const liveServerCount = publicServers.filter((server) => !server.pending).length;
   const totalPlayers = publicServers.reduce((count, server) => {
     const live = serverStatuses[server.key];
     return live?.status === "online" ? count + live.players : count;
@@ -120,7 +121,7 @@ export function ServerWarRoom() {
   return (
     <section className="neon-section px-4 pb-20 pt-0 sm:px-6 lg:px-8 lg:pb-24">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="homepage-live-strip relative z-20 -mt-8 mb-14 grid gap-3 sm:grid-cols-3" aria-live="polite">
+        <div className="homepage-live-strip relative z-20 -mt-5 mb-9 grid gap-3 sm:grid-cols-3" aria-live="polite">
           <LiveStripItem
             Icon={Activity}
             active={!isLoading}
@@ -131,7 +132,7 @@ export function ServerWarRoom() {
             Icon={RadioTower}
             active={onlineServers > 0}
             label={statusT("serversOnline")}
-            value={`${onlineServers}/${publicServers.length}`}
+            value={`${onlineServers}/${liveServerCount || 3}`}
           />
           <LiveStripItem
             Icon={UsersRound}

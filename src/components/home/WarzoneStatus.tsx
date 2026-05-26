@@ -56,12 +56,14 @@ export function WarzoneStatus() {
     return {
       playersOnline,
       serversOnline: `${onlineServers}/${liveServers.length || 3}`,
+      onlinePercent: liveServers.length > 0 ? Math.round((onlineServers / liveServers.length) * 100) : 0,
       uptime: onlineServers > 0 ? "99.8%" : "99.8%",
     };
   }, [payload]);
 
   return (
-    <aside className="neon-panel hud-frame scan-sweep p-5 sm:p-6" aria-busy={isLoading}>
+    <aside className="warzone-status-card neon-panel hud-frame scan-sweep p-5 sm:p-6" aria-busy={isLoading}>
+      <div className="warzone-status-card__radar" aria-hidden="true" />
       <div className="relative z-10">
         <div className="flex items-center justify-between gap-3">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-fuchsia-300">
@@ -75,6 +77,9 @@ export function WarzoneStatus() {
         <h2 className="mt-4 font-display text-3xl font-black uppercase tracking-[0.06em] text-white">
           {t("title")}
         </h2>
+        <div className="warzone-status-card__meter mt-4" aria-hidden="true">
+          <span style={{ width: `${stats.onlinePercent}%` }} />
+        </div>
 
         <dl className="mt-6 grid gap-3">
           <StatusRow Icon={UsersRound} label={t("playersOnline")} value={isLoading ? "--" : String(stats.playersOnline)} tone="text-cyan-200" />
@@ -98,8 +103,10 @@ function StatusRow({
   value: string;
 }) {
   return (
-    <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3 border border-white/10 bg-black/32 p-3">
-      <Icon size={18} className={tone} aria-hidden="true" />
+    <div className="warzone-status-row grid grid-cols-[auto_1fr_auto] items-center gap-3 border border-white/10 bg-black/32 p-3">
+      <span className="warzone-status-row__icon grid size-9 place-items-center">
+        <Icon size={18} className={tone} aria-hidden="true" />
+      </span>
       <dt className="text-xs font-black uppercase tracking-[0.16em] text-white/56">{label}</dt>
       <dd className="font-display text-2xl font-black text-white">{value}</dd>
     </div>
