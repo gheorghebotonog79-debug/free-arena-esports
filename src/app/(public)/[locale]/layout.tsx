@@ -18,6 +18,14 @@ type LocaleLayoutProps = Readonly<{
   params: Promise<{ locale: string }>;
 }>;
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "FREE-ARENA",
+  url: siteUrl,
+  sameAs: ["https://free-arena.ro"],
+};
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -38,7 +46,7 @@ export async function generateMetadata({
       template: t("template"),
     },
     description: t("description"),
-    applicationName: "FREE-ARENA.RO",
+    applicationName: "FREE-ARENA",
     alternates: getLocalizedAlternates(safeLocale),
     icons: {
       icon: "/assets/game-icons/CS.png",
@@ -47,7 +55,7 @@ export async function generateMetadata({
       title: t("openGraphTitle"),
       description: t("openGraphDescription"),
       url: `${siteUrl}/${safeLocale}`,
-      siteName: "FREE-ARENA.RO",
+      siteName: "FREE-ARENA",
       images: [
         {
           url: openGraphImageUrl,
@@ -92,6 +100,10 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           <CinematicInteractions />
           {children}
         </NextIntlClientProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
       </body>
     </html>
   );
