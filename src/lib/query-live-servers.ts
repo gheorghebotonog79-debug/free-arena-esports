@@ -9,6 +9,9 @@ import { publicServers, type PublicServerConfig } from "@/lib/servers";
 
 const QUERY_TIMEOUT_MS = 5_000;
 const ATTEMPT_TIMEOUT_MS = 8_000;
+const LAST_KNOWN_ONLINE_TTL_MS = 10 * 60_000;
+
+const lastKnownOnline = new Map<string, LiveServerStatus>();
 
 function buildAddress(target: LiveServerTarget) {
   return target.address;
@@ -69,6 +72,31 @@ function pendingStatus(target: PublicServerConfig, checkedAt: string): LiveServe
   };
 }
 
+function rememberOnlineStatus(status: LiveServerStatus) {
+  lastKnownOnline.set(status.key, status);
+  return status;
+}
+
+function lastKnownStatus(target: LiveServerTarget, checkedAt: string) {
+  const status = lastKnownOnline.get(target.key);
+
+  if (!status) {
+    return null;
+  }
+
+  const lastUpdatedAt = Date.parse(status.lastUpdated);
+
+  if (!Number.isFinite(lastUpdatedAt) || Date.now() - lastUpdatedAt > LAST_KNOWN_ONLINE_TTL_MS) {
+    lastKnownOnline.delete(target.key);
+    return null;
+  }
+
+  return {
+    ...status,
+    checkedAt,
+  };
+}
+
 async function queryServer(target: LiveServerTarget): Promise<LiveServerStatus> {
   const checkedAt = new Date().toISOString();
 
@@ -88,7 +116,7 @@ async function queryServer(target: LiveServerTarget): Promise<LiveServerStatus> 
 
       const address = buildAddress(target);
 
-      return {
+      return rememberOnlineStatus({
         ...baseStatus(target, checkedAt),
         status: "online",
         online: true,
@@ -98,13 +126,13 @@ async function queryServer(target: LiveServerTarget): Promise<LiveServerStatus> 
         maxPlayers: normalizeNumber(state.maxplayers, target.fallbackMaxPlayers),
         ping: normalizeNumber(state.ping, 0),
         connectUrl: `steam://connect/${address}`,
-      };
+      });
     } catch {
       // Try the next host form, e.g. direct IP first and public DNS as fallback.
     }
   }
 
-  return offlineStatus(target, checkedAt);
+  return lastKnownStatus(target, checkedAt) ?? offlineStatus(target, checkedAt);
 }
 
 export async function queryLiveServers(): Promise<LiveServersResponse> {
