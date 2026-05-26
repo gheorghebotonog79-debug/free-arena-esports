@@ -1,29 +1,56 @@
 "use client";
 
 import Image from "next/image";
-import { Crosshair, Menu, RadioTower, X } from "lucide-react";
-import { useTranslations } from "next-intl";
+import {
+  Crosshair,
+  Headphones,
+  Home,
+  Info,
+  Menu,
+  MessageCircle,
+  RadioTower,
+  Server as ServerIcon,
+  ShoppingCart,
+  Trophy,
+  X,
+} from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { routes } from "@/lib/routes";
 
 const navigationItems = [
-  { href: routes.home, key: "home", external: false },
-  { href: routes.servers, key: "servers", external: false },
-  { href: "https://free-arena.ro", key: "forum", external: true },
-  { href: "https://discord.gg/freearena", key: "discord", external: true },
-  { href: "ts3server://ts.free-arena.ro", key: "ts3", external: true },
-  { href: routes.rankings, key: "rankings", external: false },
-  { href: routes.shop, key: "shop", external: false },
-  { href: routes.about, key: "about", external: false },
+  { href: routes.home, key: "home", external: false, Icon: Home },
+  { href: routes.servers, key: "servers", external: false, Icon: ServerIcon },
+  { href: "https://free-arena.ro", key: "forum", external: true, Icon: MessageCircle },
+  { href: "https://discord.gg/freearena", key: "discord", external: true, Icon: MessageCircle },
+  { href: "ts3server://ts.free-arena.ro", key: "ts3", external: true, Icon: Headphones },
+  { href: routes.rankings, key: "rankings", external: false, Icon: Trophy },
+  { href: routes.shop, key: "shop", external: false, Icon: ShoppingCart },
+  { href: routes.about, key: "about", external: false, Icon: Info },
 ] as const;
+
+type HeaderLiveServer = {
+  players?: number;
+  status?: string;
+};
+
+function isHeaderLivePayload(value: unknown): value is { servers: HeaderLiveServer[] } {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    Array.isArray((value as { servers?: unknown }).servers)
+  );
+}
 
 export function SiteHeader() {
   const t = useTranslations("Navigation");
+  const locale = useLocale();
   const pathname = usePathname();
   const [hash, setHash] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [livePlayers, setLivePlayers] = useState<number | null>(null);
 
   useEffect(() => {
     const updateHash = () => setHash(window.location.hash);
@@ -37,6 +64,50 @@ export function SiteHeader() {
   useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname, hash]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadHeaderStatus() {
+      try {
+        const response = await fetch("/api/servers", { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error("Header live status failed");
+        }
+
+        const payload: unknown = await response.json();
+        if (!isHeaderLivePayload(payload)) {
+          throw new Error("Unexpected header live payload");
+        }
+
+        const players = payload.servers.reduce((total, server) => (
+          server.status === "online" && typeof server.players === "number"
+            ? total + server.players
+            : total
+        ), 0);
+
+        if (!cancelled) {
+          setLivePlayers(players);
+        }
+      } catch {
+        if (!cancelled) {
+          setLivePlayers(null);
+        }
+      }
+    }
+
+    void loadHeaderStatus();
+    const interval = window.setInterval(() => void loadHeaderStatus(), 30_000);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(interval);
+    };
+  }, []);
+
+  const formattedLivePlayers = livePlayers === null
+    ? null
+    : new Intl.NumberFormat(locale === "ro" ? "ro-RO" : "en-US").format(livePlayers);
 
   function isActive(href: string) {
     if (href === routes.home) {
@@ -53,32 +124,33 @@ export function SiteHeader() {
   return (
     <header className="neon-header header-hud sticky top-0 z-50">
       <div className="header-hud__bottom-glow" aria-hidden="true" />
-      <div className="mx-auto flex min-h-[4.75rem] w-full max-w-7xl items-center gap-2 px-3 py-3 sm:gap-3 sm:px-6 lg:px-8">
-        <Link href="/" className="header-brand group flex min-w-0 shrink-0 items-center gap-2.5 sm:gap-3" aria-label="FREE-ARENA">
-          <span className="neon-brand-mark header-brand__mark grid size-11 shrink-0 place-items-center sm:size-12">
+      <div className="mx-auto flex min-h-[5.65rem] w-full max-w-[94rem] items-center gap-2 px-3 py-3 sm:gap-3 sm:px-6 lg:px-8">
+        <Link href="/" className="header-brand group flex min-w-0 shrink-0 items-center gap-3 sm:gap-4" aria-label="FREE-ARENA">
+          <span className="neon-brand-mark header-brand__mark grid size-[3.25rem] shrink-0 place-items-center sm:size-14">
+            <span className="header-brand__energy" aria-hidden="true" />
             <Image
               src="/assets/game-icons/CS.png"
               alt=""
-              width={36}
-              height={36}
-              className="size-8 object-contain sm:size-9"
+              width={44}
+              height={44}
+              className="relative z-10 size-10 object-contain sm:size-11"
               priority
             />
           </span>
           <span className="header-brand__copy min-w-0">
-            <span className="header-brand__title block whitespace-nowrap font-display text-lg font-black uppercase leading-none tracking-[0.04em] text-white group-hover:text-cyan-200 sm:text-xl">
+            <span className="header-brand__title block whitespace-nowrap font-display text-xl font-black uppercase leading-none tracking-[0.04em] text-white group-hover:text-cyan-200 sm:text-2xl">
               FREE-ARENA
             </span>
-            <span className="header-brand__subtitle mt-1 hidden whitespace-nowrap text-[0.62rem] font-black uppercase tracking-[0.28em] text-fuchsia-300 sm:block">
+            <span className="header-brand__subtitle mt-1.5 hidden whitespace-nowrap text-[0.64rem] font-black uppercase tracking-[0.34em] text-fuchsia-300 sm:block">
               {t("brandSubtitle")}
             </span>
           </span>
         </Link>
 
-        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-1 xl:flex" aria-label={t("aria.main")}>
+        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-2 xl:flex" aria-label={t("aria.main")}>
           {navigationItems.map((item) => {
             const active = !item.external && isActive(item.href);
-            const className = `neon-nav-link header-nav-link whitespace-nowrap px-3 py-2 text-[0.7rem] font-black uppercase tracking-[0.13em] transition ${
+            const className = `neon-nav-link header-nav-link inline-flex min-h-12 items-center gap-2 whitespace-nowrap px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] transition ${
               active ? "neon-nav-link--active text-white" : "text-white/68"
             }`;
 
@@ -90,10 +162,12 @@ export function SiteHeader() {
                 rel={item.href.startsWith("http") ? "noreferrer" : undefined}
                 className={className}
               >
+                <item.Icon size={15} className="header-nav-link__icon" aria-hidden="true" />
                 {t(`items.${item.key}`)}
               </a>
             ) : (
               <Link key={item.key} href={item.href} className={className} aria-current={active ? "page" : undefined}>
+                <item.Icon size={15} className="header-nav-link__icon" aria-hidden="true" />
                 {t(`items.${item.key}`)}
               </Link>
             );
@@ -102,14 +176,15 @@ export function SiteHeader() {
 
         <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
           <LanguageSwitcher />
-          <span className="header-live-pill hidden items-center gap-2 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] md:inline-flex">
+          <span className="header-live-pill hidden min-h-12 items-center gap-2 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] md:inline-flex">
             <span className="header-live-pulse" aria-hidden="true" />
             <RadioTower size={15} aria-hidden="true" />
-            {t("live")}
+            <span>{t("live")}</span>
+            {formattedLivePlayers ? <strong>{formattedLivePlayers}</strong> : null}
           </span>
           <Link
             href={routes.servers}
-            className="header-play-button inline-flex size-10 items-center justify-center gap-2 p-0 text-xs font-black uppercase tracking-[0.12em] transition max-[359px]:hidden sm:size-auto sm:px-4 sm:py-2"
+            className="header-play-button inline-flex size-11 items-center justify-center gap-2 p-0 text-xs font-black uppercase tracking-[0.12em] transition max-[359px]:hidden sm:h-12 sm:w-auto sm:px-5 sm:py-2"
             aria-label={t("playNow")}
           >
             <Crosshair size={16} aria-hidden="true" />
@@ -138,7 +213,7 @@ export function SiteHeader() {
             const isExternal = item.href.startsWith("http");
             const isTs = item.href.startsWith("ts3server");
             const active = !item.external && isActive(item.href);
-            const className = `neon-nav-link header-mobile-link px-3 py-3 text-xs font-black uppercase tracking-[0.12em] transition ${
+            const className = `neon-nav-link header-mobile-link inline-flex items-center gap-3 px-3 py-3 text-xs font-black uppercase tracking-[0.12em] transition ${
               active ? "neon-nav-link--active text-white" : "text-white/72"
             }`;
 
@@ -150,10 +225,12 @@ export function SiteHeader() {
                 rel={isExternal ? "noreferrer" : undefined}
                 className={className}
               >
+                <item.Icon size={16} className="header-nav-link__icon" aria-hidden="true" />
                 {t(`items.${item.key}`)}
               </a>
             ) : (
               <Link key={item.key} href={item.href} className={className} aria-current={active ? "page" : undefined}>
+                <item.Icon size={16} className="header-nav-link__icon" aria-hidden="true" />
                 {t(`items.${item.key}`)}
               </Link>
             );
@@ -163,6 +240,7 @@ export function SiteHeader() {
               <span className="header-live-pulse" aria-hidden="true" />
               <RadioTower size={15} aria-hidden="true" />
               {t("live")}
+              {formattedLivePlayers ? <strong>{formattedLivePlayers}</strong> : null}
             </span>
             <Link
               href={routes.servers}
