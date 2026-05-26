@@ -61,13 +61,13 @@ export function WarzoneStatus() {
   }, [payload]);
 
   return (
-    <aside className="cyber-panel hud-frame hud-red scan-sweep p-5 sm:p-6" aria-busy={isLoading}>
+    <aside className="neon-panel hud-frame scan-sweep p-5 sm:p-6" aria-busy={isLoading}>
       <div className="relative z-10">
         <div className="flex items-center justify-between gap-3">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-cyber-red">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-fuchsia-300">
             {t("eyebrow")}
           </p>
-          <span className="inline-flex items-center gap-2 border border-cyber-cyan/28 bg-cyber-cyan/10 px-3 py-1.5 text-xs font-black uppercase tracking-[0.16em] text-cyber-cyan">
+          <span className="inline-flex items-center gap-2 border border-cyan-300/28 bg-cyan-300/10 px-3 py-1.5 text-xs font-black uppercase tracking-[0.16em] text-cyan-200">
             <RadioTower size={14} aria-hidden="true" />
             {isLoading ? t("loading") : t("sync")}
           </span>
@@ -77,9 +77,9 @@ export function WarzoneStatus() {
         </h2>
 
         <dl className="mt-6 grid gap-3">
-          <StatusRow Icon={UsersRound} label={t("playersOnline")} value={isLoading ? "--" : String(stats.playersOnline)} tone="text-cyber-cyan" />
-          <StatusRow Icon={Activity} label={t("serversOnline")} value={isLoading ? "--" : stats.serversOnline} tone="text-cyber-red" />
-          <StatusRow Icon={Gauge} label={t("uptime")} value={stats.uptime} tone="text-cyber-amber" />
+          <StatusRow Icon={UsersRound} label={t("playersOnline")} value={isLoading ? "--" : String(stats.playersOnline)} tone="text-cyan-200" />
+          <StatusRow Icon={Activity} label={t("serversOnline")} value={isLoading ? "--" : stats.serversOnline} tone="text-fuchsia-300" />
+          <StatusRow Icon={Gauge} label={t("uptime")} value={stats.uptime} tone="text-blue-300" />
         </dl>
       </div>
     </aside>

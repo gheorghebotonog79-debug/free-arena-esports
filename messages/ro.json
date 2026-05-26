@@ -405,6 +405,12 @@
       "liveFallback": {
         "copy": "Turneu publicat din dashboard-ul FREE-ARENA.RO."
       }
+    },
+    "bracket": {
+      "teamA": "Echipa A",
+      "teamB": "Echipa B",
+      "preview": "Preview bracket",
+      "next": "Următorul turneu"
     }
   },
   "News": {
@@ -663,11 +669,13 @@
     "hero": {
       "eyebrow": "Arena este deschisă",
       "kicker": "Play.Free-Arena.ro",
-      "title": "FREE-ARENA.RO",
-      "subtitle": "ENTER THE WARZONE",
-      "copy": "Servere live, clasamente RSU, Discord, TeamSpeak și forum într-un portal cybernetic pentru comunitatea FREE-ARENA.",
-      "play": "Joacă acum",
+      "title": "FREE-ARENA",
+      "subtitle": "INTRI SAU MORI",
+      "copy": "Alege arma. Intră în arenă. Domină serverele.",
+      "play": "Intră pe server",
       "servers": "Vezi serverele",
+      "discord": "Discord",
+      "topPlayers": "Top jucători",
       "signals": {
         "cs16": "CS 1.6",
         "cs2": "CS2",

@@ -1,6 +1,7 @@
 @import "../styles/cyber-theme.css";
 @import "../styles/animations.css";
 @import "../styles/hud.css";
+@import "../styles/neon-system.css";
 
 @tailwind base;
 @tailwind components;

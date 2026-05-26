@@ -20,11 +20,11 @@ export function SiteHeader() {
   const t = useTranslations("Navigation");
 
   return (
-    <header className="sticky top-0 z-50 border-b border-cyber-red/35 bg-black/82 shadow-[0_20px_80px_rgba(0,0,0,0.58)] backdrop-blur-2xl">
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyber-red to-cyber-cyan opacity-80" aria-hidden="true" />
+    <header className="neon-header sticky top-0 z-50">
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-300 to-fuchsia-400 opacity-80" aria-hidden="true" />
       <div className="mx-auto flex min-h-20 w-full max-w-7xl items-center justify-start gap-3 px-4 py-3 sm:justify-between sm:px-6 lg:px-8">
         <Link href="/" className="group flex min-w-0 items-center gap-3">
-          <span className="cyber-panel grid size-12 shrink-0 place-items-center border-cyber-red/40 bg-black/70 shadow-[0_0_34px_rgba(255,42,31,0.22)]">
+          <span className="neon-brand-mark grid size-12 shrink-0 place-items-center">
             <Image
               src="/assets/game-icons/CS.png"
               alt=""
@@ -35,10 +35,10 @@ export function SiteHeader() {
             />
           </span>
           <span className="min-w-0">
-            <span className="block truncate font-display text-xl font-black uppercase leading-none tracking-[0.04em] text-white group-hover:text-cyber-cyan">
+            <span className="block truncate font-display text-xl font-black uppercase leading-none tracking-[0.04em] text-white group-hover:text-cyan-200">
               FREE-ARENA.RO
             </span>
-            <span className="mt-1 hidden text-xs font-black uppercase tracking-[0.32em] text-cyber-red sm:block">
+            <span className="mt-1 hidden text-xs font-black uppercase tracking-[0.32em] text-fuchsia-300 sm:block">
               {t("brandSubtitle")}
             </span>
           </span>
@@ -46,7 +46,7 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-1 2xl:flex" aria-label={t("aria.main")}>
           {navigationItems.map((item) => {
-            const className = "nav-link rounded-none px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-white/70 transition hover:bg-white/[0.06] hover:text-white";
+            const className = "neon-nav-link px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-white/70 transition";
 
             return item.external ? (
               <a
@@ -68,13 +68,13 @@ export function SiteHeader() {
 
         <div className="ml-1 flex shrink-0 items-center gap-2 sm:ml-0">
           <LanguageSwitcher />
-          <span className="hidden items-center gap-2 rounded-none border border-cyber-cyan/30 bg-cyber-cyan/10 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyber-cyan shadow-[0_0_30px_rgba(0,230,255,0.12)] md:inline-flex">
+          <span className="hidden items-center gap-2 border border-cyan-300/30 bg-cyan-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyan-200 shadow-[0_0_30px_rgba(0,229,255,0.12)] md:inline-flex">
             <RadioTower size={15} aria-hidden="true" />
             {t("live")}
           </span>
           <Link
             href={routes.servers}
-            className="cyber-red-button pulse-red hidden size-10 items-center justify-center gap-2 p-0 text-xs font-black uppercase tracking-[0.14em] transition hover:scale-[1.02] min-[430px]:inline-flex sm:size-auto sm:px-4 sm:py-2"
+            className="neon-button hidden size-10 items-center justify-center gap-2 p-0 text-xs font-black uppercase tracking-[0.14em] transition min-[430px]:inline-flex sm:size-auto sm:px-4 sm:py-2"
             aria-label={t("playNow")}
           >
             <Crosshair size={16} aria-hidden="true" />
@@ -83,11 +83,11 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <nav className="mx-auto flex w-full max-w-7xl gap-1 overflow-x-auto px-4 pb-3 sm:px-6 2xl:hidden" aria-label={t("aria.main")}>
+      <nav className="neon-mobile-nav mx-auto flex w-full max-w-7xl gap-1 overflow-x-auto px-4 pb-3 sm:px-6 2xl:hidden" aria-label={t("aria.main")}>
         {navigationItems.map((item) => {
           const isExternal = item.href.startsWith("http");
           const isTs = item.href.startsWith("ts3server");
-          const className = "hud-chip shrink-0 px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/68 transition hover:border-cyber-red/60 hover:text-white";
+          const className = "neon-nav-link shrink-0 border border-white/10 bg-white/[0.035] px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/68 transition";
 
           return item.external || isTs ? (
             <a

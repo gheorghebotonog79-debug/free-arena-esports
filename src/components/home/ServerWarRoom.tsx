@@ -108,14 +108,14 @@ export function ServerWarRoom() {
     : "--";
 
   return (
-    <section id="servers" className="cyber-section scroll-mt-32 border-b border-cyber-red/22 bg-[#050607] px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+    <section id="servers" className="neon-section scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
       <div className="mx-auto w-full max-w-7xl">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
-            <p className="hud-chip inline-flex px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-cyber-red">
+            <p className="neon-kicker px-4 py-2 text-xs font-black uppercase tracking-[0.22em]">
               {t("eyebrow")}
             </p>
-            <h2 className="cyber-title mt-4 font-display text-[clamp(2.7rem,7vw,6.2rem)] font-black uppercase leading-[0.86] text-white">
+            <h2 className="neon-heading mt-4 font-display text-[clamp(2.7rem,7vw,6.2rem)] font-black uppercase leading-[0.86] text-white">
               {t("title")}
             </h2>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-white/62">
@@ -123,16 +123,16 @@ export function ServerWarRoom() {
             </p>
           </div>
 
-          <div className="cyber-panel flex flex-col gap-3 p-3 sm:flex-row sm:items-center">
+          <div className="neon-panel flex flex-col gap-3 p-3 sm:flex-row sm:items-center">
             <div className="flex items-center gap-2 px-2 text-xs font-black uppercase tracking-[0.14em] text-white/54">
-              <Clock3 size={16} className="text-cyber-cyan" aria-hidden="true" />
+              <Clock3 size={16} className="text-cyan-200" aria-hidden="true" />
               {t("updated")}: {formattedLastUpdatedAt}
             </div>
             <button
               type="button"
               onClick={() => void loadServers()}
               disabled={isLoading || isRefreshing}
-              className="cyber-outline-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.14em] transition disabled:cursor-not-allowed disabled:opacity-50"
+              className="neon-button-secondary inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.14em] transition disabled:cursor-not-allowed disabled:opacity-50"
             >
               <RefreshCw size={16} className={isLoading || isRefreshing ? "animate-spin" : ""} aria-hidden="true" />
               {isLoading || isRefreshing ? t("refreshing") : t("refresh")}
@@ -140,7 +140,7 @@ export function ServerWarRoom() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="server-card-grid mt-10">
           {publicServers.map((server) => {
             const live = serverStatuses[server.key];
             const isPending = server.pending === true;

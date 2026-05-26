@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { AlertTriangle, Crosshair, Search, Skull, UsersRound } from "lucide-react";
+import { AlertTriangle, Crown, Crosshair, Search, Skull, UsersRound } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import {
@@ -51,12 +51,12 @@ export function TopPlayersSection() {
 
       const payload: unknown = await response.json();
 
-      if (!isProgressResponse(payload) || !payload.ok) {
+      if (!isProgressResponse(payload)) {
         throw new Error("Unexpected player progress payload");
       }
 
       setProgress(payload);
-      setHasError(false);
+      setHasError(!payload.ok);
     } catch {
       setHasError(true);
     } finally {
@@ -123,27 +123,29 @@ export function TopPlayersSection() {
 
   const summary = progress?.summary;
   const players = progress?.players ?? [];
+  const podiumPlayers = players.slice(0, 3);
+  const tablePlayers = players.slice(3, 10);
   const searchActive = query.trim().length >= 2;
   const shownSearchResults = searchActive ? results : [];
 
   return (
-    <section id="top-players" className="cyber-section scroll-mt-32 border-b border-white/10 bg-[#050509] px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+    <section id="top-players" className="neon-section scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem]">
           <div>
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <p className="hud-chip inline-flex border-cyber-cyan/28 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-cyber-cyan">
-                  {t("heading.eyebrow")}
+                <p className="neon-kicker px-4 py-2 text-xs font-black uppercase tracking-[0.22em]">
+                  HALL OF FAME
                 </p>
-                <h2 className="mt-5 max-w-4xl font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[0.84] text-white">
+                <h2 className="neon-heading mt-5 max-w-4xl font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[0.84] text-white">
                   {t("heading.title")}
                 </h2>
                 <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-white/62">
                   {t("heading.copy")}
                 </p>
               </div>
-              <span className="live-badge inline-flex w-fit items-center gap-2 border border-cyber-cyan/24 bg-cyber-cyan/10 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyber-cyan">
+              <span className="live-badge inline-flex w-fit items-center gap-2 border border-cyan-300/24 bg-cyan-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyan-200">
                 <span className="signal-bars" aria-hidden="true">
                   <span />
                   <span />
@@ -160,32 +162,53 @@ export function TopPlayersSection() {
             </dl>
 
             {hasError ? (
-              <div className="mt-5 flex gap-3 border border-cyber-amber/28 bg-cyber-amber/10 p-4 text-sm font-semibold text-white/70">
-                <AlertTriangle size={19} className="shrink-0 text-cyber-amber" aria-hidden="true" />
+              <div className="mt-5 flex gap-3 border border-amber-300/28 bg-amber-300/10 p-4 text-sm font-semibold text-white/70">
+                <AlertTriangle size={19} className="shrink-0 text-amber-200" aria-hidden="true" />
                 <span>{t("states.error")}</span>
               </div>
             ) : null}
 
-            <div className="mt-8 grid gap-2">
+            <div className="mt-8">
               {isLoading ? (
                 <LeaderboardSkeleton />
               ) : players.length > 0 ? (
-                players.map((player, index) => (
-                  <PlayerRow key={player.player} player={player} rank={index + 1} />
-                ))
+                <>
+                  <div className="grid gap-4 md:grid-cols-3 md:items-end">
+                    {podiumPlayers.map((player, index) => (
+                      <PodiumCard key={player.player} player={player} rank={index + 1} />
+                    ))}
+                  </div>
+                  <div className="mt-6 overflow-hidden border border-cyan-300/16 bg-black/20">
+                    <div className="hidden grid-cols-[4rem_1fr_repeat(4,6.2rem)] gap-3 border-b border-cyan-300/12 bg-cyan-300/[0.035] px-4 py-3 text-[0.68rem] font-black uppercase tracking-[0.16em] text-slate-400 lg:grid">
+                      <span>#</span>
+                      <span>Player</span>
+                      <span>XP</span>
+                      <span>Kills</span>
+                      <span>HS</span>
+                      <span>Time</span>
+                    </div>
+                    <div className="grid gap-2 p-2">
+                      {tablePlayers.length > 0 ? tablePlayers.map((player, index) => (
+                        <PlayerRow key={player.player} player={player} rank={index + 4} />
+                      )) : (
+                        <p className="p-4 text-sm font-bold text-white/58">{t("states.empty")}</p>
+                      )}
+                    </div>
+                  </div>
+                </>
               ) : (
                 <p className="border border-white/10 bg-black/30 p-4 text-sm font-bold text-white/58">{t("states.empty")}</p>
               )}
             </div>
           </div>
 
-          <aside className="cyber-panel h-fit p-5">
+          <aside className="neon-panel h-fit p-5">
             <div className="relative z-10">
-              <label className="text-xs font-black uppercase tracking-[0.2em] text-cyber-red" htmlFor="player-search">
+              <label className="text-xs font-black uppercase tracking-[0.2em] text-fuchsia-300" htmlFor="player-search">
                 {t("search.label")}
               </label>
-              <div className="mt-3 flex items-center gap-2 border border-white/12 bg-black/42 px-3 py-2 focus-within:border-cyber-cyan/70">
-                <Search size={18} className="shrink-0 text-cyber-cyan" aria-hidden="true" />
+              <div className="mt-3 flex items-center gap-2 border border-white/12 bg-black/42 px-3 py-2 focus-within:border-cyan-300/70">
+                <Search size={18} className="shrink-0 text-cyan-200" aria-hidden="true" />
                 <input
                   id="player-search"
                   type="search"
@@ -200,9 +223,9 @@ export function TopPlayersSection() {
                 {!searchActive ? (
                   <p className="border border-white/10 bg-black/28 p-3 text-sm font-semibold text-white/50">{t("search.min")}</p>
                 ) : isSearching ? (
-                  <p className="border border-cyber-cyan/24 bg-cyber-cyan/10 p-3 text-sm font-bold text-cyber-cyan">{t("search.loading")}</p>
+                  <p className="border border-cyan-300/24 bg-cyan-300/10 p-3 text-sm font-bold text-cyan-200">{t("search.loading")}</p>
                 ) : searchError ? (
-                  <p className="border border-cyber-red/24 bg-cyber-red/10 p-3 text-sm font-bold text-white/60">{t("search.error")}</p>
+                  <p className="border border-fuchsia-300/24 bg-fuchsia-300/10 p-3 text-sm font-bold text-white/60">{t("search.error")}</p>
                 ) : shownSearchResults.length > 0 ? (
                   shownSearchResults.map((player) => <CompactPlayer key={player.player} player={player} />)
                 ) : (
@@ -219,9 +242,9 @@ export function TopPlayersSection() {
 
 function TopStat({ Icon, label, value }: { Icon: LucideIcon; label: string; value: string }) {
   return (
-    <div className="cyber-panel p-4">
+    <div className="neon-card p-4">
       <dt className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-white/42">
-        <Icon size={17} className="text-cyber-cyan" aria-hidden="true" />
+        <Icon size={17} className="text-cyan-200" aria-hidden="true" />
         {label}
       </dt>
       <dd className="mt-3 font-display text-3xl font-black text-white">{value}</dd>
@@ -229,19 +252,51 @@ function TopStat({ Icon, label, value }: { Icon: LucideIcon; label: string; valu
   );
 }
 
+function PodiumCard({ player, rank }: { player: PlayerProgressPlayer; rank: number }) {
+  const isChampion = rank === 1;
+
+  return (
+    <article className="neon-card hof-podium-card p-5" data-rank={rank}>
+      <div className="relative z-10 flex h-full flex-col">
+        <div className="flex items-start justify-between gap-3">
+          <div className="grid size-14 place-items-center border border-cyan-300/24 bg-cyan-300/10 font-display text-2xl font-black text-white">
+            {rank}
+          </div>
+          {isChampion ? (
+            <Crown size={34} className="text-amber-200 drop-shadow-[0_0_18px_rgba(255,209,102,0.65)]" aria-hidden="true" />
+          ) : (
+            <span className="text-xs font-black uppercase tracking-[0.18em] text-cyan-200">Top {rank}</span>
+          )}
+        </div>
+        <h3 className="mt-6 truncate font-display text-3xl font-black uppercase leading-none text-white">
+          {player.nick}
+        </h3>
+        <p className="mt-2 truncate font-mono text-xs text-white/38">{player.player}</p>
+        <dl className="mt-auto grid grid-cols-2 gap-2 pt-6">
+          <SmallMetric label="XP" value={formatCompactNumber(player.xp)} />
+          <SmallMetric label="Kills" value={formatCompactNumber(player.kills)} />
+          <SmallMetric label="HS" value={formatCompactNumber(player.headshots)} />
+          <SmallMetric label="Time" value={formatPlayedTime(player.playedTime)} />
+        </dl>
+      </div>
+    </article>
+  );
+}
+
 function PlayerRow({ player, rank }: { player: PlayerProgressPlayer; rank: number }) {
   return (
-    <article className="grid gap-3 border border-white/10 bg-[#0b0f16]/76 p-3 transition hover:border-cyber-cyan/38 hover:bg-cyber-cyan/5 sm:grid-cols-[auto_1fr_auto] sm:items-center">
-      <div className="grid size-11 place-items-center border border-cyber-red/28 bg-cyber-red/10 font-display text-lg font-black text-cyber-red">
+    <article className="neon-table-row grid gap-3 p-3 transition hover:border-cyan-300/38 hover:bg-cyan-300/5 lg:grid-cols-[4rem_1fr_repeat(4,6.2rem)] lg:items-center">
+      <div className="grid size-11 place-items-center border border-fuchsia-300/28 bg-fuchsia-300/10 font-display text-lg font-black text-fuchsia-200">
         {rank}
       </div>
       <div className="min-w-0">
         <h3 className="truncate font-display text-xl font-black text-white">{player.nick}</h3>
         <p className="mt-1 truncate font-mono text-xs text-white/36">{player.player}</p>
       </div>
-      <dl className="grid grid-cols-3 gap-2 sm:w-80">
+      <dl className="contents">
         <SmallMetric label="XP" value={formatCompactNumber(player.xp)} />
-        <SmallMetric label="K/D" value={player.kdRatio.toFixed(2)} />
+        <SmallMetric label="Kills" value={formatCompactNumber(player.kills)} />
+        <SmallMetric label="HS" value={formatCompactNumber(player.headshots)} />
         <SmallMetric label="Time" value={formatPlayedTime(player.playedTime)} />
       </dl>
     </article>
@@ -255,7 +310,7 @@ function CompactPlayer({ player }: { player: PlayerProgressPlayer }) {
         <h3 className="truncate text-sm font-black text-white">{player.nick}</h3>
         <p className="mt-1 truncate font-mono text-xs text-white/34">{player.player}</p>
       </div>
-      <span className="shrink-0 font-display text-lg font-black text-cyber-cyan">{formatCompactNumber(player.xp)}</span>
+      <span className="shrink-0 font-display text-lg font-black text-cyan-200">{formatCompactNumber(player.xp)}</span>
     </article>
   );
 }

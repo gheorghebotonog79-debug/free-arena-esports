@@ -1,5 +1,8 @@
+import type { ReactNode } from "react";
 import { DatabaseBackup, Gauge, Headset, ShieldCheck, Star } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { routes } from "@/lib/routes";
 
 const footerStatus = [
   { key: "antiCheat", Icon: ShieldCheck },
@@ -13,25 +16,51 @@ export function SiteFooter() {
   const t = useTranslations("Footer");
 
   return (
-    <footer className="cyber-section border-t border-cyber-red/35 bg-black px-4 py-8 sm:px-6 lg:px-8">
+    <footer className="neon-section border-t border-cyan-300/20 px-4 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="cyber-panel hud-frame grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="neon-panel hud-frame grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-5">
           {footerStatus.map(({ key, Icon }) => (
-            <div key={key} className="flex items-center gap-3 rounded-lg border border-white/10 bg-black/32 p-3">
-              <Icon size={19} className="shrink-0 text-cyber-red" aria-hidden="true" />
+            <div key={key} className="flex items-center gap-3 border border-white/10 bg-black/32 p-3">
+              <Icon size={19} className="shrink-0 text-cyan-200" aria-hidden="true" />
               <span className="text-xs font-black uppercase tracking-[0.14em] text-white/72">
                 {t(`status.${key}`)}
               </span>
             </div>
           ))}
         </div>
-        <div className="mt-5 flex flex-col gap-2 border-t border-white/10 pt-5 md:flex-row md:items-center md:justify-between">
-          <p className="font-display text-2xl font-black uppercase tracking-[0.08em] text-white">
-            FREE-<span className="text-cyber-red">ARENA</span>.RO
-          </p>
-          <p className="max-w-2xl text-sm leading-6 text-white/54">{t("copy")}</p>
+        <div className="mt-6 grid gap-6 border-t border-cyan-300/14 pt-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+          <div>
+            <p className="neon-heading font-display text-3xl font-black uppercase tracking-[0.06em] text-white">
+              FREE-<span className="text-cyan-200">ARENA</span>.RO
+            </p>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-white/54">{t("copy")}</p>
+          </div>
+          <FooterColumn title="Server IP">
+            <span>cs.free-arena.ro:27015</span>
+            <span>respawn.free-arena.ro:27015</span>
+            <span>cs2.free-arena.ro:27015</span>
+          </FooterColumn>
+          <FooterColumn title="Links">
+            <Link href={routes.servers}>{t("links.servers")}</Link>
+            <Link href={routes.community}>{t("links.community")}</Link>
+            <Link href={routes.terms}>{t("links.terms")}</Link>
+          </FooterColumn>
+          <FooterColumn title="Social">
+            <a href="https://discord.gg/freearena" target="_blank" rel="noreferrer">Discord</a>
+            <a href="ts3server://ts.free-arena.ro">TeamSpeak</a>
+            <a href="https://free-arena.ro" target="_blank" rel="noreferrer">Forum</a>
+          </FooterColumn>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({ children, title }: { children: ReactNode; title: string }) {
+  return (
+    <div className="grid gap-2 text-sm font-semibold text-white/56">
+      <p className="mb-1 text-xs font-black uppercase tracking-[0.18em] text-cyan-200">{title}</p>
+      {children}
+    </div>
   );
 }

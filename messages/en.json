@@ -405,6 +405,12 @@
       "liveFallback": {
         "copy": "Tournament published from the FREE-ARENA.RO dashboard."
       }
+    },
+    "bracket": {
+      "teamA": "Team A",
+      "teamB": "Team B",
+      "preview": "Bracket preview",
+      "next": "Next Tournament"
     }
   },
   "News": {
@@ -663,11 +669,13 @@
     "hero": {
       "eyebrow": "The arena is open",
       "kicker": "Play.Free-Arena.ro",
-      "title": "FREE-ARENA.RO",
-      "subtitle": "ENTER THE WARZONE",
-      "copy": "Live servers, RSU rankings, Discord, TeamSpeak, and forum access inside one cybernetic command portal for FREE-ARENA.",
-      "play": "Play now",
+      "title": "FREE-ARENA",
+      "subtitle": "ENTER OR DIE",
+      "copy": "Choose your weapon. Enter the arena. Dominate the servers.",
+      "play": "Join server",
       "servers": "View servers",
+      "discord": "Discord",
+      "topPlayers": "Top players",
       "signals": {
         "cs16": "CS 1.6",
         "cs2": "CS2",
