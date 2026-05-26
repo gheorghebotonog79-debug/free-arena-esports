@@ -7,8 +7,8 @@ import {
 } from "@/lib/live-server-targets";
 import { publicServers, type PublicServerConfig } from "@/lib/servers";
 
-const QUERY_TIMEOUT_MS = 2_400;
-const ATTEMPT_TIMEOUT_MS = 4_200;
+const QUERY_TIMEOUT_MS = 5_000;
+const ATTEMPT_TIMEOUT_MS = 8_000;
 
 function buildAddress(target: LiveServerTarget) {
   return target.address;
@@ -16,6 +16,10 @@ function buildAddress(target: LiveServerTarget) {
 
 function normalizeNumber(value: unknown, fallback: number) {
   return typeof value === "number" && Number.isFinite(value) ? Math.max(0, Math.round(value)) : fallback;
+}
+
+function queryHosts(target: LiveServerTarget) {
+  return Array.from(new Set([target.queryHost, target.host].filter(Boolean))) as string[];
 }
 
 function baseStatus(target: PublicServerConfig, checkedAt: string) {
@@ -68,35 +72,39 @@ function pendingStatus(target: PublicServerConfig, checkedAt: string): LiveServe
 async function queryServer(target: LiveServerTarget): Promise<LiveServerStatus> {
   const checkedAt = new Date().toISOString();
 
-  try {
-    const state = await GameDig.query({
-      type: target.gameType,
-      host: target.queryHost ?? target.host,
-      port: target.port,
-      givenPortOnly: true,
-      requestPlayers: false,
-      maxRetries: 0,
-      socketTimeout: QUERY_TIMEOUT_MS,
-      attemptTimeout: ATTEMPT_TIMEOUT_MS,
-      ipFamily: 4,
-    });
+  for (const host of queryHosts(target)) {
+    try {
+      const state = await GameDig.query({
+        type: target.gameType,
+        host,
+        port: target.port,
+        givenPortOnly: true,
+        requestPlayers: false,
+        maxRetries: 1,
+        socketTimeout: QUERY_TIMEOUT_MS,
+        attemptTimeout: ATTEMPT_TIMEOUT_MS,
+        ipFamily: 4,
+      });
 
-    const address = buildAddress(target);
+      const address = buildAddress(target);
 
-    return {
-      ...baseStatus(target, checkedAt),
-      status: "online",
-      online: true,
-      serverName: state.name?.trim() || target.fallbackName,
-      map: state.map?.trim() || "--",
-      players: normalizeNumber(state.numplayers, 0),
-      maxPlayers: normalizeNumber(state.maxplayers, target.fallbackMaxPlayers),
-      ping: normalizeNumber(state.ping, 0),
-      connectUrl: `steam://connect/${address}`,
-    };
-  } catch {
-    return offlineStatus(target, checkedAt);
+      return {
+        ...baseStatus(target, checkedAt),
+        status: "online",
+        online: true,
+        serverName: state.name?.trim() || target.fallbackName,
+        map: state.map?.trim() || "--",
+        players: normalizeNumber(state.numplayers, 0),
+        maxPlayers: normalizeNumber(state.maxplayers, target.fallbackMaxPlayers),
+        ping: normalizeNumber(state.ping, 0),
+        connectUrl: `steam://connect/${address}`,
+      };
+    } catch {
+      // Try the next host form, e.g. direct IP first and public DNS as fallback.
+    }
   }
+
+  return offlineStatus(target, checkedAt);
 }
 
 export async function queryLiveServers(): Promise<LiveServersResponse> {
