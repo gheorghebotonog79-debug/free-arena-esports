@@ -712,6 +712,58 @@
     rgba(0, 0, 0, 0.42);
 }
 
+.leaderboard-player-card,
+.leaderboard-search-card,
+.leaderboard-stat-card {
+  --card-accent: #00e6ff;
+  --card-accent-2: #ff174f;
+  --card-glow-rgb: 0 230 255;
+  --card-bg:
+    linear-gradient(145deg, rgba(0, 230, 255, 0.12), transparent 30%),
+    radial-gradient(circle at 16% 0%, rgba(0, 230, 255, 0.2), transparent 34%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.034) 0 1px, transparent 1px 13px),
+    linear-gradient(180deg, rgba(7, 17, 28, 0.96), rgba(3, 6, 13, 0.99));
+}
+
+.leaderboard-stat-card.server-tactical-card {
+  min-height: 6.2rem;
+}
+
+.leaderboard-search-card.server-tactical-card {
+  min-height: 0;
+}
+
+.leaderboard-player-card.server-tactical-card {
+  min-height: 19.85rem;
+}
+
+.leaderboard-player-card.server-tactical-card:hover,
+.leaderboard-stat-card.server-tactical-card:hover {
+  transform: perspective(900px) translateY(-6px) scale(1.006);
+}
+
+.leaderboard-search-card.server-tactical-card:hover {
+  transform: none;
+}
+
+.leaderboard-player-card .server-card__icon {
+  color: #ffffff;
+  text-shadow:
+    0 0 16px rgb(var(--card-glow-rgb) / 0.4),
+    0 2px 0 rgba(0, 0, 0, 0.58);
+}
+
+.leaderboard-player-card .server-status-badge {
+  white-space: nowrap;
+}
+
+.leaderboard-player-card .server-player-core {
+  border-color: rgb(var(--card-glow-rgb) / 0.2);
+  background:
+    linear-gradient(135deg, rgb(var(--card-glow-rgb) / 0.08), transparent 42%),
+    rgba(0, 0, 0, 0.34);
+}
+
 .server-copy-button,
 .server-join-button,
 .server-disabled-button,

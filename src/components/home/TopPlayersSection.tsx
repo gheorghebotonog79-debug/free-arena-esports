@@ -168,13 +168,17 @@ export function TopPlayersSection() {
             ) : null}
           </div>
 
-          <aside className="neon-panel h-fit p-5">
+          <aside className="server-tactical-card leaderboard-search-card h-fit p-5" data-occupancy="low" data-status="online">
+            <div className="server-card__backdrop" aria-hidden="true" />
+            <div className="server-card__noise" aria-hidden="true" />
+            <div className="server-card__scanline" aria-hidden="true" />
+            <div className="server-card__shine" aria-hidden="true" />
             <div className="relative z-10">
-              <label className="text-xs font-black uppercase tracking-[0.2em] text-fuchsia-300" htmlFor="player-search">
+              <label className="server-card__region text-xs font-black uppercase tracking-[0.2em]" htmlFor="player-search">
                 {t("search.label")}
               </label>
-              <div className="mt-3 flex items-center gap-2 border border-white/12 bg-black/42 px-3 py-2 focus-within:border-cyan-300/70">
-                <Search size={18} className="shrink-0 text-cyan-200" aria-hidden="true" />
+              <div className="server-ip-row mt-3 flex items-center gap-2 px-3 py-2 focus-within:border-cyan-300/70">
+                <Search size={18} className="server-card__accent-icon shrink-0" aria-hidden="true" />
                 <input
                   id="player-search"
                   type="search"
@@ -187,15 +191,15 @@ export function TopPlayersSection() {
 
               <div className="mt-4 grid gap-2">
                 {!searchActive ? (
-                  <p className="border border-white/10 bg-black/28 p-3 text-sm font-semibold text-white/50">{t("search.min")}</p>
+                  <p className="server-metric p-3 text-sm font-semibold text-white/50">{t("search.min")}</p>
                 ) : isSearching ? (
-                  <p className="border border-cyan-300/24 bg-cyan-300/10 p-3 text-sm font-bold text-cyan-200">{t("search.loading")}</p>
+                  <p className="server-metric p-3 text-sm font-bold text-cyan-200">{t("search.loading")}</p>
                 ) : searchError ? (
-                  <p className="border border-fuchsia-300/24 bg-fuchsia-300/10 p-3 text-sm font-bold text-white/60">{t("search.error")}</p>
+                  <p className="server-metric p-3 text-sm font-bold text-white/60">{t("search.error")}</p>
                 ) : shownSearchResults.length > 0 ? (
                   shownSearchResults.map((player) => <CompactPlayer key={player.player} player={player} />)
                 ) : (
-                  <p className="border border-white/10 bg-black/28 p-3 text-sm font-semibold text-white/50">{t("search.empty")}</p>
+                  <p className="server-metric p-3 text-sm font-semibold text-white/50">{t("search.empty")}</p>
                 )}
               </div>
             </div>
@@ -222,12 +226,18 @@ export function TopPlayersSection() {
 
 function TopStat({ Icon, label, value }: { Icon: LucideIcon; label: string; value: string }) {
   return (
-    <div className="neon-card p-4">
-      <dt className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-white/42">
-        <Icon size={17} className="text-cyan-200" aria-hidden="true" />
-        {label}
-      </dt>
-      <dd className="mt-3 font-display text-3xl font-black text-white">{value}</dd>
+    <div className="server-tactical-card leaderboard-stat-card h-full p-4" data-occupancy="low" data-status="online">
+      <div className="server-card__backdrop" aria-hidden="true" />
+      <div className="server-card__noise" aria-hidden="true" />
+      <div className="server-card__scanline" aria-hidden="true" />
+      <div className="server-card__shine" aria-hidden="true" />
+      <div className="relative z-10">
+        <dt className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-white/46">
+          <Icon size={17} className="server-card__accent-icon" aria-hidden="true" />
+          {label}
+        </dt>
+        <dd className="server-card__title mt-3 font-display text-3xl font-black text-white">{value}</dd>
+      </div>
     </div>
   );
 }
@@ -236,23 +246,38 @@ function PodiumCard({ player, rank }: { player: PlayerProgressPlayer; rank: numb
   const isChampion = rank === 1;
 
   return (
-    <article className="neon-card hof-podium-card p-5" data-rank={rank}>
+    <article
+      className="server-tactical-card server-tactical-card--online leaderboard-player-card group flex h-full min-w-0 flex-col p-5"
+      data-occupancy="low"
+      data-rank={rank}
+      data-status="online"
+    >
+      <div className="server-card__backdrop" aria-hidden="true" />
+      <div className="server-card__noise" aria-hidden="true" />
+      <div className="server-card__scanline" aria-hidden="true" />
+      <div className="server-card__shine" aria-hidden="true" />
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
-          <div className="grid size-14 place-items-center border border-cyan-300/24 bg-cyan-300/10 font-display text-2xl font-black text-white">
+          <div className="server-card__icon grid size-14 place-items-center font-display text-2xl font-black text-white">
             {rank}
           </div>
           {isChampion ? (
-            <Crown size={34} className="text-amber-200 drop-shadow-[0_0_18px_rgba(255,209,102,0.65)]" aria-hidden="true" />
+            <span className="server-status-badge inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em]">
+              <Crown size={15} aria-hidden="true" />
+              Top 1
+            </span>
           ) : (
-            <span className="text-xs font-black uppercase tracking-[0.18em] text-cyan-200">Top {rank}</span>
+            <span className="server-status-badge inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em]">
+              <span className="server-status-badge__dot size-2 rounded-full" aria-hidden="true" />
+              Top {rank}
+            </span>
           )}
         </div>
-        <h3 className="mt-6 truncate font-display text-3xl font-black uppercase leading-none text-white">
+        <h3 className="server-card__title mt-6 truncate font-display text-3xl font-black uppercase leading-none text-white">
           {player.nick}
         </h3>
-        <p className="mt-2 truncate font-mono text-xs text-white/38">{player.player}</p>
-        <dl className="mt-auto grid grid-cols-2 gap-2 pt-6">
+        <p className="server-card__region mt-2 truncate font-mono text-xs">{player.player}</p>
+        <dl className="server-player-core mt-auto grid grid-cols-2 gap-2 p-3">
           <SmallMetric label="XP" value={formatCompactNumber(player.xp)} />
           <SmallMetric label="Kills" value={formatCompactNumber(player.kills)} />
           <SmallMetric label="HS" value={formatCompactNumber(player.headshots)} />
@@ -265,9 +290,9 @@ function PodiumCard({ player, rank }: { player: PlayerProgressPlayer; rank: numb
 
 function CompactPlayer({ player }: { player: PlayerProgressPlayer }) {
   return (
-    <article className="flex items-center justify-between gap-3 border border-white/10 bg-black/30 p-3">
+    <article className="server-metric flex items-center justify-between gap-3 p-3">
       <div className="min-w-0">
-        <h3 className="truncate text-sm font-black text-white">{player.nick}</h3>
+        <h3 className="server-card__title truncate text-sm font-black text-white">{player.nick}</h3>
         <p className="mt-1 truncate font-mono text-xs text-white/34">{player.player}</p>
       </div>
       <span className="shrink-0 font-display text-lg font-black text-cyan-200">{formatCompactNumber(player.xp)}</span>
@@ -277,7 +302,7 @@ function CompactPlayer({ player }: { player: PlayerProgressPlayer }) {
 
 function SmallMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-black/28 p-2">
+    <div className="server-metric min-w-0 p-2">
       <dt className="text-[0.64rem] font-black uppercase tracking-[0.12em] text-white/34">{label}</dt>
       <dd className="mt-1 text-sm font-black text-white">{value}</dd>
     </div>
@@ -288,7 +313,11 @@ function LeaderboardSkeleton() {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
       {Array.from({ length: 5 }).map((_, index) => (
-        <div key={index} className="h-[5.2rem] animate-pulse border border-white/8 bg-white/[0.035]" />
+        <div key={index} className="server-tactical-card leaderboard-player-card animate-pulse p-5" data-occupancy="low" data-status="loading">
+          <div className="server-card__backdrop" aria-hidden="true" />
+          <div className="server-card__noise" aria-hidden="true" />
+          <div className="server-card__scanline" aria-hidden="true" />
+        </div>
       ))}
     </div>
   );
