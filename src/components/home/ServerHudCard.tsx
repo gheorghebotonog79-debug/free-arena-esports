@@ -38,11 +38,11 @@ type ServerHudCardProps = {
   tags: string[];
 };
 
-const statusTone: Record<LiveServerStatusKind, string> = {
-  loading: "border-white/18 bg-white/[0.06] text-white/58",
-  online: "border-cyber-cyan/36 bg-cyber-cyan/12 text-cyber-cyan",
-  offline: "border-cyber-red/34 bg-cyber-red/12 text-cyber-red",
-  pending: "border-cyber-amber/36 bg-cyber-amber/12 text-cyber-amber",
+const cardVariantClass: Record<LiveServerKey, string> = {
+  cs16: "server-card--cs16",
+  respawn: "server-card--respawn",
+  cs2: "server-card--cs2",
+  global: "server-card--global",
 };
 
 export function ServerHudCard({
@@ -68,41 +68,64 @@ export function ServerHudCard({
   tags,
 }: ServerHudCardProps) {
   const isPending = status === "pending";
+  const isLoading = status === "loading";
+  const isOffline = status === "offline";
   const progress = maxPlayers > 0 ? Math.min(100, Math.round((players / maxPlayers) * 100)) : 0;
+  const occupancyTone = isPending || isOffline || isLoading
+    ? "idle"
+    : progress >= 85
+      ? "high"
+      : progress >= 45
+        ? "medium"
+        : "low";
 
   return (
-    <article className="cyber-panel cyber-card group flex h-full min-w-0 flex-col p-4">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(0,230,255,0.12),transparent_30%),radial-gradient(circle_at_88%_0%,rgba(255,106,0,0.08),transparent_26%)]" aria-hidden="true" />
-      <div className="cyber-scanline opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
+    <article
+      className={`server-tactical-card ${cardVariantClass[serverKey]} server-tactical-card--${status} group flex h-full min-w-0 flex-col p-4`}
+      data-occupancy={occupancyTone}
+      data-status={status}
+    >
+      <div className="server-card__backdrop" aria-hidden="true" />
+      <div className="server-card__noise" aria-hidden="true" />
+      <div className="server-card__scanline" aria-hidden="true" />
+      <div className="server-card__shine" aria-hidden="true" />
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
-          <span className="grid size-14 shrink-0 place-items-center border border-cyber-cyan/24 bg-black/52 shadow-[0_0_30px_rgba(0,230,255,0.12)]">
+          <span className="server-card__icon grid size-14 shrink-0 place-items-center">
             <Image src={icon} alt="" width={44} height={44} className="size-11 object-contain" />
           </span>
-          <span className={`live-badge inline-flex shrink-0 items-center gap-2 border px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em] ${statusTone[status]}`}>
-            {isOnline ? <span className="size-2 rounded-full bg-cyber-cyan shadow-[0_0_14px_rgba(0,230,255,0.9)]" aria-hidden="true" /> : null}
+          <span className="server-status-badge inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em]">
+            <span className="server-status-badge__dot size-2 rounded-full" aria-hidden="true" />
             {statusLabel}
           </span>
         </div>
         <div className="mt-3 min-w-0">
-          <h3 className="line-clamp-2 font-display text-xl font-black uppercase leading-none text-white 2xl:text-2xl">
+          <h3 className="server-card__title line-clamp-2 font-display text-xl font-black uppercase leading-none text-white 2xl:text-2xl">
             {displayName}
           </h3>
-          <p className="mt-1 text-xs font-black uppercase tracking-[0.18em] text-white/42">{region}</p>
+          <p className="server-card__region mt-1 text-xs font-black uppercase tracking-[0.18em] text-white/42">{region}</p>
         </div>
 
-        <div className="mt-6 min-h-28 border border-white/10 bg-black/34 p-4">
+        <div className="server-player-core mt-6 min-h-32 p-4">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-white/50">
-              <UsersRound size={16} className="text-cyber-cyan" aria-hidden="true" />
+              <UsersRound size={16} className="server-card__accent-icon" aria-hidden="true" />
               {labels.players}
             </div>
-            <p className="font-display text-3xl font-black text-white">
-              {isPending ? "--" : playersLabel}
+            <p className="server-player-count font-display text-4xl font-black text-white" aria-label={isPending ? labels.planned : playersLabel}>
+              {isPending || isLoading ? (
+                "--"
+              ) : (
+                <>
+                  <span className="server-player-count__current">{players}</span>
+                  <span className="server-player-count__slash">/</span>
+                  <span className="server-player-count__max">{maxPlayers}</span>
+                </>
+              )}
             </p>
           </div>
-          <div className="hud-progress mt-4">
-            <span style={{ width: isPending ? "0%" : `${progress}%` }} />
+          <div className="server-player-bar mt-4">
+            <span style={{ width: isPending || isLoading ? "0%" : `${progress}%` }} />
           </div>
           <div className="mt-4 grid grid-cols-2 gap-2">
             <Metric label={labels.map} value={isPending ? labels.planned : map} />
@@ -112,7 +135,7 @@ export function ServerHudCard({
 
         <div className="mt-4 flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <span key={tag} className="hud-chip bg-black/34 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/56">
+            <span key={tag} className="server-tag px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/56">
               {tag}
             </span>
           ))}
@@ -120,8 +143,8 @@ export function ServerHudCard({
 
         <div className="mt-auto pt-6">
           <p className="mb-3 text-xs font-black uppercase tracking-[0.16em] text-white/38">{labels.ip}</p>
-          <div className="flex min-w-0 items-center gap-2 border border-cyber-red/24 bg-black/40 px-3 py-3">
-            <RadioTower size={16} className="shrink-0 text-cyber-cyan" aria-hidden="true" />
+          <div className="server-ip-row flex min-w-0 items-center gap-2 px-3 py-3">
+            <RadioTower size={16} className="server-card__accent-icon shrink-0" aria-hidden="true" />
             <span className="min-w-0 truncate font-mono text-sm font-black text-white">{address}</span>
           </div>
 
@@ -129,7 +152,7 @@ export function ServerHudCard({
             <button
               type="button"
               onClick={onCopy}
-              className="cyber-outline-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.13em] transition hover:border-cyber-cyan"
+              className="server-copy-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.13em] transition"
             >
               {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
               {copied ? labels.copied : labels.copyIp}
@@ -137,20 +160,20 @@ export function ServerHudCard({
             {connectable && isOnline ? (
               <a
                 href={connectHref}
-                className="cyber-red-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.13em] transition hover:scale-[1.02]"
+                className="server-join-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.13em] transition"
               >
                 {labels.connect}
                 <ExternalLink size={15} aria-hidden="true" />
               </a>
             ) : (
-              <span className="inline-flex items-center justify-center border border-white/10 bg-white/[0.035] px-3 py-3 text-xs font-black uppercase tracking-[0.13em] text-white/36">
+              <span className="server-disabled-button inline-flex items-center justify-center px-3 py-3 text-xs font-black uppercase tracking-[0.13em] text-white/36">
                 <ShieldCheck size={15} className="mr-2" aria-hidden="true" />
                 {isPending ? labels.planned : statusLabel}
               </span>
             )}
             <Link
               href={`/servers/${serverKey}`}
-              className="scan-sweep inline-flex items-center justify-center gap-2 border border-cyber-cyan/30 bg-cyber-cyan/8 px-3 py-3 text-xs font-black uppercase tracking-[0.13em] text-white transition hover:border-cyber-cyan hover:bg-cyber-cyan/14 sm:col-span-2"
+              className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.13em] text-white transition sm:col-span-2"
               aria-label={detailsLabel}
             >
               {labels.details}
@@ -165,7 +188,7 @@ export function ServerHudCard({
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="min-w-0 border border-white/10 bg-white/[0.04] p-2">
+    <div className="server-metric min-w-0 p-2">
       <p className="text-[0.64rem] font-black uppercase tracking-[0.14em] text-white/34">{label}</p>
       <p className="mt-1 truncate text-sm font-black uppercase text-white">{value}</p>
     </div>
