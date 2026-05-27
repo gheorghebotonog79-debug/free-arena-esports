@@ -1,10 +1,8 @@
 import Image from "next/image";
-import { ArrowRight, Crosshair, Headphones, MessageSquare, RadioTower } from "lucide-react";
+import { Headphones, MessageSquare, RadioTower } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { ParticlesBackground } from "@/components/effects/ParticlesBackground";
 import { WarzoneStatus } from "@/components/home/WarzoneStatus";
-import { Link } from "@/i18n/navigation";
-import { routes } from "@/lib/routes";
 
 const signals = [
   { key: "cs16", icon: "/assets/game-icons/CS.png" },
@@ -57,23 +55,6 @@ export function HeroCinematic() {
             {t("copy")}
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
-            <Link
-              href={routes.servers}
-              className="hero-cta-primary inline-flex min-h-14 items-center justify-center gap-3 px-6 py-4 text-sm font-black uppercase tracking-[0.14em] transition"
-            >
-              <Crosshair size={18} aria-hidden="true" />
-              {t("play")}
-              <ArrowRight size={18} aria-hidden="true" />
-            </Link>
-            <Link
-              href={routes.servers}
-              className="hero-cta-secondary inline-flex min-h-14 items-center justify-center gap-3 px-6 py-4 text-sm font-black uppercase tracking-[0.14em] transition"
-            >
-              <RadioTower size={18} aria-hidden="true" />
-              {t("servers")}
-            </Link>
-          </div>
         </div>
 
         <div className="relative hidden lg:block">

@@ -1,7 +1,5 @@
-import { ArrowRight, Flame, ShieldCheck } from "lucide-react";
+import { Flame } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import { routes } from "@/lib/routes";
 
 export function WarRoomCta() {
   const t = useTranslations("WarRoom.cta");
@@ -12,7 +10,7 @@ export function WarRoomCta() {
         <div id="about" className="neon-panel hud-frame scroll-mt-32 overflow-hidden p-6 sm:p-8 lg:p-10">
           <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(0,229,255,0.18),transparent_40%,rgba(139,92,246,0.2)),radial-gradient(circle_at_18%_30%,rgba(255,0,51,0.18),transparent_34%)]" aria-hidden="true" />
           <div className="absolute inset-x-0 bottom-0 h-24 bg-[radial-gradient(ellipse_at_bottom,rgba(0,229,255,0.22),transparent_62%)] blur-xl" aria-hidden="true" />
-          <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div className="relative z-10">
             <div>
               <p className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-200">
                 <Flame size={17} aria-hidden="true" />
@@ -24,22 +22,6 @@ export function WarRoomCta() {
               <p className="mt-5 max-w-3xl text-base font-semibold leading-7 text-white/68">
                 {t("copy")}
               </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <Link
-                href={routes.servers}
-                className="final-cta-primary neon-button inline-flex items-center justify-center gap-3 px-7 py-5 text-sm font-black uppercase tracking-[0.16em] transition"
-              >
-                <ShieldCheck size={18} aria-hidden="true" />
-                {t("play")}
-                <ArrowRight size={18} aria-hidden="true" />
-              </Link>
-              <Link
-                href={routes.servers}
-                className="final-cta-secondary inline-flex items-center justify-center gap-3 px-6 py-4 text-sm font-black uppercase tracking-[0.16em] transition"
-              >
-                {t("servers")}
-              </Link>
             </div>
           </div>
         </div>
