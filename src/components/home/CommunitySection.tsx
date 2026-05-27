@@ -38,7 +38,7 @@ export function CommunitySection() {
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
           <div>
-            <p className="neon-kicker px-4 py-2 text-xs font-black uppercase tracking-[0.22em]">
+            <p className="neon-kicker section-badge-label px-4 py-2">
               {t("eyebrow")}
             </p>
             <h2 className="community-command-title mt-5 max-w-2xl font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[0.84]">
@@ -111,7 +111,10 @@ function CommunityCard({
             {status}
           </span>
         </div>
-        <h3 className="community-card__title mt-8 font-display font-black uppercase text-white">{title}</h3>
+        <h3 className="community-card__title mt-8 inline-flex items-center gap-2 font-display font-black uppercase text-white">
+          <Icon size={21} className={tone} aria-hidden="true" />
+          {title}
+        </h3>
         <p className="mt-3 text-sm font-semibold leading-6 text-white/58">{copy}</p>
         <span className="community-card__cta mt-auto inline-flex items-center gap-2 pt-6 text-xs font-black uppercase tracking-[0.18em]">
           {cta}

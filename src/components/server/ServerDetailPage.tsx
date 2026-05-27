@@ -72,6 +72,16 @@ function formatLastUpdated(value: string | null, locale: string, fallback: strin
   }).format(date);
 }
 
+function formatPing(value: number | string | null | undefined) {
+  if (value === null || value === undefined || value === "") {
+    return "N/A";
+  }
+
+  const ping = typeof value === "number" ? value : Number(value);
+
+  return Number.isFinite(ping) ? `${ping}ms` : "N/A";
+}
+
 export function ServerDetailPage({ server }: ServerDetailPageProps) {
   const t = useTranslations("ServerDetail");
   const serverT = useTranslations("Servers");
@@ -199,9 +209,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
       label: t("stats.ping"),
       value: isLoading && !liveServer
         ? t("states.loadingValue")
-        : liveServer?.ping !== null && liveServer?.ping !== undefined
-          ? `${liveServer.ping}ms`
-          : t("states.notAvailable"),
+        : formatPing(liveServer?.ping),
       Icon: RadioTower,
       toneClass: "text-arena-red",
     },

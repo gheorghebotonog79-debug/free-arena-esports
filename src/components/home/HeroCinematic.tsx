@@ -53,7 +53,7 @@ export function HeroCinematic() {
               {t("subtitle")}
             </span>
           </p>
-          <p className="mx-auto mt-5 max-w-3xl text-base font-semibold leading-7 text-slate-300 sm:text-lg lg:mx-0">
+          <p className="mx-auto mt-5 max-w-3xl text-lg font-semibold leading-7 text-white/85 sm:text-xl lg:mx-0">
             {t("copy")}
           </p>
 

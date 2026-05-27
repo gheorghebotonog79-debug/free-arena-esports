@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import {
+  ChevronDown,
   Crosshair,
   Headphones,
   Home,
@@ -15,20 +16,32 @@ import {
   X,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { routes } from "@/lib/routes";
 
-const navigationItems = [
+const primaryNavigationItems = [
   { href: routes.home, key: "home", external: false, Icon: Home },
   { href: routes.servers, key: "servers", external: false, Icon: ServerIcon },
-  { href: "https://free-arena.ro", key: "forum", external: true, Icon: MessageCircle },
-  { href: "https://discord.gg/freearena", key: "discord", external: true, Icon: MessageCircle },
-  { href: "ts3server://ts.free-arena.ro", key: "ts3", external: true, Icon: Headphones },
   { href: routes.rankings, key: "rankings", external: false, Icon: Trophy },
   { href: routes.shop, key: "shop", external: false, Icon: ShoppingCart },
   { href: routes.about, key: "about", external: false, Icon: Info },
+] as const;
+
+const communityNavigationItems = [
+  { href: "https://free-arena.ro", key: "forum", external: true, Icon: MessageCircle },
+  { href: "https://discord.gg/freearena", key: "discord", external: true, Icon: MessageCircle },
+  { href: "ts3server://ts.free-arena.ro", key: "ts3", external: true, Icon: Headphones },
+] as const;
+
+const mobileNavigationItems = [
+  primaryNavigationItems[0],
+  primaryNavigationItems[1],
+  ...communityNavigationItems,
+  primaryNavigationItems[2],
+  primaryNavigationItems[3],
+  primaryNavigationItems[4],
 ] as const;
 
 type HeaderLiveServer = {
@@ -50,6 +63,10 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [hash, setHash] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDesktopNav, setIsDesktopNav] = useState(false);
+  const [isCommunityOpen, setIsCommunityOpen] = useState(false);
+  const [communityMenuPosition, setCommunityMenuPosition] = useState({ left: 0, top: 0, width: 0 });
+  const communityButtonRef = useRef<HTMLButtonElement | null>(null);
   const [livePlayers, setLivePlayers] = useState<number | null>(null);
 
   useEffect(() => {
@@ -63,7 +80,24 @@ export function SiteHeader() {
 
   useEffect(() => {
     setIsMenuOpen(false);
+    setIsCommunityOpen(false);
   }, [pathname, hash]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1280px)");
+    const updateDesktopNav = () => setIsDesktopNav(mediaQuery.matches);
+
+    updateDesktopNav();
+    mediaQuery.addEventListener("change", updateDesktopNav);
+
+    return () => mediaQuery.removeEventListener("change", updateDesktopNav);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktopNav) {
+      setIsCommunityOpen(false);
+    }
+  }, [isDesktopNav]);
 
   useEffect(() => {
     let cancelled = false;
@@ -121,6 +155,25 @@ export function SiteHeader() {
     return href !== routes.home && pathname.startsWith(href);
   }
 
+  function updateCommunityMenuPosition() {
+    const rect = communityButtonRef.current?.getBoundingClientRect();
+
+    if (!rect) {
+      return;
+    }
+
+    setCommunityMenuPosition({
+      left: rect.left,
+      top: rect.bottom + 8,
+      width: rect.width,
+    });
+  }
+
+  function toggleCommunityMenu() {
+    updateCommunityMenuPosition();
+    setIsCommunityOpen((current) => !current);
+  }
+
   return (
     <header className="neon-header header-hud header-launcher sticky top-0 z-50">
       <div className="header-hud__bottom-glow" aria-hidden="true" />
@@ -147,32 +200,50 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-2 xl:flex" aria-label={t("aria.main")}>
-          {navigationItems.map((item) => {
-            const active = !item.external && isActive(item.href);
-            const className = `neon-nav-link header-nav-link inline-flex min-h-12 items-center gap-2 whitespace-nowrap px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] transition ${
-              active ? "neon-nav-link--active text-white" : "text-white/68"
-            }`;
+        {isDesktopNav ? (
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-1 xl:flex" aria-label={t("aria.main")}>
+            {primaryNavigationItems.slice(0, 2).map((item) => {
+              const active = !item.external && isActive(item.href);
+              const className = `neon-nav-link header-nav-link inline-flex min-h-12 items-center gap-2 whitespace-nowrap px-2.5 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] transition ${
+                active ? "neon-nav-link--active text-white" : "text-white/68"
+              }`;
 
-            return item.external ? (
-              <a
-                key={item.key}
-                href={item.href}
-                target={item.href.startsWith("http") ? "_blank" : undefined}
-                rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-                className={className}
-              >
-                <item.Icon size={15} className="header-nav-link__icon" aria-hidden="true" />
-                {t(`items.${item.key}`)}
-              </a>
-            ) : (
-              <Link key={item.key} href={item.href} className={className} aria-current={active ? "page" : undefined}>
-                <item.Icon size={15} className="header-nav-link__icon" aria-hidden="true" />
-                {t(`items.${item.key}`)}
-              </Link>
-            );
-          })}
-        </nav>
+              return (
+                <Link key={item.key} href={item.href} className={className} aria-current={active ? "page" : undefined}>
+                  <item.Icon size={15} className="header-nav-link__icon" aria-hidden="true" />
+                  {t(`items.${item.key}`)}
+                </Link>
+              );
+            })}
+
+            <button
+              ref={communityButtonRef}
+              type="button"
+              className="neon-nav-link header-nav-link inline-flex min-h-12 items-center gap-2 whitespace-nowrap px-2.5 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/68 transition"
+              aria-expanded={isCommunityOpen}
+              aria-haspopup="menu"
+              onClick={toggleCommunityMenu}
+            >
+              <MessageCircle size={15} className="header-nav-link__icon" aria-hidden="true" />
+              {t("items.community")}
+              <ChevronDown size={14} aria-hidden="true" />
+            </button>
+
+            {primaryNavigationItems.slice(2).map((item) => {
+              const active = !item.external && isActive(item.href);
+              const className = `neon-nav-link header-nav-link inline-flex min-h-12 items-center gap-2 whitespace-nowrap px-2.5 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] transition ${
+                active ? "neon-nav-link--active text-white" : "text-white/68"
+              }`;
+
+              return (
+                <Link key={item.key} href={item.href} className={className} aria-current={active ? "page" : undefined}>
+                  <item.Icon size={15} className="header-nav-link__icon" aria-hidden="true" />
+                  {t(`items.${item.key}`)}
+                </Link>
+              );
+            })}
+          </nav>
+        ) : null}
 
         <div className="header-actions ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
           <div className="header-actions__stack">
@@ -209,54 +280,83 @@ export function SiteHeader() {
         </div>
       </div>
 
+      {isDesktopNav && isCommunityOpen ? (
+        <div
+          className="header-community-menu fixed z-[60] grid gap-1 p-2"
+          role="menu"
+          style={{
+            left: communityMenuPosition.left,
+            minWidth: communityMenuPosition.width,
+            top: communityMenuPosition.top,
+          }}
+        >
+          {communityNavigationItems.map((item) => (
+            <a
+              key={item.key}
+              href={item.href}
+              target={item.href.startsWith("http") ? "_blank" : undefined}
+              rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+              className="header-community-menu__item inline-flex items-center gap-2 px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/76 transition"
+              role="menuitem"
+              onClick={() => setIsCommunityOpen(false)}
+            >
+              <item.Icon size={15} className="header-nav-link__icon" aria-hidden="true" />
+              {t(`items.${item.key}`)}
+            </a>
+          ))}
+        </div>
+      ) : null}
+
       <div
         className={`header-mobile-panel mx-auto w-full max-w-7xl px-3 sm:px-6 xl:hidden ${
           isMenuOpen ? "header-mobile-panel--open pb-3" : ""
         }`}
       >
-        <nav id="site-mobile-navigation" className="header-mobile-nav grid gap-2 p-3" aria-label={t("aria.main")}>
-          {navigationItems.map((item) => {
-            const isExternal = item.href.startsWith("http");
-            const isTs = item.href.startsWith("ts3server");
-            const active = !item.external && isActive(item.href);
-            const className = `neon-nav-link header-mobile-link inline-flex items-center gap-3 px-3 py-3 text-xs font-black uppercase tracking-[0.12em] transition ${
-              active ? "neon-nav-link--active text-white" : "text-white/72"
-            }`;
+        {!isDesktopNav && isMenuOpen ? (
+          <nav id="site-mobile-navigation" className="header-mobile-nav grid gap-2 p-3" aria-label={t("aria.main")}>
+            {mobileNavigationItems.map((item) => {
+              const isExternal = item.href.startsWith("http");
+              const isTs = item.href.startsWith("ts3server");
+              const active = !item.external && isActive(item.href);
+              const className = `neon-nav-link header-mobile-link inline-flex items-center gap-3 px-3 py-3 text-xs font-black uppercase tracking-[0.12em] transition ${
+                active ? "neon-nav-link--active text-white" : "text-white/72"
+              }`;
 
-            return item.external || isTs ? (
-              <a
-                key={item.key}
-                href={item.href}
-                target={isExternal ? "_blank" : undefined}
-                rel={isExternal ? "noreferrer" : undefined}
-                className={className}
+              return item.external || isTs ? (
+                <a
+                  key={item.key}
+                  href={item.href}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noreferrer" : undefined}
+                  className={className}
+                >
+                  <item.Icon size={16} className="header-nav-link__icon" aria-hidden="true" />
+                  {t(`items.${item.key}`)}
+                </a>
+              ) : (
+                <Link key={item.key} href={item.href} className={className} aria-current={active ? "page" : undefined}>
+                  <item.Icon size={16} className="header-nav-link__icon" aria-hidden="true" />
+                  {t(`items.${item.key}`)}
+                </Link>
+              );
+            })}
+            <div className="mt-1 grid grid-cols-[minmax(0,1fr)_auto] gap-2">
+              <span className="header-live-pill inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.16em]">
+                <span className="header-live-pulse" aria-hidden="true" />
+                <RadioTower size={15} aria-hidden="true" />
+                {t("live")}
+                {formattedLivePlayers ? <strong>{formattedLivePlayers}</strong> : null}
+              </span>
+              <Link
+                href={routes.servers}
+                className="header-play-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] transition"
               >
-                <item.Icon size={16} className="header-nav-link__icon" aria-hidden="true" />
-                {t(`items.${item.key}`)}
-              </a>
-            ) : (
-              <Link key={item.key} href={item.href} className={className} aria-current={active ? "page" : undefined}>
-                <item.Icon size={16} className="header-nav-link__icon" aria-hidden="true" />
-                {t(`items.${item.key}`)}
+                <Crosshair size={16} aria-hidden="true" />
+                {t("playShort")}
               </Link>
-            );
-          })}
-          <div className="mt-1 grid grid-cols-[minmax(0,1fr)_auto] gap-2">
-            <span className="header-live-pill inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.16em]">
-              <span className="header-live-pulse" aria-hidden="true" />
-              <RadioTower size={15} aria-hidden="true" />
-              {t("live")}
-              {formattedLivePlayers ? <strong>{formattedLivePlayers}</strong> : null}
-            </span>
-            <Link
-              href={routes.servers}
-              className="header-play-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] transition"
-            >
-              <Crosshair size={16} aria-hidden="true" />
-              {t("playShort")}
-            </Link>
-          </div>
-        </nav>
+            </div>
+          </nav>
+        ) : null}
       </div>
     </header>
   );

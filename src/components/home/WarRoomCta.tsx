@@ -28,7 +28,7 @@ export function WarRoomCta() {
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
               <Link
                 href={routes.servers}
-                className="neon-button inline-flex items-center justify-center gap-3 px-6 py-4 text-sm font-black uppercase tracking-[0.16em] transition"
+                className="final-cta-primary neon-button inline-flex items-center justify-center gap-3 px-7 py-5 text-sm font-black uppercase tracking-[0.16em] transition"
               >
                 <ShieldCheck size={18} aria-hidden="true" />
                 {t("play")}
@@ -36,7 +36,7 @@ export function WarRoomCta() {
               </Link>
               <Link
                 href={routes.servers}
-                className="neon-button-secondary inline-flex items-center justify-center gap-3 px-6 py-4 text-sm font-black uppercase tracking-[0.16em] transition"
+                className="final-cta-secondary inline-flex items-center justify-center gap-3 px-6 py-4 text-sm font-black uppercase tracking-[0.16em] transition"
               >
                 {t("servers")}
               </Link>

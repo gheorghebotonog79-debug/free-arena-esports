@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, Check, Copy, ExternalLink, RadioTower, ShieldCheck, UsersRound } from "lucide-react";
+import { ArrowRight, Check, Copy, ExternalLink, Lock, RadioTower, ShieldCheck, UsersRound } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { LiveServerKey, LiveServerStatusKind } from "@/lib/live-server-targets";
 
@@ -81,7 +81,7 @@ export function ServerHudCard({
 
   return (
     <article
-      className={`server-tactical-card ${cardVariantClass[serverKey]} server-tactical-card--${status} group flex h-full min-w-0 flex-col p-4 sm:p-5`}
+      className={`server-tactical-card ${cardVariantClass[serverKey]} server-tactical-card--${status} ${isPending ? "server-tactical-card--locked" : ""} group flex h-full min-w-0 flex-col p-4 sm:p-5`}
       data-occupancy={occupancyTone}
       data-status={status}
     >
@@ -89,6 +89,14 @@ export function ServerHudCard({
       <div className="server-card__noise" aria-hidden="true" />
       <div className="server-card__scanline" aria-hidden="true" />
       <div className="server-card__shine" aria-hidden="true" />
+      {isPending ? (
+        <div className="server-coming-soon-overlay" aria-hidden="true">
+          <span>
+            <Lock size={26} />
+            COMING SOON
+          </span>
+        </div>
+      ) : null}
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
           <span className="server-card__icon grid size-16 shrink-0 place-items-center">
@@ -148,37 +156,46 @@ export function ServerHudCard({
             <span className="min-w-0 truncate font-mono text-sm font-black text-white">{address}</span>
           </div>
 
-          <div className="server-actions-grid mt-4 grid gap-2 sm:grid-cols-2">
-            {connectable && isOnline ? (
-              <a
-                href={connectHref}
-                className="server-join-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition sm:col-span-2"
-              >
-                {labels.connect}
-                <ExternalLink size={15} aria-hidden="true" />
-              </a>
-            ) : (
-              <span className="server-disabled-button inline-flex items-center justify-center px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/36 sm:col-span-2">
-                <ShieldCheck size={15} className="mr-2" aria-hidden="true" />
-                {isPending ? labels.planned : statusLabel}
+          <div className={`server-actions-grid mt-4 grid gap-2 sm:grid-cols-2 ${isPending ? "pointer-events-none" : ""}`}>
+            {isPending ? (
+              <span className="server-disabled-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/50 sm:col-span-2">
+                <Lock size={15} aria-hidden="true" />
+                COMING SOON
               </span>
+            ) : (
+              <>
+                {connectable && isOnline ? (
+                  <a
+                    href={connectHref}
+                    className="server-join-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition sm:col-span-2"
+                  >
+                    {labels.connect}
+                    <ExternalLink size={15} aria-hidden="true" />
+                  </a>
+                ) : (
+                  <span className="server-disabled-button inline-flex items-center justify-center px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/36 sm:col-span-2">
+                    <ShieldCheck size={15} className="mr-2" aria-hidden="true" />
+                    {statusLabel}
+                  </span>
+                )}
+                <Link
+                  href={`/servers/${serverKey}`}
+                  className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
+                  aria-label={detailsLabel}
+                >
+                  {labels.details}
+                  <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+                <button
+                  type="button"
+                  onClick={onCopy}
+                  className="server-copy-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
+                >
+                  {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
+                  {copied ? labels.copied : labels.copyIp}
+                </button>
+              </>
             )}
-            <Link
-              href={`/servers/${serverKey}`}
-              className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
-              aria-label={detailsLabel}
-            >
-              {labels.details}
-              <ArrowRight size={15} aria-hidden="true" />
-            </Link>
-            <button
-              type="button"
-              onClick={onCopy}
-              className="server-copy-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
-            >
-              {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
-              {copied ? labels.copied : labels.copyIp}
-            </button>
           </div>
         </div>
       </div>

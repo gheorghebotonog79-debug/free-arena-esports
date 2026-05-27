@@ -34,7 +34,7 @@ export function SimpleSeoPage({
         <section className="neon-section px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
-              <p className="neon-kicker px-4 py-2 text-xs font-black uppercase tracking-[0.22em]">
+              <p className="neon-kicker section-badge-label px-4 py-2">
                 {eyebrow}
               </p>
               <h1 className="neon-heading mt-5 max-w-4xl font-display text-[clamp(2.6rem,7vw,6rem)] font-black uppercase leading-[0.88] text-white">

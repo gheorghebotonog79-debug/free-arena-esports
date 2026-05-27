@@ -9,6 +9,7 @@ import {
   Copy,
   Gamepad2,
   Info,
+  Lock,
   RadioTower,
   RefreshCw,
   Server,
@@ -44,6 +45,16 @@ function isLiveServersResponse(value: unknown): value is LiveServersResponse {
     value !== null &&
     Array.isArray((value as LiveServersResponse).servers)
   );
+}
+
+function formatPing(value: number | string | null | undefined) {
+  if (value === null || value === undefined || value === "") {
+    return "N/A";
+  }
+
+  const ping = typeof value === "number" ? value : Number(value);
+
+  return Number.isFinite(ping) ? `${ping}ms` : "N/A";
 }
 
 export function ServerGrid() {
@@ -179,9 +190,7 @@ export function ServerGrid() {
       ? t("fallback.unavailable")
       : status === "loading"
         ? t("loading.value")
-        : liveServer?.ping !== null && liveServer?.ping !== undefined
-          ? `${liveServer.ping}ms`
-          : t("fallback.ping");
+        : formatPing(liveServer?.ping);
 
     return {
       key: server.key,
@@ -250,8 +259,16 @@ export function ServerGrid() {
               <MotionCard
                 key={server.key}
                 delay={index * 0.06}
-                className="premium-card glass-panel relative flex h-full min-w-0 flex-col overflow-hidden rounded-lg p-4 2xl:p-5"
+                className={`premium-card glass-panel relative flex h-full min-w-0 flex-col overflow-hidden rounded-lg p-4 2xl:p-5 ${server.status === "pending" ? "opacity-60" : ""}`}
               >
+                {server.status === "pending" ? (
+                  <div className="pointer-events-none absolute inset-0 z-20 grid place-items-center bg-black/18">
+                    <span className="inline-flex items-center gap-2 rounded-lg border border-arena-gold/36 bg-black/62 px-4 py-3 font-display text-xl font-black uppercase tracking-[0.12em] text-arena-gold shadow-[0_0_30px_rgba(255,209,102,0.18)]">
+                      <Lock size={22} aria-hidden="true" />
+                      COMING SOON
+                    </span>
+                  </div>
+                ) : null}
                 {isRefreshing ? (
                   <span
                     className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-arena-cyan/70 to-transparent opacity-80 2xl:inset-x-5"
@@ -346,54 +363,59 @@ export function ServerGrid() {
                     />
                   </div>
 
-                  <div className="mt-4 grid gap-2 2xl:grid-cols-2">
-                    <button
-                      type="button"
-                      onClick={() => void handleCopyAddress(server.key, server.address)}
-                      className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
-                      aria-label={t("actions.copyIpFor", {
-                        server: server.displayName,
-                      })}
-                    >
-                      {isCopied ? <Check size={17} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
-                      {isCopied ? t("actions.copied") : t("actions.copyIp")}
-                    </button>
-
-                    {server.connectable && server.isOnline ? (
-                      <a
-                        href={server.connectHref}
-                        className="button-glow inline-flex w-full items-center justify-center gap-2 rounded-lg border border-transparent bg-arena-green px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
-                        aria-label={t("actions.connectTo", {
-                          server: server.displayName,
-                        })}
-                      >
-                        {t("actions.connect")}
-                        <ArrowRight size={17} aria-hidden="true" />
-                      </a>
+                  <div className={`mt-4 grid gap-2 2xl:grid-cols-2 ${server.status === "pending" ? "pointer-events-none" : ""}`}>
+                    {server.status === "pending" ? (
+                      <span className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/12 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white/42 2xl:col-span-2">
+                        <Lock size={17} aria-hidden="true" />
+                        COMING SOON
+                      </span>
                     ) : (
-                      <button
-                        type="button"
-                        disabled
-                        className="inline-flex w-full cursor-not-allowed items-center justify-center rounded-lg border border-white/12 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white/42"
-                      >
-                        {server.status === "loading"
-                          ? t("actions.loading")
-                          : server.status === "pending"
-                            ? t("actions.pending")
-                            : t("actions.offline")}
-                      </button>
-                    )}
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => void handleCopyAddress(server.key, server.address)}
+                          className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                          aria-label={t("actions.copyIpFor", {
+                            server: server.displayName,
+                          })}
+                        >
+                          {isCopied ? <Check size={17} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
+                          {isCopied ? t("actions.copied") : t("actions.copyIp")}
+                        </button>
 
-                    <Link
-                      href={`/servers/${server.key}`}
-                      className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-green/60 hover:bg-arena-green/10 2xl:col-span-2"
-                      aria-label={t("actions.detailsFor", {
-                        server: server.displayName,
-                      })}
-                    >
-                      <Info size={17} aria-hidden="true" />
-                      {t("actions.details")}
-                    </Link>
+                        {server.connectable && server.isOnline ? (
+                          <a
+                            href={server.connectHref}
+                            className="button-glow inline-flex w-full items-center justify-center gap-2 rounded-lg border border-transparent bg-arena-green px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
+                            aria-label={t("actions.connectTo", {
+                              server: server.displayName,
+                            })}
+                          >
+                            {t("actions.connect")}
+                            <ArrowRight size={17} aria-hidden="true" />
+                          </a>
+                        ) : (
+                          <button
+                            type="button"
+                            disabled
+                            className="inline-flex w-full cursor-not-allowed items-center justify-center rounded-lg border border-white/12 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white/42"
+                          >
+                            {server.status === "loading" ? t("actions.loading") : t("actions.offline")}
+                          </button>
+                        )}
+
+                        <Link
+                          href={`/servers/${server.key}`}
+                          className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-green/60 hover:bg-arena-green/10 2xl:col-span-2"
+                          aria-label={t("actions.detailsFor", {
+                            server: server.displayName,
+                          })}
+                        >
+                          <Info size={17} aria-hidden="true" />
+                          {t("actions.details")}
+                        </Link>
+                      </>
+                    )}
                   </div>
                 </div>
               </MotionCard>

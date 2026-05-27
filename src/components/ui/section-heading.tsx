@@ -9,7 +9,7 @@ type SectionHeadingProps = {
 export function SectionHeading({ eyebrow, title, copy }: SectionHeadingProps) {
   return (
     <div className="max-w-3xl">
-      <p className="inline-flex items-center gap-2 rounded-lg border border-arena-green/30 bg-arena-green/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.2em] text-arena-green shadow-[0_0_32px_rgba(35,209,139,0.12)] backdrop-blur-xl">
+      <p className="neon-kicker section-badge-label px-3 py-2">
         <Sparkles size={15} aria-hidden="true" />
         {eyebrow}
       </p>

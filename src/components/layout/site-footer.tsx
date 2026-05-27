@@ -30,8 +30,8 @@ export function SiteFooter() {
         </div>
         <div className="mt-6 grid gap-6 border-t border-cyan-300/14 pt-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
           <div>
-            <p className="neon-heading font-display text-3xl font-black uppercase tracking-[0.06em] text-white">
-              FREE-<span className="text-cyan-200">ARENA</span>.RO
+            <p className="neon-heading whitespace-nowrap font-display text-3xl font-black uppercase tracking-[0.06em] text-white">
+              <span>FREE-</span><span className="text-cyan-200">ARENA</span><span>.RO</span>
             </p>
             <p className="mt-3 max-w-xl text-sm leading-6 text-white/54">{t("copy")}</p>
           </div>
@@ -44,6 +44,7 @@ export function SiteFooter() {
             <Link href={routes.servers}>{t("links.servers")}</Link>
             <Link href={routes.community}>{t("links.community")}</Link>
             <Link href={routes.terms}>{t("links.terms")}</Link>
+            <Link href={routes.terms} locale="en">Terms of Use</Link>
           </FooterColumn>
           <FooterColumn title="Social">
             <a href="https://discord.gg/freearena" target="_blank" rel="noreferrer">Discord</a>
@@ -51,6 +52,9 @@ export function SiteFooter() {
             <a href="https://free-arena.ro" target="_blank" rel="noreferrer">Forum</a>
           </FooterColumn>
         </div>
+        <p className="mt-6 border-t border-cyan-300/14 pt-4 text-xs font-semibold text-white/42">
+          © 2026 FREE-ARENA
+        </p>
       </div>
     </footer>
   );

@@ -421,6 +421,36 @@
   animation: locked-pulse 3.8s ease-in-out infinite;
 }
 
+.server-tactical-card--locked {
+  opacity: 0.6;
+}
+
+.server-coming-soon-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.server-coming-soon-overlay span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(255, 209, 102, 0.38);
+  background: rgba(0, 0, 0, 0.66);
+  color: #ffd166;
+  font-family: var(--font-display, inherit);
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 0 30px rgba(255, 209, 102, 0.18);
+}
+
 .homepage-live-strip__item {
   position: relative;
   overflow: hidden;

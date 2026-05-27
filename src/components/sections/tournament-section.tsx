@@ -39,7 +39,7 @@ export function TournamentSection({ locale, tournaments }: TournamentSectionProp
     <section id="events" className="neon-section scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
       <div className="mx-auto w-full max-w-7xl">
         <div className="max-w-4xl">
-          <p className="neon-kicker px-4 py-2 text-xs font-black uppercase tracking-[0.22em]">
+          <p className="neon-kicker section-badge-label px-4 py-2">
             {t("heading.eyebrow")}
           </p>
           <h2 className="neon-heading mt-5 font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[0.84] text-white">

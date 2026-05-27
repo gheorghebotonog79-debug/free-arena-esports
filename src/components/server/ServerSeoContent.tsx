@@ -14,7 +14,7 @@ export function ServerSeoContent({ label, locale, page }: ServerSeoContentProps)
     <section className="px-4 py-14 sm:px-6 lg:px-8">
       <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
         <div>
-          <p className="neon-kicker inline-flex px-4 py-2 text-xs font-black uppercase tracking-[0.22em]">
+          <p className="neon-kicker section-badge-label inline-flex px-4 py-2">
             {label}
           </p>
           <h2 className="neon-heading mt-5 font-display text-[clamp(2.4rem,5vw,4.8rem)] font-black uppercase leading-[0.92] text-white">

@@ -134,7 +134,7 @@ export function TopPlayersSection() {
           <div>
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <p className="neon-kicker px-4 py-2 text-xs font-black uppercase tracking-[0.22em]">
+                <p className="neon-kicker section-badge-label px-4 py-2">
                   HALL OF FAME
                 </p>
                 <h2 className="neon-heading mt-5 max-w-4xl font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[0.84] text-white">
@@ -273,10 +273,12 @@ function PodiumCard({ player, rank }: { player: PlayerProgressPlayer; rank: numb
             </span>
           )}
         </div>
-        <h3 className="server-card__title mt-6 truncate font-display text-3xl font-black uppercase leading-none text-white">
+        <h3 className="server-card__title mt-6 truncate font-display text-3xl font-black uppercase leading-none text-white" title={player.nick}>
           {player.nick}
         </h3>
-        <p className="server-card__region mt-2 truncate font-mono text-xs">{player.player}</p>
+        <p className="server-card__region mt-2 truncate font-mono text-xs opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
+          {player.player}
+        </p>
         <dl className="server-player-core mt-auto grid grid-cols-2 gap-2 p-3">
           <SmallMetric label="XP" value={formatCompactNumber(player.xp)} />
           <SmallMetric label="Kills" value={formatCompactNumber(player.kills)} />
@@ -290,10 +292,14 @@ function PodiumCard({ player, rank }: { player: PlayerProgressPlayer; rank: numb
 
 function CompactPlayer({ player }: { player: PlayerProgressPlayer }) {
   return (
-    <article className="server-metric flex items-center justify-between gap-3 p-3">
+    <article className="server-metric group flex items-center justify-between gap-3 p-3">
       <div className="min-w-0">
-        <h3 className="server-card__title truncate text-sm font-black text-white">{player.nick}</h3>
-        <p className="mt-1 truncate font-mono text-xs text-white/34">{player.player}</p>
+        <h3 className="server-card__title truncate text-sm font-black text-white" title={player.nick}>
+          {player.nick}
+        </h3>
+        <p className="mt-1 truncate font-mono text-xs text-white/34 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
+          {player.player}
+        </p>
       </div>
       <span className="shrink-0 font-display text-lg font-black text-cyan-200">{formatCompactNumber(player.xp)}</span>
     </article>

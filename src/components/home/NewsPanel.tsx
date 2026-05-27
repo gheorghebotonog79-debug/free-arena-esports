@@ -1,4 +1,5 @@
-import { ArrowRight, CalendarDays, Newspaper, RadioTower } from "lucide-react";
+import { ArrowRight, CalendarDays, Newspaper, RadioTower, Trophy, Wrench, Zap } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { PublicNewsPost } from "@/lib/public-news";
 
@@ -17,6 +18,11 @@ type NewsCardData = {
 
 const fallbackKeys = ["one", "two", "three"] as const;
 const categories = ["UPDATE", "TOURNAMENT", "MAINTENANCE", "VIP", "EVENT"] as const;
+const categoryIcons: Partial<Record<(typeof categories)[number], LucideIcon>> = {
+  UPDATE: Zap,
+  TOURNAMENT: Trophy,
+  MAINTENANCE: Wrench,
+};
 
 function formatDate(value: Date | null, locale: string) {
   if (!value) {
@@ -51,7 +57,7 @@ export function NewsPanel({ locale, posts }: NewsPanelProps) {
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-end">
           <div>
-            <p className="neon-kicker px-4 py-2 text-xs font-black uppercase tracking-[0.22em]">
+            <p className="neon-kicker section-badge-label px-4 py-2">
               {t("eyebrow")}
             </p>
             <h2 className="neon-heading mt-4 font-display text-[clamp(2.7rem,7vw,5.7rem)] font-black uppercase leading-[0.88] text-white">
@@ -103,6 +109,8 @@ function NewsHudCard({
   index: number;
   publishedLabel: string;
 }) {
+  const CategoryIcon = categoryIcons[category as (typeof categories)[number]];
+
   return (
     <article className="neon-card news-command-card p-5">
       <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(0,229,255,0.12),transparent_34%),radial-gradient(circle_at_80%_0%,rgba(139,92,246,0.22),transparent_32%)]" aria-hidden="true" />
@@ -116,7 +124,8 @@ function NewsHudCard({
             {card.date}
           </span>
         </div>
-        <p className="mt-5 inline-flex w-fit border border-fuchsia-300/22 bg-fuchsia-300/10 px-2.5 py-1 text-xs font-black uppercase tracking-[0.2em] text-fuchsia-200">
+        <p className="mt-5 inline-flex w-fit items-center gap-1.5 border border-fuchsia-300/22 bg-fuchsia-300/10 px-2.5 py-1 text-xs font-black uppercase tracking-[0.2em] text-fuchsia-200">
+          {CategoryIcon ? <CategoryIcon size={12} className="text-current" aria-hidden="true" /> : null}
           {category}
         </p>
         <p className="mt-3 text-xs font-black uppercase tracking-[0.18em] text-cyan-200">0{index + 1} / {publishedLabel}</p>
@@ -130,7 +139,10 @@ function NewsHudCard({
           <span className="min-w-0 truncate text-xs font-black uppercase tracking-[0.16em] text-white/38">
             {card.author}
           </span>
-          <ArrowRight size={18} className="shrink-0 text-cyan-200" aria-hidden="true" />
+          <a href="#news" className="inline-flex shrink-0 items-center gap-1.5 text-xs font-black uppercase tracking-[0.14em] text-cyan-200 no-underline hover:underline">
+            Read more
+            <ArrowRight size={15} aria-hidden="true" />
+          </a>
         </div>
       </div>
     </article>

@@ -26,7 +26,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
     <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div className="min-w-0">
-          <p className="neon-kicker inline-flex px-4 py-2 text-xs font-black uppercase tracking-[0.22em]">
+          <p className="neon-kicker section-badge-label inline-flex px-4 py-2">
             {hero.eyebrow}
           </p>
           <h1 className="neon-heading mt-6 max-w-5xl break-words font-display text-[clamp(3rem,8vw,7rem)] font-black uppercase leading-[0.84] text-white">
