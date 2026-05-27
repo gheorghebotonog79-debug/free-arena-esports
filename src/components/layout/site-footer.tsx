@@ -36,9 +36,9 @@ export function SiteFooter() {
             <p className="mt-3 max-w-xl text-sm leading-6 text-white/54">{t("copy")}</p>
           </div>
           <FooterColumn title="Server IP">
-            <span>cs.free-arena.ro:27015</span>
-            <span>respawn.free-arena.ro:27015</span>
-            <span>cs2.free-arena.ro:27015</span>
+            <span>217.156.22.74:27015</span>
+            <span>51.38.97.243:27015</span>
+            <span>135.125.208.88:27015</span>
           </FooterColumn>
           <FooterColumn title="Links">
             <Link href={routes.servers}>{t("links.servers")}</Link>

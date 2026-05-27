@@ -204,7 +204,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
       ro: [
         {
           question: "Cum intru pe serverul CS 1.6 Classic FREE-ARENA?",
-          answer: "Foloseste IP-ul cs.free-arena.ro:27015 sau butonul Join Server de pe pagina, daca ai Counter-Strike 1.6 instalat.",
+          answer: "Foloseste IP-ul 217.156.22.74:27015 sau butonul Join Server de pe pagina, daca ai Counter-Strike 1.6 instalat.",
         },
         {
           question: "Serverul este pentru Romania?",
@@ -226,7 +226,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
       en: [
         {
           question: "How do I join the FREE-ARENA CS 1.6 Classic server?",
-          answer: "Use cs.free-arena.ro:27015 or the Join Server button on this page if Counter-Strike 1.6 is installed.",
+          answer: "Use 217.156.22.74:27015 or the Join Server button on this page if Counter-Strike 1.6 is installed.",
         },
         {
           question: "Is this a Romanian server?",
@@ -332,7 +332,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         },
         {
           question: "Care este IP-ul serverului Respawn?",
-          answer: "Adresa serverului este respawn.free-arena.ro:27015.",
+          answer: "Adresa serverului este 51.38.97.243:27015.",
         },
         {
           question: "Respawn are staff activ?",
@@ -354,7 +354,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         },
         {
           question: "What is the Respawn server IP?",
-          answer: "The server address is respawn.free-arena.ro:27015.",
+          answer: "The server address is 51.38.97.243:27015.",
         },
         {
           question: "Does Respawn have active staff?",
@@ -456,7 +456,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         },
         {
           question: "Care este adresa serverului CS2?",
-          answer: "Adresa configurata este cs2.free-arena.ro:27015.",
+          answer: "Adresa configurata este 135.125.208.88:27015.",
         },
         {
           question: "CS2 are legatura cu Discord si TeamSpeak?",
@@ -478,7 +478,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         },
         {
           question: "What is the CS2 server address?",
-          answer: "The configured address is cs2.free-arena.ro:27015.",
+          answer: "The configured address is 135.125.208.88:27015.",
         },
         {
           question: "Is CS2 connected to Discord and TeamSpeak?",
