@@ -156,9 +156,9 @@ export function ServerHudCard({
             <span className="min-w-0 truncate font-mono text-sm font-black text-white">{address}</span>
           </div>
 
-          <div className={`server-actions-grid mt-4 grid gap-2 sm:grid-cols-2 ${isPending ? "pointer-events-none" : ""}`}>
+          <div className={`server-actions-grid mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 ${isPending ? "pointer-events-none" : ""}`}>
             {isPending ? (
-              <span className="server-disabled-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/50 sm:col-span-2">
+              <span className="server-disabled-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/50 sm:col-span-2 lg:col-span-1 xl:col-span-2">
                 <Lock size={15} aria-hidden="true" />
                 COMING SOON
               </span>
@@ -167,13 +167,13 @@ export function ServerHudCard({
                 {connectable && isOnline ? (
                   <a
                     href={connectHref}
-                    className="server-join-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition sm:col-span-2"
+                    className="server-join-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition sm:col-span-2 lg:col-span-1 xl:col-span-2"
                   >
                     {labels.connect}
                     <ExternalLink size={15} aria-hidden="true" />
                   </a>
                 ) : (
-                  <span className="server-disabled-button inline-flex items-center justify-center px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/36 sm:col-span-2">
+                  <span className="server-disabled-button inline-flex items-center justify-center px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/36 sm:col-span-2 lg:col-span-1 xl:col-span-2">
                     <ShieldCheck size={15} className="mr-2" aria-hidden="true" />
                     {statusLabel}
                   </span>

@@ -46,4 +46,5 @@ temp/
 coverage/
 playwright-report/
 test-results/
+reports/
 .codex-git-tool/
