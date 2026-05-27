@@ -271,7 +271,8 @@ body {
 
 .locale-switcher__item {
   position: relative;
-  min-width: 2.2rem;
+  min-height: 2.5rem;
+  min-width: 2.625rem;
   text-align: center;
 }
 
@@ -778,7 +779,7 @@ body {
   }
 
   .locale-switcher__item {
-    min-width: 1.85rem;
+    min-width: 2.625rem;
   }
 
   .header-menu-button {

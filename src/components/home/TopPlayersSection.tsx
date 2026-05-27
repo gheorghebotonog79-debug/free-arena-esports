@@ -209,7 +209,7 @@ export function TopPlayersSection() {
             {isLoading ? (
               <LeaderboardSkeleton />
             ) : topPlayers.length > 0 ? (
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
                 {topPlayers.map((player, index) => (
                   <PodiumCard key={player.player} player={player} rank={index + 1} />
                 ))}
@@ -317,7 +317,7 @@ function SmallMetric({ label, value }: { label: string; value: string }) {
 
 function LeaderboardSkeleton() {
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {Array.from({ length: 5 }).map((_, index) => (
         <div key={index} className="server-tactical-card leaderboard-player-card animate-pulse p-5" data-occupancy="low" data-status="loading">
           <div className="server-card__backdrop" aria-hidden="true" />
