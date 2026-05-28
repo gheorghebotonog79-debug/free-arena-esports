@@ -28,6 +28,7 @@ type ServerHudCardProps = {
   map: string;
   maxPlayers: number;
   onCopy: () => void;
+  onDetails?: () => void;
   ping: string;
   players: number;
   playersLabel: string;
@@ -58,6 +59,7 @@ export function ServerHudCard({
   map,
   maxPlayers,
   onCopy,
+  onDetails,
   ping,
   players,
   playersLabel,
@@ -178,14 +180,26 @@ export function ServerHudCard({
                     {statusLabel}
                   </span>
                 )}
-                <Link
-                  href={`/servers/${serverKey}`}
-                  className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
-                  aria-label={detailsLabel}
-                >
-                  {labels.details}
-                  <ArrowRight size={15} aria-hidden="true" />
-                </Link>
+                {onDetails ? (
+                  <button
+                    type="button"
+                    onClick={onDetails}
+                    className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
+                    aria-label={detailsLabel}
+                  >
+                    {labels.details}
+                    <ArrowRight size={15} aria-hidden="true" />
+                  </button>
+                ) : (
+                  <Link
+                    href={`/servers/${serverKey}`}
+                    className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
+                    aria-label={detailsLabel}
+                  >
+                    {labels.details}
+                    <ArrowRight size={15} aria-hidden="true" />
+                  </Link>
+                )}
                 <button
                   type="button"
                   onClick={onCopy}

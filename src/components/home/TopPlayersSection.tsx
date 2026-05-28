@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { AlertTriangle, Crown, Crosshair, Search, Skull, UsersRound } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AlertTriangle, Check, Copy, Crown, Crosshair, Search, Skull, UsersRound } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
 import {
   formatCompactNumber,
   formatPlayedTime,
@@ -31,8 +32,25 @@ function isSearchResponse(value: unknown): value is PlayerSearchResponse {
   );
 }
 
+function filterLocalPlayers(players: PlayerProgressPlayer[] | undefined, query: string) {
+  const normalizedQuery = query.trim().toLowerCase();
+
+  if (normalizedQuery.length < 2) {
+    return [];
+  }
+
+  return (players ?? []).filter((player) => {
+    return (
+      player.nick.toLowerCase().includes(normalizedQuery) ||
+      player.player.toLowerCase().includes(normalizedQuery) ||
+      player.steamId.toLowerCase().includes(normalizedQuery)
+    );
+  });
+}
+
 export function TopPlayersSection() {
   const t = useTranslations("PlayerProgress");
+  const copiedPlayerTimeoutRef = useRef<number | null>(null);
   const [progress, setProgress] = useState<PlayerProgressResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -40,6 +58,8 @@ export function TopPlayersSection() {
   const [results, setResults] = useState<PlayerProgressPlayer[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState(false);
+  const [copiedPlayerId, setCopiedPlayerId] = useState<string | null>(null);
+  const cachedProgressPlayers = progress?.players;
 
   const loadProgress = useCallback(async () => {
     try {
@@ -70,7 +90,12 @@ export function TopPlayersSection() {
       void loadProgress();
     }, REFRESH_MS);
 
-    return () => window.clearInterval(interval);
+    return () => {
+      window.clearInterval(interval);
+      if (copiedPlayerTimeoutRef.current !== null) {
+        window.clearTimeout(copiedPlayerTimeoutRef.current);
+      }
+    };
   }, [loadProgress]);
 
   useEffect(() => {
@@ -83,9 +108,19 @@ export function TopPlayersSection() {
       return;
     }
 
+    const localMatches = filterLocalPlayers(cachedProgressPlayers, value);
+
+    if (localMatches.length > 0) {
+      setResults(localMatches);
+      setSearchError(false);
+      setIsSearching(false);
+    } else {
+      setResults([]);
+    }
+
     const controller = new AbortController();
     const timeout = window.setTimeout(async () => {
-      setIsSearching(true);
+      setIsSearching(localMatches.length === 0);
 
       try {
         const response = await fetch(`/api/player-progress/search?q=${encodeURIComponent(value)}`, {
@@ -103,12 +138,31 @@ export function TopPlayersSection() {
           throw new Error("Unexpected search payload");
         }
 
-        setResults(payload.players);
+        let nextResults = payload.players;
+
+        nextResults = nextResults.length > 0 ? nextResults : localMatches;
+
+        if (nextResults.length === 0) {
+          const topResponse = await fetch("/api/player-progress?limit=10", {
+            cache: "no-store",
+            signal: controller.signal,
+          });
+
+          if (topResponse.ok) {
+            const topPayload: unknown = await topResponse.json();
+
+            if (isProgressResponse(topPayload)) {
+              nextResults = filterLocalPlayers(topPayload.players, value);
+            }
+          }
+        }
+
+        setResults(nextResults);
         setSearchError(false);
       } catch (error) {
         if (!(error instanceof DOMException && error.name === "AbortError")) {
-          setResults([]);
-          setSearchError(true);
+          setResults(localMatches);
+          setSearchError(localMatches.length === 0);
         }
       } finally {
         setIsSearching(false);
@@ -119,13 +173,31 @@ export function TopPlayersSection() {
       controller.abort();
       window.clearTimeout(timeout);
     };
-  }, [query]);
+  }, [cachedProgressPlayers, query]);
 
   const summary = progress?.summary;
   const players = progress?.players ?? [];
   const topPlayers = players.slice(0, 5);
   const searchActive = query.trim().length >= 2;
   const shownSearchResults = searchActive ? results : [];
+
+  async function handleCopySteamId(playerId: string) {
+    try {
+      await copyTextToClipboard(playerId);
+      setCopiedPlayerId(playerId);
+
+      if (copiedPlayerTimeoutRef.current !== null) {
+        window.clearTimeout(copiedPlayerTimeoutRef.current);
+      }
+
+      copiedPlayerTimeoutRef.current = window.setTimeout(() => {
+        setCopiedPlayerId((current) => (current === playerId ? null : current));
+        copiedPlayerTimeoutRef.current = null;
+      }, 1800);
+    } catch {
+      setCopiedPlayerId(null);
+    }
+  }
 
   return (
     <section id="top-players" className="neon-section scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
@@ -197,7 +269,14 @@ export function TopPlayersSection() {
                 ) : searchError ? (
                   <p className="server-metric p-3 text-sm font-bold text-white/60">{t("search.error")}</p>
                 ) : shownSearchResults.length > 0 ? (
-                  shownSearchResults.map((player) => <CompactPlayer key={player.player} player={player} />)
+                  shownSearchResults.map((player) => (
+                    <CompactPlayer
+                      copied={copiedPlayerId === player.player}
+                      key={player.player}
+                      onCopySteamId={() => void handleCopySteamId(player.player)}
+                      player={player}
+                    />
+                  ))
                 ) : (
                   <p className="server-metric p-3 text-sm font-semibold text-white/50">{t("search.empty")}</p>
                 )}
@@ -290,18 +369,46 @@ function PodiumCard({ player, rank }: { player: PlayerProgressPlayer; rank: numb
   );
 }
 
-function CompactPlayer({ player }: { player: PlayerProgressPlayer }) {
+function CompactPlayer({
+  copied,
+  onCopySteamId,
+  player,
+}: {
+  copied: boolean;
+  onCopySteamId: () => void;
+  player: PlayerProgressPlayer;
+}) {
   return (
-    <article className="server-metric group flex items-center justify-between gap-3 p-3">
-      <div className="min-w-0">
-        <h3 className="server-card__title truncate text-sm font-black text-white" title={player.nick}>
-          {player.nick}
-        </h3>
-        <p className="mt-1 truncate font-mono text-xs text-white/34 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
-          {player.player}
-        </p>
+    <article className="server-metric group grid gap-3 p-3">
+      <div className="flex min-w-0 items-start gap-3">
+        <span className="grid size-11 shrink-0 place-items-center rounded-full border border-white/12 bg-white/[0.07] text-white/46 shadow-[0_0_24px_rgba(34,211,238,0.08)]">
+          <UsersRound size={18} aria-hidden="true" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <h3 className="server-card__title truncate text-sm font-black text-white" title={player.nick}>
+            {player.nick}
+          </h3>
+          <p className="mt-1 truncate font-mono text-[0.68rem] text-white/38">
+            {player.player}
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={onCopySteamId}
+          className="server-copy-button grid size-9 shrink-0 place-items-center text-white transition"
+          title={copied ? "Copied" : "Copy SteamID"}
+          aria-label={copied ? "SteamID copied" : `Copy SteamID for ${player.nick}`}
+        >
+          {copied ? <Check size={15} aria-hidden="true" /> : <Copy size={15} aria-hidden="true" />}
+        </button>
       </div>
-      <span className="shrink-0 font-display text-lg font-black text-cyan-200">{formatCompactNumber(player.xp)}</span>
+
+      <dl className="grid grid-cols-4 gap-2">
+        <SmallMetric label="XP" value={formatCompactNumber(player.xp)} />
+        <SmallMetric label="Kills" value={formatCompactNumber(player.kills)} />
+        <SmallMetric label="HS" value={formatCompactNumber(player.headshots)} />
+        <SmallMetric label="Time" value={formatPlayedTime(player.playedTime)} />
+      </dl>
     </article>
   );
 }

@@ -32,6 +32,8 @@ import type {
 
 const REFRESH_INTERVAL_MS = 30_000;
 
+type ServerStatusFilter = "all" | "online" | "offline" | "pending";
+
 const statusClasses: Record<LiveServerStatusKind, string> = {
   loading: "bg-white/8 text-white/58 border border-white/14",
   online: "bg-arena-green/12 text-arena-green border border-arena-green/30",
@@ -69,6 +71,7 @@ export function ServerGrid() {
   const [lastUpdatedAt, setLastUpdatedAt] = useState<Date | null>(null);
   const [copiedServer, setCopiedServer] = useState<LiveServerKey | null>(null);
   const [copyToastMessage, setCopyToastMessage] = useState<string | null>(null);
+  const [statusFilter, setStatusFilter] = useState<ServerStatusFilter>("all");
 
   const loadServerStatuses = useCallback(async ({ initial = false }: { initial?: boolean } = {}) => {
     if (isRequestingRef.current) {
@@ -191,6 +194,11 @@ export function ServerGrid() {
       : status === "loading"
         ? t("loading.value")
         : formatPing(liveServer?.ping);
+    const playerCount = status === "loading" || status === "pending" ? 0 : liveServer?.players ?? 0;
+    const maxPlayers = status === "loading" || status === "pending" ? 0 : liveServer?.maxPlayers ?? 0;
+    const pingValue = typeof liveServer?.ping === "number" && Number.isFinite(liveServer.ping)
+      ? liveServer.ping
+      : null;
 
     return {
       key: server.key,
@@ -202,7 +210,10 @@ export function ServerGrid() {
       address: liveServer?.address || server.address,
       map,
       players,
+      playerCount,
+      maxPlayers,
       ping,
+      pingValue,
       lastCheckedAt: liveServer?.checkedAt ?? null,
       connectHref: liveServer?.connectUrl || server.connectHref,
       connectable: server.connectable,
@@ -211,6 +222,50 @@ export function ServerGrid() {
       translatedTags: server.tags.map((tag) => t(`tags.${tag}`)),
     };
   });
+  const hubLabels = locale === "ro"
+    ? {
+        active: "ACTIVE",
+        all: "TOATE",
+        avgPing: "PING MEDIU",
+        filter: "STATUS FILTER",
+        offline: "OFFLINE",
+        online: "ONLINE",
+        pending: "SOON",
+        players: "JUCATORI",
+      }
+    : {
+        active: "ACTIVE",
+        all: "ALL",
+        avgPing: "AVG PING",
+        filter: "STATUS FILTER",
+        offline: "OFFLINE",
+        online: "ONLINE",
+        pending: "SOON",
+        players: "PLAYERS",
+      };
+  const filterOptions: { key: ServerStatusFilter; label: string }[] = [
+    { key: "all", label: hubLabels.all },
+    { key: "online", label: hubLabels.online },
+    { key: "offline", label: hubLabels.offline },
+    { key: "pending", label: hubLabels.pending },
+  ];
+  const visibleServerCards = statusFilter === "all"
+    ? serverCards
+    : serverCards.filter((server) => server.status === statusFilter);
+  const activeServers = serverCards.filter((server) => server.status !== "pending");
+  const onlineCount = serverCards.filter((server) => server.status === "online").length;
+  const totalPlayers = serverCards.reduce((sum, server) => sum + server.playerCount, 0);
+  const totalSlots = serverCards.reduce((sum, server) => sum + server.maxPlayers, 0);
+  const pingValues = serverCards.flatMap((server) => (server.pingValue === null ? [] : [server.pingValue]));
+  const averagePing = pingValues.length > 0
+    ? `${Math.round(pingValues.reduce((sum, value) => sum + value, 0) / pingValues.length)}ms`
+    : "N/A";
+
+  function getFilterCount(filter: ServerStatusFilter) {
+    return filter === "all"
+      ? serverCards.length
+      : serverCards.filter((server) => server.status === filter).length;
+  }
 
   return (
     <section
@@ -251,8 +306,52 @@ export function ServerGrid() {
           </button>
         </div>
 
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <div className="rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-arena-cyan">{hubLabels.active}</p>
+            <p className="mt-2 font-display text-3xl font-black text-white">
+              {onlineCount}/{activeServers.length}
+            </p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-arena-cyan">{hubLabels.players}</p>
+            <p className="mt-2 font-display text-3xl font-black text-white">
+              {totalPlayers}/{totalSlots}
+            </p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-arena-cyan">{hubLabels.avgPing}</p>
+            <p className="mt-2 font-display text-3xl font-black text-white">{averagePing}</p>
+          </div>
+        </div>
+
+        <div className="mt-4 flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-white/46">{hubLabels.filter}</p>
+          <div className="flex flex-wrap gap-2">
+            {filterOptions.map((option) => {
+              const isActive = statusFilter === option.key;
+
+              return (
+                <button
+                  key={option.key}
+                  type="button"
+                  onClick={() => setStatusFilter(option.key)}
+                  className={`rounded-lg border px-3 py-2 text-xs font-black uppercase tracking-[0.12em] transition ${
+                    isActive
+                      ? "border-arena-cyan/70 bg-arena-cyan/12 text-arena-cyan"
+                      : "border-white/12 bg-black/24 text-white/54 hover:border-arena-cyan/44 hover:text-white"
+                  }`}
+                  aria-pressed={isActive}
+                >
+                  {option.label} {getFilterCount(option.key)}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="server-card-grid mt-10">
-          {serverCards.map((server, index) => {
+          {visibleServerCards.map((server, index) => {
             const isCopied = copiedServer === server.key;
 
             return (
@@ -422,6 +521,12 @@ export function ServerGrid() {
             );
           })}
         </div>
+
+        {visibleServerCards.length === 0 ? (
+          <p className="mt-4 rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-semibold text-white/58">
+            {locale === "ro" ? "Nu exista servere in acest status." : "No servers in this status."}
+          </p>
+        ) : null}
 
         <CopyToast message={copyToastMessage} />
       </div>
