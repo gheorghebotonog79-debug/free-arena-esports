@@ -1,6 +1,6 @@
 :root,
 .cyber-root {
-  --cyber-bg: #050509;
+  --cyber-bg: #040202;
   --cyber-panel: rgba(11, 15, 22, 0.82);
   --cyber-panel-strong: rgba(11, 15, 22, 0.94);
   --cyber-red: #ff0033;
@@ -15,9 +15,10 @@
   min-height: 100vh;
   overflow-x: clip;
   background:
-    radial-gradient(900px 560px at 10% 8%, rgba(255, 0, 51, 0.14), transparent 62%),
-    radial-gradient(900px 560px at 82% 16%, rgba(0, 230, 255, 0.16), transparent 64%),
-    linear-gradient(180deg, #050509 0%, #070910 45%, #050509 100%);
+    radial-gradient(980px 620px at 10% 8%, rgba(255, 0, 51, 0.2), transparent 62%),
+    radial-gradient(960px 620px at 82% 16%, rgba(255, 106, 0, 0.13), transparent 64%),
+    radial-gradient(820px 540px at 50% 100%, rgba(255, 42, 31, 0.16), transparent 66%),
+    linear-gradient(180deg, #070203 0%, #090304 45%, #040202 100%);
   color: #f6fbff;
 }
 

@@ -23,7 +23,7 @@ export function HeroCinematic() {
       <div className="neon-hero__cinematic-light neon-hero__cinematic-light--cyan" aria-hidden="true" />
       <div className="neon-hero__visual" aria-hidden="true" />
       <div className="neon-hero__soldier" aria-hidden="true" />
-      <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/76 to-transparent" aria-hidden="true" />
+      <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#080202] via-[#120304]/78 to-transparent" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto grid min-h-[29rem] w-full max-w-7xl items-center gap-8 pt-4 sm:min-h-[31rem] lg:min-h-[28rem] lg:grid-cols-[minmax(0,1fr)_24rem] lg:pt-0 xl:min-h-[30rem]">
         <div className="mx-auto w-full min-w-0 max-w-6xl text-center lg:mx-0 lg:text-left">
