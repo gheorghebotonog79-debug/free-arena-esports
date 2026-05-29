@@ -18,7 +18,14 @@ export function HeroCinematic() {
   return (
     <section className="neon-hero neon-hero--wow neon-hero--compact relative isolate overflow-hidden border-b border-cyan-300/15 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
       <ParticlesBackground />
-      <div className="neon-hero__target-grid" aria-hidden="true" />
+      <div className="neon-hero__flames" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
       <div className="neon-hero__cinematic-light neon-hero__cinematic-light--red" aria-hidden="true" />
       <div className="neon-hero__cinematic-light neon-hero__cinematic-light--cyan" aria-hidden="true" />
       <div className="neon-hero__visual" aria-hidden="true" />

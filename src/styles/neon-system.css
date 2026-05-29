@@ -41,8 +41,8 @@ body {
 }
 
 .neon-atmosphere__gradient,
+.neon-atmosphere__flames,
 .neon-atmosphere__smoke,
-.neon-atmosphere__grid,
 .neon-atmosphere__particles,
 .neon-atmosphere__hud-lines,
 .neon-atmosphere__scanlines {
@@ -92,6 +92,114 @@ body {
   animation: dark-flame-waver 12s ease-in-out infinite alternate-reverse;
 }
 
+.neon-atmosphere__flames {
+  inset: auto -8% -10%;
+  height: 46vh;
+  z-index: 1;
+  opacity: 0.58;
+  filter:
+    blur(1.2px)
+    drop-shadow(0 0 22px rgba(255, 0, 51, 0.42))
+    drop-shadow(0 0 34px rgba(255, 106, 0, 0.22));
+  mix-blend-mode: screen;
+  mask-image: linear-gradient(0deg, #000 0%, #000 58%, transparent 100%);
+}
+
+.neon-atmosphere__flames span,
+.neon-hero__flames span {
+  position: absolute;
+  bottom: -18%;
+  display: block;
+  width: var(--flame-width, 18rem);
+  height: var(--flame-height, 28rem);
+  border-radius: 56% 44% 52% 48% / 72% 68% 32% 28%;
+  background:
+    radial-gradient(circle at 50% 72%, rgba(255, 208, 92, 0.74), transparent 18%),
+    radial-gradient(circle at 50% 52%, rgba(255, 106, 0, 0.62), transparent 34%),
+    linear-gradient(180deg, transparent 0%, rgba(255, 0, 51, 0.12) 20%, rgba(255, 0, 51, 0.58) 58%, rgba(255, 106, 0, 0.72) 100%);
+  clip-path: polygon(50% 0%, 62% 16%, 58% 29%, 73% 45%, 66% 59%, 82% 82%, 50% 100%, 18% 82%, 34% 58%, 26% 43%, 42% 28%, 37% 15%);
+  transform: translateX(-50%) rotate(var(--flame-rotate, 0deg)) scale(var(--flame-scale, 1));
+  transform-origin: 50% 100%;
+  animation: infernal-flame-tongue var(--flame-duration, 6s) ease-in-out infinite alternate;
+}
+
+.neon-atmosphere__flames span:nth-child(1) {
+  --flame-width: 17rem;
+  --flame-height: 30rem;
+  --flame-rotate: -8deg;
+  --flame-scale: 1.08;
+  --flame-duration: 7s;
+  left: 5%;
+}
+
+.neon-atmosphere__flames span:nth-child(2) {
+  --flame-width: 21rem;
+  --flame-height: 34rem;
+  --flame-rotate: 5deg;
+  --flame-scale: 1.16;
+  --flame-duration: 8.4s;
+  left: 18%;
+  animation-delay: -2.4s;
+}
+
+.neon-atmosphere__flames span:nth-child(3) {
+  --flame-width: 15rem;
+  --flame-height: 27rem;
+  --flame-rotate: -4deg;
+  --flame-duration: 6.6s;
+  left: 34%;
+  animation-delay: -1.2s;
+}
+
+.neon-atmosphere__flames span:nth-child(4) {
+  --flame-width: 24rem;
+  --flame-height: 38rem;
+  --flame-rotate: 8deg;
+  --flame-scale: 1.2;
+  --flame-duration: 9.2s;
+  left: 50%;
+  opacity: 0.82;
+  animation-delay: -3.2s;
+}
+
+.neon-atmosphere__flames span:nth-child(5) {
+  --flame-width: 16rem;
+  --flame-height: 30rem;
+  --flame-rotate: -7deg;
+  --flame-duration: 7.4s;
+  left: 66%;
+  animation-delay: -1.8s;
+}
+
+.neon-atmosphere__flames span:nth-child(6) {
+  --flame-width: 20rem;
+  --flame-height: 35rem;
+  --flame-rotate: 6deg;
+  --flame-scale: 1.14;
+  --flame-duration: 8s;
+  left: 82%;
+  animation-delay: -4s;
+}
+
+.neon-atmosphere__flames span:nth-child(7) {
+  --flame-width: 14rem;
+  --flame-height: 26rem;
+  --flame-rotate: -3deg;
+  --flame-duration: 6.2s;
+  left: 93%;
+  animation-delay: -2.8s;
+}
+
+.neon-atmosphere__flames span:nth-child(8) {
+  --flame-width: 18rem;
+  --flame-height: 32rem;
+  --flame-rotate: 4deg;
+  --flame-duration: 7.8s;
+  left: 42%;
+  opacity: 0.6;
+  animation-delay: -5s;
+}
+
 .neon-atmosphere__smoke {
   opacity: 0.62;
   background:
@@ -102,15 +210,6 @@ body {
   filter: blur(26px);
   transform: scale(1.08);
   animation: black-smoke-drift 22s ease-in-out infinite alternate;
-}
-
-.neon-atmosphere__grid {
-  opacity: 0.11;
-  background:
-    linear-gradient(rgba(255, 106, 0, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 0, 51, 0.12) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(180deg, transparent, #000 12%, #000 78%, transparent);
 }
 
 .neon-atmosphere__particles {
@@ -902,9 +1001,9 @@ body {
   z-index: -1;
   content: "";
   background:
-    linear-gradient(rgba(255, 106, 0, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 0, 51, 0.055) 1px, transparent 1px);
-  background-size: 64px 64px;
+    radial-gradient(920px 360px at 18% 8%, rgba(255, 0, 51, 0.08), transparent 68%),
+    radial-gradient(840px 340px at 86% 4%, rgba(255, 106, 0, 0.055), transparent 70%),
+    radial-gradient(760px 360px at 50% 100%, rgba(0, 0, 0, 0.34), transparent 72%);
   mask-image: linear-gradient(180deg, transparent, #000 16%, #000 84%, transparent);
 }
 
@@ -1067,9 +1166,7 @@ body {
   background:
     radial-gradient(860px 340px at 22% 18%, rgba(0, 0, 0, 0.52), transparent 70%),
     radial-gradient(740px 320px at 82% 14%, rgba(0, 0, 0, 0.42), transparent 72%),
-    linear-gradient(90deg, rgba(255, 0, 51, 0.2), transparent 18% 82%, rgba(0, 229, 255, 0.12)),
-    repeating-linear-gradient(90deg, transparent 0 92px, rgba(255, 255, 255, 0.035) 92px 93px),
-    repeating-linear-gradient(180deg, transparent 0 72px, rgba(255, 255, 255, 0.03) 72px 73px);
+    linear-gradient(90deg, rgba(255, 0, 51, 0.2), transparent 18% 82%, rgba(0, 229, 255, 0.12));
   mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 78%, transparent 100%);
   opacity: 0.48;
 }
@@ -1081,17 +1178,78 @@ body {
 }
 
 .neon-hero__target-grid {
-  inset: 12% 5% 8%;
+  display: none;
+}
+
+.neon-hero__flames {
+  position: absolute;
+  inset: auto -8% -12%;
   z-index: 1;
-  border: 1px solid rgba(0, 229, 255, 0.1);
-  background:
-    linear-gradient(90deg, transparent 0 49.8%, rgba(0, 229, 255, 0.16) 49.8% 50.2%, transparent 50.2%),
-    linear-gradient(180deg, transparent 0 49.8%, rgba(255, 27, 54, 0.13) 49.8% 50.2%, transparent 50.2%);
-  box-shadow:
-    inset 0 0 80px rgba(0, 0, 0, 0.4),
-    0 0 48px rgba(0, 229, 255, 0.08);
-  opacity: 0.34;
-  transform: skewY(-3deg);
+  height: 48%;
+  pointer-events: none;
+  opacity: 0.78;
+  filter:
+    blur(0.8px)
+    drop-shadow(0 0 22px rgba(255, 0, 51, 0.5))
+    drop-shadow(0 0 38px rgba(255, 106, 0, 0.28));
+  mix-blend-mode: screen;
+  mask-image: linear-gradient(0deg, #000 0%, #000 64%, transparent 100%);
+}
+
+.neon-hero__flames span:nth-child(1) {
+  --flame-width: 20rem;
+  --flame-height: 31rem;
+  --flame-rotate: -7deg;
+  --flame-scale: 1.08;
+  --flame-duration: 6.4s;
+  left: 9%;
+}
+
+.neon-hero__flames span:nth-child(2) {
+  --flame-width: 26rem;
+  --flame-height: 39rem;
+  --flame-rotate: 6deg;
+  --flame-scale: 1.16;
+  --flame-duration: 7.6s;
+  left: 24%;
+  animation-delay: -2s;
+}
+
+.neon-hero__flames span:nth-child(3) {
+  --flame-width: 22rem;
+  --flame-height: 35rem;
+  --flame-rotate: -2deg;
+  --flame-duration: 6.8s;
+  left: 43%;
+  animation-delay: -3.4s;
+}
+
+.neon-hero__flames span:nth-child(4) {
+  --flame-width: 28rem;
+  --flame-height: 42rem;
+  --flame-rotate: 8deg;
+  --flame-scale: 1.18;
+  --flame-duration: 8.2s;
+  left: 63%;
+  animation-delay: -1.2s;
+}
+
+.neon-hero__flames span:nth-child(5) {
+  --flame-width: 18rem;
+  --flame-height: 30rem;
+  --flame-rotate: -6deg;
+  --flame-duration: 6.2s;
+  left: 82%;
+  animation-delay: -4.2s;
+}
+
+.neon-hero__flames span:nth-child(6) {
+  --flame-width: 16rem;
+  --flame-height: 27rem;
+  --flame-rotate: 4deg;
+  --flame-duration: 7s;
+  left: 96%;
+  animation-delay: -2.8s;
 }
 
 .neon-hero__cinematic-light {
@@ -1122,10 +1280,10 @@ body {
   inset: 8% 0 0 auto;
   width: min(58rem, 58vw);
   pointer-events: none;
-  opacity: 0.78;
+  opacity: 0.48;
   background:
-    linear-gradient(100deg, transparent 0 28%, rgba(0, 229, 255, 0.13) 28% 29%, transparent 29% 100%),
-    repeating-linear-gradient(90deg, transparent 0 44px, rgba(0, 229, 255, 0.08) 44px 46px, transparent 46px 92px);
+    radial-gradient(closest-side at 58% 28%, rgba(0, 229, 255, 0.12), transparent 66%),
+    linear-gradient(100deg, transparent 0 28%, rgba(0, 229, 255, 0.1) 28% 29%, transparent 29% 100%);
   mask-image: linear-gradient(90deg, transparent, #000 24%, #000);
 }
 
@@ -1876,6 +2034,22 @@ body {
   }
 }
 
+@keyframes infernal-flame-tongue {
+  0% {
+    opacity: 0.42;
+    transform: translateX(-50%) rotate(calc(var(--flame-rotate, 0deg) - 2deg)) scaleX(0.86) scaleY(0.9);
+  }
+
+  45% {
+    opacity: 0.72;
+  }
+
+  100% {
+    opacity: 0.9;
+    transform: translateX(-50%) rotate(calc(var(--flame-rotate, 0deg) + 2deg)) scaleX(1.08) scaleY(var(--flame-scale, 1));
+  }
+}
+
 @keyframes black-smoke-drift {
   0% {
     filter: blur(24px);
@@ -1975,10 +2149,12 @@ body {
   .neon-atmosphere__gradient,
   .neon-atmosphere__gradient::before,
   .neon-atmosphere__gradient::after,
+  .neon-atmosphere__flames span,
   .neon-atmosphere__smoke,
   .neon-atmosphere__particles,
   .neon-atmosphere__particles::before,
-  .neon-atmosphere__particles::after {
+  .neon-atmosphere__particles::after,
+  .neon-hero__flames span {
     animation: none;
   }
 
