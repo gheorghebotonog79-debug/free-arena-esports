@@ -4,6 +4,7 @@ import { ServerFaq } from "@/components/server/ServerFaq";
 import { ServerFeatureGrid } from "@/components/server/ServerFeatureGrid";
 import { ServerInfoSection } from "@/components/server/ServerInfoSection";
 import { ServerInternalLinks } from "@/components/server/ServerInternalLinks";
+import { ServerLandingExpansion } from "@/components/server/ServerLandingExpansion";
 import { ServerSeoContent } from "@/components/server/ServerSeoContent";
 import { ServerSeoHero } from "@/components/server/ServerSeoHero";
 import type { Locale } from "@/i18n/routing";
@@ -97,6 +98,7 @@ export function ServerSeoPage({ locale, page, server }: ServerSeoPageProps) {
         <ServerSeoHero labels={copy.hero} locale={locale} page={page} server={server} />
         <ServerInfoSection labels={copy.info} locale={locale} page={page} server={server} />
         <ServerSeoContent label={copy.contentLabel} locale={locale} page={page} />
+        <ServerLandingExpansion locale={locale} page={page} />
         <ServerFeatureGrid
           label={copy.features.label}
           locale={locale}

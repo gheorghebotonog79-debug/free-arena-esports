@@ -222,6 +222,26 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
           question: "Vor exista evenimente pe server?",
           answer: "Structura FREE-ARENA este pregatita pentru evenimente, seri competitive si activitati de comunitate.",
         },
+        {
+          question: "Ce harti se potrivesc pentru CS 1.6 Classic?",
+          answer: "Rotatia clasica poate include harti precum de_dust2, de_inferno, de_nuke si de_train, pentru runde clare, joc de echipa si dueluri cunoscute de comunitatea romaneasca.",
+        },
+        {
+          question: "Pot adauga serverul CS 1.6 Classic la Favorites?",
+          answer: "Da. Adauga 217.156.22.74:27015 in Favorites sau foloseste comanda connect 217.156.22.74:27015 in consola jocului.",
+        },
+        {
+          question: "VIP-ul strica echilibrul pe server?",
+          answer: "Beneficiile VIP trebuie pastrate controlat. Scopul este sustinerea comunitatii si identitatea jucatorilor activi, nu transformarea rundelor intr-un avantaj nedrept.",
+        },
+        {
+          question: "Unde gasesc regulile serverului?",
+          answer: "Regulile sunt rezumate pe pagina serverului, iar pentru detalii, reclamatii sau contestatii poti folosi Discord, TeamSpeak sau forumul FREE-ARENA.",
+        },
+        {
+          question: "Este pagina CS 1.6 Classic ruta canonica pentru Google?",
+          answer: "Da. Ruta canonica pentru acest server este /server/cs16-classic, iar vechile URL-uri /servers/cs16 redirectioneaza permanent catre pagina canonica localizata.",
+        },
       ],
       en: [
         {
@@ -346,6 +366,26 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
           question: "Unde gasesc comunitatea Respawn?",
           answer: "Comunitatea este disponibila pe Discord, TeamSpeak si forumul FREE-ARENA.",
         },
+        {
+          question: "Respawn este bun pentru warm-up?",
+          answer: "Da. Modul respawn este potrivit pentru incalzire, reflex, spray control, prefire si repetarea duelurilor fara asteptarea finalului de runda.",
+        },
+        {
+          question: "Ce harti merg bine pe Respawn?",
+          answer: "Respawn functioneaza bine pe harti cu contact rapid precum de_dust2, de_inferno, aim_map, aim_headshot sau harti fun folosite controlat pentru varietate.",
+        },
+        {
+          question: "Cum raportez camp excesiv sau spawn abuse?",
+          answer: "Trimite raportul pe Discord, TeamSpeak sau forum cu nick, ora, harta si descrierea situatiei, astfel incat staff-ul sa poata verifica rapid.",
+        },
+        {
+          question: "Serverul Respawn are legatura cu CS 1.6 Classic?",
+          answer: "Da. Respawn face parte din ecosistemul FREE-ARENA alaturi de CS 1.6 Classic, CS2, Discord, TeamSpeak si hub-ul de servere.",
+        },
+        {
+          question: "Pot folosi aceeasi comunitate pentru suport?",
+          answer: "Da. Canalele FREE-ARENA sunt comune pentru suport, anunturi, raportari si propuneri legate de toate serverele.",
+        },
       ],
       en: [
         {
@@ -469,6 +509,26 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         {
           question: "Vor exista rankings pentru CS2?",
           answer: "Structura FREE-ARENA este pregatita pentru clasamente si progres competitiv in fazele urmatoare.",
+        },
+        {
+          question: "Cum ma conectez daca serverul CS2 nu apare in browser?",
+          answer: "Foloseste IP-ul direct 135.125.208.88:27015 in consola sau adauga serverul la favorite. Browserul CS2 poate afisa uneori serverele cu intarziere dupa update-uri.",
+        },
+        {
+          question: "Ce harti sunt potrivite pentru serverul CS2?",
+          answer: "Rotatia poate include Mirage, Inferno, Nuke, Ancient si Anubis, in functie de directia comunitatii si de feedback-ul jucatorilor activi.",
+        },
+        {
+          question: "CS2 este pentru jucatori competitivi sau casual?",
+          answer: "Serverul este pozitionat competitiv, dar ramane accesibil. Jucatorii noi sunt bineveniti daca respecta regulile, comunicarea si fair-play-ul.",
+        },
+        {
+          question: "VIP-ul pe CS2 ofera avantaje agresive?",
+          answer: "VIP-ul este gandit ca sustinere si identitate in comunitate. Beneficiile trebuie calibrate astfel incat jocul competitiv sa ramana corect.",
+        },
+        {
+          question: "De ce are CS2 pagina dedicata pe FREE-ARENA?",
+          answer: "CS2 este directia moderna a comunitatii si are nevoie de continut propriu: conectare, harti, reguli, suport, evenimente si semnale SEO separate de CS 1.6.",
         },
       ],
       en: [
