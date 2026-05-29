@@ -19,8 +19,7 @@ export function HeroSection() {
       <div className="ambient-lighting" aria-hidden="true" />
       <div className="particle-field" aria-hidden="true" />
       <div className="hero-bloom" aria-hidden="true" />
-      <div className="absolute inset-0 bg-arena-grid bg-[size:42px_42px] opacity-35" aria-hidden="true" />
-      <div className="absolute inset-0 bg-scan-lines opacity-20" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_18%_72%,rgba(255,0,51,0.12),transparent_58%),radial-gradient(ellipse_at_82%_20%,rgba(0,216,255,0.07),transparent_60%),linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.46))]" aria-hidden="true" />
       <div className="depth-vignette" aria-hidden="true" />
       <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
         <div className="min-w-0 w-full max-w-[22.5rem] sm:max-w-none">

@@ -136,7 +136,7 @@ function NewsCard({
       className="premium-card glass-panel animated-border group flex h-full flex-col rounded-lg p-4"
       delay={delay}
     >
-      <div className="absolute inset-0 bg-arena-grid bg-[size:32px_32px] opacity-[0.06]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_18%_12%,rgba(255,59,59,0.08),transparent_58%),radial-gradient(ellipse_at_82%_100%,rgba(0,216,255,0.05),transparent_62%)]" aria-hidden="true" />
       <div className="relative flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
           <span className="grid size-10 shrink-0 place-items-center rounded-lg border border-arena-red/30 bg-arena-red/12 text-arena-red shadow-[0_0_32px_rgba(255,59,59,0.12)]">
@@ -181,7 +181,7 @@ function LiveOpsBoard() {
 
   return (
     <MotionCard delay={0.12} className="premium-card glass-panel animated-border h-full rounded-lg p-5">
-      <div className="absolute inset-0 bg-arena-grid bg-[size:36px_36px] opacity-[0.07]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_18%_18%,rgba(0,216,255,0.07),transparent_58%),radial-gradient(ellipse_at_80%_100%,rgba(255,106,0,0.07),transparent_64%)]" aria-hidden="true" />
       <div className="relative">
         <p className="inline-flex items-center gap-2 rounded-lg border border-arena-cyan/25 bg-arena-cyan/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-arena-cyan">
           <RadioTower size={15} aria-hidden="true" />

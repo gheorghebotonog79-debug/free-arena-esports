@@ -125,7 +125,7 @@ export function ServerDetailsModal({
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
             onMouseDown={(event) => event.stopPropagation()}
           >
-            <div className="absolute inset-0 bg-arena-grid bg-[size:34px_34px] opacity-[0.07]" aria-hidden="true" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_18%_12%,rgba(255,0,51,0.08),transparent_58%),radial-gradient(ellipse_at_84%_18%,rgba(0,216,255,0.06),transparent_62%),radial-gradient(ellipse_at_50%_100%,rgba(255,106,0,0.07),transparent_68%)]" aria-hidden="true" />
             <div className="absolute -right-24 -top-24 size-64 rounded-full bg-arena-cyan/12 blur-3xl" aria-hidden="true" />
             <div className="absolute -bottom-24 -left-20 size-64 rounded-full bg-arena-green/10 blur-3xl" aria-hidden="true" />
 

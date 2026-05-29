@@ -177,7 +177,7 @@ export function CommunitySection() {
                 delay={0.08 + index * 0.07}
                 className="premium-card glass-panel animated-border group h-full rounded-lg p-5"
               >
-                <div className="absolute inset-0 bg-arena-grid bg-[size:32px_32px] opacity-[0.08]" aria-hidden="true" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_16%_12%,rgba(255,106,0,0.07),transparent_58%),radial-gradient(ellipse_at_86%_100%,rgba(0,216,255,0.055),transparent_62%)]" aria-hidden="true" />
                 <div className="relative">
                   <div className="flex items-start justify-between gap-4">
                     <span className={`grid size-12 place-items-center rounded-lg ${channel.iconClass}`}>
