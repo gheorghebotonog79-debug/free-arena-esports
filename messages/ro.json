@@ -750,25 +750,26 @@
       "title": "Ultimele noutăți",
       "copy": "Anunțuri oficiale, operațiuni live și fazele următoare ale platformei.",
       "published": "Publicat",
+      "readMore": "Citește mai mult",
       "authorFallback": "FREE-ARENA Staff",
       "live": "Live feed",
       "emptyTitle": "Feed-ul este pregătit",
       "emptyCopy": "Când staff-ul publică din admin, anunțurile apar aici automat.",
       "fallback": {
         "one": {
-          "date": "25 mai 2026",
-          "title": "RSU Player Progress este live",
-          "copy": "Clasamentul real din MySQL este conectat la Play Hub."
+          "date": "29 mai 2026",
+          "title": "RSU Clasament live",
+          "copy": "XP, fraguri, headshot-uri și timp jucat se sincronizează direct din server."
         },
         "two": {
-          "date": "25 mai 2026",
-          "title": "Pagini dedicate pentru servere",
-          "copy": "Fiecare server are status live, IP, reguli și beneficii VIP."
+          "date": "29 mai 2026",
+          "title": "Server Hub actualizat",
+          "copy": "Cardurile de server afișează status, hartă, ping și IP de conectare într-un format rapid."
         },
         "three": {
           "date": "1 iunie 2026",
-          "title": "Reset BattlePass",
-          "copy": "Sezonul pornește de la zero după restartul oficial."
+          "title": "Community Command activ",
+          "copy": "Discord, TeamSpeak și Forum sunt pregătite pentru suport, anunțuri și discuții oficiale."
         }
       }
     },

@@ -750,25 +750,26 @@
       "title": "Latest updates",
       "copy": "Official announcements, live operations, and the next phases of the platform.",
       "published": "Published",
+      "readMore": "Read more",
       "authorFallback": "FREE-ARENA Staff",
       "live": "Live feed",
       "emptyTitle": "The feed is ready",
       "emptyCopy": "When staff publishes from admin, announcements appear here automatically.",
       "fallback": {
         "one": {
-          "date": "May 25, 2026",
-          "title": "RSU Player Progress is live",
-          "copy": "The real MySQL leaderboard is connected to Play Hub."
+          "date": "May 29, 2026",
+          "title": "RSU live ranking",
+          "copy": "XP, kills, headshots, and played time sync directly from the server."
         },
         "two": {
-          "date": "May 25, 2026",
-          "title": "Dedicated server pages",
-          "copy": "Every server has live status, IP, rules, and VIP benefits."
+          "date": "May 29, 2026",
+          "title": "Server Hub upgraded",
+          "copy": "Server cards show status, map, ping, and connection IP in a faster tactical format."
         },
         "three": {
           "date": "June 1, 2026",
-          "title": "BattlePass reset",
-          "copy": "The season starts from zero after the official restart."
+          "title": "Community Command active",
+          "copy": "Discord, TeamSpeak, and Forum are ready for support, announcements, and official discussions."
         }
       }
     },
