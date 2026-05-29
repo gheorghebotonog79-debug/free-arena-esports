@@ -248,7 +248,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
                   <span className="animated-border grid size-16 shrink-0 place-items-center rounded-lg border border-white/10 bg-black/30 shadow-[0_0_34px_rgba(56,213,255,0.1)]">
                     <Image
                       src={server.icon}
-                      alt=""
+                      alt={`${displayName} icon`}
                       width={52}
                       height={52}
                       className="h-12 w-12 object-contain"

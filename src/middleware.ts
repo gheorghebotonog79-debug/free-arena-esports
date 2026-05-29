@@ -6,6 +6,12 @@ import { ADMIN_SESSION_COOKIE } from "./lib/admin/auth-constants";
 
 const intlMiddleware = createMiddleware(routing);
 
+const rankingsRedirects: Record<string, string> = {
+  "/rankings": "/ro",
+  "/ro/rankings": "/ro",
+  "/en/rankings": "/en",
+};
+
 function redirectToLogin(request: NextRequest) {
   const loginUrl = new URL("/admin/login", request.url);
   loginUrl.searchParams.set("next", `${request.nextUrl.pathname}${request.nextUrl.search}`);
@@ -15,6 +21,14 @@ function redirectToLogin(request: NextRequest) {
 
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const rankingsRedirectTarget = rankingsRedirects[pathname];
+
+  if (rankingsRedirectTarget) {
+    const targetUrl = new URL(rankingsRedirectTarget, request.url);
+    targetUrl.hash = "top-players";
+
+    return NextResponse.redirect(targetUrl, { status: 301 });
+  }
 
   if (pathname === "/admin") {
     const target = request.cookies.has(ADMIN_SESSION_COOKIE) ? "/admin/dashboard" : "/admin/login";

@@ -183,7 +183,7 @@ export function SiteHeader() {
             <span className="header-brand__energy" aria-hidden="true" />
             <Image
               src="/assets/game-icons/F.png"
-              alt=""
+              alt="FREE-ARENA"
               width={112}
               height={112}
               className="header-brand__crest relative z-10"

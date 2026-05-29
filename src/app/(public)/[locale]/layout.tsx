@@ -18,13 +18,21 @@ type LocaleLayoutProps = Readonly<{
   params: Promise<{ locale: string }>;
 }>;
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "FREE-ARENA",
-  url: siteUrl,
-  sameAs: ["https://free-arena.ro"],
-};
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "FREE-ARENA",
+    url: siteUrl,
+    sameAs: ["https://free-arena.ro"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "FREE-ARENA",
+    url: siteUrl,
+  },
+];
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

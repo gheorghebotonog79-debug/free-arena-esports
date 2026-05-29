@@ -38,7 +38,7 @@ export function HeroCinematic() {
             {signals.map((signal) => (
               <span key={signal.key} className="inline-flex items-center gap-2">
                 {"icon" in signal ? (
-                  <Image src={signal.icon} alt="" width={20} height={20} className="size-5 object-contain" />
+                  <Image src={signal.icon} alt={t(`signals.${signal.key}`)} width={20} height={20} className="size-5 object-contain" />
                 ) : (
                   <signal.Icon size={15} className="text-cyber-cyan" aria-hidden="true" />
                 )}

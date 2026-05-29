@@ -35,6 +35,70 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   serverExternalPackages: ["gamedig"],
+  async redirects() {
+    return [
+      {
+        source: "/servers/cs16",
+        destination: "/ro/server/cs16-classic",
+        statusCode: 301,
+      },
+      {
+        source: "/servers/respawn",
+        destination: "/ro/server/respawn",
+        statusCode: 301,
+      },
+      {
+        source: "/servers/cs2",
+        destination: "/ro/server/cs2",
+        statusCode: 301,
+      },
+      {
+        source: "/servers/global",
+        destination: "/ro/server/global",
+        statusCode: 301,
+      },
+      {
+        source: "/ro/servers/cs16",
+        destination: "/ro/server/cs16-classic",
+        statusCode: 301,
+      },
+      {
+        source: "/en/servers/cs16",
+        destination: "/en/server/cs16-classic",
+        statusCode: 301,
+      },
+      {
+        source: "/ro/servers/respawn",
+        destination: "/ro/server/respawn",
+        statusCode: 301,
+      },
+      {
+        source: "/en/servers/respawn",
+        destination: "/en/server/respawn",
+        statusCode: 301,
+      },
+      {
+        source: "/ro/servers/cs2",
+        destination: "/ro/server/cs2",
+        statusCode: 301,
+      },
+      {
+        source: "/en/servers/cs2",
+        destination: "/en/server/cs2",
+        statusCode: 301,
+      },
+      {
+        source: "/ro/servers/global",
+        destination: "/ro/server/global",
+        statusCode: 301,
+      },
+      {
+        source: "/en/servers/global",
+        destination: "/en/server/global",
+        statusCode: 301,
+      },
+    ];
+  },
   async headers() {
     return [
       {

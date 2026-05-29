@@ -18,15 +18,15 @@ type ServersPageProps = {
 
 const seo: Record<Locale, { description: string; imageAlt: string; title: string }> = {
   ro: {
-    title: "Servere FREE-ARENA | CS 1.6, CS2 si comunitate gaming",
+    title: "Serverele FREE-ARENA | CS 1.6 si CS2",
     description:
       "Vezi serverele FREE-ARENA pentru CS 1.6, Respawn si CS2, cu status live, IP-uri de conectare si comunitatea FREE-ARENA Romania.",
     imageAlt: "Servere FREE-ARENA CS 1.6 si CS2",
   },
   en: {
-    title: "FREE-ARENA Servers | CS 1.6, CS2 and gaming community",
+    title: "FREE-ARENA Game Servers | CS 1.6 and CS2",
     description:
-      "Browse FREE-ARENA CS 1.6, Respawn and CS2 servers with live status, connection IPs and the FREE-ARENA gaming community.",
+      "Browse FREE-ARENA CS 1.6, Respawn and CS2 servers with live status, connection IPs, TeamSpeak voice, and community support.",
     imageAlt: "FREE-ARENA CS 1.6 and CS2 servers",
   },
 };

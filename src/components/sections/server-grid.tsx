@@ -23,6 +23,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { gameServers } from "@/data/platform";
 import { Link } from "@/i18n/navigation";
 import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
+import { getCanonicalServerPath } from "@/lib/server-url";
 import type {
   LiveServerKey,
   LiveServersResponse,
@@ -278,6 +279,7 @@ export function ServerGrid() {
           eyebrow={t("heading.eyebrow")}
           title={t("heading.title")}
           copy={t("heading.copy")}
+          as="h1"
         />
 
         <div className="mt-8 flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
@@ -379,7 +381,7 @@ export function ServerGrid() {
                     <span className="animated-border grid size-12 shrink-0 place-items-center rounded-lg border border-white/10 bg-black/30 shadow-[0_0_34px_rgba(56,213,255,0.1)] 2xl:size-14">
                       <Image
                         src={server.icon}
-                        alt=""
+                        alt={`${server.displayName} icon`}
                         width={44}
                         height={44}
                         className="h-10 w-10 object-contain 2xl:h-11 2xl:w-11"
@@ -504,7 +506,7 @@ export function ServerGrid() {
                         )}
 
                         <Link
-                          href={`/servers/${server.key}`}
+                          href={getCanonicalServerPath(server.key)}
                           className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.045] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-green/60 hover:bg-arena-green/10 2xl:col-span-2"
                           aria-label={t("actions.detailsFor", {
                             server: server.displayName,

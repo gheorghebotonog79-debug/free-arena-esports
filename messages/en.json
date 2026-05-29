@@ -1,10 +1,10 @@
 {
   "Metadata": {
-    "title": "FREE-ARENA Gaming Community | CS 1.6, CS2, TeamSpeak and Discord",
+    "title": "FREE-ARENA Gaming | CS 1.6, CS2 and TeamSpeak Live",
     "template": "%s | FREE-ARENA.RO",
-    "description": "Join FREE-ARENA gaming community. CS 1.6, CS2, TeamSpeak, Discord, live servers, events and competitive gaming.",
-    "openGraphTitle": "FREE-ARENA Gaming Community | CS 1.6, CS2, TeamSpeak and Discord",
-    "openGraphDescription": "Join FREE-ARENA gaming community. CS 1.6, CS2, TeamSpeak, Discord, live servers, events and competitive gaming.",
+    "description": "Join FREE-ARENA for CS 1.6, CS2, TeamSpeak, Discord, live servers, events, rankings, and a competitive gaming community.",
+    "openGraphTitle": "FREE-ARENA Gaming | CS 1.6, CS2 and TeamSpeak Live",
+    "openGraphDescription": "Join FREE-ARENA for CS 1.6, CS2, TeamSpeak, Discord, live servers, events, rankings, and a competitive gaming community.",
     "imageAlt": "FREE-ARENA.RO Play Platform social preview"
   },
   "Navigation": {
@@ -125,7 +125,7 @@
   "Servers": {
     "heading": {
       "eyebrow": "Live servers",
-      "title": "Live servers with real status",
+      "title": "FREE-ARENA Game Servers",
       "copy": "Pick the right server and see map, players, ping, and online/offline status before you connect."
     },
     "labels": {

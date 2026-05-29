@@ -42,6 +42,9 @@ export function buildServerStructuredData(
   const seo = page.seo[locale];
   const hero = page.hero[locale];
   const faq = page.faq[locale];
+  const breadcrumbLabels = locale === "ro"
+    ? { home: "Acasa", servers: "Servere", server: `FREE-ARENA ${hero.name}` }
+    : { home: "Home", servers: "Servers", server: `FREE-ARENA ${hero.name}` };
   const organization = {
     "@type": "Organization",
     name: "FREE-ARENA",
@@ -85,6 +88,31 @@ export function buildServerStructuredData(
           text: item.answer,
         },
       })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": `${url}#breadcrumbs`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: breadcrumbLabels.home,
+          item: getLocalizedUrl(locale),
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: breadcrumbLabels.servers,
+          item: getLocalizedUrl(locale, "/servers"),
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: breadcrumbLabels.server,
+          item: url,
+        },
+      ],
     },
   ];
 }

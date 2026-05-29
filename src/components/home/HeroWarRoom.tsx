@@ -53,7 +53,7 @@ export function HeroWarRoom() {
                 className="hud-chip inline-flex items-center gap-2 bg-black/46 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-white/78 shadow-[0_0_28px_rgba(255,42,31,0.08)]"
               >
                 {"icon" in signal ? (
-                  <Image src={signal.icon} alt="" width={22} height={22} className="size-5 object-contain" />
+                  <Image src={signal.icon} alt={t(`signals.${signal.key}`)} width={22} height={22} className="size-5 object-contain" />
                 ) : (
                   <signal.Icon size={17} className="text-cyber-cyan" aria-hidden="true" />
                 )}

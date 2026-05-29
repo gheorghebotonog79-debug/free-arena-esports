@@ -70,7 +70,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
             <span className="grid size-20 shrink-0 place-items-center rounded-lg border border-cyan-300/20 bg-black/32">
               <Image
                 src={server.icon}
-                alt=""
+                alt={`FREE-ARENA ${hero.name} server icon`}
                 width={64}
                 height={64}
                 className="h-16 w-16 object-contain"

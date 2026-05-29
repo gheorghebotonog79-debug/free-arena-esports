@@ -131,13 +131,13 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
     platforms: ["PC", "Steam"],
     seo: {
       ro: {
-        title: "FREE-ARENA CS 1.6 Classic România | Server Counter-Strike 1.6",
+        title: "Server CS 1.6 Classic FREE-ARENA România",
         description:
           "Joaca pe serverul FREE-ARENA CS 1.6 Classic România: gameplay clasic, staff activ, anti-cheat, evenimente si comunitate competitiva.",
         imageAlt: "FREE-ARENA CS 1.6 Classic server România",
       },
       en: {
-        title: "FREE-ARENA CS 1.6 Classic Romania | Counter-Strike 1.6 Server",
+        title: "CS 1.6 Classic FREE-ARENA Romania Server",
         description:
           "Play FREE-ARENA CS 1.6 Classic Romania: classic Counter-Strike gameplay, active staff, anti-cheat, events and a competitive community.",
         imageAlt: "FREE-ARENA CS 1.6 Classic Romania server",
@@ -255,15 +255,15 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
     platforms: ["PC", "Steam"],
     seo: {
       ro: {
-        title: "FREE-ARENA Respawn România | Server CS 1.6 Respawn",
+        title: "Server Respawn CS 1.6 FREE-ARENA România",
         description:
           "Server FREE-ARENA Respawn România pentru CS 1.6: actiune rapida, staff activ, anti-cheat, rankings, evenimente si suport comunitar.",
         imageAlt: "FREE-ARENA Respawn CS 1.6 România",
       },
       en: {
-        title: "FREE-ARENA Respawn Romania | CS 1.6 Respawn Server",
+        title: "Respawn CS 1.6 FREE-ARENA Romania Server",
         description:
-          "FREE-ARENA Respawn Romania for CS 1.6: fast action, active staff, anti-cheat, rankings, events and community support.",
+          "FREE-ARENA Respawn Romania for CS 1.6: fast action, active staff, anti-cheat, rankings, events, community support, and quick practice sessions.",
         imageAlt: "FREE-ARENA Respawn CS 1.6 Romania",
       },
     },
@@ -379,13 +379,13 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
     platforms: ["PC", "Steam"],
     seo: {
       ro: {
-        title: "FREE-ARENA CS2 România | Server Counter-Strike 2 Community",
+        title: "CS2 FREE-ARENA România | Server Competitiv",
         description:
           "Server FREE-ARENA CS2 România pentru jucatori competitivi: comunitate activa, staff, anti-cheat, events, rankings si suport.",
         imageAlt: "FREE-ARENA CS2 România server",
       },
       en: {
-        title: "FREE-ARENA CS2 Romania | Counter-Strike 2 Community Server",
+        title: "CS2 FREE-ARENA Romania | Competitive Server",
         description:
           "FREE-ARENA CS2 Romania server for competitive players: active community, staff, anti-cheat, events, rankings and support.",
         imageAlt: "FREE-ARENA CS2 Romania server",
@@ -503,15 +503,15 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
     platforms: ["PC"],
     seo: {
       ro: {
-        title: "FREE-ARENA Global | Comunitate Gaming România si Evenimente",
+        title: "FREE-ARENA Global | Comunitate Gaming RO",
         description:
           "FREE-ARENA Global este proiectul coming soon pentru comunitate gaming, evenimente, rankings si servere conectate in Romania.",
         imageAlt: "FREE-ARENA Global gaming community",
       },
       en: {
-        title: "FREE-ARENA Global | Gaming Community Romania and Events",
+        title: "FREE-ARENA Global | Romania Gaming Hub",
         description:
-          "FREE-ARENA Global is the coming soon project for gaming community, events, rankings and connected servers in Romania.",
+          "FREE-ARENA Global is the coming soon project for gaming community, events, rankings, connected servers, and long-term growth in Romania.",
         imageAlt: "FREE-ARENA Global gaming community",
       },
     },

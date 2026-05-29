@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight, Check, Copy, ExternalLink, Lock, RadioTower, ShieldCheck, UsersRound } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { LiveServerKey, LiveServerStatusKind } from "@/lib/live-server-targets";
+import { getCanonicalServerPath } from "@/lib/server-url";
 
 type ServerHudCardProps = {
   address: string;
@@ -102,7 +103,7 @@ export function ServerHudCard({
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
           <span className="server-card__icon grid size-16 shrink-0 place-items-center">
-            <Image src={icon} alt="" width={52} height={52} className="size-12 object-contain" />
+            <Image src={icon} alt={`${displayName} icon`} width={52} height={52} className="size-12 object-contain" />
           </span>
           <span className="server-status-badge inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em]">
             <span className="server-status-badge__dot size-2 rounded-full" aria-hidden="true" />
@@ -192,7 +193,7 @@ export function ServerHudCard({
                   </button>
                 ) : (
                   <Link
-                    href={`/servers/${serverKey}`}
+                    href={getCanonicalServerPath(serverKey)}
                     className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
                     aria-label={detailsLabel}
                   >

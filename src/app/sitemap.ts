@@ -22,34 +22,19 @@ const localizedPages = [
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: `${siteUrl}/`,
+  return routing.locales.flatMap((locale) =>
+    localizedPages.map(({ changeFrequency, path, priority }) => ({
+      url: `${siteUrl}/${locale}${path}`,
       lastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
+      changeFrequency,
+      priority,
       alternates: {
         languages: {
-          ro: `${siteUrl}/ro`,
-          en: `${siteUrl}/en`,
-          "x-default": `${siteUrl}/ro`,
+          ro: `${siteUrl}/ro${path}`,
+          en: `${siteUrl}/en${path}`,
+          "x-default": `${siteUrl}/ro${path}`,
         },
       },
-    },
-    ...routing.locales.flatMap((locale) =>
-      localizedPages.map(({ changeFrequency, path, priority }) => ({
-        url: `${siteUrl}/${locale}${path}`,
-        lastModified,
-        changeFrequency,
-        priority,
-        alternates: {
-          languages: {
-            ro: `${siteUrl}/ro${path}`,
-            en: `${siteUrl}/en${path}`,
-            "x-default": `${siteUrl}/ro${path}`,
-          },
-        },
-      })),
-    ),
-  ];
+    })),
+  );
 }

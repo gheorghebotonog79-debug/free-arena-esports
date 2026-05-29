@@ -1,9 +1,9 @@
 {
   "Metadata": {
-    "title": "FREE-ARENA România | Servere CS 1.6, CS2, TeamSpeak și Gaming Community",
+    "title": "FREE-ARENA România | CS 1.6, CS2 și TeamSpeak Live",
     "template": "%s | FREE-ARENA.RO",
     "description": "Intră în comunitatea FREE-ARENA România. Servere CS 1.6, CS2, TeamSpeak, Discord, evenimente gaming și comunitate activă.",
-    "openGraphTitle": "FREE-ARENA România | Servere CS 1.6, CS2, TeamSpeak și Gaming Community",
+    "openGraphTitle": "FREE-ARENA România | CS 1.6, CS2 și TeamSpeak Live",
     "openGraphDescription": "Intră în comunitatea FREE-ARENA România. Servere CS 1.6, CS2, TeamSpeak, Discord, evenimente gaming și comunitate activă.",
     "imageAlt": "Previzualizare socială FREE-ARENA.RO Play Platform"
   },
@@ -125,7 +125,7 @@
   "Servers": {
     "heading": {
       "eyebrow": "Servere live",
-      "title": "Servere live cu status real",
+      "title": "Serverele FREE-ARENA",
       "copy": "Alege serverul potrivit și vezi instant harta, jucătorii, ping-ul și starea online/offline înainte să intri în joc."
     },
     "labels": {
