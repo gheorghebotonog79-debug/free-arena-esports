@@ -269,6 +269,9 @@
   --card-accent: #00e6ff;
   --card-accent-2: #ff0033;
   --card-glow-rgb: 0 230 255;
+  --card-cover-glow:
+    radial-gradient(420px 220px at 22% 0%, rgb(var(--card-glow-rgb) / 0.18), transparent 62%),
+    radial-gradient(380px 260px at 88% 100%, color-mix(in srgb, var(--card-accent-2) 20%, transparent), transparent 70%);
   --card-bg:
     linear-gradient(145deg, rgba(255, 255, 255, 0.075), transparent 26%),
     radial-gradient(circle at 16% 0%, rgb(var(--card-glow-rgb) / 0.2), transparent 34%),
@@ -343,28 +346,35 @@
     inset 0 0 0 1px rgba(255, 255, 255, 0.07),
     inset 0 -48px 100px rgba(0, 0, 0, 0.44),
     0 32px 100px rgba(0, 0, 0, 0.62),
-    0 0 48px rgb(var(--card-glow-rgb) / 0.28),
-    0 0 26px color-mix(in srgb, var(--card-accent-2) 42%, transparent);
-  transform: perspective(900px) translateY(-10px) scale(1.018) rotateX(1deg);
+    0 0 44px rgb(var(--card-glow-rgb) / 0.26),
+    0 0 24px color-mix(in srgb, var(--card-accent-2) 38%, transparent);
+  transform: perspective(900px) translateY(-6px) scale(1.008) rotateX(0.5deg);
 }
 
 .server-card--cs16 {
-  --card-accent: #39ff88;
-  --card-accent-2: #00e6ff;
-  --card-glow-rgb: 57 255 136;
+  --card-accent: #ff9d00;
+  --card-accent-2: #ff3d00;
+  --card-glow-rgb: 255 157 0;
+  --card-cover-glow:
+    radial-gradient(460px 240px at 22% 0%, rgba(255, 157, 0, 0.3), transparent 64%),
+    radial-gradient(380px 260px at 92% 100%, rgba(255, 61, 0, 0.2), transparent 70%);
   --card-bg:
-    linear-gradient(145deg, rgba(57, 255, 136, 0.12), transparent 28%),
-    radial-gradient(circle at 15% 0%, rgba(0, 230, 255, 0.2), transparent 36%),
-    repeating-linear-gradient(0deg, rgba(57, 255, 136, 0.04) 0 1px, transparent 1px 6px),
-    linear-gradient(180deg, rgba(8, 20, 16, 0.96), rgba(3, 7, 8, 0.99));
+    linear-gradient(145deg, rgba(255, 157, 0, 0.16), transparent 28%),
+    radial-gradient(circle at 15% 0%, rgba(255, 61, 0, 0.22), transparent 36%),
+    radial-gradient(circle at 82% 100%, rgba(0, 230, 255, 0.1), transparent 42%),
+    linear-gradient(180deg, rgba(25, 13, 4, 0.96), rgba(8, 4, 3, 0.99));
 }
 
 .server-card--respawn {
   --card-accent: #ff174f;
   --card-accent-2: #ff2bd6;
   --card-glow-rgb: 255 23 79;
+  --card-cover-glow:
+    radial-gradient(430px 230px at 18% 0%, rgba(255, 23, 79, 0.28), transparent 64%),
+    radial-gradient(360px 240px at 88% 100%, rgba(255, 43, 214, 0.18), transparent 70%);
   --card-bg:
     linear-gradient(132deg, rgba(255, 23, 79, 0.2), transparent 28%),
+    radial-gradient(circle at 80% 0%, rgba(255, 43, 214, 0.14), transparent 34%),
     repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 13px),
     linear-gradient(180deg, rgba(22, 8, 13, 0.97), rgba(6, 3, 8, 0.99));
 }
@@ -373,6 +383,9 @@
   --card-accent: #00e6ff;
   --card-accent-2: #2d7dff;
   --card-glow-rgb: 0 230 255;
+  --card-cover-glow:
+    radial-gradient(430px 230px at 18% 0%, rgba(0, 230, 255, 0.24), transparent 64%),
+    radial-gradient(360px 240px at 88% 100%, rgba(45, 125, 255, 0.18), transparent 70%);
   --card-bg:
     linear-gradient(145deg, rgba(45, 125, 255, 0.16), transparent 30%),
     radial-gradient(circle at 82% 0%, rgba(0, 230, 255, 0.22), transparent 32%),
@@ -381,12 +394,19 @@
 
 .server-card--global {
   --card-accent: #a56bff;
-  --card-accent-2: #ffd166;
+  --card-accent-2: #d946ef;
   --card-glow-rgb: 165 107 255;
+  --card-cover-glow:
+    radial-gradient(430px 230px at 18% 0%, rgba(165, 107, 255, 0.22), transparent 64%),
+    radial-gradient(360px 240px at 88% 100%, rgba(217, 70, 239, 0.12), transparent 70%);
   --card-bg:
-    radial-gradient(circle at 82% 0%, rgba(255, 209, 102, 0.2), transparent 31%),
+    radial-gradient(circle at 82% 0%, rgba(217, 70, 239, 0.16), transparent 31%),
     radial-gradient(circle at 18% 0%, rgba(165, 107, 255, 0.22), transparent 36%),
     linear-gradient(180deg, rgba(18, 10, 30, 0.97), rgba(5, 4, 10, 0.99));
+}
+
+.server-card--global.server-tactical-card--pending {
+  filter: saturate(0.78) brightness(0.82);
 }
 
 .server-tactical-card[data-occupancy="low"] {
@@ -516,6 +536,15 @@
   background:
     linear-gradient(115deg, transparent 0 34%, rgb(var(--card-glow-rgb) / 0.1) 34% 35%, transparent 35% 100%),
     radial-gradient(circle at 50% 100%, color-mix(in srgb, var(--card-accent-2) 28%, transparent), transparent 50%);
+}
+
+.server-card__backdrop::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: var(--card-cover-glow);
+  opacity: 0.82;
+  filter: blur(2px);
 }
 
 .server-card__noise {
@@ -765,7 +794,7 @@
 }
 
 .leaderboard-player-card.server-tactical-card {
-  min-height: 19.85rem;
+  min-height: 18.75rem;
 }
 
 .leaderboard-player-card.server-tactical-card:hover,
@@ -777,11 +806,29 @@
   transform: none;
 }
 
-.leaderboard-player-card .server-card__icon {
+.leaderboard-rank-medal {
+  border: 1px solid rgb(var(--card-glow-rgb) / 0.34);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.16), transparent 60%),
+    linear-gradient(145deg, rgb(var(--card-glow-rgb) / 0.16), rgba(0, 0, 0, 0.58));
   color: #ffffff;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.055),
+    0 0 24px rgb(var(--card-glow-rgb) / 0.18);
   text-shadow:
     0 0 16px rgb(var(--card-glow-rgb) / 0.4),
     0 2px 0 rgba(0, 0, 0, 0.58);
+}
+
+.leaderboard-avatar {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(circle at 50% 32%, rgba(255, 255, 255, 0.18), transparent 50%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.035));
+  color: rgba(232, 240, 255, 0.52);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035),
+    0 0 26px rgba(0, 230, 255, 0.1);
 }
 
 .leaderboard-player-card .server-status-badge {

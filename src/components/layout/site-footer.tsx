@@ -16,7 +16,7 @@ export function SiteFooter() {
   const t = useTranslations("Footer");
 
   return (
-    <footer className="neon-section border-t border-cyan-300/20 px-4 py-10 sm:px-6 lg:px-8">
+    <footer className="neon-section site-footer border-t border-cyan-300/20 px-4 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="neon-panel hud-frame grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-5">
           {footerStatus.map(({ key, Icon }) => (
@@ -30,7 +30,7 @@ export function SiteFooter() {
         </div>
         <div className="mt-6 grid gap-6 border-t border-cyan-300/14 pt-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
           <div>
-            <p className="neon-heading whitespace-nowrap font-display text-3xl font-black uppercase tracking-[0.06em] text-white">
+            <p className="neon-heading site-footer__brand whitespace-nowrap font-display text-3xl font-black uppercase tracking-[0.06em] text-white">
               <span>FREE-</span><span className="text-cyan-200">ARENA</span><span>.RO</span>
             </p>
             <p className="mt-3 max-w-xl text-sm leading-6 text-white/54">{t("copy")}</p>
@@ -51,10 +51,11 @@ export function SiteFooter() {
             <a href="https://discord.gg/freearena" target="_blank" rel="noreferrer">Discord</a>
             <a href="ts3server://ts.free-arena.ro">TeamSpeak</a>
             <a href="https://free-arena.ro" target="_blank" rel="noreferrer">Forum</a>
+            <a href="mailto:contact@free-arena.ro">contact@free-arena.ro</a>
           </FooterColumn>
         </div>
         <p className="mt-6 border-t border-cyan-300/14 pt-4 text-xs font-semibold text-white/42">
-          © 2026 FREE-ARENA
+          &copy; 2026 FREE-ARENA
         </p>
       </div>
     </footer>

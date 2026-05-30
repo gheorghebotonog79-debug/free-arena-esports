@@ -133,6 +133,7 @@ function NewsHudCard({
       <span className="news-card__backdrop" aria-hidden="true" />
       <span className="news-card__scanline" aria-hidden="true" />
       <span className="news-card__corner" aria-hidden="true" />
+      <span className="news-card__editorial-glow" aria-hidden="true" />
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
           <span className="news-card__icon grid size-12 place-items-center">

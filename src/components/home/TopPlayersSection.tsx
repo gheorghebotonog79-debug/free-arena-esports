@@ -337,8 +337,13 @@ function PodiumCard({ player, rank }: { player: PlayerProgressPlayer; rank: numb
       <div className="server-card__shine" aria-hidden="true" />
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
-          <div className="server-card__icon grid size-14 place-items-center font-display text-2xl font-black text-white">
-            {rank}
+          <div className="flex items-center gap-3">
+            <div className="leaderboard-rank-medal grid size-11 place-items-center font-display text-xl font-black text-white">
+              {rank}
+            </div>
+            <div className="leaderboard-avatar grid size-12 place-items-center rounded-full" aria-hidden="true">
+              <UsersRound size={21} />
+            </div>
           </div>
           {isChampion ? (
             <span className="server-status-badge inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em]">
@@ -352,7 +357,7 @@ function PodiumCard({ player, rank }: { player: PlayerProgressPlayer; rank: numb
             </span>
           )}
         </div>
-        <h3 className="server-card__title mt-6 truncate font-display text-3xl font-black uppercase leading-none text-white" title={player.nick}>
+        <h3 className="server-card__title mt-5 truncate font-display text-3xl font-black uppercase leading-none text-white" title={player.nick}>
           {player.nick}
         </h3>
         <p className="server-card__region mt-2 truncate font-mono text-xs opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
