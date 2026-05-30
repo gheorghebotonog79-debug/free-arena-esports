@@ -7,8 +7,12 @@ import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { ServerGrid } from "@/components/sections/server-grid";
+import {
+  RomanianServersSeoHub,
+  romanianServersHubFaq,
+} from "@/components/servers/RomanianServersSeoHub";
 import { routing, type Locale } from "@/i18n/routing";
-import { buildPublicMetadata } from "@/lib/seo";
+import { buildPublicMetadata, getLocalizedUrl, siteUrl } from "@/lib/seo";
 
 export const revalidate = 60;
 
@@ -18,10 +22,10 @@ type ServersPageProps = {
 
 const seo: Record<Locale, { description: string; imageAlt: string; title: string }> = {
   ro: {
-    title: "Serverele FREE-ARENA | CS 1.6 si CS2",
+    title: "Servere CS Romania FREE-ARENA | CS 1.6 si CS2",
     description:
-      "Vezi serverele FREE-ARENA pentru CS 1.6, Respawn si CS2, cu status live, IP-uri de conectare si comunitatea FREE-ARENA Romania.",
-    imageAlt: "Servere FREE-ARENA CS 1.6 si CS2",
+      "Descopera hubul FREE-ARENA cu servere CS 1.6 Classic, Respawn si CS2, rankings, Discord, TeamSpeak si pagini canonice pentru fiecare server.",
+    imageAlt: "Servere CS Romania FREE-ARENA",
   },
   en: {
     title: "FREE-ARENA Game Servers | CS 1.6 and CS2",
@@ -50,6 +54,7 @@ export default async function ServersPage({ params }: ServersPageProps) {
   }
 
   setRequestLocale(locale);
+  const structuredData = buildServersStructuredData(locale);
 
   return (
     <>
@@ -57,9 +62,74 @@ export default async function ServersPage({ params }: ServersPageProps) {
       <main className="neon-page-shell cyber-root">
         <NeonAtmosphere />
         <ServerGrid />
+        {locale === "ro" ? <RomanianServersSeoHub /> : null}
       </main>
       <SiteFooter />
       <LiveChatLauncher />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
     </>
   );
+}
+
+function buildServersStructuredData(locale: Locale) {
+  const url = getLocalizedUrl(locale, "/servers");
+  const content = seo[locale];
+  const breadcrumbLabels = locale === "ro"
+    ? { home: "Acasa", servers: "Servere" }
+    : { home: "Home", servers: "Servers" };
+
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      name: content.title,
+      description: content.description,
+      url,
+      isPartOf: {
+        "@type": "WebSite",
+        name: "FREE-ARENA",
+        url: siteUrl,
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": `${url}#breadcrumbs`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: breadcrumbLabels.home,
+          item: getLocalizedUrl(locale),
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: breadcrumbLabels.servers,
+          item: url,
+        },
+      ],
+    },
+    ...(locale === "ro"
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "@id": `${url}#faq`,
+            mainEntity: romanianServersHubFaq.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.answer,
+              },
+            })),
+          },
+        ]
+      : []),
+  ];
 }
