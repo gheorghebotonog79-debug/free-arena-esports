@@ -209,7 +209,7 @@ export function TopPlayersSection() {
                 <p className="neon-kicker section-badge-label px-4 py-2">
                   HALL OF FAME
                 </p>
-                <h2 className="neon-heading mt-5 max-w-4xl font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[0.84] text-white">
+                <h2 className="neon-heading neon-title neon-text-pulse mt-5 max-w-4xl font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[0.84] text-white">
                   {t("heading.title")}
                 </h2>
                 <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-white/62">
@@ -240,7 +240,7 @@ export function TopPlayersSection() {
             ) : null}
           </div>
 
-          <aside className="server-tactical-card leaderboard-search-card h-fit p-5" data-occupancy="low" data-status="online">
+          <aside className="server-tactical-card neon-hover leaderboard-search-card h-fit p-5" data-occupancy="low" data-status="online">
             <div className="server-card__backdrop" aria-hidden="true" />
             <div className="server-card__noise" aria-hidden="true" />
             <div className="server-card__scanline" aria-hidden="true" />
@@ -305,7 +305,7 @@ export function TopPlayersSection() {
 
 function TopStat({ Icon, label, value }: { Icon: LucideIcon; label: string; value: string }) {
   return (
-    <div className="server-tactical-card leaderboard-stat-card h-full p-4" data-occupancy="low" data-status="online">
+    <div className="server-tactical-card neon-hover leaderboard-stat-card h-full p-4" data-occupancy="low" data-status="online">
       <div className="server-card__backdrop" aria-hidden="true" />
       <div className="server-card__noise" aria-hidden="true" />
       <div className="server-card__scanline" aria-hidden="true" />
@@ -326,7 +326,7 @@ function PodiumCard({ player, rank }: { player: PlayerProgressPlayer; rank: numb
 
   return (
     <article
-      className="server-tactical-card server-tactical-card--online leaderboard-player-card group flex h-full min-w-0 flex-col p-5"
+      className="server-tactical-card neon-hover server-tactical-card--online leaderboard-player-card group flex h-full min-w-0 flex-col p-5"
       data-occupancy="low"
       data-rank={rank}
       data-status="online"
@@ -431,7 +431,7 @@ function LeaderboardSkeleton() {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {Array.from({ length: 5 }).map((_, index) => (
-        <div key={index} className="server-tactical-card leaderboard-player-card animate-pulse p-5" data-occupancy="low" data-status="loading">
+        <div key={index} className="server-tactical-card neon-hover leaderboard-player-card animate-pulse p-5" data-occupancy="low" data-status="loading">
           <div className="server-card__backdrop" aria-hidden="true" />
           <div className="server-card__noise" aria-hidden="true" />
           <div className="server-card__scanline" aria-hidden="true" />

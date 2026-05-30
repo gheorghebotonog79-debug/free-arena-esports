@@ -565,6 +565,7 @@
     linear-gradient(90deg, transparent, rgb(var(--card-glow-rgb) / 0.12), transparent);
   mix-blend-mode: screen;
   transform: translateY(-20%);
+  animation: scanlineMove 6.2s ease-in-out infinite;
   transition: opacity 220ms ease, transform 480ms ease;
 }
 

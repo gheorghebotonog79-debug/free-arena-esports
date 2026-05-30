@@ -41,7 +41,7 @@ export function CommunitySection() {
             <p className="neon-kicker section-badge-label px-4 py-2">
               {t("eyebrow")}
             </p>
-            <h2 className="community-command-title mt-5 max-w-2xl font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[0.84]">
+            <h2 className="community-command-title neon-title neon-text-pulse mt-5 max-w-2xl font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[0.84]">
               {t("title")}
             </h2>
             <p className="mt-5 max-w-xl text-base font-semibold leading-7 text-white/62">
@@ -97,7 +97,7 @@ function CommunityCard({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
-      className={`neon-card community-portal-card community-portal-card--${variant} group p-5`}
+      className={`neon-card neon-hover community-portal-card community-portal-card--${variant} group p-5`}
     >
       <span className="community-card__backdrop" aria-hidden="true" />
       <span className="community-card__scanline" aria-hidden="true" />

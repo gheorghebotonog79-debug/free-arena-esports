@@ -11,13 +11,13 @@ export function ServerSeoContent({ label, locale, page }: ServerSeoContentProps)
   const content = page.content[locale];
 
   return (
-    <section className="px-4 py-14 sm:px-6 lg:px-8">
+    <section className="neon-section px-4 py-14 sm:px-6 lg:px-8">
       <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
         <div>
           <p className="neon-kicker section-badge-label inline-flex px-4 py-2">
             {label}
           </p>
-          <h2 className="neon-heading mt-5 font-display text-[clamp(2.4rem,5vw,4.8rem)] font-black uppercase leading-[0.92] text-white">
+          <h2 className="neon-heading neon-title neon-text-pulse mt-5 font-display text-[clamp(2.4rem,5vw,4.8rem)] font-black uppercase leading-[0.92] text-white">
             {content.heading}
           </h2>
           <p className="mt-5 text-base font-semibold leading-7 text-white/64">
@@ -25,7 +25,7 @@ export function ServerSeoContent({ label, locale, page }: ServerSeoContentProps)
           </p>
         </div>
 
-        <article className="premium-card glass-panel rounded-lg p-5 sm:p-6">
+        <article className="premium-card glass-panel neon-hover rounded-lg p-5 sm:p-6">
           <div className="grid gap-5 text-sm leading-7 text-white/68 sm:text-base">
             {content.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>

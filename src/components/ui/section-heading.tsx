@@ -14,7 +14,7 @@ export function SectionHeading({ eyebrow, title, copy, as: Heading = "h2" }: Sec
         <Sparkles size={15} aria-hidden="true" />
         {eyebrow}
       </p>
-      <Heading className="mt-5 break-words font-display text-4xl font-black uppercase leading-[1.02] text-balance text-white [overflow-wrap:anywhere] sm:text-5xl">
+      <Heading className="neon-title neon-text-pulse mt-5 break-words font-display text-4xl font-black uppercase leading-[1.02] text-balance text-white [overflow-wrap:anywhere] sm:text-5xl">
         {title}
       </Heading>
       <p className="mt-4 text-base leading-7 text-white/62">{copy}</p>

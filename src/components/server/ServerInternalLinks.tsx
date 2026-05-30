@@ -22,12 +22,12 @@ export function ServerInternalLinks({ labels, locale, page }: ServerInternalLink
     .map((slug) => serverSeoPages[slug]);
 
   return (
-    <section className="px-4 pb-16 sm:px-6 lg:px-8">
+    <section className="neon-section px-4 pb-16 sm:px-6 lg:px-8">
       <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-[1fr_1.2fr]">
-        <div className="premium-card glass-panel rounded-lg p-5">
+        <div className="premium-card glass-panel neon-hover rounded-lg p-5">
           <div className="flex items-center gap-3">
             <Network size={22} className="text-cyan-200" aria-hidden="true" />
-            <h2 className="font-display text-2xl font-black uppercase text-white">
+            <h2 className="neon-title neon-text-pulse font-display text-2xl font-black uppercase text-white">
               {labels.hub}
             </h2>
           </div>
@@ -47,8 +47,8 @@ export function ServerInternalLinks({ labels, locale, page }: ServerInternalLink
           </div>
         </div>
 
-        <div className="premium-card glass-panel rounded-lg p-5">
-          <h2 className="font-display text-2xl font-black uppercase text-white">
+        <div className="premium-card glass-panel neon-hover rounded-lg p-5">
+          <h2 className="neon-title neon-text-pulse font-display text-2xl font-black uppercase text-white">
             {labels.related}
           </h2>
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
@@ -56,7 +56,7 @@ export function ServerInternalLinks({ labels, locale, page }: ServerInternalLink
               <Link
                 key={serverPage.slug}
                 href={`/server/${serverPage.slug}`}
-                className="rounded-lg border border-white/10 bg-black/28 p-4 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                className="neon-border neon-hover rounded-lg border border-white/10 bg-black/28 p-4 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
               >
                 {serverPage.hero[locale].name}
               </Link>

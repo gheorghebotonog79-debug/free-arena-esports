@@ -30,14 +30,14 @@ export function ServerFeatureGrid({ label, locale, page, title }: ServerFeatureG
   const features = page.features[locale];
 
   return (
-    <section className="px-4 pb-14 sm:px-6 lg:px-8">
+    <section className="neon-section px-4 pb-14 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-arena-green">
               {label}
             </p>
-            <h2 className="mt-3 font-display text-3xl font-black uppercase text-white">
+            <h2 className="neon-title neon-text-pulse mt-3 font-display text-3xl font-black uppercase text-white">
               {title}
             </h2>
           </div>
@@ -47,7 +47,7 @@ export function ServerFeatureGrid({ label, locale, page, title }: ServerFeatureG
             const Icon = featureIcons[key];
 
             return (
-              <article key={key} className="premium-card glass-panel h-full rounded-lg p-5">
+              <article key={key} className="premium-card glass-panel neon-hover h-full rounded-lg p-5">
                 <span className="grid size-12 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10">
                   <Icon size={22} className="text-cyan-200" aria-hidden="true" />
                 </span>

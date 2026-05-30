@@ -271,7 +271,7 @@ export function ServerGrid() {
   return (
     <section
       id="servers"
-      className="cinematic-section bg-[#080909] px-4 py-20 sm:px-6 lg:px-8"
+      className="neon-section cinematic-section bg-[#080909] px-4 py-20 sm:px-6 lg:px-8"
       aria-busy={isLoading || isRefreshing}
     >
       <div className="mx-auto w-full max-w-7xl">
@@ -282,7 +282,7 @@ export function ServerGrid() {
           as="h1"
         />
 
-        <div className="mt-8 flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
+        <div className="neon-border neon-hover neon-scanline mt-8 flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-2 text-sm font-semibold text-white/58" aria-live="polite">
             <Clock3 size={17} className="shrink-0 text-arena-cyan" aria-hidden="true" />
             <span className="min-w-0 truncate">
@@ -309,25 +309,25 @@ export function ServerGrid() {
         </div>
 
         <div className="mt-4 grid gap-3 md:grid-cols-3">
-          <div className="rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+          <div className="neon-border neon-hover rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-arena-cyan">{hubLabels.active}</p>
             <p className="mt-2 font-display text-3xl font-black text-white">
               {onlineCount}/{activeServers.length}
             </p>
           </div>
-          <div className="rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+          <div className="neon-border neon-hover rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-arena-cyan">{hubLabels.players}</p>
             <p className="mt-2 font-display text-3xl font-black text-white">
               {totalPlayers}/{totalSlots}
             </p>
           </div>
-          <div className="rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+          <div className="neon-border neon-hover rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-arena-cyan">{hubLabels.avgPing}</p>
             <p className="mt-2 font-display text-3xl font-black text-white">{averagePing}</p>
           </div>
         </div>
 
-        <div className="mt-4 flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
+        <div className="neon-border neon-hover mt-4 flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-white/46">{hubLabels.filter}</p>
           <div className="flex flex-wrap gap-2">
             {filterOptions.map((option) => {
@@ -360,7 +360,7 @@ export function ServerGrid() {
               <MotionCard
                 key={server.key}
                 delay={index * 0.06}
-                className={`premium-card glass-panel relative flex h-full min-w-0 flex-col overflow-hidden rounded-lg p-4 2xl:p-5 ${server.status === "pending" ? "opacity-60" : ""}`}
+                className={`premium-card glass-panel neon-hover neon-scanline server-card--${server.key} relative flex h-full min-w-0 flex-col overflow-hidden rounded-lg p-4 2xl:p-5 ${server.status === "pending" ? "opacity-60" : ""}`}
               >
                 {server.status === "pending" ? (
                   <div className="pointer-events-none absolute inset-0 z-20 grid place-items-center bg-black/18">

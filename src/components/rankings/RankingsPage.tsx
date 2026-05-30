@@ -31,7 +31,7 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
 
   return (
     <>
-      <section className="px-4 pb-12 pt-16 sm:px-6 lg:px-8 lg:pt-20">
+      <section className="neon-section px-4 pb-12 pt-16 sm:px-6 lg:px-8 lg:pt-20">
         <div className="mx-auto w-full max-w-7xl">
           <nav className="mb-8 flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-white/48" aria-label="Breadcrumb">
             <Link href="/" className="transition hover:text-cyan-200">
@@ -46,7 +46,7 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
               <p className="neon-kicker section-badge-label inline-flex px-4 py-2">
                 {content.eyebrow}
               </p>
-              <h1 className="neon-heading mt-5 max-w-5xl font-display text-[clamp(3.2rem,8vw,7.4rem)] font-black uppercase leading-[0.84] text-white">
+              <h1 className="neon-heading neon-title neon-text-pulse mt-5 max-w-5xl font-display text-[clamp(3.2rem,8vw,7.4rem)] font-black uppercase leading-[0.84] text-white">
                 {content.h1}
               </h1>
               <p className="mt-6 max-w-3xl text-base font-semibold leading-8 text-white/66">
@@ -54,7 +54,7 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
               </p>
             </div>
 
-            <aside className="premium-card glass-panel rounded-lg p-5">
+            <aside className="premium-card glass-panel neon-hover rounded-lg p-5">
               <div className="flex items-center gap-3">
                 <span className="grid size-12 place-items-center rounded-lg border border-arena-gold/30 bg-arena-gold/10 text-arena-gold">
                   <Medal size={23} aria-hidden="true" />
@@ -79,13 +79,13 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
         </div>
       </section>
 
-      <section className="px-4 pb-14 sm:px-6 lg:px-8">
+      <section className="neon-section px-4 pb-14 sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-7xl">
           <div className="flex items-center gap-3">
             <span className="grid size-12 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
               <Activity size={22} aria-hidden="true" />
             </span>
-            <h2 className="font-display text-3xl font-black uppercase text-white">
+            <h2 className="neon-title neon-text-pulse font-display text-3xl font-black uppercase text-white">
               {content.activityTitle}
             </h2>
           </div>
@@ -114,7 +114,7 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
         </div>
       </section>
 
-      <section className="px-4 pb-14 sm:px-6 lg:px-8">
+      <section className="neon-section px-4 pb-14 sm:px-6 lg:px-8">
         <div className="mx-auto grid w-full max-w-7xl gap-4 lg:grid-cols-2">
           <RankingList icon="players" players={topPlayers} title={content.topPlayersTitle} value={(player) => `${formatCompactNumber(player.xp)} XP`} />
           <RankingList icon="kills" players={topKills} title={content.killsTitle} value={(player) => formatCompactNumber(player.kills)} />
@@ -125,7 +125,7 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
 
       <TopPlayersSection />
 
-      <section className="px-4 pb-14 sm:px-6 lg:px-8">
+      <section className="neon-section px-4 pb-14 sm:px-6 lg:px-8">
         <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-2">
           <ContentPanel title={content.how.title}>
             {content.how.body.map((paragraph) => (
@@ -140,13 +140,13 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
         </div>
       </section>
 
-      <section className="px-4 pb-16 sm:px-6 lg:px-8">
+      <section className="neon-section px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-7xl">
           <div className="flex items-center gap-3">
             <span className="grid size-12 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
               <Activity size={22} aria-hidden="true" />
             </span>
-            <h2 className="font-display text-3xl font-black uppercase text-white">
+            <h2 className="neon-title neon-text-pulse font-display text-3xl font-black uppercase text-white">
               {content.internalLinksTitle}
             </h2>
           </div>
@@ -155,7 +155,7 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="premium-card glass-panel group rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                className="premium-card glass-panel neon-hover group rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
               >
                 <div className="flex items-start justify-between gap-3">
                   <h3 className="font-display text-xl font-black uppercase text-white">
@@ -175,7 +175,7 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
 
 function ActivityStat({ Icon, label, value }: { Icon: LucideIcon; label: string; value: string }) {
   return (
-    <article className="premium-card glass-panel rounded-lg p-5">
+    <article className="premium-card glass-panel neon-hover rounded-lg p-5">
       <div className="flex items-center gap-3">
         <span className="grid size-11 place-items-center rounded-lg border border-white/12 bg-white/[0.055] text-cyan-200">
           <Icon size={20} aria-hidden="true" />
@@ -201,12 +201,12 @@ function RankingList({
   const Icon = metricIcons[icon];
 
   return (
-    <article className="premium-card glass-panel rounded-lg p-5">
+    <article className="premium-card glass-panel neon-hover rounded-lg p-5">
       <div className="flex items-center gap-3">
         <span className="grid size-11 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
           <Icon size={20} aria-hidden="true" />
         </span>
-        <h2 className="font-display text-2xl font-black uppercase text-white">{title}</h2>
+        <h2 className="neon-title neon-text-pulse font-display text-2xl font-black uppercase text-white">{title}</h2>
       </div>
       <ol className="mt-5 grid gap-3">
         {players.length > 0 ? players.map((player, index) => (
@@ -229,8 +229,8 @@ function RankingList({
 
 function ContentPanel({ children, title }: { children: ReactNode; title: string }) {
   return (
-    <article className="premium-card glass-panel rounded-lg p-5">
-      <h2 className="font-display text-3xl font-black uppercase text-white">{title}</h2>
+    <article className="premium-card glass-panel neon-hover rounded-lg p-5">
+      <h2 className="neon-title neon-text-pulse font-display text-3xl font-black uppercase text-white">{title}</h2>
       <div className="mt-5 grid gap-5 text-sm leading-7 text-white/66">
         {children}
       </div>

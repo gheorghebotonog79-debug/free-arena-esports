@@ -37,7 +37,7 @@ export function SimpleSeoPage({
               <p className="neon-kicker section-badge-label px-4 py-2">
                 {eyebrow}
               </p>
-              <h1 className="neon-heading mt-5 max-w-4xl font-display text-[clamp(2.6rem,7vw,6rem)] font-black uppercase leading-[0.88] text-white">
+              <h1 className="neon-heading neon-title neon-text-pulse mt-5 max-w-4xl font-display text-[clamp(2.6rem,7vw,6rem)] font-black uppercase leading-[0.88] text-white">
                 {title}
               </h1>
               <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-white/62">
@@ -54,7 +54,7 @@ export function SimpleSeoPage({
               </a>
             </div>
 
-            <div className="neon-panel hud-frame p-5">
+            <div className="neon-panel neon-border neon-scanline hud-frame p-5">
               <div className="flex items-center gap-4 border-b border-cyan-300/14 pb-5">
                 <span className="neon-icon-cell grid size-16 place-items-center">
                   <Icon size={34} className="text-cyan-200" aria-hidden="true" />

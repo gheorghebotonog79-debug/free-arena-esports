@@ -74,7 +74,7 @@ export function WarzoneStatus() {
             {isLoading ? t("loading") : t("sync")}
           </span>
         </div>
-        <h2 className="mt-4 font-display text-3xl font-black uppercase tracking-[0.06em] text-white">
+        <h2 className="neon-title neon-text-pulse mt-4 font-display text-3xl font-black uppercase tracking-[0.06em] text-white">
           {t("title")}
         </h2>
         <div className="warzone-status-card__meter mt-4" aria-hidden="true">

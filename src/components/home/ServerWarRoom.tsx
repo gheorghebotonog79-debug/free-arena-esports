@@ -211,7 +211,7 @@ export function ServerWarRoom() {
             <p className="neon-kicker section-badge-label px-4 py-2">
               {t("eyebrow")}
             </p>
-            <h2 id="servers" className="neon-heading mt-4 scroll-mt-24 font-display text-[clamp(2.7rem,7vw,6.2rem)] font-black uppercase leading-[0.86] text-white">
+            <h2 id="servers" className="neon-heading neon-title neon-text-pulse mt-4 scroll-mt-24 font-display text-[clamp(2.7rem,7vw,6.2rem)] font-black uppercase leading-[0.86] text-white">
               {t("title")}
             </h2>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-white/62">
@@ -219,7 +219,7 @@ export function ServerWarRoom() {
             </p>
           </div>
 
-          <div className="neon-panel flex flex-col gap-3 p-3 sm:flex-row sm:items-center">
+          <div className="neon-panel neon-border neon-hover neon-scanline flex flex-col gap-3 p-3 sm:flex-row sm:items-center">
             <div className="flex items-center gap-2 px-2 text-xs font-black uppercase tracking-[0.14em] text-white/54">
               <Clock3 size={16} className="text-cyan-200" aria-hidden="true" />
               {t("updated")}: {formattedLastUpdatedAt}

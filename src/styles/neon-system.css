@@ -412,9 +412,11 @@ body {
   left: 0.7rem;
   height: 1px;
   content: "";
-  background: linear-gradient(90deg, transparent, #ff0033, #00eaff, transparent);
+  background: linear-gradient(90deg, transparent, var(--neon-red, #ff0033), var(--neon-orange, #ff8a00), var(--neon-cyan, #00eaff), transparent);
+  background-size: 220% 100%;
   opacity: 0;
   transform: scaleX(0.24);
+  animation: neonBorderFlow 3.4s linear infinite;
   transition: opacity 220ms ease, transform 220ms ease;
 }
 
@@ -501,7 +503,9 @@ body {
     0 0 34px rgba(255, 0, 51, 0.36),
     0 0 24px rgba(255, 102, 0, 0.26),
     0 0 28px rgba(0, 234, 255, 0.16);
-  animation: header-play-breathe 2.8s ease-in-out infinite;
+  animation:
+    header-play-breathe 2.8s ease-in-out infinite,
+    neonPulse 3.8s ease-in-out infinite alternate;
 }
 
 .header-play-button::after {
@@ -1755,6 +1759,7 @@ body {
     radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.16) 0 1px, transparent 1px),
     radial-gradient(circle at 74% 36%, rgba(255, 255, 255, 0.11) 0 1px, transparent 1px);
   background-size: auto, 90px 90px, 130px 130px;
+  animation: scanlineMove 6.8s ease-in-out infinite;
 }
 
 .community-card__shine {
@@ -1901,6 +1906,7 @@ body {
     radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.16) 0 1px, transparent 1px),
     radial-gradient(circle at 78% 38%, rgba(255, 255, 255, 0.11) 0 1px, transparent 1px);
   background-size: auto, 96px 96px, 138px 138px;
+  animation: scanlineMove 7.2s ease-in-out infinite;
 }
 
 .news-card__corner {

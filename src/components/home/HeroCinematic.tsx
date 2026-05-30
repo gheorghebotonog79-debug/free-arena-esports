@@ -48,7 +48,7 @@ export function HeroCinematic() {
           </div>
 
           <h1
-            className="neon-heading hero-wow-title glitch-text mx-auto mt-6 max-w-[21rem] break-words font-display text-[clamp(1.95rem,7.8vw,2.9rem)] font-black uppercase leading-[0.82] tracking-normal text-white sm:max-w-full sm:text-7xl md:text-8xl lg:mx-0 lg:text-[7.1rem] xl:text-[8.2rem]"
+            className="neon-heading neon-title neon-text-pulse hero-wow-title glitch-text mx-auto mt-6 max-w-[21rem] break-words font-display text-[clamp(1.95rem,7.8vw,2.9rem)] font-black uppercase leading-[0.82] tracking-normal text-white sm:max-w-full sm:text-7xl md:text-8xl lg:mx-0 lg:text-[7.1rem] xl:text-[8.2rem]"
             data-text={t("title")}
           >
             <span className="hero-wow-title__energy" data-text={t("title")}>{t("title")}</span>

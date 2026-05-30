@@ -84,7 +84,7 @@ export function ServerHudCard({
 
   return (
     <article
-      className={`server-tactical-card ${cardVariantClass[serverKey]} server-tactical-card--${status} ${isPending ? "server-tactical-card--locked" : ""} group flex h-full min-w-0 flex-col p-4 sm:p-5`}
+      className={`server-tactical-card neon-hover ${cardVariantClass[serverKey]} server-tactical-card--${status} ${isPending ? "server-tactical-card--locked" : ""} group flex h-full min-w-0 flex-col p-4 sm:p-5`}
       data-occupancy={occupancyTone}
       data-status={status}
     >

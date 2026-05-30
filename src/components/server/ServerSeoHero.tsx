@@ -23,13 +23,13 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
   const joinClassName = "button-glow inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-arena-green px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white";
 
   return (
-    <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section className="neon-section relative overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div className="min-w-0">
           <p className="neon-kicker section-badge-label inline-flex px-4 py-2">
             {hero.eyebrow}
           </p>
-          <h1 className="neon-heading mt-6 max-w-5xl break-words font-display text-[clamp(3rem,8vw,7rem)] font-black uppercase leading-[0.84] text-white">
+          <h1 className="neon-heading neon-title neon-text-pulse mt-6 max-w-5xl break-words font-display text-[clamp(3rem,8vw,7rem)] font-black uppercase leading-[0.84] text-white">
             FREE-ARENA {hero.name}
           </h1>
           <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-white/66 sm:text-lg">
@@ -65,7 +65,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
           </div>
         </div>
 
-        <aside className="premium-card glass-panel animated-border rounded-lg p-5 sm:p-6">
+        <aside className="premium-card glass-panel neon-hover animated-border rounded-lg p-5 sm:p-6">
           <div className="flex items-start justify-between gap-4">
             <span className="grid size-20 shrink-0 place-items-center rounded-lg border border-cyan-300/20 bg-black/32">
               <Image

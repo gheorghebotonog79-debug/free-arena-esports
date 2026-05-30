@@ -68,7 +68,7 @@ export function NewsPanel({ locale, posts }: NewsPanelProps) {
             <p className="neon-kicker section-badge-label px-4 py-2">
               {t("eyebrow")}
             </p>
-            <h2 className="neon-heading mt-4 font-display text-[clamp(2.7rem,7vw,5.7rem)] font-black uppercase leading-[0.88] text-white">
+            <h2 className="neon-heading neon-title neon-text-pulse mt-4 font-display text-[clamp(2.7rem,7vw,5.7rem)] font-black uppercase leading-[0.88] text-white">
               {t("title")}
             </h2>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-white/62">
@@ -76,7 +76,7 @@ export function NewsPanel({ locale, posts }: NewsPanelProps) {
             </p>
           </div>
 
-          <div className="neon-panel hud-frame p-4">
+          <div className="neon-panel neon-border neon-scanline hud-frame p-4">
             <div className="relative z-10 flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <span className="neon-icon-cell grid size-12 place-items-center text-cyan-200">
@@ -129,7 +129,7 @@ function NewsHudCard({
   const CategoryIcon = categoryIcons[category];
 
   return (
-    <article className={`neon-card news-command-card ${categoryClassNames[category]} group p-5 sm:p-6`}>
+    <article className={`neon-card neon-hover news-command-card ${categoryClassNames[category]} group p-5 sm:p-6`}>
       <span className="news-card__backdrop" aria-hidden="true" />
       <span className="news-card__scanline" aria-hidden="true" />
       <span className="news-card__corner" aria-hidden="true" />

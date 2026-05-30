@@ -30,14 +30,14 @@ export function ServerInfoSection({ labels, locale, page, server }: ServerInfoSe
   ];
 
   return (
-    <section className="px-4 sm:px-6 lg:px-8">
+    <section className="neon-section px-4 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
-        <h2 className="font-display text-3xl font-black uppercase text-white">
+        <h2 className="neon-title neon-text-pulse font-display text-3xl font-black uppercase text-white">
           {labels.title}
         </h2>
         <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {items.map(({ Icon, key, label, tone, value }) => (
-            <div key={key} className="premium-card glass-panel min-h-32 rounded-lg p-4">
+            <div key={key} className="premium-card glass-panel neon-hover min-h-32 rounded-lg p-4">
               <div className="flex items-start justify-between gap-4">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-white/40">
                   {label}
