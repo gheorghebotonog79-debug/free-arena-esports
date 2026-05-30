@@ -504,4 +504,338 @@ export const serverLandingPages: Partial<
       ],
     },
   },
+  global: {
+    ro: {
+      eyebrow: "Proiect strategic",
+      title: "FREE-ARENA Global pentru comunitate, evenimente si servere conectate",
+      intro:
+        "FREE-ARENA Global este pagina care pregateste etapa urmatoare a comunitatii: un punct central pentru jucatori, servere active, evenimente, rankings si anunturi importante. Pentru ca proiectul este inca in pregatire, continutul este scris transparent: explica directia, nu inventeaza status live sau date care nu exista inca.",
+      connect: {
+        title: "Cum urmaresti lansarea Global",
+        intro:
+          "Global nu este prezentat ca server activ daca nu este deschis. In schimb, pagina directioneaza jucatorii catre canalele reale unde se construieste comunitatea si unde vor aparea anunturile de lansare.",
+        steps: [
+          "Salveaza pagina Global ca reper pentru update-uri despre extinderea FREE-ARENA.",
+          "Intra pe Discord pentru anunturi, feedback, poll-uri si discutii despre directia proiectului.",
+          "Foloseste TeamSpeak pentru voice rapid cu jucatorii activi de pe serverele existente.",
+          "Joaca pe CS 1.6 Classic, Respawn sau CS2 ca sa ramai conectat la nucleul comunitatii.",
+          "Urmareste pagina de rankings pentru activitate, progres si semnale despre jucatorii constanti.",
+        ],
+        note:
+          "Cand Global va primi o directie finala, aceasta pagina poate fi actualizata fara schimbarea URL-ului. Asta pastreaza autoritatea SEO acumulata si evita fragmentarea semnalelor pentru Google.",
+      },
+      featureTitle: "Ce rol are Global in ecosistemul FREE-ARENA",
+      features: [
+        {
+          title: "Hub central",
+          copy:
+            "Global poate lega serverele existente intr-un traseu comun: CS 1.6 Classic pentru experienta clasica, Respawn pentru actiune rapida, CS2 pentru directia moderna si rankings pentru activitate masurabila. Pagina explica aceasta structura intr-un mod usor de inteles.",
+        },
+        {
+          title: "Evenimente viitoare",
+          copy:
+            "O comunitate creste cand are motive sa revina. Global este locul potrivit pentru seri tematice, provocari, competitii, anunturi si update-uri care nu apartin unui singur server, dar ajuta intregul proiect FREE-ARENA.",
+        },
+        {
+          title: "SEO fara date false",
+          copy:
+            "Pagina evita promisiunile artificiale. Nu pretinde ca serverul este live daca este coming soon, nu afiseaza harti inexistente si nu inventeaza jucatori. In schimb, ofera context real despre comunitate, plan si legaturi interne.",
+        },
+        {
+          title: "Crestere pe termen lung",
+          copy:
+            "URL-ul stabil permite acumularea autoritatii in timp. Pe masura ce apar evenimente, capturi, ghiduri sau sisteme noi, Global poate deveni centrul de comunicare pentru extinderea FREE-ARENA.",
+        },
+      ],
+      vipTitle: "Beneficii pentru membrii activi",
+      vipIntro:
+        "Global poate introduce beneficii pentru jucatorii care sustin comunitatea, dar acestea trebuie comunicate corect: ca recunoastere si acces la experiente, nu ca avantaj care strica echilibrul serverelor.",
+      vipBenefits: [
+        {
+          title: "Rol vizibil in comunitate",
+          copy:
+            "Jucatorii activi pot primi roluri, taguri sau recunoastere in Discord, rankings si evenimente. Aceasta identitate ii ajuta pe oameni sa se regaseasca mai usor in comunitate.",
+        },
+        {
+          title: "Acces la testari",
+          copy:
+            "Membrii implicati pot participa la testarea directiilor noi: moduri, reguli, evenimente, sisteme de progres sau formate de competitie. Feedback-ul real este mai valoros decat lansarile facute in gol.",
+        },
+        {
+          title: "Prioritate la anunturi",
+          copy:
+            "Cand se pregatesc schimbari importante, comunitatea activa trebuie sa afle prima. Global poate deveni locul unde aceste anunturi sunt centralizate si legate de serverele existente.",
+        },
+        {
+          title: "Sustinere fara pay-to-win",
+          copy:
+            "Beneficiile trebuie sa sustina proiectul fara sa transforme serverele in experiente dezechilibrate. FREE-ARENA poate pastra regulile clare si avantajele controlate.",
+        },
+      ],
+      mapsTitle: "Directii posibile pentru lansarea Global",
+      mapsIntro:
+        "Pentru un proiect coming soon, sectiunea de harti devine un roadmap operational: ce zone pot fi dezvoltate si cum se conecteaza ele cu serverele active.",
+      maps: [
+        {
+          title: "Cross-server events",
+          copy:
+            "Evenimente care pornesc de pe CS 1.6, Respawn sau CS2 si sunt anuntate centralizat prin Global, cu reguli si premii clare.",
+        },
+        {
+          title: "Community hub",
+          copy:
+            "O pagina care trimite jucatorii spre Discord, TeamSpeak, rankings si serverele potrivite fara sa ii piarda in meniuri sau rute vechi.",
+        },
+        {
+          title: "Competitive calendar",
+          copy:
+            "Calendar pentru seri organizate, provocari, mini-turnee si update-uri relevante pentru jucatorii care revin constant.",
+        },
+        {
+          title: "Content center",
+          copy:
+            "Zona pentru screenshot-uri, recapitularea eventurilor, ghiduri si materiale care pot creste autoritatea brandului FREE-ARENA.",
+        },
+      ],
+      rulesTitle: "Reguli de baza pentru proiectul Global",
+      rulesIntro:
+        "Chiar daca Global este in pregatire, pagina trebuie sa seteze asteptari corecte pentru comportament, comunicare si modul in care comunitatea contribuie.",
+      rules: [
+        "Nu sunt publicate date false despre status, jucatori, harti sau lansare.",
+        "Feedback-ul pentru Global trebuie trimis pe canalele oficiale, cu propuneri clare si utile.",
+        "Evenimentele viitoare trebuie sa pastreze fair-play-ul si regulile serverelor active.",
+        "Discord si TeamSpeak raman canalele principale pentru organizare, suport si anunturi.",
+        "Global nu inlocuieste serverele existente; le conecteaza si le sustine.",
+      ],
+      communityTitle: "Comunitatea care sustine Global",
+      communityBody: [
+        "FREE-ARENA Global are sens doar daca pleaca din activitatea reala a jucatorilor. Serverele existente sunt deja punctele de intrare: unii vin pentru CS 1.6 Classic, altii pentru Respawn, iar o parte urmaresc directia CS2. Global aduna aceste drumuri intr-o poveste comuna.",
+        "Pentru SEO, pagina ajuta Google sa inteleaga ca FREE-ARENA nu este o lista izolata de servere, ci un ecosistem cu server hub, landing page-uri dedicate, clasamente, voice si comunitate. Linkurile interne sunt esentiale pentru aceasta structura.",
+        "Pentru jucatori, Global trebuie sa fie simplu: daca vrei sa afli ce urmeaza, intri aici; daca vrei sa joci acum, mergi spre serverele active; daca vrei suport sau discutii, intri pe Discord sau TeamSpeak. Aceasta claritate reduce confuzia si creste increderea.",
+        "Cand proiectul va fi gata pentru lansare, pagina poate primi screenshot-uri reale, un calendar de evenimente, recapitularea competitiilor si continut nou fara sa schimbe fundatia tehnica. Asta face Global util inainte si dupa lansare.",
+      ],
+      galleryTitle: "Screenshot gallery pentru Global",
+      galleryIntro:
+        "Pana la capturi reale din evenimente, galeria foloseste asset-uri de brand si preview-uri care arata directia proiectului fara sa pretinda ca exista gameplay live.",
+      gallery: [
+        {
+          title: "Global hub preview",
+          copy: "Identitate centrala pentru evenimente, servere conectate si comunitatea FREE-ARENA.",
+          image: "/assets/game-icons/F.png",
+          alt: "Preview FREE-ARENA Global hub",
+        },
+        {
+          title: "Server ecosystem",
+          copy: "CS 1.6 Classic, Respawn si CS2 pot trimite autoritate si activitate catre Global.",
+          image: "/assets/brand/free-arena-icons-preview.png",
+          alt: "Preview ecosistem servere FREE-ARENA",
+        },
+        {
+          title: "Community signals",
+          copy: "Discord, TeamSpeak si rankings formeaza baza pentru lansari si anunturi viitoare.",
+          image: "/assets/game-icons/CS.png",
+          alt: "Preview comunitate FREE-ARENA Global",
+        },
+      ],
+      internalLinksTitle: "Linkuri interne pentru Global",
+      internalLinks: [
+        {
+          title: "Servere FREE-ARENA",
+          copy: "Hubul principal pentru status live, IP-uri, moduri active si traseul catre fiecare server.",
+          href: "/servers",
+        },
+        {
+          title: "CS 1.6 Classic",
+          copy: "Serverul clasic care formeaza baza comunitatii romanesti FREE-ARENA.",
+          href: "/server/cs16-classic",
+        },
+        {
+          title: "Respawn",
+          copy: "Modul pentru warm-up, actiune rapida si jucatori care vor dueluri dese.",
+          href: "/server/respawn",
+        },
+        {
+          title: "CS2",
+          copy: "Directia moderna pentru competitii, update-uri si cresterea ecosistemului.",
+          href: "/server/cs2",
+        },
+        {
+          title: "Rankings",
+          copy: "Clasamentul care arata activitatea si progresul jucatorilor FREE-ARENA.",
+          href: "/rankings",
+        },
+        {
+          title: "Discord",
+          copy: "Canalul principal pentru anunturi, feedback, suport si comunitate.",
+          href: "/discord",
+        },
+      ],
+    },
+    en: {
+      eyebrow: "Strategic project",
+      title: "FREE-ARENA Global for community, events and connected servers",
+      intro:
+        "FREE-ARENA Global prepares the next stage of the community: a central point for players, active servers, events, rankings and important updates. Because the project is still in preparation, the content stays transparent: it explains direction without inventing live status or data that does not exist yet.",
+      connect: {
+        title: "How to follow the Global launch",
+        intro:
+          "Global is not presented as an active server while it is not open. Instead, this page sends players to the real channels where the community is being built and where launch updates will appear.",
+        steps: [
+          "Save the Global page as the stable reference for FREE-ARENA expansion updates.",
+          "Join Discord for announcements, feedback, polls and discussions about the project direction.",
+          "Use TeamSpeak for fast voice with active players from the existing servers.",
+          "Play CS 1.6 Classic, Respawn or CS2 to stay connected to the community core.",
+          "Follow the rankings page for activity, progress and signals from consistent players.",
+        ],
+        note:
+          "When Global gets its final direction, this page can be updated without changing the URL. That preserves accumulated SEO authority and avoids fragmented Google signals.",
+      },
+      featureTitle: "What Global does in the FREE-ARENA ecosystem",
+      features: [
+        {
+          title: "Central hub",
+          copy:
+            "Global can connect the existing servers into one path: CS 1.6 Classic for the classic experience, Respawn for fast action, CS2 for the modern direction and rankings for measurable activity.",
+        },
+        {
+          title: "Future events",
+          copy:
+            "A community grows when players have reasons to return. Global is the right place for themed nights, challenges, competitions, announcements and updates that support the whole FREE-ARENA project.",
+        },
+        {
+          title: "SEO without fake data",
+          copy:
+            "The page avoids artificial promises. It does not claim the server is live while it is coming soon, does not show invented maps and does not fabricate player data.",
+        },
+        {
+          title: "Long-term growth",
+          copy:
+            "A stable URL allows authority to compound over time. As events, screenshots, guides and new systems appear, Global can become the communication center for FREE-ARENA expansion.",
+        },
+      ],
+      vipTitle: "Benefits for active members",
+      vipIntro:
+        "Global can introduce benefits for players who support the community, but they should be framed as recognition and access to experiences, not as advantages that damage server balance.",
+      vipBenefits: [
+        {
+          title: "Visible community role",
+          copy:
+            "Active players can receive roles, tags or recognition in Discord, rankings and events. That identity helps people find their place in the community.",
+        },
+        {
+          title: "Access to tests",
+          copy:
+            "Involved members can help test new directions: modes, rules, events, progression systems or competitive formats. Real feedback is more valuable than launching in isolation.",
+        },
+        {
+          title: "Priority updates",
+          copy:
+            "When important changes are planned, the active community should hear first. Global can centralize those updates and connect them to the existing servers.",
+        },
+        {
+          title: "Support without pay-to-win",
+          copy:
+            "Benefits should support the project without turning servers into unbalanced experiences. FREE-ARENA can keep clear rules and controlled advantages.",
+        },
+      ],
+      mapsTitle: "Possible directions for the Global launch",
+      mapsIntro:
+        "For a coming soon project, the map section becomes an operational roadmap: what can be developed and how it connects to the active servers.",
+      maps: [
+        {
+          title: "Cross-server events",
+          copy:
+            "Events that start from CS 1.6, Respawn or CS2 and are announced centrally through Global with clear rules and rewards.",
+        },
+        {
+          title: "Community hub",
+          copy:
+            "A page that sends players to Discord, TeamSpeak, rankings and the right servers without losing them in menus or old routes.",
+        },
+        {
+          title: "Competitive calendar",
+          copy:
+            "A calendar for organized nights, challenges, mini-tournaments and relevant updates for returning players.",
+        },
+        {
+          title: "Content center",
+          copy:
+            "A place for screenshots, event recaps, guides and assets that can increase FREE-ARENA brand authority.",
+        },
+      ],
+      rulesTitle: "Basic rules for the Global project",
+      rulesIntro:
+        "Even while Global is in preparation, the page should set correct expectations for behavior, communication and community contribution.",
+      rules: [
+        "No false data about status, players, maps or launch timing should be published.",
+        "Feedback for Global should go through official channels with clear and useful proposals.",
+        "Future events should preserve fair play and the rules of active servers.",
+        "Discord and TeamSpeak remain the main channels for organization, support and announcements.",
+        "Global does not replace existing servers; it connects and supports them.",
+      ],
+      communityTitle: "The community behind Global",
+      communityBody: [
+        "FREE-ARENA Global only matters if it starts from real player activity. The existing servers are already the entry points: some players come for CS 1.6 Classic, others for Respawn, while part of the community follows the CS2 direction.",
+        "For SEO, the page helps Google understand that FREE-ARENA is not an isolated server list, but an ecosystem with a server hub, dedicated landing pages, rankings, voice and community channels.",
+        "For players, Global should be simple: if you want to know what comes next, start here; if you want to play now, move to the active servers; if you need support or discussion, join Discord or TeamSpeak.",
+        "When the project is ready for launch, the page can receive real screenshots, an event calendar, competition recaps and new content without changing the technical foundation.",
+      ],
+      galleryTitle: "Screenshot gallery for Global",
+      galleryIntro:
+        "Until real event screenshots exist, the gallery uses brand assets and previews that show project direction without pretending live gameplay exists.",
+      gallery: [
+        {
+          title: "Global hub preview",
+          copy: "A central identity for events, connected servers and the FREE-ARENA community.",
+          image: "/assets/game-icons/F.png",
+          alt: "FREE-ARENA Global hub preview",
+        },
+        {
+          title: "Server ecosystem",
+          copy: "CS 1.6 Classic, Respawn and CS2 can pass authority and activity to Global.",
+          image: "/assets/brand/free-arena-icons-preview.png",
+          alt: "FREE-ARENA server ecosystem preview",
+        },
+        {
+          title: "Community signals",
+          copy: "Discord, TeamSpeak and rankings form the base for future launches and announcements.",
+          image: "/assets/game-icons/CS.png",
+          alt: "FREE-ARENA Global community preview",
+        },
+      ],
+      internalLinksTitle: "Useful Global internal links",
+      internalLinks: [
+        {
+          title: "FREE-ARENA Servers",
+          copy: "The main hub for live status, IPs, active modes and routes to each server.",
+          href: "/servers",
+        },
+        {
+          title: "CS 1.6 Classic",
+          copy: "The classic server that forms the base of the FREE-ARENA community.",
+          href: "/server/cs16-classic",
+        },
+        {
+          title: "Respawn",
+          copy: "The mode for warm-up, fast action and players who want frequent duels.",
+          href: "/server/respawn",
+        },
+        {
+          title: "CS2",
+          copy: "The modern direction for competition, updates and ecosystem growth.",
+          href: "/server/cs2",
+        },
+        {
+          title: "Rankings",
+          copy: "The leaderboard that shows FREE-ARENA player activity and progress.",
+          href: "/rankings",
+        },
+        {
+          title: "Discord",
+          copy: "The main channel for announcements, feedback, support and community activity.",
+          href: "/discord",
+        },
+      ],
+    },
+  },
 };
