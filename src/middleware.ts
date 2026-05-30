@@ -7,9 +7,7 @@ import { ADMIN_SESSION_COOKIE } from "./lib/admin/auth-constants";
 const intlMiddleware = createMiddleware(routing);
 
 const rankingsRedirects: Record<string, string> = {
-  "/rankings": "/ro",
-  "/ro/rankings": "/ro",
-  "/en/rankings": "/en",
+  "/rankings": "/ro/rankings",
 };
 
 function redirectToLogin(request: NextRequest) {
@@ -25,7 +23,6 @@ export default function middleware(request: NextRequest) {
 
   if (rankingsRedirectTarget) {
     const targetUrl = new URL(rankingsRedirectTarget, request.url);
-    targetUrl.hash = "top-players";
 
     return NextResponse.redirect(targetUrl, { status: 301 });
   }

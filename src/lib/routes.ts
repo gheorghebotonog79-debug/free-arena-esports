@@ -1,9 +1,9 @@
 export const routes = {
   home: "/",
-  servers: "/#servers",
+  servers: "/servers",
   events: "/#events",
   community: "/#community",
-  rankings: "/#top-players",
+  rankings: "/rankings",
   shop: "/#shop",
   about: "/#about",
   terms: "/terms",

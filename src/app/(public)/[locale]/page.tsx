@@ -4,12 +4,14 @@ import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
 import { CommunitySection } from "@/components/home/CommunitySection";
 import { FinalCta } from "@/components/home/FinalCta";
 import { HeroCinematic } from "@/components/home/HeroCinematic";
+import { HomeInternalLinks } from "@/components/home/HomeInternalLinks";
 import { NewsSection } from "@/components/home/NewsSection";
 import { ServerSection } from "@/components/home/ServerSection";
 import { TopPlayersSection } from "@/components/home/TopPlayersSection";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { TournamentSection } from "@/components/sections/tournament-section";
+import { routing, type Locale } from "@/i18n/routing";
 import { getPublishedNews } from "@/lib/public-news";
 import { getPublicTournaments } from "@/lib/public-tournaments";
 
@@ -23,6 +25,7 @@ type HomeProps = {
 export default async function Home({ params }: HomeProps) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const safeLocale = routing.locales.includes(locale as Locale) ? locale as Locale : routing.defaultLocale;
   const [newsPosts, tournaments] = await Promise.all([
     getPublishedNews(locale),
     SHOW_TOURNAMENTS_SECTION ? getPublicTournaments(4) : Promise.resolve([]),
@@ -35,6 +38,7 @@ export default async function Home({ params }: HomeProps) {
         <NeonAtmosphere />
         <HeroCinematic />
         <ServerSection />
+        <HomeInternalLinks locale={safeLocale} />
         <CommunitySection />
         <TopPlayersSection />
         {SHOW_TOURNAMENTS_SECTION ? <TournamentSection locale={locale} tournaments={tournaments} /> : null}

@@ -3,7 +3,7 @@ import { routing } from "@/i18n/routing";
 import { siteUrl } from "@/lib/seo";
 import { serverSeoSlugs } from "@/lib/serverSeo";
 
-const lastModified = new Date("2026-05-26");
+const lastModified = new Date("2026-05-30");
 
 const serverSeoSitemapPages = serverSeoSlugs.map((slug) => ({
   path: `/server/${slug}`,
@@ -14,6 +14,7 @@ const serverSeoSitemapPages = serverSeoSlugs.map((slug) => ({
 const localizedPages = [
   { path: "", changeFrequency: "weekly", priority: 1 },
   { path: "/servers", changeFrequency: "daily", priority: 0.9 },
+  { path: "/rankings", changeFrequency: "daily", priority: 0.9 },
   { path: "/teamspeak", changeFrequency: "monthly", priority: 0.8 },
   { path: "/discord", changeFrequency: "monthly", priority: 0.8 },
   { path: "/terms", changeFrequency: "monthly", priority: 0.5 },

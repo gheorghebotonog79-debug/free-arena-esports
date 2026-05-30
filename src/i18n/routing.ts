@@ -8,8 +8,7 @@ export const routing = defineRouting({
   defaultLocale,
   localePrefix: "always",
   localeDetection: true,
-  alternateLinks: true,
+  alternateLinks: false,
 });
 
 export type Locale = (typeof locales)[number];
-
