@@ -703,6 +703,7 @@
       "refresh": "Refresh",
       "refreshing": "Scanning",
       "updated": "Last scan",
+      "allServers": "All servers",
       "details": "Details",
       "copyIp": "Copy IP",
       "copied": "Copied",

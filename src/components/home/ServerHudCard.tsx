@@ -73,6 +73,7 @@ export function ServerHudCard({
   const isPending = status === "pending";
   const isLoading = status === "loading";
   const isOffline = status === "offline";
+  const serverHref = getCanonicalServerPath(serverKey);
   const progress = maxPlayers > 0 ? Math.min(100, Math.round((players / maxPlayers) * 100)) : 0;
   const occupancyTone = isPending || isOffline || isLoading
     ? "idle"
@@ -159,12 +160,16 @@ export function ServerHudCard({
             <span className="min-w-0 truncate font-mono text-sm font-black text-white">{address}</span>
           </div>
 
-          <div className={`server-actions-grid mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 ${isPending ? "pointer-events-none" : ""}`}>
+          <div className="server-actions-grid mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
             {isPending ? (
-              <span className="server-disabled-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/50 sm:col-span-2 lg:col-span-1 xl:col-span-2">
+              <Link
+                href={serverHref}
+                className="server-disabled-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/50 sm:col-span-2 lg:col-span-1 xl:col-span-2"
+                aria-label={detailsLabel}
+              >
                 <Lock size={15} aria-hidden="true" />
                 COMING SOON
-              </span>
+              </Link>
             ) : (
               <>
                 {connectable && isOnline ? (
@@ -182,18 +187,21 @@ export function ServerHudCard({
                   </span>
                 )}
                 {onDetails ? (
-                  <button
-                    type="button"
-                    onClick={onDetails}
+                  <Link
+                    href={serverHref}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      onDetails();
+                    }}
                     className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
                     aria-label={detailsLabel}
                   >
                     {labels.details}
                     <ArrowRight size={15} aria-hidden="true" />
-                  </button>
+                  </Link>
                 ) : (
                   <Link
-                    href={getCanonicalServerPath(serverKey)}
+                    href={serverHref}
                     className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
                     aria-label={detailsLabel}
                   >

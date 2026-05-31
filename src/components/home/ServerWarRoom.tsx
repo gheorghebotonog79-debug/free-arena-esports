@@ -1,10 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Check, Clock3, Copy, ExternalLink, Gamepad2, Lock, RadioTower, RefreshCw, ShieldCheck, UsersRound, X } from "lucide-react";
+import { ArrowRight, Check, Clock3, Copy, ExternalLink, Gamepad2, Lock, RadioTower, RefreshCw, ShieldCheck, UsersRound, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { ServerHudCard } from "@/components/home/ServerHudCard";
 import { CopyToast } from "@/components/ui/copy-toast";
+import { Link } from "@/i18n/navigation";
 import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
 import type { LiveServerKey, LiveServersResponse, LiveServerStatus, LiveServerStatusKind } from "@/lib/live-server-targets";
 import { publicServers } from "@/lib/servers";
@@ -233,6 +234,13 @@ export function ServerWarRoom() {
               <RefreshCw size={16} className={isLoading || isRefreshing ? "animate-spin" : ""} aria-hidden="true" />
               {isLoading || isRefreshing ? t("refreshing") : t("refresh")}
             </button>
+            <Link
+              href="/servers"
+              className="neon-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.14em] transition"
+            >
+              {t("allServers")}
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
           </div>
         </div>
 
