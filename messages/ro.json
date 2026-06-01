@@ -687,8 +687,8 @@
       "eyebrow": "Arena este deschisă",
       "kicker": "Play.Free-Arena.ro",
       "title": "FREE-ARENA",
-      "subtitle": "INTRI SAU MORI",
-      "copy": "Alege arma. Intră în arenă. Domină serverele.",
+      "subtitle": "COMUNITATE GAMING",
+      "copy": "Alege serverul, intră pe voice și joacă alături de comunitatea FREE-ARENA.",
         "play": "Joacă acum",
       "servers": "Vezi serverele",
       "discord": "Discord",
@@ -788,12 +788,6 @@
           "copy": "Discord, TeamSpeak și Forum sunt pregătite pentru suport, anunțuri și discuții oficiale."
         }
       }
-    },
-    "cta": {
-      "title": "Intri sau mori!",
-      "copy": "Alege serverul, intră pe voice și arată în clasament că meriți tagul FREE-ARENA.",
-      "play": "Intră în arenă",
-      "servers": "Vezi fronturile"
     }
   },
   "Legal": {

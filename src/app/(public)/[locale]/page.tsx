@@ -2,7 +2,6 @@ import { setRequestLocale } from "next-intl/server";
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
 import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
 import { CommunitySection } from "@/components/home/CommunitySection";
-import { FinalCta } from "@/components/home/FinalCta";
 import { HeroCinematic } from "@/components/home/HeroCinematic";
 import { HomeActivitySection } from "@/components/home/HomeActivitySection";
 import { HomeInternalLinks } from "@/components/home/HomeInternalLinks";
@@ -45,7 +44,6 @@ export default async function Home({ params }: HomeProps) {
         <TopPlayersSection />
         {SHOW_TOURNAMENTS_SECTION ? <TournamentSection locale={locale} tournaments={tournaments} /> : null}
         <NewsSection locale={locale} posts={newsPosts} />
-        <FinalCta />
       </main>
       <SiteFooter />
       <LiveChatLauncher />

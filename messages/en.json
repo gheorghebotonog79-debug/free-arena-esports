@@ -687,8 +687,8 @@
       "eyebrow": "The arena is open",
       "kicker": "Play.Free-Arena.ro",
       "title": "FREE-ARENA",
-      "subtitle": "ENTER OR DIE",
-      "copy": "Choose your weapon. Enter the arena. Dominate the servers.",
+      "subtitle": "GAMING COMMUNITY",
+      "copy": "Choose a server, join voice, and play with the FREE-ARENA community.",
         "play": "Play now",
       "servers": "View servers",
       "discord": "Discord",
@@ -788,12 +788,6 @@
           "copy": "Discord, TeamSpeak, and Forum are ready for support, announcements, and official discussions."
         }
       }
-    },
-    "cta": {
-      "title": "Enter or die!",
-      "copy": "Pick a server, jump on voice, and prove in the rankings that you deserve the FREE-ARENA tag.",
-      "play": "Enter the arena",
-      "servers": "View fronts"
     }
   },
   "Legal": {
