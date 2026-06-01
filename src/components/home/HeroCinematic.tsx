@@ -8,6 +8,7 @@ import { ParticlesBackground } from "@/components/effects/ParticlesBackground";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import type { LiveServerKey, LiveServerStatus, LiveServersResponse, LiveServerStatusKind } from "@/lib/live-server-targets";
+import { getCanonicalServerPath } from "@/lib/server-url";
 import { publicServers } from "@/lib/servers";
 
 const REFRESH_MS = 30_000;
@@ -24,7 +25,7 @@ const heroCopy: Record<
     status: Record<LiveServerStatusKind, string>;
     subtitle: string;
     title: string;
-    trust: readonly { Icon: LucideIcon; label: string }[];
+    trust: readonly { Icon: LucideIcon; href: string; label: string }[];
   }
 > = {
   ro: {
@@ -44,10 +45,10 @@ const heroCopy: Record<
       pending: "In pregatire",
     },
     trust: [
-      { Icon: Gamepad2, label: "3 servere active" },
-      { Icon: Headphones, label: "Discord + TeamSpeak" },
-      { Icon: Trophy, label: "Clasament live" },
-      { Icon: ShieldCheck, label: "Comunitate romaneasca in crestere" },
+      { Icon: Gamepad2, href: "/servers", label: "3 servere active" },
+      { Icon: Headphones, href: "/discord", label: "Discord + TeamSpeak" },
+      { Icon: Trophy, href: "/rankings", label: "Clasament live" },
+      { Icon: ShieldCheck, href: "/join-staff", label: "Comunitate romaneasca in crestere" },
     ],
   },
   en: {
@@ -67,10 +68,10 @@ const heroCopy: Record<
       pending: "In preparation",
     },
     trust: [
-      { Icon: Gamepad2, label: "3 active servers" },
-      { Icon: Headphones, label: "Discord + TeamSpeak" },
-      { Icon: Trophy, label: "Live rankings" },
-      { Icon: ShieldCheck, label: "Growing Romanian community" },
+      { Icon: Gamepad2, href: "/servers", label: "3 active servers" },
+      { Icon: Headphones, href: "/discord", label: "Discord + TeamSpeak" },
+      { Icon: Trophy, href: "/rankings", label: "Live rankings" },
+      { Icon: ShieldCheck, href: "/join-staff", label: "Growing Romanian community" },
     ],
   },
 };
@@ -129,7 +130,6 @@ export function HeroCinematic() {
   }, [loadServers]);
 
   const activeServers = useMemo(() => publicServers.filter((server) => server.pending !== true), []);
-  const cs16Server = activeServers.find((server) => server.key === "cs16");
 
   return (
     <section className="neon-hero neon-hero--wow neon-hero--compact relative isolate overflow-hidden border-b border-cyan-300/15 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
@@ -167,15 +167,13 @@ export function HeroCinematic() {
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
-            {cs16Server ? (
-              <a
-                href={cs16Server.connectHref}
-                className="button-glow inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-arena-green px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
-              >
-                <Gamepad2 size={18} aria-hidden="true" />
-                {copy.connect}
-              </a>
-            ) : null}
+            <Link
+              href="/server/cs16-classic"
+              className="button-glow inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-arena-green px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
+            >
+              <Gamepad2 size={18} aria-hidden="true" />
+              {copy.connect}
+            </Link>
             <a
               href="https://discord.gg/freearena"
               target="_blank"
@@ -195,13 +193,13 @@ export function HeroCinematic() {
           </div>
 
           <div className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            {copy.trust.map(({ Icon, label }) => (
-              <div key={label} className="neon-border rounded-lg border border-white/10 bg-black/28 px-3 py-3 text-left">
+            {copy.trust.map(({ Icon, href, label }) => (
+              <Link key={label} href={href} className="neon-border rounded-lg border border-white/10 bg-black/28 px-3 py-3 text-left transition hover:border-cyan-200/45 hover:bg-cyan-300/10">
                 <div className="flex items-center gap-2">
                   <Icon size={17} className="shrink-0 text-cyan-200" aria-hidden="true" />
                   <span className="text-xs font-black uppercase tracking-[0.12em] text-white/72">{label}</span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -254,13 +252,13 @@ export function HeroCinematic() {
                     <Metric Icon={UsersRound} label={copy.players} value={`${players}/${maxPlayers}`} />
                     <Metric Icon={Map} label={locale === "ro" ? "Harta" : "Map"} value={map} />
                   </dl>
-                  <a
-                    href={server.connectHref}
+                  <Link
+                    href={getCanonicalServerPath(server.slug)}
                     className="button-glow mt-3 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-lg bg-arena-green px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
                   >
                     {locale === "ro" ? "Conecteaza-te" : "Connect"}
                     <ArrowRight size={15} aria-hidden="true" />
-                  </a>
+                  </Link>
                 </article>
               );
             })}
