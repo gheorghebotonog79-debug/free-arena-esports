@@ -46,7 +46,25 @@ export type VipShopContent = {
     title: string;
   };
   packages: Record<VipTierKey, VipPackage>;
+  support: {
+    copy: string;
+    emailCopy: string;
+    emailCta: string;
+    emailTitle: string;
+    items: readonly string[];
+    teamSpeakCopy: string;
+    teamSpeakCta: string;
+    teamSpeakTitle: string;
+    title: string;
+  };
 };
+
+export const vipShopContact = {
+  email: "gheorghe.botonog79@gmail.com",
+  emailHref: "mailto:gheorghe.botonog79@gmail.com?subject=FREE-ARENA%20VIP%20acces%20garantat",
+  teamSpeakAddress: "ts.free-arena.ro",
+  teamSpeakHref: "ts3server://ts.free-arena.ro",
+} as const;
 
 export const vipShopContent: Record<Locale, VipShopContent> = {
   ro: {
@@ -78,6 +96,25 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         "AWP may be blocked on special maps.",
         "VIP weapons activate from round 3.",
         "Activation is done after payment confirmation.",
+      ],
+    },
+    support: {
+      title: "TeamSpeak si acces garantat",
+      copy:
+        "Pentru suport rapid, activare VIP sau acces garantat, foloseste TeamSpeak-ul comunitatii sau trimite email direct cu detaliile contului tau.",
+      teamSpeakTitle: "TeamSpeak FREE-ARENA",
+      teamSpeakCopy:
+        "Intra pe voice pentru suport, verificari rapide si discutii cu staff-ul atunci cand ai nevoie de ajutor pentru VIP.",
+      teamSpeakCta: "Deschide TeamSpeak",
+      emailTitle: "Acces garantat",
+      emailCopy:
+        "Pentru acces garantat, trimite email cu numele tau din joc, serverul, pachetul dorit si dovada platii.",
+      emailCta: "Trimite email",
+      items: [
+        "Adresa TeamSpeak: ts.free-arena.ro",
+        "Email acces garantat: gheorghe.botonog79@gmail.com",
+        "Include numele folosit pe server si pachetul VIP dorit.",
+        "Activarea se face dupa confirmarea platii.",
       ],
     },
     packages: {
@@ -182,6 +219,25 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         "AWP may be blocked on special maps.",
         "VIP weapons activate from round 3.",
         "Activation is done after payment confirmation.",
+      ],
+    },
+    support: {
+      title: "TeamSpeak and guaranteed access",
+      copy:
+        "For fast support, VIP activation, or guaranteed access, use the community TeamSpeak or email the account details directly.",
+      teamSpeakTitle: "FREE-ARENA TeamSpeak",
+      teamSpeakCopy:
+        "Join voice for support, quick checks, and staff conversations whenever you need help with VIP.",
+      teamSpeakCta: "Open TeamSpeak",
+      emailTitle: "Guaranteed access",
+      emailCopy:
+        "For guaranteed access, send an email with your in-game name, server, desired package, and payment proof.",
+      emailCta: "Send email",
+      items: [
+        "TeamSpeak address: ts.free-arena.ro",
+        "Guaranteed access email: gheorghe.botonog79@gmail.com",
+        "Include your server name and desired VIP package.",
+        "Activation is completed after payment confirmation.",
       ],
     },
     packages: {

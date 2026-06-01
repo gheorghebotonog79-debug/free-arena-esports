@@ -6,6 +6,8 @@ import {
   Check,
   Crown,
   Gem,
+  Headphones,
+  Mail,
   MessageSquare,
   ShieldAlert,
   Sparkles,
@@ -18,6 +20,7 @@ import type { Locale } from "@/i18n/routing";
 import {
   vipComparisonRows,
   vipPackageOrder,
+  vipShopContact,
   vipShopContent,
   type VipPackage,
   type VipPackageTone,
@@ -265,6 +268,53 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
           </article>
         </div>
       </section>
+
+      <section className="neon-section px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl">
+          <article className="premium-card glass-panel neon-hover overflow-hidden rounded-lg border border-cyan-200/24 p-5 sm:p-6 lg:p-8">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-start">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-100">
+                  FREE-ARENA SUPPORT
+                </p>
+                <h2 className="mt-3 font-display text-4xl font-black uppercase text-white sm:text-5xl">
+                  {page.support.title}
+                </h2>
+                <p className="mt-4 text-sm font-semibold leading-7 text-white/62">
+                  {page.support.copy}
+                </p>
+                <ul className="mt-6 grid gap-3">
+                  {page.support.items.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm font-semibold leading-6 text-white/68">
+                      <Check size={17} className="mt-1 shrink-0 text-arena-green" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <SupportCard
+                  Icon={Headphones}
+                  copy={page.support.teamSpeakCopy}
+                  cta={page.support.teamSpeakCta}
+                  href={vipShopContact.teamSpeakHref}
+                  label={vipShopContact.teamSpeakAddress}
+                  title={page.support.teamSpeakTitle}
+                />
+                <SupportCard
+                  Icon={Mail}
+                  copy={page.support.emailCopy}
+                  cta={page.support.emailCta}
+                  href={vipShopContact.emailHref}
+                  label={vipShopContact.email}
+                  title={page.support.emailTitle}
+                />
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
   );
 }
@@ -355,5 +405,48 @@ function FeatureState({ enabled }: { enabled: boolean }) {
       {enabled ? <Check size={18} aria-hidden="true" /> : <X size={18} aria-hidden="true" />}
       <span className="sr-only">{enabled ? "included" : "not included"}</span>
     </span>
+  );
+}
+
+function SupportCard({
+  copy,
+  cta,
+  href,
+  Icon,
+  label,
+  title,
+}: {
+  copy: string;
+  cta: string;
+  href: string;
+  Icon: LucideIcon;
+  label: string;
+  title: string;
+}) {
+  return (
+    <div className="rounded-lg border border-white/10 bg-black/30 p-4">
+      <div className="flex items-start gap-3">
+        <span className="grid size-12 shrink-0 place-items-center rounded-lg border border-cyan-200/30 bg-cyan-300/10 text-cyan-100">
+          <Icon size={22} aria-hidden="true" />
+        </span>
+        <div className="min-w-0">
+          <h3 className="font-display text-2xl font-black uppercase text-white">
+            {title}
+          </h3>
+          <p className="mt-2 break-words text-sm font-black text-cyan-100">
+            {label}
+          </p>
+        </div>
+      </div>
+      <p className="mt-4 text-sm font-semibold leading-7 text-white/62">
+        {copy}
+      </p>
+      <a
+        className="button-ghost mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/12"
+        href={href}
+      >
+        {cta}
+      </a>
+    </div>
   );
 }
