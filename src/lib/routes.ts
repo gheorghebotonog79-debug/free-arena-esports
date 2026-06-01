@@ -5,7 +5,7 @@ export const routes = {
   community: "/#community",
   rankings: "/rankings",
   joinStaff: "/join-staff",
-  shop: "/#shop",
+  shop: "/shop",
   about: "/#about",
   terms: "/terms",
   privacy: "/privacy",

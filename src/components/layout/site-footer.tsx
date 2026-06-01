@@ -12,6 +12,9 @@ const footerStatus = [
   { key: "support", Icon: Headset },
 ] as const;
 
+const brandBadges = ["established", "communityFirst", "fairPlay", "antiCheatProtected"] as const;
+const brandParagraphs = ["paragraphOne", "paragraphTwo", "paragraphThree"] as const;
+
 export function SiteFooter() {
   const t = useTranslations("Footer");
 
@@ -29,11 +32,26 @@ export function SiteFooter() {
           ))}
         </div>
         <div className="mt-6 grid gap-6 border-t border-cyan-300/14 pt-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
-          <div>
-            <p className="neon-heading site-footer__brand whitespace-nowrap font-display text-3xl font-black uppercase tracking-[0.06em] text-white">
+          <div className="site-footer__brand-panel">
+            <div className="site-footer__badge-row" aria-label={t("brand.badgeGroupLabel")}>
+              {brandBadges.map((badge) => (
+                <span key={badge} className="site-footer__badge">
+                  {t(`brand.badges.${badge}`)}
+                </span>
+              ))}
+            </div>
+
+            <p className="neon-heading site-footer__brand mt-5 whitespace-nowrap font-display text-[clamp(2rem,5vw,3.4rem)] font-black uppercase leading-none text-white">
               <span>FREE-</span><span className="text-cyan-200">ARENA</span><span>.RO</span>
             </p>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-white/54">{t("copy")}</p>
+            <p className="site-footer__brand-subtitle mt-4 font-display text-sm font-black uppercase tracking-[0.2em] text-orange-200 sm:text-base">
+              {t("brand.subtitle")}
+            </p>
+            <div className="site-footer__brand-copy mt-5 grid max-w-2xl gap-3 text-sm font-semibold leading-7 text-white/66">
+              {brandParagraphs.map((paragraph) => (
+                <p key={paragraph}>{t(`brand.${paragraph}`)}</p>
+              ))}
+            </div>
           </div>
           <FooterColumn title="Server IP">
             <span>217.156.22.74:27015</span>

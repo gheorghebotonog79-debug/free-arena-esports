@@ -37,7 +37,20 @@
     "en": "EN"
   },
   "Footer": {
-    "copy": "Infrastructură gaming pregătită pentru servere live, conturi, clasamente, VIP, turnee și operațiuni de comunitate.",
+    "copy": "Corectitudine, devotament și evoluție pentru comunitatea FREE-ARENA.",
+    "brand": {
+      "badgeGroupLabel": "Valori FREE-ARENA",
+      "badges": {
+        "established": "ESTABLISHED 2025",
+        "communityFirst": "COMMUNITY FIRST",
+        "fairPlay": "FAIR PLAY",
+        "antiCheatProtected": "ANTI-CHEAT PROTECTED"
+      },
+      "subtitle": "CORECTITUDINE. DEVOTAMENT. EVOLUȚIE.",
+      "paragraphOne": "Acestea sunt valorile care definesc FREE-ARENA.",
+      "paragraphTwo": "Construim o comunitate bazată pe respect, competiție reală și implicare constantă. Investim permanent în servere stabile, sisteme moderne și experiențe care pun jucătorul pe primul loc.",
+      "paragraphThree": "Indiferent dacă ești nou sau veteran, aici găsești un loc unde activitatea, performanța și respectul sunt apreciate."
+    },
     "links": {
       "servers": "Servere",
       "community": "Comunitate",

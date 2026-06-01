@@ -37,7 +37,20 @@
     "en": "EN"
   },
   "Footer": {
-    "copy": "Gaming infrastructure prepared for live servers, accounts, rankings, VIP, tournaments, and community operations.",
+    "copy": "Fairness, dedication, and evolution for the FREE-ARENA community.",
+    "brand": {
+      "badgeGroupLabel": "FREE-ARENA values",
+      "badges": {
+        "established": "ESTABLISHED 2025",
+        "communityFirst": "COMMUNITY FIRST",
+        "fairPlay": "FAIR PLAY",
+        "antiCheatProtected": "ANTI-CHEAT PROTECTED"
+      },
+      "subtitle": "FAIRNESS. DEDICATION. EVOLUTION.",
+      "paragraphOne": "These are the values that define FREE-ARENA.",
+      "paragraphTwo": "We are building a community based on respect, real competition, and constant involvement. We keep investing in stable servers, modern systems, and experiences that put players first.",
+      "paragraphThree": "Whether you are new or a veteran, this is a place where activity, performance, and respect are valued."
+    },
     "links": {
       "servers": "Servers",
       "community": "Community",
