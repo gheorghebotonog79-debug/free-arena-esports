@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ArrowRight, Gamepad2, Headphones, Map, MessageSquare, RadioTower, ShieldCheck, Trophy, UsersRound, type LucideIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { ParticlesBackground } from "@/components/effects/ParticlesBackground";
-import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import type { LiveServerKey, LiveServerStatus, LiveServersResponse, LiveServerStatusKind } from "@/lib/live-server-targets";
 import { getCanonicalServerPath } from "@/lib/server-url";
@@ -167,39 +167,51 @@ export function HeroCinematic() {
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
-            <Link
+            <TrackedLink
               href="/server/cs16-classic"
+              eventName="click_play_now"
+              eventPayload={{ location: "homepage_hero", server: "cs16-classic" }}
               className="button-glow inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-arena-green px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
             >
               <Gamepad2 size={18} aria-hidden="true" />
               {copy.connect}
-            </Link>
-            <a
+            </TrackedLink>
+            <TrackedAnchor
               href="https://discord.gg/freearena"
               target="_blank"
               rel="noreferrer"
+              eventName="click_join_discord"
+              eventPayload={{ location: "homepage_hero" }}
               className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#98a3ff]/35 bg-[#5865f2]/12 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-[#98a3ff]/70 hover:bg-[#5865f2]/20"
             >
               <MessageSquare size={18} aria-hidden="true" />
               {copy.discord}
-            </a>
-            <Link
+            </TrackedAnchor>
+            <TrackedLink
               href="/servers"
+              eventName="click_server_details"
+              eventPayload={{ location: "homepage_hero", target: "servers" }}
               className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
             >
               {copy.servers}
               <ArrowRight size={18} aria-hidden="true" />
-            </Link>
+            </TrackedLink>
           </div>
 
           <div className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {copy.trust.map(({ Icon, href, label }) => (
-              <Link key={label} href={href} className="neon-border rounded-lg border border-white/10 bg-black/28 px-3 py-3 text-left transition hover:border-cyan-200/45 hover:bg-cyan-300/10">
+              <TrackedLink
+                key={label}
+                href={href}
+                eventName={href === "/join-staff" ? "click_apply_staff" : href === "/rankings" ? "click_server_details" : "click_server_details"}
+                eventPayload={{ location: "homepage_trust_bar", target: href }}
+                className="neon-border rounded-lg border border-white/10 bg-black/28 px-3 py-3 text-left transition hover:border-cyan-200/45 hover:bg-cyan-300/10"
+              >
                 <div className="flex items-center gap-2">
                   <Icon size={17} className="shrink-0 text-cyan-200" aria-hidden="true" />
                   <span className="text-xs font-black uppercase tracking-[0.12em] text-white/72">{label}</span>
                 </div>
-              </Link>
+              </TrackedLink>
             ))}
           </div>
         </div>
@@ -252,13 +264,15 @@ export function HeroCinematic() {
                     <Metric Icon={UsersRound} label={copy.players} value={`${players}/${maxPlayers}`} />
                     <Metric Icon={Map} label={locale === "ro" ? "Harta" : "Map"} value={map} />
                   </dl>
-                  <Link
+                  <TrackedLink
                     href={getCanonicalServerPath(server.slug)}
+                    eventName="click_server_details"
+                    eventPayload={{ location: "homepage_live_bar", server: server.slug }}
                     className="button-glow mt-3 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-lg bg-arena-green px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
                   >
                     {locale === "ro" ? "Conecteaza-te" : "Connect"}
                     <ArrowRight size={15} aria-hidden="true" />
-                  </Link>
+                  </TrackedLink>
                 </article>
               );
             })}

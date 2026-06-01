@@ -11,6 +11,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Link } from "@/i18n/navigation";
 import { communityChannels, communityPillars } from "@/data/platform";
 import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
+import { trackEvent } from "@/lib/analytics";
 import { routes } from "@/lib/routes";
 import type { TeamSpeakStatusResponse } from "@/lib/teamspeak-status";
 
@@ -255,7 +256,10 @@ export function CommunitySection() {
                     {channel.key === "teamspeak" ? (
                       <button
                         type="button"
-                        onClick={() => void handleCopyAddress(channel.key, channel.endpoint)}
+                        onClick={() => {
+                          trackEvent("click_teamspeak", { location: "community_section_copy", target: channel.key });
+                          void handleCopyAddress(channel.key, channel.endpoint);
+                        }}
                         className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
                         aria-label={t("hub.channels.teamspeak.copyAddressFor", {
                           address: channel.endpoint,
@@ -276,6 +280,15 @@ export function CommunitySection() {
                       href={channel.href}
                       target={channel.external ? "_blank" : undefined}
                       rel={channel.external ? "noreferrer" : undefined}
+                      onClick={() => {
+                        if (channel.key === "discord") {
+                          trackEvent("click_join_discord", { location: "community_section" });
+                        } else if (channel.key === "teamspeak") {
+                          trackEvent("click_teamspeak", { location: "community_section" });
+                        } else if (channel.key === "forum") {
+                          trackEvent("click_forum", { location: "community_section" });
+                        }
+                      }}
                       className="button-glow inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-arena-green"
                     >
                       {t(`hub.channels.${channel.key}.cta`)}

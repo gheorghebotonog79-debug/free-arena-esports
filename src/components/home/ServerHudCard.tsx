@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowRight, Check, Copy, ExternalLink, Lock, RadioTower, ShieldCheck, UsersRound } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { trackEvent } from "@/lib/analytics";
 import type { LiveServerKey, LiveServerStatusKind } from "@/lib/live-server-targets";
 import { getCanonicalServerPath } from "@/lib/server-url";
 
@@ -176,6 +177,7 @@ export function ServerHudCard({
                   <a
                     href={connectHref}
                     className="server-join-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition sm:col-span-2 lg:col-span-1 xl:col-span-2"
+                    onClick={() => trackEvent("click_play_now", { location: "server_card", server: serverKey })}
                   >
                     {labels.connect}
                     <ExternalLink size={15} aria-hidden="true" />
@@ -191,6 +193,7 @@ export function ServerHudCard({
                     href={serverHref}
                     onClick={(event) => {
                       event.preventDefault();
+                      trackEvent("click_server_details", { location: "server_card_modal", server: serverKey });
                       onDetails();
                     }}
                     className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
@@ -202,6 +205,7 @@ export function ServerHudCard({
                 ) : (
                   <Link
                     href={serverHref}
+                    onClick={() => trackEvent("click_server_details", { location: "server_card", server: serverKey })}
                     className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
                     aria-label={detailsLabel}
                   >
@@ -211,7 +215,10 @@ export function ServerHudCard({
                 )}
                 <button
                   type="button"
-                  onClick={onCopy}
+                  onClick={() => {
+                    trackEvent("click_copy_ip", { location: "server_card", server: serverKey });
+                    onCopy();
+                  }}
                   className="server-copy-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
                 >
                   {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}

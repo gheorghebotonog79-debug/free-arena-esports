@@ -1,5 +1,5 @@
 import { CalendarDays, Gift, ShieldCheck, Sparkles, Trophy, type LucideIcon } from "lucide-react";
-import { Link } from "@/i18n/navigation";
+import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import type { Locale } from "@/i18n/routing";
 
 type ActivityItem = {
@@ -100,27 +100,33 @@ export function HomeActivitySection({ locale }: { locale: Locale }) {
               {page.note}
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a
+              <TrackedAnchor
                 href="https://discord.gg/freearena"
                 target="_blank"
                 rel="noreferrer"
+                eventName="click_join_discord"
+                eventPayload={{ location: "homepage_events" }}
                 className="button-glow inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-arena-green"
               >
                 {page.ctaDiscord}
-              </a>
-              <Link
+              </TrackedAnchor>
+              <TrackedLink
                 href="/rankings"
+                eventName="click_server_details"
+                eventPayload={{ location: "homepage_events", target: "rankings" }}
                 className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
               >
                 <Trophy size={18} aria-hidden="true" />
                 {page.ctaRankings}
-              </Link>
-              <Link
+              </TrackedLink>
+              <TrackedLink
                 href="/join-staff"
+                eventName="click_apply_staff"
+                eventPayload={{ location: "homepage_events" }}
                 className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-gold/60 hover:bg-arena-gold/10"
               >
                 {page.ctaStaff}
-              </Link>
+              </TrackedLink>
             </div>
           </div>
 

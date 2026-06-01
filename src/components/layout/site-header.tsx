@@ -19,6 +19,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { trackEvent, type AnalyticsEventName } from "@/lib/analytics";
 import { routes } from "@/lib/routes";
 
 const primaryNavigationItems = [
@@ -43,6 +44,13 @@ const mobileNavigationItems = [
   primaryNavigationItems[3],
   primaryNavigationItems[4],
 ] as const;
+
+const navigationEvents: Partial<Record<string, AnalyticsEventName>> = {
+  discord: "click_join_discord",
+  forum: "click_forum",
+  shop: "click_shop_vip",
+  ts3: "click_teamspeak",
+};
 
 type HeaderLiveServer = {
   players?: number;
@@ -174,6 +182,14 @@ export function SiteHeader() {
     setIsCommunityOpen((current) => !current);
   }
 
+  function trackNavigationItem(key: string, location: string) {
+    const eventName = navigationEvents[key];
+
+    if (eventName) {
+      trackEvent(eventName, { location, target: key });
+    }
+  }
+
   return (
     <header className="neon-header header-hud header-launcher sticky top-0 z-50">
       <div className="header-hud__bottom-glow" aria-hidden="true" />
@@ -209,7 +225,13 @@ export function SiteHeader() {
               }`;
 
               return (
-                <Link key={item.key} href={item.href} className={className} aria-current={active ? "page" : undefined}>
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className={className}
+                  aria-current={active ? "page" : undefined}
+                  onClick={() => trackNavigationItem(item.key, "header_desktop_primary")}
+                >
                   <item.Icon size={15} className="header-nav-link__icon" aria-hidden="true" />
                   {t(`items.${item.key}`)}
                 </Link>
@@ -236,7 +258,13 @@ export function SiteHeader() {
               }`;
 
               return (
-                <Link key={item.key} href={item.href} className={className} aria-current={active ? "page" : undefined}>
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className={className}
+                  aria-current={active ? "page" : undefined}
+                  onClick={() => trackNavigationItem(item.key, "header_desktop_primary")}
+                >
                   <item.Icon size={15} className="header-nav-link__icon" aria-hidden="true" />
                   {t(`items.${item.key}`)}
                 </Link>
@@ -251,6 +279,16 @@ export function SiteHeader() {
               <LanguageSwitcher />
             </div>
             <div className="header-actions__bottom">
+              <a
+                href="https://free-arena.ro"
+                target="_blank"
+                rel="noreferrer"
+                className="neon-nav-link header-nav-link hidden min-h-12 items-center gap-2 whitespace-nowrap px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/72 transition hover:text-white lg:inline-flex"
+                onClick={() => trackNavigationItem("forum", "header_quick_action")}
+              >
+                <MessageCircle size={15} className="header-nav-link__icon" aria-hidden="true" />
+                Forum
+              </a>
               <span className="header-live-pill hidden min-h-12 items-center gap-2 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] md:inline-flex">
                 <span className="header-live-pulse" aria-hidden="true" />
                 <RadioTower size={15} aria-hidden="true" />
@@ -261,6 +299,7 @@ export function SiteHeader() {
                 href={routes.servers}
                 className="header-play-button inline-flex size-11 items-center justify-center gap-2 p-0 text-xs font-black uppercase tracking-[0.12em] transition max-[359px]:hidden sm:h-12 sm:w-auto sm:px-5 sm:py-2"
                 aria-label={t("playNow")}
+                onClick={() => trackEvent("click_play_now", { location: "header_play_button" })}
               >
                 <Crosshair size={16} aria-hidden="true" />
                 <span className="hidden sm:inline">{t("playNow")}</span>
@@ -298,7 +337,10 @@ export function SiteHeader() {
               rel={item.href.startsWith("http") ? "noreferrer" : undefined}
               className="header-community-menu__item inline-flex items-center gap-2 px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/76 transition"
               role="menuitem"
-              onClick={() => setIsCommunityOpen(false)}
+              onClick={() => {
+                trackNavigationItem(item.key, "header_community_menu");
+                setIsCommunityOpen(false);
+              }}
             >
               <item.Icon size={15} className="header-nav-link__icon" aria-hidden="true" />
               {t(`items.${item.key}`)}
@@ -329,12 +371,19 @@ export function SiteHeader() {
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noreferrer" : undefined}
                   className={className}
+                  onClick={() => trackNavigationItem(item.key, "header_mobile_nav")}
                 >
                   <item.Icon size={16} className="header-nav-link__icon" aria-hidden="true" />
                   {t(`items.${item.key}`)}
                 </a>
               ) : (
-                <Link key={item.key} href={item.href} className={className} aria-current={active ? "page" : undefined}>
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className={className}
+                  aria-current={active ? "page" : undefined}
+                  onClick={() => trackNavigationItem(item.key, "header_mobile_nav")}
+                >
                   <item.Icon size={16} className="header-nav-link__icon" aria-hidden="true" />
                   {t(`items.${item.key}`)}
                 </Link>
@@ -350,6 +399,7 @@ export function SiteHeader() {
               <Link
                 href={routes.servers}
                 className="header-play-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] transition"
+                onClick={() => trackEvent("click_play_now", { location: "header_mobile_play" })}
               >
                 <Crosshair size={16} aria-hidden="true" />
                 {t("playShort")}

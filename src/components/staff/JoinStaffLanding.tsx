@@ -1,6 +1,9 @@
 import { ArrowRight, CheckCircle2, Clock3, MessageSquare, ShieldCheck, Trophy, UserPlus, type LucideIcon } from "lucide-react";
-import { Link } from "@/i18n/navigation";
+import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import type { Locale } from "@/i18n/routing";
+
+const DISCORD_URL = "https://discord.gg/freearena";
+const FORUM_URL = "https://free-arena.ro";
 
 const content = {
   ro: {
@@ -9,6 +12,7 @@ const content = {
     copy:
       "FREE-ARENA este la inceputul unei etape in care comunitatea conteaza mai mult decat orice pagina. Avem nevoie de oameni maturi, prezenti seara, care pot ajuta jucatorii si pot tine serverele curate.",
     apply: "Aplica pe Forum",
+    discord: "Discuta pe Discord",
     servers: "Vezi serverele",
     requirementsTitle: "Cerinte",
     benefitsTitle: "Beneficii",
@@ -41,6 +45,7 @@ const content = {
     copy:
       "FREE-ARENA is entering a stage where the community matters more than any page. We need mature people who can be active in the evening, help players, and keep the servers clean.",
     apply: "Apply on Forum",
+    discord: "Talk on Discord",
     servers: "View servers",
     requirementsTitle: "Requirements",
     benefitsTitle: "Benefits",
@@ -87,22 +92,37 @@ export function JoinStaffLanding({ locale }: { locale: Locale }) {
               {page.copy}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a
-                href="https://free-arena.ro"
+              <TrackedAnchor
+                href={FORUM_URL}
                 target="_blank"
                 rel="noreferrer"
+                eventName="click_apply_staff"
+                eventPayload={{ location: "join_staff_hero", channel: "forum" }}
                 className="button-glow inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-arena-green px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
               >
                 <MessageSquare size={18} aria-hidden="true" />
                 {page.apply}
-              </a>
-              <Link
+              </TrackedAnchor>
+              <TrackedAnchor
+                href={DISCORD_URL}
+                target="_blank"
+                rel="noreferrer"
+                eventName="click_join_discord"
+                eventPayload={{ location: "join_staff_hero" }}
+                className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#98a3ff]/35 bg-[#5865f2]/12 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-[#98a3ff]/70 hover:bg-[#5865f2]/20"
+              >
+                <MessageSquare size={18} aria-hidden="true" />
+                {page.discord}
+              </TrackedAnchor>
+              <TrackedLink
                 href="/servers"
+                eventName="click_server_details"
+                eventPayload={{ location: "join_staff_hero", target: "servers" }}
                 className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
               >
                 {page.servers}
                 <ArrowRight size={18} aria-hidden="true" />
-              </Link>
+              </TrackedLink>
             </div>
           </div>
 

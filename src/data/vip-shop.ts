@@ -23,6 +23,16 @@ export type VipComparisonRow = {
 };
 
 export type VipShopContent = {
+  activation: {
+    copy: string;
+    customCopy: string;
+    customCta: string;
+    customTitle: string;
+    discordCta: string;
+    forumCta: string;
+    steps: readonly string[];
+    title: string;
+  };
   comparisonTitle: string;
   cta: {
     diamond: string;
@@ -80,22 +90,39 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
       packages: "Vezi pachete",
       ticket: "Deschide ticket",
     },
+    activation: {
+      title: "Cum se activeaza VIP?",
+      copy:
+        "Shop-ul FREE-ARENA functioneaza momentan ca funnel manual. Nu exista plata online automata, iar activarea se face dupa confirmare.",
+      forumCta: "Intreaba pe forum",
+      discordCta: "Cere activare VIP",
+      customTitle: "VIP Custom / Contact",
+      customCopy:
+        "Ai nevoie de acces garantat, activare speciala sau clarificari pentru un server anume? Contacteaza-ne inainte de plata.",
+      customCta: "Contact pentru VIP Custom",
+      steps: [
+        "Alegi pachetul potrivit.",
+        "Ne contactezi pe forum sau Discord.",
+        "Confirmam plata si datele contului.",
+        "Activam VIP pe serverul ales.",
+      ],
+    },
     comparisonTitle: "Comparație pachete VIP",
     cta: {
-      title: "Activează VIP prin Discord",
-      gold: "Cumpără Gold",
-      diamond: "Cumpără Diamond",
-      discord: "Open Discord Ticket",
+      title: "Cere activare VIP manual",
+      gold: "Cere Gold",
+      diamond: "Cere Diamond",
+      discord: "Deschide ticket",
     },
     importantNotes: {
       title: "Note importante",
       items: [
-        "VIP does not mean immunity from rules.",
-        "VIP does not allow insults, abuse or toxic behavior.",
-        "Some benefits may be limited on specific maps.",
-        "AWP may be blocked on special maps.",
-        "VIP weapons activate from round 3.",
-        "Activation is done after payment confirmation.",
+        "VIP nu inseamna imunitate la reguli.",
+        "VIP nu permite injurii, abuz sau comportament toxic.",
+        "Unele beneficii pot fi limitate pe harti speciale.",
+        "AWP poate fi blocat pe anumite harti.",
+        "Armele VIP se activeaza din runda 3.",
+        "Activarea se face dupa confirmarea platii.",
       ],
     },
     support: {
@@ -146,7 +173,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         badge: "Recomandat",
         tone: "gold",
         purpose: "Pachet echilibrat pentru jucători activi pe serverele FREE-ARENA.",
-        cta: "Cumpără Gold",
+        cta: "Cere activare VIP",
         benefits: [
           "Slot rezervat",
           "VIP Gold tag",
@@ -170,7 +197,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         badge: "Premium",
         tone: "diamond",
         purpose: "Cel mai complet pachet pentru jucătorii care intră des și vor beneficii premium.",
-        cta: "Cumpără Diamond",
+        cta: "Cere activare VIP",
         benefits: [
           "Tot ce include Gold",
           "VIP Diamond tag",
@@ -204,12 +231,29 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
       packages: "View packages",
       ticket: "Open ticket",
     },
+    activation: {
+      title: "How is VIP activated?",
+      copy:
+        "The FREE-ARENA shop currently works as a manual funnel. There is no automatic online payment, and activation happens after confirmation.",
+      forumCta: "Ask on forum",
+      discordCta: "Request VIP activation",
+      customTitle: "VIP Custom / Contact",
+      customCopy:
+        "Need guaranteed access, special activation, or clarification for a specific server? Contact us before payment.",
+      customCta: "Contact for VIP Custom",
+      steps: [
+        "Choose the right package.",
+        "Contact us on forum or Discord.",
+        "We confirm payment and account details.",
+        "We activate VIP on the selected server.",
+      ],
+    },
     comparisonTitle: "VIP package comparison",
     cta: {
-      title: "Activate VIP through Discord",
-      gold: "Buy Gold",
-      diamond: "Buy Diamond",
-      discord: "Open Discord Ticket",
+      title: "Request manual VIP activation",
+      gold: "Request Gold",
+      diamond: "Request Diamond",
+      discord: "Open ticket",
     },
     importantNotes: {
       title: "Important notes",
@@ -270,7 +314,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         badge: "Recommended",
         tone: "gold",
         purpose: "Balanced package for active players on FREE-ARENA servers.",
-        cta: "Buy Gold",
+        cta: "Request VIP activation",
         benefits: [
           "Reserved slot",
           "VIP Gold tag",
@@ -294,7 +338,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         badge: "Premium",
         tone: "diamond",
         purpose: "The strongest package for active players who want premium benefits.",
-        cta: "Buy Diamond",
+        cta: "Request VIP activation",
         benefits: [
           "Everything from Gold",
           "VIP Diamond tag",

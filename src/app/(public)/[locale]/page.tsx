@@ -2,12 +2,15 @@ import { setRequestLocale } from "next-intl/server";
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
 import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
 import { CommunitySection } from "@/components/home/CommunitySection";
+import { ForumActivitySection } from "@/components/home/ForumActivitySection";
 import { HeroCinematic } from "@/components/home/HeroCinematic";
 import { HomeActivitySection } from "@/components/home/HomeActivitySection";
 import { HomeInternalLinks } from "@/components/home/HomeInternalLinks";
 import { NewsSection } from "@/components/home/NewsSection";
 import { ServerSection } from "@/components/home/ServerSection";
+import { StaffRecruitmentSection } from "@/components/home/StaffRecruitmentSection";
 import { TopPlayersSection } from "@/components/home/TopPlayersSection";
+import { TrustProofSection } from "@/components/home/TrustProofSection";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { TournamentSection } from "@/components/sections/tournament-section";
@@ -40,6 +43,9 @@ export default async function Home({ params }: HomeProps) {
         <ServerSection />
         <HomeInternalLinks locale={safeLocale} />
         <HomeActivitySection locale={safeLocale} />
+        <StaffRecruitmentSection locale={safeLocale} />
+        <ForumActivitySection locale={safeLocale} />
+        <TrustProofSection locale={safeLocale} />
         <CommunitySection />
         <TopPlayersSection />
         {SHOW_TOURNAMENTS_SECTION ? <TournamentSection locale={locale} tournaments={tournaments} /> : null}

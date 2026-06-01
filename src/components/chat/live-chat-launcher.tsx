@@ -11,6 +11,7 @@ import {
   X,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { trackEvent } from "@/lib/analytics";
 
 const DISCORD_URL = "https://discord.gg/freearena";
 const FORUM_URL = "https://free-arena.ro";
@@ -81,6 +82,7 @@ export function LiveChatLauncher() {
                 target="_blank"
                 rel="noreferrer"
                 className="group flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.045] p-3 transition hover:border-[#98a3ff]/45 hover:bg-[#5865f2]/12"
+                onClick={() => trackEvent("click_join_discord", { location: "live_chat_launcher" })}
               >
                 <span className="flex items-center gap-3">
                   <span className="grid size-10 place-items-center rounded-lg border border-[#98a3ff]/30 bg-[#5865f2]/14 text-[#98a3ff]">
@@ -97,6 +99,7 @@ export function LiveChatLauncher() {
               <a
                 href={TEAMSPEAK_URL}
                 className="group flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.045] p-3 transition hover:border-arena-cyan/45 hover:bg-arena-cyan/10"
+                onClick={() => trackEvent("click_teamspeak", { location: "live_chat_launcher" })}
               >
                 <span className="flex items-center gap-3">
                   <span className="grid size-10 place-items-center rounded-lg border border-arena-cyan/30 bg-arena-cyan/12 text-arena-cyan">
@@ -115,6 +118,7 @@ export function LiveChatLauncher() {
                 target="_blank"
                 rel="noreferrer"
                 className="group flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.045] p-3 transition hover:border-arena-green/45 hover:bg-arena-green/10"
+                onClick={() => trackEvent("click_forum", { location: "live_chat_launcher" })}
               >
                 <span className="flex items-center gap-3">
                   <span className="grid size-10 place-items-center rounded-lg border border-arena-green/30 bg-arena-green/12 text-arena-green">

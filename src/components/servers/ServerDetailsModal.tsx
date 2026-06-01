@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { trackEvent } from "@/lib/analytics";
 import type { LiveServerKey, LiveServerStatusKind } from "@/lib/live-server-targets";
 
 const statusClasses: Record<LiveServerStatusKind, string> = {
@@ -254,7 +255,10 @@ export function ServerDetailsModal({
               <div className="mt-6 grid gap-2 sm:grid-cols-2">
                 <button
                   type="button"
-                  onClick={() => void onCopy(server.key, server.address)}
+                  onClick={() => {
+                    trackEvent("click_copy_ip", { location: "server_details_modal", server: server.key });
+                    void onCopy(server.key, server.address);
+                  }}
                   className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
                   aria-label={t("actions.copyIpFor", {
                     server: server.displayName,
@@ -268,6 +272,7 @@ export function ServerDetailsModal({
                   <a
                     href={server.connectHref}
                     className="button-glow inline-flex w-full items-center justify-center gap-2 rounded-lg bg-arena-green px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
+                    onClick={() => trackEvent("click_play_now", { location: "server_details_modal", server: server.key })}
                     aria-label={t("actions.connectTo", {
                       server: server.displayName,
                     })}

@@ -7,6 +7,7 @@ import { CopyToast } from "@/components/ui/copy-toast";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
+import { trackEvent } from "@/lib/analytics";
 import type { LiveServerStatus, LiveServersResponse, LiveServerStatusKind } from "@/lib/live-server-targets";
 import type { ServerSeoPageData } from "@/lib/serverSeo";
 import type { PublicServerConfig } from "@/lib/servers";
@@ -105,6 +106,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
 
   async function handleCopyAddress() {
     try {
+      trackEvent("click_copy_ip", { location: "server_seo_hero", server: server.key });
       await copyTextToClipboard(server.address);
       setCopied(true);
       setToastMessage(`${labels.copied}: ${server.address}`);
@@ -189,6 +191,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
                   <a
                     href={server.connectHref}
                     className="button-glow inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-arena-green px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-black transition hover:bg-white"
+                    onClick={() => trackEvent("click_play_now", { location: "server_seo_hero", server: server.key })}
                   >
                     {labels.joinServer}
                     <ArrowRight size={17} aria-hidden="true" />
@@ -196,6 +199,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
                 ) : null}
                 <Link
                   href="/discord"
+                  onClick={() => trackEvent("click_join_discord", { location: "server_seo_hero", server: server.key })}
                   className="button-ghost inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-[#98a3ff]/35 bg-[#5865f2]/12 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition hover:border-[#98a3ff]/70 hover:bg-[#5865f2]/20"
                 >
                   <MessageSquare size={17} aria-hidden="true" />
@@ -203,6 +207,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
                 </Link>
                 <Link
                   href="/join-staff"
+                  onClick={() => trackEvent("click_apply_staff", { location: "server_seo_hero", server: server.key })}
                   className="button-ghost inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition hover:border-arena-gold/60 hover:bg-arena-gold/10"
                 >
                   <UserPlus size={17} aria-hidden="true" />
@@ -242,6 +247,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
               <div className="grid gap-2 sm:grid-cols-2">
                 <Link
                   href="/teamspeak"
+                  onClick={() => trackEvent("click_teamspeak", { location: "server_seo_hero", server: server.key })}
                   className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
                 >
                   <Headphones size={16} aria-hidden="true" />
@@ -249,6 +255,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
                 </Link>
                 <Link
                   href="/servers"
+                  onClick={() => trackEvent("click_server_details", { location: "server_seo_hero", target: "servers", server: server.key })}
                   className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10"
                 >
                   {locale === "ro" ? "Servere" : "Servers"}

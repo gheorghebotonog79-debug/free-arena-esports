@@ -1,6 +1,6 @@
-import { ArrowRight, ListChecks, Server, Trophy } from "lucide-react";
+import { ArrowRight, ListChecks, Server, ShoppingCart, Trophy, UserPlus } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { Link } from "@/i18n/navigation";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import type { Locale } from "@/i18n/routing";
 
 type HomeLinkItem = {
@@ -40,6 +40,18 @@ const content: Record<Locale, { eyebrow: string; title: string; links: readonly 
         copy: "Top jucatori, kill-uri, headshot-uri, timp jucat si activitate pe servere.",
       },
       {
+        href: "/shop",
+        Icon: ShoppingCart,
+        title: "Shop VIP",
+        copy: "Pachete VIP si activare manuala prin forum, Discord sau contact direct.",
+      },
+      {
+        href: "/join-staff",
+        Icon: UserPlus,
+        title: "Aplica staff",
+        copy: "Pagina pentru jucatorii maturi care vor sa ajute comunitatea FREE-ARENA.",
+      },
+      {
         href: "/servers",
         Icon: ListChecks,
         title: "Toate serverele",
@@ -76,6 +88,18 @@ const content: Record<Locale, { eyebrow: string; title: string; links: readonly 
         copy: "Top players, kills, headshots, played time, and server activity.",
       },
       {
+        href: "/shop",
+        Icon: ShoppingCart,
+        title: "VIP Shop",
+        copy: "VIP packages and manual activation through forum, Discord, or direct contact.",
+      },
+      {
+        href: "/join-staff",
+        Icon: UserPlus,
+        title: "Join staff",
+        copy: "Page for mature players who want to help the FREE-ARENA community.",
+      },
+      {
         href: "/servers",
         Icon: ListChecks,
         title: "All servers",
@@ -101,11 +125,13 @@ export function HomeInternalLinks({ locale }: { locale: Locale }) {
             </h2>
           </div>
         </div>
-        <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <div className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-7">
           {page.links.map(({ Icon, copy, href, title }) => (
-            <Link
+            <TrackedLink
               key={href}
               href={href}
+              eventName={href === "/shop" ? "click_shop_vip" : href === "/join-staff" ? "click_apply_staff" : "click_server_details"}
+              eventPayload={{ location: "homepage_internal_links", target: href }}
               className="premium-card glass-panel group flex h-full flex-col rounded-lg p-5 transition hover:border-cyan-300/50 hover:bg-cyan-300/10"
             >
               <div className="flex items-start justify-between gap-3">
@@ -120,7 +146,7 @@ export function HomeInternalLinks({ locale }: { locale: Locale }) {
               <p className="mt-3 text-sm font-semibold leading-6 text-white/58">
                 {copy}
               </p>
-            </Link>
+            </TrackedLink>
           ))}
         </div>
       </div>

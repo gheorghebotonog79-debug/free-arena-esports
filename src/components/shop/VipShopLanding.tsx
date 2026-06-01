@@ -16,6 +16,7 @@ import {
   Zap,
   type LucideIcon,
 } from "lucide-react";
+import { TrackedAnchor } from "@/components/analytics/TrackedLink";
 import type { Locale } from "@/i18n/routing";
 import {
   vipComparisonRows,
@@ -28,6 +29,7 @@ import {
 } from "@/data/vip-shop";
 
 const DISCORD_TICKET_URL = "https://discord.gg/freearena";
+const FORUM_URL = "https://free-arena.ro";
 
 const tierIcons: Record<VipTierKey, LucideIcon> = {
   queen: Crown,
@@ -127,15 +129,17 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                 <ArrowDown size={18} aria-hidden="true" />
                 {page.hero.packages}
               </a>
-              <a
+              <TrackedAnchor
                 href={DISCORD_TICKET_URL}
                 target="_blank"
                 rel="noreferrer"
+                eventName="click_join_discord"
+                eventPayload={{ location: "shop_hero_ticket" }}
                 className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-cyan-200/24 bg-cyan-300/8 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/14"
               >
                 <MessageSquare size={18} aria-hidden="true" />
                 {page.hero.ticket}
-              </a>
+              </TrackedAnchor>
             </div>
           </div>
 
@@ -159,8 +163,8 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
               </h2>
               <p className="mt-4 text-sm font-semibold leading-7 text-white/62">
                 {locale === "ro"
-                  ? "Alegi pachetul, deschizi ticket pe Discord, iar activarea se face după confirmare."
-                  : "Choose a package, open a Discord ticket, and activation is handled after confirmation."}
+                  ? "Alegi pachetul, ne contactezi pe forum sau Discord, iar activarea se face dupa confirmare."
+                  : "Choose a package, contact us on forum or Discord, and activation is handled after confirmation."}
               </p>
             </div>
           </motion.aside>
@@ -184,9 +188,76 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                 index={index}
                 tier={tier}
                 vipPackage={vipPackage}
+                locale={locale}
               />
             );
           })}
+        </div>
+      </motion.section>
+
+      <motion.section
+        className="neon-section px-4 pb-16 sm:px-6 lg:px-8"
+        initial="hidden"
+        variants={sectionMotion}
+        viewport={{ once: true, amount: 0.18 }}
+        whileInView="visible"
+      >
+        <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+          <motion.article className="premium-card glass-panel neon-hover animated-border rounded-lg border border-cyan-200/22 p-5 sm:p-6" data-motion-card="true" variants={panelMotion}>
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-100">
+              FREE-ARENA VIP
+            </p>
+            <h2 className="mt-3 font-display text-4xl font-black uppercase text-white">
+              {page.activation.title}
+            </h2>
+            <p className="mt-4 text-sm font-semibold leading-7 text-white/62">
+              {page.activation.copy}
+            </p>
+            <ol className="mt-6 grid gap-3">
+              {page.activation.steps.map((step, index) => (
+                <li key={step} className="server-metric flex items-center gap-3 p-3 text-sm font-semibold leading-6 text-white/68">
+                  <span className="grid size-8 shrink-0 place-items-center rounded-lg border border-cyan-300/22 bg-cyan-300/10 font-display text-sm font-black text-cyan-200">
+                    {index + 1}
+                  </span>
+                  {step}
+                </li>
+              ))}
+            </ol>
+          </motion.article>
+
+          <motion.article className="premium-card glass-panel neon-hover animated-border rounded-lg border border-fuchsia-300/22 p-5 sm:p-6" custom={1} data-motion-card="true" variants={panelMotion}>
+            <span className="grid size-14 place-items-center rounded-lg border border-fuchsia-300/35 bg-fuchsia-400/14 text-fuchsia-100">
+              <Sparkles size={26} aria-hidden="true" />
+            </span>
+            <h2 className="mt-5 font-display text-4xl font-black uppercase text-white">
+              {page.activation.customTitle}
+            </h2>
+            <p className="mt-4 text-sm font-semibold leading-7 text-white/62">
+              {page.activation.customCopy}
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <TrackedAnchor
+                className="button-glow inline-flex min-h-12 items-center justify-center rounded-lg bg-cyan-300 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
+                eventName="click_shop_vip"
+                eventPayload={{ location: "shop_custom_contact", channel: "discord" }}
+                href={DISCORD_TICKET_URL}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {page.activation.customCta}
+              </TrackedAnchor>
+              <TrackedAnchor
+                className="button-ghost inline-flex min-h-12 items-center justify-center rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/12"
+                eventName="click_forum"
+                eventPayload={{ location: "shop_custom_contact" }}
+                href={FORUM_URL}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {page.activation.forumCta}
+              </TrackedAnchor>
+            </div>
+          </motion.article>
         </div>
       </motion.section>
 
@@ -298,16 +369,16 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                 : "There is no automatic checkout yet. Purchase is handled through a Discord ticket with manual confirmation and server activation."}
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <a className="button-glow inline-flex min-h-12 items-center justify-center rounded-lg bg-orange-400 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-orange-200" href={DISCORD_TICKET_URL} rel="noreferrer" target="_blank">
+              <TrackedAnchor className="button-glow inline-flex min-h-12 items-center justify-center rounded-lg bg-orange-400 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-orange-200" eventName="click_shop_vip" eventPayload={{ location: "shop_cta", package: "gold" }} href={DISCORD_TICKET_URL} rel="noreferrer" target="_blank">
                 {page.cta.gold}
-              </a>
-              <a className="button-glow inline-flex min-h-12 items-center justify-center rounded-lg bg-cyan-300 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-cyan-100" href={DISCORD_TICKET_URL} rel="noreferrer" target="_blank">
+              </TrackedAnchor>
+              <TrackedAnchor className="button-glow inline-flex min-h-12 items-center justify-center rounded-lg bg-cyan-300 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-cyan-100" eventName="click_shop_vip" eventPayload={{ location: "shop_cta", package: "diamond" }} href={DISCORD_TICKET_URL} rel="noreferrer" target="_blank">
                 {page.cta.diamond}
-              </a>
-              <a className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/12" href={DISCORD_TICKET_URL} rel="noreferrer" target="_blank">
+              </TrackedAnchor>
+              <TrackedAnchor className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/12" eventName="click_join_discord" eventPayload={{ location: "shop_cta" }} href={DISCORD_TICKET_URL} rel="noreferrer" target="_blank">
                 <MessageSquare size={16} aria-hidden="true" />
                 {page.cta.discord}
-              </a>
+              </TrackedAnchor>
             </div>
           </motion.article>
         </div>
@@ -373,10 +444,12 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
 
 function VipPackageCard({
   index,
+  locale,
   tier,
   vipPackage,
 }: {
   index: number;
+  locale: Locale;
   tier: VipTierKey;
   vipPackage: VipPackage;
 }) {
@@ -439,14 +512,28 @@ function VipPackageCard({
           </div>
         ) : null}
 
-        <a
-          className="button-ghost mt-auto inline-flex min-h-12 items-center justify-center rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/12"
-          href={DISCORD_TICKET_URL}
-          rel="noreferrer"
-          target="_blank"
-        >
-          {vipPackage.cta}
-        </a>
+        <div className="mt-auto grid gap-2 pt-6">
+          <TrackedAnchor
+            className="button-ghost inline-flex min-h-12 items-center justify-center rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/12"
+            eventName="click_shop_vip"
+            eventPayload={{ location: "shop_package_card", package: tier }}
+            href={DISCORD_TICKET_URL}
+            rel="noreferrer"
+            target="_blank"
+          >
+            {vipPackage.cta}
+          </TrackedAnchor>
+          <TrackedAnchor
+            className="inline-flex min-h-10 items-center justify-center rounded-lg border border-cyan-200/14 bg-cyan-300/8 px-4 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-cyan-100 transition hover:border-cyan-100/70 hover:bg-cyan-300/14"
+            eventName="click_forum"
+            eventPayload={{ location: "shop_package_card_secondary", package: tier }}
+            href={FORUM_URL}
+            rel="noreferrer"
+            target="_blank"
+          >
+            {locale === "ro" ? "Intreaba pe forum" : "Ask on forum"}
+          </TrackedAnchor>
+        </div>
       </div>
     </motion.article>
   );
@@ -501,12 +588,14 @@ function SupportCard({
       <p className="mt-4 text-sm font-semibold leading-7 text-white/62">
         {copy}
       </p>
-      <a
+      <TrackedAnchor
         className="button-ghost mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/12"
+        eventName={href.startsWith("ts3server") ? "click_teamspeak" : "click_shop_vip"}
+        eventPayload={{ location: "shop_support", title }}
         href={href}
       >
         {cta}
-      </a>
+      </TrackedAnchor>
     </motion.div>
   );
 }

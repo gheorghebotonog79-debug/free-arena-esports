@@ -24,6 +24,7 @@ import { CopyToast } from "@/components/ui/copy-toast";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServerStats, type ServerStatItem } from "@/components/server/ServerStats";
 import { Link } from "@/i18n/navigation";
+import { trackEvent } from "@/lib/analytics";
 import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
 import type { LiveServerStatus, LiveServersResponse, LiveServerStatusKind } from "@/lib/live-server-targets";
 import type { PublicServerConfig } from "@/lib/servers";
@@ -153,6 +154,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
 
   async function handleCopyAddress() {
     try {
+      trackEvent("click_copy_ip", { location: "legacy_server_page", server: server.key });
       await copyTextToClipboard(server.address);
       setCopied(true);
       setCopyToastMessage(t("toast.copied", { address: server.address }));
@@ -303,6 +305,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
                   <a
                     href={server.connectHref}
                     className="button-glow inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-arena-green px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
+                    onClick={() => trackEvent("click_play_now", { location: "legacy_server_page", server: server.key })}
                   >
                     {t("actions.connect")}
                     <ArrowRight size={17} aria-hidden="true" />
@@ -403,15 +406,15 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
                 </p>
               </div>
               <div className="grid gap-2 sm:grid-cols-3 lg:w-[34rem]">
-                <a href="https://discord.gg/freearena" target="_blank" rel="noreferrer" className="button-glow inline-flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-arena-green">
+                <a href="https://discord.gg/freearena" target="_blank" rel="noreferrer" className="button-glow inline-flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-arena-green" onClick={() => trackEvent("click_join_discord", { location: "legacy_server_community", server: server.key })}>
                   <MessageSquare size={17} aria-hidden="true" />
                   Discord
                 </a>
-                <a href="ts3server://ts.free-arena.ro" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10">
+                <a href="ts3server://ts.free-arena.ro" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10" onClick={() => trackEvent("click_teamspeak", { location: "legacy_server_community", server: server.key })}>
                   <Headphones size={17} aria-hidden="true" />
                   TeamSpeak
                 </a>
-                <a href="https://free-arena.ro" target="_blank" rel="noreferrer" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10">
+                <a href="https://free-arena.ro" target="_blank" rel="noreferrer" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10" onClick={() => trackEvent("click_forum", { location: "legacy_server_community", server: server.key })}>
                   <MessageSquare size={17} aria-hidden="true" />
                   Forum
                 </a>
