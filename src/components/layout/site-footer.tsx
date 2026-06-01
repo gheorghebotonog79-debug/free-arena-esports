@@ -43,6 +43,7 @@ export function SiteFooter() {
           <FooterColumn title="Links">
             <Link href={routes.servers}>{t("links.servers")}</Link>
             <Link href={routes.community}>{t("links.community")}</Link>
+            <Link href={routes.joinStaff}>{t("links.staff")}</Link>
             <Link href={routes.terms}>{t("links.terms")}</Link>
             <Link href={routes.privacy}>{t("links.privacy")}</Link>
             <Link href={routes.terms} locale="en">Terms of Use</Link>

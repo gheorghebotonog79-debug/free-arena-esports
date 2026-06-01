@@ -10,6 +10,7 @@ type ServerInternalLinksProps = {
     hub: string;
     related: string;
     servers: string;
+    staff: string;
     teamspeak: string;
   };
   locale: Locale;
@@ -42,6 +43,10 @@ export function ServerInternalLinks({ labels, locale, page }: ServerInternalLink
             </Link>
             <Link href="/teamspeak" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10">
               {labels.teamspeak}
+              <ArrowRight size={17} aria-hidden="true" />
+            </Link>
+            <Link href="/join-staff" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-gold/60 hover:bg-arena-gold/10">
+              {labels.staff}
               <ArrowRight size={17} aria-hidden="true" />
             </Link>
           </div>

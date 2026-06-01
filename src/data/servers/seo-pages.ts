@@ -179,7 +179,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         intro:
           "CS 1.6 Classic este pagina dedicata serverului principal FREE-ARENA pentru jucatorii care cauta Counter-Strike 1.6 autentic in România.",
         paragraphs: [
-          "Serverul FREE-ARENA CS 1.6 Classic pastreaza ritmul care a facut Counter-Strike 1.6 atat de iubit: runde rapide, dueluri simple de citit, economie de echipa si harti pe care comunitatea le cunoaste deja. Scopul paginii este sa ofere un punct clar pentru Google si pentru jucatori, cu informatii despre IP, comunitate, reguli si directiile de suport.",
+          "Serverul FREE-ARENA CS 1.6 Classic pastreaza ritmul care a facut Counter-Strike 1.6 atat de iubit: runde rapide, dueluri simple de citit, economie de echipa si harti pe care comunitatea le cunoaste deja. Scopul paginii este sa ofere jucatorilor un punct clar, cu informatii despre IP, comunitate, reguli si directiile de suport.",
           "Gameplay-ul este gandit pentru jucatori care vor o experienta competitiva fara artificii inutile. FREE-ARENA pune accent pe meciuri curate, comunicare intre coechipieri si un cadru in care skill-ul real conteaza. Serverul poate fi folosit pentru sesiuni casual, dar ramane potrivit si pentru jucatori care vor sa-si testeze reflexele, aim-ul si disciplina pe harti clasice.",
           "Comunitatea este partea care tine serverul viu. Jucatorii pot intra pe Discord, TeamSpeak sau forum pentru suport, discutii, anunturi si raportari. Staff-ul activ ajuta la mentinerea regulilor, iar sistemele anti-cheat si verificarile administrative reduc comportamentele care strica experienta. Nu promitem perfectiune, dar construim un mediu in care problemele pot fi vazute si corectate.",
           "Pentru România, FREE-ARENA vrea sa fie mai mult decat un simplu IP intr-o lista de servere. Pagina CS 1.6 Classic pregateste terenul pentru evenimente, seri competitive, clasamente si continut editorial despre server. In fazele urmatoare, aceasta structura poate primi design cinematic, statistici live mai vizibile si module dedicate pentru ranking si progres.",
@@ -191,7 +191,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         intro:
           "CS 1.6 Classic is the dedicated page for the main FREE-ARENA Counter-Strike 1.6 server in Romania.",
         paragraphs: [
-          "FREE-ARENA CS 1.6 Classic keeps the rhythm that made Counter-Strike 1.6 last for so many years: fast rounds, readable duels, team economy and maps that the community already understands. This page gives Google and players a clear destination for the server, with information about the address, support channels, rules and the community around it.",
+          "FREE-ARENA CS 1.6 Classic keeps the rhythm that made Counter-Strike 1.6 last for so many years: fast rounds, readable duels, team economy and maps that the community already understands. This page gives players a clear destination for the server, with information about the address, support channels, rules and the community around it.",
           "The gameplay is built for players who want competitive Counter-Strike without unnecessary noise. FREE-ARENA focuses on clean matches, team communication and an environment where real skill matters. The server can be used for casual sessions, but it also fits players who want to test aim, positioning, reactions and discipline on classic maps.",
           "The community is what keeps the server alive. Players can join Discord, TeamSpeak or the forum for support, announcements, conversations and reports. Active staff helps enforce rules, while anti-cheat systems and administrative checks reduce behavior that hurts the match experience. We do not present the server as magic; we build a place where issues can be seen and handled.",
           "For Romania, FREE-ARENA aims to be more than another IP in a server list. The CS 1.6 Classic page prepares the foundation for events, competitive evenings, rankings and editorial content around the server. Later phases can add a stronger cinematic design, richer live stats and modules focused on player progress.",
@@ -239,8 +239,8 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
           answer: "Regulile sunt rezumate pe pagina serverului, iar pentru detalii, reclamatii sau contestatii poti folosi Discord, TeamSpeak sau forumul FREE-ARENA.",
         },
         {
-          question: "Este pagina CS 1.6 Classic ruta canonica pentru Google?",
-          answer: "Da. Ruta canonica pentru acest server este /server/cs16-classic, iar vechile URL-uri /servers/cs16 redirectioneaza permanent catre pagina canonica localizata.",
+          question: "Care este pagina oficiala pentru CS 1.6 Classic?",
+          answer: "Pagina oficiala pentru acest server este /server/cs16-classic, iar linkurile vechi duc catre aceasta pagina pentru ca jucatorii sa ajunga direct la informatia corecta.",
         },
       ],
       en: [
@@ -326,7 +326,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
           "Serverul FREE-ARENA Respawn este construit pentru jucatori care nu vor sa astepte mult intre dueluri. Formatul respawn schimba energia unei sesiuni de Counter-Strike 1.6: revii rapid, incerci un alt unghi, ajustezi aim-ul si strangi mult mai multe situatii de joc intr-un timp scurt. Este potrivit pentru incalzire, antrenament si sesiuni rapide dupa o zi lunga.",
           "Gameplay-ul pune accent pe miscare, reflexe si adaptare. Spre deosebire de un server clasic, unde fiecare runda are pauze naturale, Respawn te tine conectat constant la actiune. Asta il face bun pentru jucatorii care vor sa exerseze spray control, pozitii, prefire si reactii. FREE-ARENA vrea ca acest ritm sa ramana placut, nu haotic, prin reguli clare si supraveghere.",
           "Comunitatea din România are nevoie de servere unde jucatorii pot intra repede si pot simti ca timpul lor este respectat. Respawn vine cu aceeasi baza FREE-ARENA: suport prin Discord, TeamSpeak si forum, staff activ, anti-cheat si spatiu pentru evenimente. Cand apar probleme, jucatorii au canale clare prin care pot semnala comportamente nepotrivite sau buguri.",
-          "Pagina SEO Respawn pregateste serverul pentru ranking Google si pentru extinderi ulterioare. In fazele urmatoare putem adauga statistici vizuale, leaderboard-uri dedicate, highlight-uri din evenimente si un design cinematic care sa puna energia modului respawn in prim-plan. Fundatia de acum separa continutul, datele si componentele pentru upgrade rapid.",
+          "Pagina Respawn pregateste serverul pentru extinderi ulterioare. In fazele urmatoare putem adauga statistici vizuale, leaderboard-uri dedicate, highlight-uri din evenimente si un design cinematic care sa puna energia modului respawn in prim-plan. Fundatia de acum separa continutul, datele si componentele pentru upgrade rapid.",
           "Daca vrei un server CS 1.6 in care sa intri direct in actiune, Respawn este alegerea naturala. Conecteaza-te, intra pe Discord sau foloseste TeamSpeak pentru echipa si suport. Serverul este parte din ecosistemul FREE-ARENA, alaturi de CS 1.6 Classic, CS2 si proiectul Global.",
         ],
       },
@@ -338,7 +338,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
           "FREE-ARENA Respawn is built for players who do not want to wait long between duels. The respawn format changes the energy of a Counter-Strike 1.6 session: you return quickly, try another angle, adjust aim and collect many more situations in a short amount of time. It works well for warm-up, practice and short gaming sessions.",
           "The gameplay focuses on movement, reaction and adaptation. Unlike a classic server, where each round has natural pauses, Respawn keeps you close to the action. That makes it useful for players who want to train spray control, positioning, prefire and reactions. FREE-ARENA wants that pace to stay enjoyable, not chaotic, with clear rules and active oversight.",
           "The Romanian community needs servers where players can join quickly and feel that their time is respected. Respawn uses the same FREE-ARENA base: Discord, TeamSpeak and forum support, active staff, anti-cheat and room for events. When issues appear, players have clear channels for reporting bad behavior or bugs.",
-          "The Respawn SEO page prepares the server for Google ranking and later expansion. Future phases can add visual stats, dedicated leaderboards, event highlights and a cinematic design that brings the energy of respawn gameplay forward. The current foundation separates content, data and components so upgrades can move quickly.",
+          "The Respawn page prepares the server for later expansion. Future phases can add visual stats, dedicated leaderboards, event highlights and a cinematic design that brings the energy of respawn gameplay forward. The current foundation separates content, data and components so upgrades can move quickly.",
           "If you want a CS 1.6 server where you jump straight into the action, Respawn is the natural choice. Connect to the server, join Discord or use TeamSpeak for team voice and support. It is part of the FREE-ARENA ecosystem together with CS 1.6 Classic, CS2 and the Global project.",
         ],
       },
@@ -467,10 +467,10 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         intro:
           "CS2 este pagina dedicata serverului FREE-ARENA pentru Counter-Strike 2 si pentru comunitatea care vrea sa creasca o scena moderna in România.",
         paragraphs: [
-          "Serverul FREE-ARENA CS2 este gandit ca o punte intre comunitatea clasica si generatia noua de Counter-Strike. Jucatorii care vin din CS 1.6 gasesc aici o directie moderna, iar cei care joaca deja CS2 au un punct local pentru meciuri, comunicare si progres. Pagina exista pentru ca serverul sa aiba o identitate clara in Google, nu doar o mentiune intr-un meniu.",
+          "Serverul FREE-ARENA CS2 este gandit ca o punte intre comunitatea clasica si generatia noua de Counter-Strike. Jucatorii care vin din CS 1.6 gasesc aici o directie moderna, iar cei care joaca deja CS2 au un punct local pentru meciuri, comunicare si progres. Pagina exista pentru ca serverul sa aiba o identitate clara, nu doar o mentiune intr-un meniu.",
           "Gameplay-ul CS2 cere disciplina, sunet bun, comunicare si decizii rapide. FREE-ARENA pregateste serverul pentru sesiuni competitive, dar pastreaza accesibilitatea unei comunitati deschise. Scopul este ca jucatorii sa poata intra, sa inteleaga unde gasesc suport, sa vada legaturile cu Discord si TeamSpeak si sa revina pentru evenimente sau anunturi.",
           "România are multi jucatori care cauta servere stabile, staff vizibil si reguli clare. FREE-ARENA pune accent pe anti-cheat, suport rapid si administrare responsabila. Nu incarcam pagina cu promisiuni exagerate; descriem o fundatie pe care o putem imbunatati constant prin feedback, raportari si update-uri tehnice.",
-          "CS2 este si un candidat natural pentru faza cinematica urmatoare. Structura actuala permite adaugarea de elemente vizuale puternice, statistici live, clipuri de highlight, leaderboard-uri si preview-uri pentru eventuri. Pentru SEO, continutul de acum explica serverul in limbaj natural, cu termeni relevanti pentru Counter-Strike 2, competitiv, comunitate si Romania.",
+          "CS2 este si un candidat natural pentru faza cinematica urmatoare. Structura actuala permite adaugarea de elemente vizuale puternice, statistici live, clipuri de highlight, leaderboard-uri si preview-uri pentru eventuri. Continutul de acum explica serverul in limbaj natural, cu detalii relevante pentru Counter-Strike 2, competitiv, comunitate si Romania.",
           "Daca vrei sa urmaresti directia moderna FREE-ARENA, pagina CS2 este locul potrivit. Foloseste linkurile interne catre Discord, TeamSpeak si lista de servere, iar cand intri pe server joaca responsabil, comunica si ajuta comunitatea sa ramana curata si competitiva.",
         ],
       },
@@ -479,10 +479,10 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         intro:
           "CS2 is the dedicated FREE-ARENA page for Counter-Strike 2 and the community building a modern scene in Romania.",
         paragraphs: [
-          "FREE-ARENA CS2 is designed as a bridge between the classic community and the new Counter-Strike generation. Players coming from CS 1.6 find a modern direction here, while players already focused on CS2 get a local point for matches, communication and progress. This page gives the server a clear identity in Google, not just a mention inside a menu.",
+          "FREE-ARENA CS2 is designed as a bridge between the classic community and the new Counter-Strike generation. Players coming from CS 1.6 find a modern direction here, while players already focused on CS2 get a local point for matches, communication and progress. This page gives the server a clear identity, not just a mention inside a menu.",
           "CS2 gameplay rewards discipline, sound, communication and quick decisions. FREE-ARENA prepares the server for competitive sessions while keeping the accessibility of an open community. The goal is simple: players should know how to join, where to find support, how Discord and TeamSpeak connect to the server, and where to return for events or announcements.",
           "Romania has many players looking for stable servers, visible staff and clear rules. FREE-ARENA focuses on anti-cheat, fast support and responsible administration. The page avoids exaggerated promises and describes a foundation that can improve through feedback, reports and technical updates.",
-          "CS2 is also a natural candidate for the next cinematic phase. The current structure can receive stronger visual systems, live statistics, highlight clips, leaderboards and event previews. For SEO, the content explains the server in natural language with relevant terms around Counter-Strike 2, competition, community and Romania.",
+          "CS2 is also a natural candidate for the next cinematic phase. The current structure can receive stronger visual systems, live statistics, highlight clips, leaderboards and event previews. The content explains the server in natural language with relevant details around Counter-Strike 2, competition, community and Romania.",
           "If you want to follow the modern FREE-ARENA direction, the CS2 page is the right place. Use the internal links to Discord, TeamSpeak and the server list, and when you join the server, play responsibly, communicate and help the community stay clean and competitive.",
         ],
       },
@@ -528,7 +528,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         },
         {
           question: "De ce are CS2 pagina dedicata pe FREE-ARENA?",
-          answer: "CS2 este directia moderna a comunitatii si are nevoie de continut propriu: conectare, harti, reguli, suport, evenimente si semnale SEO separate de CS 1.6.",
+          answer: "CS2 este directia moderna a comunitatii si are nevoie de continut propriu: conectare, harti, reguli, suport, evenimente si informatii separate de CS 1.6.",
         },
       ],
       en: [
@@ -611,10 +611,10 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         intro:
           "Global este pagina dedicata proiectului FREE-ARENA aflat in pregatire, gandit pentru conectarea comunitatii, evenimentelor si serverelor.",
         paragraphs: [
-          "FREE-ARENA Global este o pagina coming soon, dar nu este un placeholder gol. Ea explica directia in care vrem sa ducem comunitatea: servere conectate, evenimente care pot traversa mai multe jocuri, rankings mai vizibile si un punct central pentru jucatorii care vor sa ramana aproape de ecosistem. Pentru Google, pagina ofera context real despre proiect inainte de lansarea completa.",
+          "FREE-ARENA Global este o pagina coming soon, dar nu este un placeholder gol. Ea explica directia in care vrem sa ducem comunitatea: servere conectate, evenimente care pot traversa mai multe jocuri, rankings mai vizibile si un punct central pentru jucatorii care vor sa ramana aproape de ecosistem. Pagina ofera context real despre proiect inainte de lansarea completa.",
           "Ideea Global porneste de la faptul ca o comunitate gaming nu traieste doar printr-un singur server. Jucatorii intra pentru CS 1.6, Respawn sau CS2, dar raman cand gasesc oameni, staff activ, suport si activitati care au sens. Global va putea lega aceste experiente intr-o zona mai ampla, pregatita pentru competitii, anunturi si evolutie pe termen lung.",
-          "In România, multe comunitati dispar pentru ca nu au structura. FREE-ARENA incearca sa construiasca invers: pagini indexabile, sitemap, continut clar, rute stabile si componente care pot fi imbunatatite fara sa fie rescrise. Global este partea care lasa loc pentru crestere, fara sa inventeze date false despre jucatori, harti sau status live.",
-          "Pe partea tehnica, aceasta pagina este pregatita pentru design cinematic cyberpunk in faza urmatoare. Poate primi un hero mai spectaculos, animatii, cards pentru serverele conectate, grafice, timeline de evenimente si module pentru progresul contului. Continutul actual ramane curat si util, astfel incat upgrade-ul vizual sa nu rupa fundatia SEO.",
+          "In România, multe comunitati dispar pentru ca nu au structura. FREE-ARENA incearca sa construiasca invers: pagini clare, continut util, rute stabile si componente care pot fi imbunatatite fara sa fie rescrise. Global este partea care lasa loc pentru crestere, fara sa inventeze date false despre jucatori, harti sau status live.",
+          "Pe partea tehnica, aceasta pagina este pregatita pentru design cinematic cyberpunk in faza urmatoare. Poate primi un hero mai spectaculos, animatii, cards pentru serverele conectate, grafice, timeline de evenimente si module pentru progresul contului. Continutul actual ramane curat si util, astfel incat upgrade-ul vizual sa nu rupa experienta jucatorilor.",
           "Pana la lansare, foloseste linkurile catre serverele active, Discord si TeamSpeak. Acolo se formeaza comunitatea care va sustine proiectul Global. Cand directia finala este gata, pagina poate deveni centrul pentru evenimente FREE-ARENA, clasamente, competitii si update-uri importante.",
         ],
       },
@@ -623,10 +623,10 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         intro:
           "Global is the dedicated page for the FREE-ARENA project in preparation, built to connect community, events and servers.",
         paragraphs: [
-          "FREE-ARENA Global is a coming soon page, but it is not an empty placeholder. It explains where the community is going: connected servers, events that can cross multiple games, more visible rankings and a central point for players who want to stay close to the ecosystem. For Google, the page gives real context about the project before the complete launch.",
+          "FREE-ARENA Global is a coming soon page, but it is not an empty placeholder. It explains where the community is going: connected servers, events that can cross multiple games, more visible rankings and a central point for players who want to stay close to the ecosystem. The page gives real context about the project before the complete launch.",
           "The Global idea starts from a simple truth: a gaming community does not live through one server only. Players may join for CS 1.6, Respawn or CS2, but they stay when they find people, active staff, support and activities that matter. Global can connect those experiences into a wider area prepared for competitions, announcements and long-term growth.",
-          "In Romania, many communities disappear because they lack structure. FREE-ARENA is trying to build in the opposite direction: indexable pages, a sitemap, clear content, stable routes and components that can improve without being rewritten. Global leaves room for growth without inventing false data about players, maps or live status.",
-          "Technically, this page is ready for the next cyberpunk cinematic phase. It can receive a stronger hero, animation, cards for connected servers, charts, event timelines and account progress modules. The current content stays clean and useful, so the visual upgrade will not break the SEO foundation.",
+          "In Romania, many communities disappear because they lack structure. FREE-ARENA is trying to build in the opposite direction: clear pages, useful content, stable routes and components that can improve without being rewritten. Global leaves room for growth without inventing false data about players, maps or live status.",
+          "Technically, this page is ready for the next cyberpunk cinematic phase. It can receive a stronger hero, animation, cards for connected servers, charts, event timelines and account progress modules. The current content stays clean and useful, so the visual upgrade will not break the player experience.",
           "Until launch, use the links to the active servers, Discord and TeamSpeak. That is where the community that will support Global is being formed. When the final direction is ready, this page can become the center for FREE-ARENA events, rankings, competitions and important updates.",
         ],
       },
@@ -640,7 +640,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         },
         {
           question: "Serverul Global este deja deschis?",
-          answer: "Nu. Pagina este pregatita pentru indexare si comunicare, dar proiectul este marcat corect ca coming soon.",
+          answer: "Nu. Pagina este pregatita pentru comunicare, dar proiectul este marcat corect ca coming soon.",
         },
         {
           question: "Global va inlocui serverele existente?",
@@ -648,7 +648,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         },
         {
           question: "De ce exista pagina inainte de lansare?",
-          answer: "Pentru SEO, transparenta si pregatirea comunitatii. Pagina explica directia fara sa publice date false.",
+          answer: "Pentru transparenta si pregatirea comunitatii. Pagina explica directia fara sa publice date false.",
         },
         {
           question: "Unde pot urmari noutatile despre Global?",
@@ -662,7 +662,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         },
         {
           question: "Is the Global server already open?",
-          answer: "No. The page is prepared for indexing and communication, but the project is correctly marked as coming soon.",
+          answer: "No. The page is prepared for communication, but the project is correctly marked as coming soon.",
         },
         {
           question: "Will Global replace the existing servers?",
@@ -670,7 +670,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         },
         {
           question: "Why does the page exist before launch?",
-          answer: "For SEO, transparency and community preparation. It explains the direction without publishing false data.",
+          answer: "For transparency and community preparation. It explains the direction without publishing false data.",
         },
         {
           question: "Where can I follow Global updates?",

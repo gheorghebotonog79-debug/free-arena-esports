@@ -125,8 +125,8 @@ export function ServerHudCard({
               {labels.players}
             </div>
             <p className="server-player-count font-display text-4xl font-black text-white" aria-label={isPending ? labels.planned : playersLabel}>
-              {isPending || isLoading ? (
-                "--"
+              {isPending ? (
+                labels.planned
               ) : (
                 <>
                   <span className="server-player-count__current">{players}</span>
@@ -141,7 +141,7 @@ export function ServerHudCard({
           </div>
           <div className="mt-4 grid grid-cols-2 gap-2">
             <Metric label={labels.map} value={isPending ? labels.planned : map} />
-            <Metric label={labels.ping} value={isPending ? "--" : ping} />
+            <Metric label={labels.ping} value={isPending ? labels.planned : ping} />
           </div>
         </div>
 

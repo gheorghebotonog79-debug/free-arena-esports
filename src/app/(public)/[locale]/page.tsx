@@ -4,6 +4,7 @@ import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
 import { CommunitySection } from "@/components/home/CommunitySection";
 import { FinalCta } from "@/components/home/FinalCta";
 import { HeroCinematic } from "@/components/home/HeroCinematic";
+import { HomeActivitySection } from "@/components/home/HomeActivitySection";
 import { HomeInternalLinks } from "@/components/home/HomeInternalLinks";
 import { NewsSection } from "@/components/home/NewsSection";
 import { ServerSection } from "@/components/home/ServerSection";
@@ -39,6 +40,7 @@ export default async function Home({ params }: HomeProps) {
         <HeroCinematic />
         <ServerSection />
         <HomeInternalLinks locale={safeLocale} />
+        <HomeActivitySection locale={safeLocale} />
         <CommunitySection />
         <TopPlayersSection />
         {SHOW_TOURNAMENTS_SECTION ? <TournamentSection locale={locale} tournaments={tournaments} /> : null}

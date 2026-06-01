@@ -4,6 +4,7 @@ export const routes = {
   events: "/#events",
   community: "/#community",
   rankings: "/rankings",
+  joinStaff: "/join-staff",
   shop: "/#shop",
   about: "/#about",
   terms: "/terms",

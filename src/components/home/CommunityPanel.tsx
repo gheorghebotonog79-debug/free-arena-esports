@@ -176,9 +176,9 @@ export function CommunityPanel() {
               </p>
             </div>
             <div className="grid grid-cols-3 gap-2 sm:min-w-80">
-              <MiniStat Icon={UsersRound} label={statT("players")} value={isLoading ? "--" : formatCompactNumber(summary?.totalPlayers ?? 0)} />
-              <MiniStat Icon={Skull} label={statT("kills")} value={isLoading ? "--" : formatCompactNumber(summary?.totalKills ?? 0)} />
-              <MiniStat Icon={Crosshair} label={statT("headshots")} value={isLoading ? "--" : formatCompactNumber(summary?.totalHeadshots ?? 0)} />
+              <MiniStat Icon={UsersRound} label={statT("players")} value={isLoading ? "0" : formatCompactNumber(summary?.totalPlayers ?? 0)} />
+              <MiniStat Icon={Skull} label={statT("kills")} value={isLoading ? "0" : formatCompactNumber(summary?.totalKills ?? 0)} />
+              <MiniStat Icon={Crosshair} label={statT("headshots")} value={isLoading ? "0" : formatCompactNumber(summary?.totalHeadshots ?? 0)} />
             </div>
           </div>
 

@@ -21,21 +21,29 @@ const labels = {
   ro: {
     hero: {
       address: "Adresa",
+      checking: "Se verifica...",
+      copied: "Copiat",
+      copyIp: "Copiaza IP",
       discord: "Discord",
-      joinServer: "Join Server",
+      joinServer: "Joaca acum",
+      map: "Harta",
+      monitored: "Monitorizat",
+      players: "Jucatori",
       server: "Server",
+      staff: "Aplica staff",
+      status: "Status",
       teamspeak: "TeamSpeak",
     },
     info: {
       currentMap: "Harta curenta",
       ip: "IP",
-      latency: "Latency",
-      players: "Players",
+      latency: "Latenta",
+      players: "Jucatori",
       port: "Port",
       status: "Status",
       title: "Server info",
     },
-    contentLabel: "SEO content",
+    contentLabel: "Despre server",
     features: {
       label: "Foundation",
       title: "De ce FREE-ARENA",
@@ -46,18 +54,27 @@ const labels = {
     },
     links: {
       discord: "Discord",
-      hub: "Internal links",
+      hub: "Actiuni rapide",
       related: "Alte servere FREE-ARENA",
       servers: "Toate serverele",
+      staff: "Aplica staff",
       teamspeak: "TeamSpeak",
     },
   },
   en: {
     hero: {
       address: "Address",
+      checking: "Checking...",
+      copied: "Copied",
+      copyIp: "Copy IP",
       discord: "Discord",
-      joinServer: "Join Server",
+      joinServer: "Play now",
+      map: "Map",
+      monitored: "Monitored",
+      players: "Players",
       server: "Server",
+      staff: "Join staff",
+      status: "Status",
       teamspeak: "TeamSpeak",
     },
     info: {
@@ -69,7 +86,7 @@ const labels = {
       status: "Status",
       title: "Server info",
     },
-    contentLabel: "SEO content",
+    contentLabel: "About server",
     features: {
       label: "Foundation",
       title: "Why FREE-ARENA",
@@ -80,9 +97,10 @@ const labels = {
     },
     links: {
       discord: "Discord",
-      hub: "Internal links",
+      hub: "Quick actions",
       related: "Other FREE-ARENA servers",
       servers: "All servers",
+      staff: "Join staff",
       teamspeak: "TeamSpeak",
     },
   },
@@ -97,7 +115,6 @@ export function ServerSeoPage({ locale, page, server }: ServerSeoPageProps) {
         <NeonAtmosphere />
         <ServerSeoHero labels={copy.hero} locale={locale} page={page} server={server} />
         <ServerInfoSection labels={copy.info} locale={locale} page={page} server={server} />
-        <ServerSeoContent label={copy.contentLabel} locale={locale} page={page} />
         <ServerLandingExpansion locale={locale} page={page} />
         <ServerFeatureGrid
           label={copy.features.label}
@@ -107,6 +124,7 @@ export function ServerSeoPage({ locale, page, server }: ServerSeoPageProps) {
         />
         <ServerFaq label={copy.faq.label} locale={locale} page={page} title={copy.faq.title} />
         <ServerInternalLinks labels={copy.links} locale={locale} page={page} />
+        <ServerSeoContent label={copy.contentLabel} locale={locale} page={page} />
       </main>
       <LiveChatLauncher />
     </>

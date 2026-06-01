@@ -82,8 +82,8 @@ export function WarzoneStatus() {
         </div>
 
         <dl className="mt-6 grid gap-3">
-          <StatusRow Icon={UsersRound} label={t("playersOnline")} value={isLoading ? "--" : String(stats.playersOnline)} tone="text-cyan-200" />
-          <StatusRow Icon={Activity} label={t("serversOnline")} value={isLoading ? "--" : stats.serversOnline} tone="text-fuchsia-300" />
+          <StatusRow Icon={UsersRound} label={t("playersOnline")} value={isLoading ? "0" : String(stats.playersOnline)} tone="text-cyan-200" />
+          <StatusRow Icon={Activity} label={t("serversOnline")} value={isLoading ? "0/3" : stats.serversOnline} tone="text-fuchsia-300" />
           <StatusRow Icon={Gauge} label={t("uptime")} value={stats.uptime} tone="text-blue-300" />
         </dl>
       </div>

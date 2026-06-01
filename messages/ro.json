@@ -41,6 +41,7 @@
     "links": {
       "servers": "Servere",
       "community": "Comunitate",
+      "staff": "Aplica staff",
       "home": "Acasă",
       "terms": "Termeni",
       "privacy": "Confidențialitate",
@@ -114,7 +115,7 @@
       "latest": "Ultimele topicuri",
       "latestFallback": "Forum",
       "checked": "Live",
-      "unknown": "--",
+      "unknown": "In verificare",
       "fallback": "Forum API nu răspunde încă. Verifică permisiunile read-only din AdminCP.",
       "permissionFallback": "Cheia API există, dar endpointurile read-only nu sunt încă activate.",
       "rateLimitFallback": "Forum API a limitat temporar cererile. Revine automat.",
@@ -197,13 +198,13 @@
       "serverCopied": "IP copiat: {address}"
     },
     "loading": {
-      "value": "..."
+      "value": "Se verifica..."
     },
     "fallback": {
-      "map": "Necunoscută",
-      "players": "0/0",
-      "ping": "--",
-      "unavailable": "—"
+      "map": "In verificare",
+      "players": "0/32",
+      "ping": "Monitorizat",
+      "unavailable": "In pregatire"
     },
     "modal": {
       "eyebrow": "Detalii server",
@@ -244,10 +245,10 @@
       "lastUpdated": "Ultima actualizare"
     },
     "states": {
-      "loadingValue": "...",
-      "unknown": "Necunoscut",
-      "notAvailable": "--",
-      "offlinePlayers": "0/0",
+      "loadingValue": "Se verifica...",
+      "unknown": "In verificare",
+      "notAvailable": "Monitorizat",
+      "offlinePlayers": "0/32",
       "offline": "Serverul nu raspunde momentan la interogarea live. Adresa ramane disponibila pentru copiere.",
       "error": "Statusul live nu a putut fi incarcat acum. Poti reincerca fara sa parasesti pagina."
     },
@@ -544,7 +545,7 @@
           "status": "Online",
           "statusLoading": "Se verifică",
           "statusOffline": "Offline",
-          "loadingValue": "...",
+          "loadingValue": "Se verifica",
           "offlineValue": "0/0",
           "fallback": "Statusul TeamSpeak nu este disponibil momentan. Copierea adresei și conectarea rămân active.",
           "cta": "Intră pe TeamSpeak",
@@ -583,8 +584,8 @@
       "played": "Timp jucat"
     },
     "states": {
-      "loadingValue": "...",
-      "notAvailable": "--",
+      "loadingValue": "Se verifica",
+      "notAvailable": "Monitorizat",
       "error": "Statisticile RSU nu au putut fi incarcate acum. Reincercam automat.",
       "empty": "Nu exista inca jucatori in clasament."
     },

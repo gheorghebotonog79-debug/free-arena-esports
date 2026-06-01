@@ -35,7 +35,7 @@ export const romanianServersHubFaq = [
   {
     question: "Serverele FREE-ARENA au ranking si progres pentru jucatori?",
     answer:
-      "Da. Pagina de rankings grupeaza jucatorii activi si ajuta comunitatea sa urmareasca performanta, kill-urile, headshot-urile si timpul jucat. Linkurile catre clasament sunt pastrate crawlable pentru Google si utile pentru jucatori.",
+      "Da. Pagina de rankings grupeaza jucatorii activi si ajuta comunitatea sa urmareasca performanta, kill-urile, headshot-urile si timpul jucat. Linkurile catre clasament sunt vizibile si utile pentru jucatori.",
   },
   {
     question: "Cum intru rapid pe Discord sau TeamSpeak?",
@@ -45,7 +45,7 @@ export const romanianServersHubFaq = [
   {
     question: "De ce exista pagini separate pentru fiecare server?",
     answer:
-      "Fiecare server are reguli, mod, harti, instructiuni si intentie diferita. Paginile dedicate pentru CS 1.6 Classic, Respawn, CS2 si Global dau context complet si trimit semnale SEO mai clare decat o lista scurta de IP-uri.",
+      "Fiecare server are reguli, mod, harti, instructiuni si intentie diferita. Paginile dedicate pentru CS 1.6 Classic, Respawn, CS2 si Global dau context complet si explica mai bine diferentele decat o lista scurta de IP-uri.",
   },
   {
     question: "Ce inseamna Global / Coming Soon in lista de servere?",
@@ -156,10 +156,10 @@ export function RomanianServersSeoHub() {
                 corect de conectare si sa intelegi unde se intampla activitatea principala a comunitatii.
               </p>
               <p>
-                Pentru Google si pentru jucatori, hubul leaga paginile care conteaza: serverul de CS 1.6 Classic,
+                Pentru jucatori, hubul leaga paginile care conteaza: serverul de CS 1.6 Classic,
                 modul Respawn, zona CS2, pagina Global, clasamentul FREE-ARENA, Discord si TeamSpeak. Fiecare
-                link este HTML normal, usor de accesat si gandit sa trimita autoritate catre landing page-urile
-                dedicate, unde exista detalii despre conectare, reguli, harti, beneficii VIP si intrebari frecvente.
+                link este HTML normal, usor de accesat si gandit sa duca rapid catre pagina potrivita,
+                unde exista detalii despre conectare, reguli, harti, beneficii VIP si intrebari frecvente.
               </p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -197,7 +197,7 @@ export function RomanianServersSeoHub() {
               </h2>
               <p className="mt-3 text-sm font-semibold leading-7 text-white/62">
                 Lista live de mai sus arata statusul, harta, ping-ul si numarul de jucatori. Cardurile de mai jos
-                explica rolul fiecarui server si trimit catre paginile SEO canonice pentru detalii complete.
+                explica rolul fiecarui server si trimit catre paginile oficiale pentru detalii complete.
               </p>
             </div>
           </div>
@@ -332,7 +332,7 @@ export function RomanianServersSeoHub() {
                 Intrebari frecvente despre serverele FREE-ARENA
               </h2>
               <p className="mt-3 text-sm font-semibold leading-7 text-white/62">
-                FAQ-ul raspunde direct intrebarilor importante pentru jucatori si este folosit si in schema FAQPage.
+                FAQ-ul raspunde direct intrebarilor importante pentru jucatori si completeaza informatiile vizibile de pe pagina.
               </p>
             </div>
           </div>

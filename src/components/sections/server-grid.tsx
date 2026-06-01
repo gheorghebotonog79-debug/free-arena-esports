@@ -27,14 +27,14 @@ function isLiveServersResponse(value: unknown): value is LiveServersResponse {
   );
 }
 
-function formatPing(value: number | string | null | undefined) {
+function formatPing(value: number | string | null | undefined, fallback: string) {
   if (value === null || value === undefined || value === "") {
-    return "N/A";
+    return fallback;
   }
 
   const ping = typeof value === "number" ? value : Number(value);
 
-  return Number.isFinite(ping) ? `${ping}ms` : "N/A";
+  return Number.isFinite(ping) ? `${ping}ms` : fallback;
 }
 
 export function ServerGrid() {
@@ -158,20 +158,20 @@ export function ServerGrid() {
     const map = status === "pending"
       ? t("fallback.unavailable")
       : status === "loading"
-        ? t("loading.value")
+        ? t("fallback.map")
         : liveServer?.map || t("fallback.map");
     const playersLabel = status === "pending"
       ? t("fallback.unavailable")
       : status === "loading"
-        ? t("loading.value")
+        ? `0/${server.fallbackMaxPlayers}`
         : liveServer
           ? `${liveServer.players}/${liveServer.maxPlayers}`
           : t("fallback.players");
     const ping = status === "pending"
       ? t("fallback.unavailable")
       : status === "loading"
-        ? t("loading.value")
-        : formatPing(liveServer?.ping);
+        ? t("fallback.ping")
+        : formatPing(liveServer?.ping, t("fallback.ping"));
     const playerCount = status === "loading" || status === "pending" ? 0 : liveServer?.players ?? 0;
     const maxPlayers = status === "pending" ? server.fallbackMaxPlayers : liveServer?.maxPlayers ?? server.fallbackMaxPlayers;
     const pingValue = typeof liveServer?.ping === "number" && Number.isFinite(liveServer.ping)
@@ -242,7 +242,7 @@ export function ServerGrid() {
   const pingValues = serverCards.flatMap((server) => (server.pingValue === null ? [] : [server.pingValue]));
   const averagePing = pingValues.length > 0
     ? `${Math.round(pingValues.reduce((sum, value) => sum + value, 0) / pingValues.length)}ms`
-    : "N/A";
+    : t("fallback.ping");
 
   function getFilterCount(filter: ServerStatusFilter) {
     return filter === "all"

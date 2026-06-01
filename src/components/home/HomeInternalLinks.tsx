@@ -19,7 +19,7 @@ const content: Record<Locale, { eyebrow: string; title: string; links: readonly 
         href: "/server/cs16-classic",
         Icon: Server,
         title: "CS 1.6 Classic",
-        copy: "Pagina canonica pentru serverul clasic FREE-ARENA, cu IP, reguli, FAQ si beneficii.",
+        copy: "Pagina oficiala pentru serverul clasic FREE-ARENA, cu IP, reguli, FAQ si beneficii.",
       },
       {
         href: "/server/respawn",

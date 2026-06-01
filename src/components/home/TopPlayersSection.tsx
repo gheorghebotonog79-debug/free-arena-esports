@@ -227,9 +227,9 @@ export function TopPlayersSection() {
             </div>
 
             <dl className="mt-8 grid gap-3 sm:grid-cols-3">
-              <TopStat Icon={UsersRound} label={t("stats.players")} value={isLoading ? "--" : formatCompactNumber(summary?.totalPlayers ?? 0)} />
-              <TopStat Icon={Skull} label={t("stats.kills")} value={isLoading ? "--" : formatCompactNumber(summary?.totalKills ?? 0)} />
-              <TopStat Icon={Crosshair} label={t("stats.headshots")} value={isLoading ? "--" : formatCompactNumber(summary?.totalHeadshots ?? 0)} />
+              <TopStat Icon={UsersRound} label={t("stats.players")} value={isLoading ? "0" : formatCompactNumber(summary?.totalPlayers ?? 0)} />
+              <TopStat Icon={Skull} label={t("stats.kills")} value={isLoading ? "0" : formatCompactNumber(summary?.totalKills ?? 0)} />
+              <TopStat Icon={Crosshair} label={t("stats.headshots")} value={isLoading ? "0" : formatCompactNumber(summary?.totalHeadshots ?? 0)} />
             </dl>
 
             {hasError ? (

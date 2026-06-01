@@ -161,7 +161,7 @@ export function CommunitySection() {
               ? teamSpeakStatusKind === "loading"
                 ? t("hub.channels.teamspeak.loadingValue")
                 : teamSpeakStatus?.online
-                  ? `${teamSpeakStatus.users}/${teamSpeakStatus.maxUsers || "--"}`
+                  ? `${teamSpeakStatus.users}/${teamSpeakStatus.maxUsers || 0}`
                   : t("hub.channels.teamspeak.offlineValue")
               : channel.members;
             const title = isTeamSpeak && teamSpeakStatus?.serverName

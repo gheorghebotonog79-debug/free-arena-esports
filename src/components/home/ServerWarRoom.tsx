@@ -40,14 +40,14 @@ function isLiveServersResponse(value: unknown): value is LiveServersResponse {
   );
 }
 
-function formatPing(value: number | string | null | undefined) {
+function formatPing(value: number | string | null | undefined, fallback: string) {
   if (value === null || value === undefined || value === "") {
-    return "N/A";
+    return fallback;
   }
 
   const ping = typeof value === "number" ? value : Number(value);
 
-  return Number.isFinite(ping) ? `${ping}ms` : "N/A";
+  return Number.isFinite(ping) ? `${ping}ms` : fallback;
 }
 
 export function ServerWarRoom() {
@@ -159,7 +159,7 @@ export function ServerWarRoom() {
         minute: "2-digit",
         second: "2-digit",
       }).format(lastUpdatedAt)
-    : "--";
+    : serverT("loading.value");
 
   const serverCards: ServerWarRoomCard[] = publicServers.map((server) => {
     const live = serverStatuses[server.key];
@@ -171,11 +171,11 @@ export function ServerWarRoom() {
         : live?.status ?? "offline";
     const players = status === "loading" ? 0 : live?.players ?? 0;
     const maxPlayers = status === "loading" ? server.fallbackMaxPlayers : live?.maxPlayers ?? server.fallbackMaxPlayers;
-    const playersLabel = status === "loading" ? serverT("loading.value") : `${players}/${maxPlayers}`;
-    const map = status === "loading" ? serverT("loading.value") : live?.map || serverT("fallback.map");
+    const playersLabel = `${players}/${maxPlayers}`;
+    const map = status === "loading" ? serverT("fallback.map") : live?.map || serverT("fallback.map");
     const ping = status === "loading"
-      ? serverT("loading.value")
-      : formatPing(live?.ping);
+      ? serverT("fallback.ping")
+      : formatPing(live?.ping, serverT("fallback.ping"));
     const statusLabel = status === "online"
       ? "LIVE"
       : status === "pending"
@@ -195,7 +195,7 @@ export function ServerWarRoom() {
       maxPlayers,
       ping,
       players,
-      playersLabel: isPending ? "--" : playersLabel,
+      playersLabel: isPending ? serverT("fallback.unavailable") : playersLabel,
       region: serverT(`items.${server.key}.region`),
       status,
       statusLabel,
@@ -406,9 +406,9 @@ function ServerDetailsDrawer({
           </div>
 
           <dl className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <DrawerMetric Icon={UsersRound} label={labels.players} value={server.status === "pending" ? "--" : server.playersLabel} />
+            <DrawerMetric Icon={UsersRound} label={labels.players} value={server.status === "pending" ? labels.planned : server.playersLabel} />
             <DrawerMetric Icon={Gamepad2} label={labels.map} value={server.status === "pending" ? labels.planned : server.map} />
-            <DrawerMetric Icon={RadioTower} label={labels.ping} value={server.status === "pending" ? "--" : server.ping} />
+            <DrawerMetric Icon={RadioTower} label={labels.ping} value={server.status === "pending" ? labels.planned : server.ping} />
             <DrawerMetric Icon={ShieldCheck} label={labels.lastChecked} value={formattedLastChecked} />
           </dl>
 

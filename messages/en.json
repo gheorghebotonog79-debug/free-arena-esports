@@ -41,6 +41,7 @@
     "links": {
       "servers": "Servers",
       "community": "Community",
+      "staff": "Join staff",
       "home": "Home",
       "terms": "Terms",
       "privacy": "Privacy",
@@ -114,7 +115,7 @@
       "latest": "Latest topics",
       "latestFallback": "Forum",
       "checked": "Live",
-      "unknown": "--",
+      "unknown": "Checking",
       "fallback": "Forum API is not responding yet. Check the read-only permissions in AdminCP.",
       "permissionFallback": "The API key exists, but read-only endpoints are not enabled yet.",
       "rateLimitFallback": "Forum API temporarily rate-limited requests. It will retry automatically.",
@@ -197,13 +198,13 @@
       "serverCopied": "Server IP copied: {address}"
     },
     "loading": {
-      "value": "..."
+      "value": "Checking..."
     },
     "fallback": {
-      "map": "Unknown",
-      "players": "0/0",
-      "ping": "--",
-      "unavailable": "—"
+      "map": "Checking",
+      "players": "0/32",
+      "ping": "Monitored",
+      "unavailable": "In preparation"
     },
     "modal": {
       "eyebrow": "Server details",
@@ -244,10 +245,10 @@
       "lastUpdated": "Last update"
     },
     "states": {
-      "loadingValue": "...",
-      "unknown": "Unknown",
-      "notAvailable": "--",
-      "offlinePlayers": "0/0",
+      "loadingValue": "Checking...",
+      "unknown": "Checking",
+      "notAvailable": "Monitored",
+      "offlinePlayers": "0/32",
       "offline": "The server is not responding to the live query right now. The address remains available for copying.",
       "error": "Live status could not be loaded right now. You can retry without leaving the page."
     },
@@ -544,7 +545,7 @@
           "status": "Online",
           "statusLoading": "Checking",
           "statusOffline": "Offline",
-          "loadingValue": "...",
+          "loadingValue": "Checking",
           "offlineValue": "0/0",
           "fallback": "TeamSpeak status is not available right now. Copy address and join actions remain active.",
           "cta": "Join TeamSpeak",
@@ -583,8 +584,8 @@
       "played": "Played time"
     },
     "states": {
-      "loadingValue": "...",
-      "notAvailable": "--",
+      "loadingValue": "Checking",
+      "notAvailable": "Monitored",
       "error": "RSU statistics could not be loaded right now. The site will retry automatically.",
       "empty": "No leaderboard players are available yet."
     },

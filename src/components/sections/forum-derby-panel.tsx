@@ -106,7 +106,7 @@ export function ForumDerbyPanel() {
         <div className="premium-card rounded-lg bg-black/28 p-3">
           <UsersRound size={16} className="text-arena-green" aria-hidden="true" />
           <p className="mt-2 font-display text-xl font-black text-white">
-            {isLoading ? "..." : formatNumber(forumStatus?.membersTotal, t("unknown"), locale)}
+            {isLoading ? "0" : formatNumber(forumStatus?.membersTotal, t("unknown"), locale)}
           </p>
           <p className="mt-1 text-[0.66rem] font-semibold uppercase tracking-[0.13em] text-white/42">
             {t("stats.members")}
@@ -115,7 +115,7 @@ export function ForumDerbyPanel() {
         <div className="premium-card rounded-lg bg-black/28 p-3">
           <MessageSquareText size={16} className="text-arena-cyan" aria-hidden="true" />
           <p className="mt-2 font-display text-xl font-black text-white">
-            {isLoading ? "..." : formatNumber(forumStatus?.topicsTotal, t("unknown"), locale)}
+            {isLoading ? "0" : formatNumber(forumStatus?.topicsTotal, t("unknown"), locale)}
           </p>
           <p className="mt-1 text-[0.66rem] font-semibold uppercase tracking-[0.13em] text-white/42">
             {t("stats.topics")}
@@ -124,7 +124,7 @@ export function ForumDerbyPanel() {
         <div className="premium-card rounded-lg bg-black/28 p-3">
           <RadioTower size={16} className="text-arena-gold" aria-hidden="true" />
           <p className="mt-2 font-display text-xl font-black text-white">
-            {isLoading ? "..." : formatNumber(forumStatus?.postsTotal, t("unknown"), locale)}
+            {isLoading ? "0" : formatNumber(forumStatus?.postsTotal, t("unknown"), locale)}
           </p>
           <p className="mt-1 text-[0.66rem] font-semibold uppercase tracking-[0.13em] text-white/42">
             {t("stats.posts")}

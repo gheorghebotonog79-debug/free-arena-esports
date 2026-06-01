@@ -116,10 +116,10 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
 
       <section className="neon-section px-4 pb-14 sm:px-6 lg:px-8">
         <div className="mx-auto grid w-full max-w-7xl gap-4 lg:grid-cols-2">
-          <RankingList icon="players" players={topPlayers} title={content.topPlayersTitle} value={(player) => `${formatCompactNumber(player.xp)} XP`} />
-          <RankingList icon="kills" players={topKills} title={content.killsTitle} value={(player) => formatCompactNumber(player.kills)} />
-          <RankingList icon="headshots" players={topHeadshots} title={content.headshotsTitle} value={(player) => formatCompactNumber(player.headshots)} />
-          <RankingList icon="playtime" players={topPlaytime} title={content.playtimeTitle} value={(player) => formatPlayedTime(player.playedTime)} />
+          <RankingList emptyLabel={locale === "ro" ? "In verificare" : "Checking"} icon="players" players={topPlayers} title={content.topPlayersTitle} value={(player) => `${formatCompactNumber(player.xp)} XP`} />
+          <RankingList emptyLabel={locale === "ro" ? "In verificare" : "Checking"} icon="kills" players={topKills} title={content.killsTitle} value={(player) => formatCompactNumber(player.kills)} />
+          <RankingList emptyLabel={locale === "ro" ? "In verificare" : "Checking"} icon="headshots" players={topHeadshots} title={content.headshotsTitle} value={(player) => formatCompactNumber(player.headshots)} />
+          <RankingList emptyLabel={locale === "ro" ? "In verificare" : "Checking"} icon="playtime" players={topPlaytime} title={content.playtimeTitle} value={(player) => formatPlayedTime(player.playedTime)} />
         </div>
       </section>
 
@@ -188,11 +188,13 @@ function ActivityStat({ Icon, label, value }: { Icon: LucideIcon; label: string;
 }
 
 function RankingList({
+  emptyLabel,
   icon,
   players,
   title,
   value,
 }: {
+  emptyLabel: string;
   icon: RankingMetricKey;
   players: readonly RankedPlayer[];
   title: string;
@@ -220,7 +222,7 @@ function RankingList({
             <span className="font-mono text-xs font-black uppercase text-cyan-200">{value(player)}</span>
           </li>
         )) : (
-          <li className="server-metric p-3 text-sm font-semibold text-white/54">--</li>
+          <li className="server-metric p-3 text-sm font-semibold text-white/54">{emptyLabel}</li>
         )}
       </ol>
     </article>

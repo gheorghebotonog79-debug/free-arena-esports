@@ -65,7 +65,7 @@ export const rankingsPageContent: Record<Locale, RankingsPageContent> = {
       body: [
         "Clasamentul foloseste statistici asociate activitatii reale din ecosistemul FREE-ARENA. Pentru fiecare jucator sunt urmarite valori precum XP, kill-uri, headshot-uri, timp jucat si eficienta in dueluri. Ordinea principala este orientata spre progres si activitate, nu doar spre un singur numar izolat. Asta ajuta comunitatea sa vada cine joaca constant, cine contribuie la ritmul serverelor si cine revine suficient de des incat sa conteze in top.",
         "Top Kills arata jucatorii care produc cel mai mult impact ofensiv. Top Headshots scoate in fata precizia si controlul armei. Top Playtime este important pentru comunitate, pentru ca un server puternic nu inseamna doar fraguri, ci si prezenta constanta. Cand aceste liste sunt citite impreuna, un jucator poate intelege mai bine unde sta: poate nu este primul la XP, dar poate fi foarte sus la timp jucat sau la headshot-uri.",
-        "Datele pot fi actualizate periodic si pot afisa fallback-uri curate daca sursa live nu raspunde temporar. Pagina ramane utila pentru Google si pentru utilizatori deoarece explica transparent ce masoara clasamentul si cum se leaga de serverele active.",
+        "Datele pot fi actualizate periodic si pot afisa fallback-uri curate daca sursa live nu raspunde temporar. Pagina ramane utila pentru utilizatori deoarece explica transparent ce masoara clasamentul si cum se leaga de serverele active.",
         "Clasamentul nu este gandit ca o promisiune de status permanent. Este un instrument viu, util pentru motivatie si pentru decizii de comunitate: ce server atrage activitate, ce mod merita evenimente si ce tip de jucator revine cel mai des.",
       ],
     },
@@ -73,8 +73,8 @@ export const rankingsPageContent: Record<Locale, RankingsPageContent> = {
       title: "De ce sa joci pe FREE-ARENA",
       body: [
         "FREE-ARENA este construit ca un ecosistem pentru jucatori care vor servere stabile, reguli clare si comunitate activa. Clasamentul adauga un motiv simplu de revenire: fiecare sesiune poate conta. Daca intri pe CS 1.6 Classic pentru joc echilibrat, pe Respawn pentru warm-up sau pe CS2 pentru directia moderna, progresul tau devine parte dintr-o imagine mai mare.",
-        "Pentru jucatorii noi, pagina de rankings functioneaza ca o usa de intrare. Vezi nume active, intelegi ce servere sunt importante si ai linkuri directe catre paginile canonice. Pentru jucatorii vechi, pagina devine un punct de verificare: cine a urcat, cine a ramas constant, cine domina la precizie si cine tine comunitatea vie prin activitate.",
-        "Pe termen lung, acest clasament poate sustine evenimente, provocari saptamanale, premii VIP, continut pentru Discord si topicuri pe forum. Fundatia corecta este importanta acum: URL stabil, canonical clar, sitemap curat si linkuri interne catre serverele care trebuie sa rankeze.",
+        "Pentru jucatorii noi, pagina de rankings functioneaza ca o usa de intrare. Vezi nume active, intelegi ce servere sunt importante si ai linkuri directe catre paginile oficiale. Pentru jucatorii vechi, pagina devine un punct de verificare: cine a urcat, cine a ramas constant, cine domina la precizie si cine tine comunitatea vie prin activitate.",
+        "Pe termen lung, acest clasament poate sustine evenimente, provocari saptamanale, premii VIP, continut pentru Discord si topicuri pe forum. Fundatia corecta este importanta acum: traseu stabil, pagina clara si linkuri interne catre serverele principale.",
       ],
     },
     internalLinksTitle: "Intra pe serverele FREE-ARENA",
@@ -132,8 +132,8 @@ export const rankingsPageContent: Record<Locale, RankingsPageContent> = {
       title: "Why play on FREE-ARENA",
       body: [
         "FREE-ARENA is built as an ecosystem for players who want stable servers, clear rules, and an active community. Rankings add a simple reason to return: every session can count. Whether you join CS 1.6 Classic for balanced rounds, Respawn for daily warm-up, or CS2 for the modern competitive direction, your progress becomes part of the larger community picture.",
-        "For new players, this page works as an entry point. They can see active names, understand which servers matter, and move directly to the canonical server pages. For returning players, it becomes a check-in page: who moved up, who stayed consistent, who leads on precision, and who keeps the community active through time played.",
-        "Over time, this rankings page can support weekly challenges, VIP rewards, Discord content, and forum topics. The foundation matters now: stable URL, clean canonical, sitemap inclusion, hreflang support, and internal links toward the server pages that should build search authority.",
+        "For new players, this page works as an entry point. They can see active names, understand which servers matter, and move directly to the official server pages. For returning players, it becomes a check-in page: who moved up, who stayed consistent, who leads on precision, and who keeps the community active through time played.",
+        "Over time, this rankings page can support weekly challenges, VIP rewards, Discord content, and forum topics. The foundation matters now: stable routes, clear page structure, and internal links toward the main server pages.",
       ],
     },
     internalLinksTitle: "Join FREE-ARENA servers",

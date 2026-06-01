@@ -284,10 +284,10 @@ export function PlayerProgressHub() {
               </div>
 
               <div className="mt-5 grid grid-cols-2 gap-2">
-                <MiniStat label={t("player.xp")} value={topPlayer ? formatCompactNumber(topPlayer.xp) : "--"} />
-                <MiniStat label={t("player.kills")} value={topPlayer ? formatCompactNumber(topPlayer.kills) : "--"} />
-                <MiniStat label={t("player.kd")} value={topPlayer ? topPlayer.kdRatio.toFixed(2) : "--"} />
-                <MiniStat label={t("player.played")} value={topPlayer ? formatPlayedTime(topPlayer.playedTime) : "--"} />
+                <MiniStat label={t("player.xp")} value={topPlayer ? formatCompactNumber(topPlayer.xp) : "0"} />
+                <MiniStat label={t("player.kills")} value={topPlayer ? formatCompactNumber(topPlayer.kills) : "0"} />
+                <MiniStat label={t("player.kd")} value={topPlayer ? topPlayer.kdRatio.toFixed(2) : "0.00"} />
+                <MiniStat label={t("player.played")} value={topPlayer ? formatPlayedTime(topPlayer.playedTime) : "0m"} />
               </div>
             </MotionCard>
 
@@ -356,28 +356,28 @@ function buildStatCards(summary: PlayerProgressSummary | null, t: StatTranslator
     {
       key: "players",
       label: t("stats.players"),
-      value: summary ? formatCompactNumber(summary.totalPlayers) : "--",
+      value: summary ? formatCompactNumber(summary.totalPlayers) : "0",
       Icon: UsersRound,
       tone: "text-arena-cyan",
     },
     {
       key: "kills",
       label: t("stats.kills"),
-      value: summary ? formatCompactNumber(summary.totalKills) : "--",
+      value: summary ? formatCompactNumber(summary.totalKills) : "0",
       Icon: Skull,
       tone: "text-arena-red",
     },
     {
       key: "headshots",
       label: t("stats.headshots"),
-      value: summary ? formatCompactNumber(summary.totalHeadshots) : "--",
+      value: summary ? formatCompactNumber(summary.totalHeadshots) : "0",
       Icon: Crosshair,
       tone: "text-arena-gold",
     },
     {
       key: "played",
       label: t("stats.played"),
-      value: summary ? formatPlayedTime(summary.totalPlayedTime) : "--",
+      value: summary ? formatPlayedTime(summary.totalPlayedTime) : "0m",
       Icon: Clock3,
       tone: "text-arena-green",
     },

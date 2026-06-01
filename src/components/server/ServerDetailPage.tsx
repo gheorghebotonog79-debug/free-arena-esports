@@ -72,14 +72,14 @@ function formatLastUpdated(value: string | null, locale: string, fallback: strin
   }).format(date);
 }
 
-function formatPing(value: number | string | null | undefined) {
+function formatPing(value: number | string | null | undefined, fallback: string) {
   if (value === null || value === undefined || value === "") {
-    return "N/A";
+    return fallback;
   }
 
   const ping = typeof value === "number" ? value : Number(value);
 
-  return Number.isFinite(ping) ? `${ping}ms` : "N/A";
+  return Number.isFinite(ping) ? `${ping}ms` : fallback;
 }
 
 export function ServerDetailPage({ server }: ServerDetailPageProps) {
@@ -190,7 +190,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
       key: "players",
       label: t("stats.players"),
       value: isLoading && !liveServer
-        ? t("states.loadingValue")
+        ? `0/${server.fallbackMaxPlayers}`
         : liveServer
           ? `${liveServer.players}/${liveServer.maxPlayers}`
           : t("states.offlinePlayers"),
@@ -200,7 +200,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
     {
       key: "map",
       label: t("stats.map"),
-      value: isLoading && !liveServer ? t("states.loadingValue") : liveServer?.map || t("states.unknown"),
+      value: isLoading && !liveServer ? t("states.unknown") : liveServer?.map || t("states.unknown"),
       Icon: Map,
       toneClass: "text-arena-green",
     },
@@ -208,8 +208,8 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
       key: "ping",
       label: t("stats.ping"),
       value: isLoading && !liveServer
-        ? t("states.loadingValue")
-        : formatPing(liveServer?.ping),
+        ? t("states.notAvailable")
+        : formatPing(liveServer?.ping, t("states.notAvailable")),
       Icon: RadioTower,
       toneClass: "text-arena-red",
     },
