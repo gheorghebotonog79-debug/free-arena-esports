@@ -30,6 +30,7 @@ import {
 } from "@/data/vip-shop";
 
 const DISCORD_TICKET_URL = "https://discord.gg/freearena";
+const PRIMARY_SERVER_CONNECT_URL = "steam://connect/217.156.22.74:27015";
 
 const tierIcons: Record<VipTierKey, LucideIcon> = {
   queen: Crown,
@@ -170,6 +171,100 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
           </motion.aside>
         </div>
       </section>
+
+      <motion.section
+        className="neon-section px-4 py-16 sm:px-6 lg:px-8"
+        initial="hidden"
+        variants={sectionMotion}
+        viewport={{ once: true, amount: 0.18 }}
+        whileInView="visible"
+      >
+        <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
+          <motion.article
+            className="premium-card glass-panel neon-hover animated-border relative overflow-hidden rounded-lg border border-arena-green/24 p-5 sm:p-6"
+            data-motion-card="true"
+            variants={panelMotion}
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(57,255,136,0.16),transparent_34%),radial-gradient(circle_at_88%_75%,rgba(0,229,255,0.14),transparent_38%)]" aria-hidden="true" />
+            <div className="relative">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-arena-green">
+                {page.trial.eyebrow}
+              </p>
+              <h2 className="mt-3 font-display text-4xl font-black uppercase text-white sm:text-5xl">
+                {page.trial.title}
+              </h2>
+              <p className="mt-4 max-w-3xl text-sm font-semibold leading-7 text-white/64">
+                {page.trial.copy}
+              </p>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+                <div className="rounded-lg border border-arena-green/24 bg-arena-green/10 p-4">
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-arena-green">
+                    {page.trial.commandTitle}
+                  </p>
+                  <p className="mt-3 font-display text-4xl font-black text-white">
+                    {page.trial.command}
+                  </p>
+                  <TrackedAnchor
+                    className="button-glow mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-arena-green px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-cyan-100"
+                    eventName="click_play_now"
+                    eventPayload={{ location: "shop_testvip", server: "cs16-classic" }}
+                    href={PRIMARY_SERVER_CONNECT_URL}
+                  >
+                    {page.trial.cta}
+                  </TrackedAnchor>
+                </div>
+
+                <ul className="grid gap-3">
+                  {page.trial.items.map((item) => (
+                    <li key={item} className="server-metric flex gap-3 p-3 text-sm font-semibold leading-6 text-white/68">
+                      <Check size={17} className="mt-1 shrink-0 text-arena-green" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <p className="mt-5 rounded-lg border border-white/10 bg-black/24 p-3 text-xs font-semibold leading-6 text-white/50">
+                {page.trial.note}
+              </p>
+            </div>
+          </motion.article>
+
+          <motion.article
+            className="premium-card glass-panel neon-hover animated-border rounded-lg border border-cyan-200/24 p-5 sm:p-6"
+            custom={1}
+            data-motion-card="true"
+            variants={panelMotion}
+          >
+            <span className="grid size-14 place-items-center rounded-lg border border-cyan-200/34 bg-cyan-300/12 text-cyan-100">
+              <Headphones size={26} aria-hidden="true" />
+            </span>
+            <h2 className="mt-5 font-display text-4xl font-black uppercase text-white">
+              {page.trial.vipTsTitle}
+            </h2>
+            <p className="mt-4 text-sm font-semibold leading-7 text-white/62">
+              {page.trial.vipTsCopy}
+            </p>
+            <ul className="mt-6 grid gap-3">
+              {page.trial.vipTsBenefits.map((benefit) => (
+                <li key={benefit} className="flex gap-3 text-sm font-semibold leading-6 text-white/68">
+                  <Check size={17} className="mt-1 shrink-0 text-cyan-200" aria-hidden="true" />
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+            <TrackedAnchor
+              className="button-ghost mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-cyan-200/18 bg-cyan-300/8 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/14"
+              eventName="click_teamspeak"
+              eventPayload={{ location: "shop_vipts" }}
+              href={vipShopContact.teamSpeakHref}
+            >
+              {page.trial.vipTsCta}
+            </TrackedAnchor>
+          </motion.article>
+        </div>
+      </motion.section>
 
       <motion.section
         className="neon-section scroll-mt-32 px-4 py-16 sm:px-6 lg:px-8"

@@ -67,6 +67,20 @@ export type VipShopContent = {
     teamSpeakTitle: string;
     title: string;
   };
+  trial: {
+    command: string;
+    commandTitle: string;
+    copy: string;
+    cta: string;
+    eyebrow: string;
+    items: readonly string[];
+    note: string;
+    title: string;
+    vipTsBenefits: readonly string[];
+    vipTsCopy: string;
+    vipTsCta: string;
+    vipTsTitle: string;
+  };
 };
 
 export const vipShopContact = {
@@ -81,7 +95,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
     metadata: {
       title: "Shop VIP FREE-ARENA | Gold și Diamond",
       description:
-        "Cumpără VIP Gold sau VIP Diamond pe FREE-ARENA și activează beneficii premium pentru serverele comunității.",
+        "Cere VIP Gold sau VIP Diamond pe FREE-ARENA, testeaza VIP cu /testvip si afla beneficiile VIP TS pentru TeamSpeak.",
     },
     hero: {
       eyebrow: "FREE-ARENA VIP SHOP",
@@ -105,6 +119,34 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         "Ne contactezi pe forum sau Discord.",
         "Confirmam plata si datele contului.",
         "Activam VIP pe serverul ales.",
+      ],
+    },
+    trial: {
+      eyebrow: "Test VIP si VIP TS",
+      title: "Testeaza VIP gratuit",
+      copy:
+        "Inainte sa alegi Gold sau Diamond, poti testa beneficiile VIP direct pe server. Scrie comanda in chat si vezi cum se simte accesul premium.",
+      commandTitle: "Comanda pe server",
+      command: "/testvip",
+      cta: "Intra pe server si testeaza",
+      items: [
+        "Prima testare dureaza 60 de minute.",
+        "Dupa prima testare, mai ai 5 testari disponibile.",
+        "Fiecare testare urmatoare dureaza 30 de minute.",
+        "Testul este pentru jucatori noi sau jucatori care vor sa vada beneficiile inainte de activare.",
+      ],
+      note:
+        "Testul VIP nu inseamna imunitate la reguli si poate fi limitat daca serverul sau modul de joc impune restrictii.",
+      vipTsTitle: "VIP TS",
+      vipTsCopy:
+        "VIP TS este accesul de comunitate pentru TeamSpeak. Nu schimba gameplay-ul pe server, dar iti ofera identitate si suport mai rapid pe voice.",
+      vipTsCta: "Deschide TeamSpeak",
+      vipTsBenefits: [
+        "Rol / tag VIP vizibil pe TeamSpeak.",
+        "Acces la zona sau camera VIP atunci cand este activa.",
+        "Suport mai rapid pentru activare VIP, acces garantat si verificari.",
+        "Prezenta mai clara pentru staff si comunitate in sesiunile de voice.",
+        "Potrivit pentru jucatori activi, admini si membri care folosesc TeamSpeak constant.",
       ],
     },
     comparisonTitle: "Comparație pachete VIP",
@@ -222,7 +264,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
     metadata: {
       title: "FREE-ARENA VIP Shop | Gold and Diamond",
       description:
-        "Buy VIP Gold or VIP Diamond on FREE-ARENA and unlock premium community server benefits.",
+        "Request VIP Gold or VIP Diamond on FREE-ARENA, test VIP with /testvip, and see VIP TS TeamSpeak benefits.",
     },
     hero: {
       eyebrow: "FREE-ARENA VIP SHOP",
@@ -246,6 +288,34 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         "Contact us on forum or Discord.",
         "We confirm payment and account details.",
         "We activate VIP on the selected server.",
+      ],
+    },
+    trial: {
+      eyebrow: "VIP test and VIP TS",
+      title: "Test VIP for free",
+      copy:
+        "Before choosing Gold or Diamond, you can test VIP benefits directly on the server. Type the command in chat and see how premium access feels.",
+      commandTitle: "Server command",
+      command: "/testvip",
+      cta: "Join and test VIP",
+      items: [
+        "The first test lasts 60 minutes.",
+        "After the first test, you have 5 more tests available.",
+        "Each next test lasts 30 minutes.",
+        "The test is for new players or players who want to try the benefits before activation.",
+      ],
+      note:
+        "VIP testing does not mean immunity from rules and may be limited when the server or game mode requires restrictions.",
+      vipTsTitle: "VIP TS",
+      vipTsCopy:
+        "VIP TS is the community access layer for TeamSpeak. It does not change server gameplay, but it gives you identity and faster voice support.",
+      vipTsCta: "Open TeamSpeak",
+      vipTsBenefits: [
+        "Visible VIP role / tag on TeamSpeak.",
+        "Access to the VIP area or room when active.",
+        "Faster support for VIP activation, guaranteed access, and checks.",
+        "Clearer presence for staff and community during voice sessions.",
+        "Useful for active players, admins, and members who use TeamSpeak often.",
       ],
     },
     comparisonTitle: "VIP package comparison",
