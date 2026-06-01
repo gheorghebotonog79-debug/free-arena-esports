@@ -16,12 +16,12 @@ const metadataContent: Record<Locale, { description: string; title: string }> = 
   ro: {
     title: "Aplicare admin FREE-ARENA | Recrutare staff CS",
     description:
-      "Aplica pentru staff FREE-ARENA daca esti activ seara, matur, prezent pe Discord si vrei sa ajuti comunitatea CS 1.6 si CS2.",
+      "Aplica pentru staff FREE-ARENA daca esti activ seara, matur, prezent pe forum si vrei sa ajuti comunitatea CS 1.6 si CS2.",
   },
   en: {
     title: "Join FREE-ARENA Staff | CS admin recruitment",
     description:
-      "Apply for FREE-ARENA staff if you are active in the evening, mature, present on Discord, and want to help the CS 1.6 and CS2 community.",
+      "Apply for FREE-ARENA staff if you are active in the evening, mature, present on the forum, and want to help the CS 1.6 and CS2 community.",
   },
 };
 

@@ -8,7 +8,7 @@ const content = {
     title: "Cautam admini activi pentru FREE-ARENA",
     copy:
       "FREE-ARENA este la inceputul unei etape in care comunitatea conteaza mai mult decat orice pagina. Avem nevoie de oameni maturi, prezenti seara, care pot ajuta jucatorii si pot tine serverele curate.",
-    apply: "Aplica pe Discord",
+    apply: "Aplica pe Forum",
     servers: "Vezi serverele",
     requirementsTitle: "Cerinte",
     benefitsTitle: "Beneficii",
@@ -19,7 +19,7 @@ const content = {
       "Minim 16 ani.",
       "Activitate seara, cand serverele au cea mai mare sansa sa stranga jucatori.",
       "Comportament matur si rabdare cu jucatorii noi.",
-      "Discord obligatoriu pentru comunicarea cu echipa.",
+      "Cont pe forum obligatoriu pentru comunicarea cu echipa.",
       "Experienta CS reprezinta avantaj.",
     ],
     benefits: [
@@ -29,7 +29,7 @@ const content = {
       "Posibilitate de avansare daca activitatea este serioasa.",
     ],
     steps: [
-      "Intra pe Discord.",
+      "Intra pe Forum.",
       "Spune pentru ce server vrei sa ajuti.",
       "Scrie varsta, experienta si intervalul in care poti fi activ.",
       "Asteapta un raspuns de la echipa.",
@@ -40,7 +40,7 @@ const content = {
     title: "We are looking for active FREE-ARENA admins",
     copy:
       "FREE-ARENA is entering a stage where the community matters more than any page. We need mature people who can be active in the evening, help players, and keep the servers clean.",
-    apply: "Apply on Discord",
+    apply: "Apply on Forum",
     servers: "View servers",
     requirementsTitle: "Requirements",
     benefitsTitle: "Benefits",
@@ -51,7 +51,7 @@ const content = {
       "Minimum age 16.",
       "Evening activity, when the servers have the best chance to gather players.",
       "Mature behavior and patience with new players.",
-      "Discord is required for team communication.",
+      "A forum account is required for team communication.",
       "Counter-Strike experience is an advantage.",
     ],
     benefits: [
@@ -61,7 +61,7 @@ const content = {
       "Possibility to advance if the activity is serious.",
     ],
     steps: [
-      "Join Discord.",
+      "Join the forum.",
       "Say which server you want to help with.",
       "Share your age, experience, and active hours.",
       "Wait for a reply from the team.",
@@ -88,7 +88,7 @@ export function JoinStaffLanding({ locale }: { locale: Locale }) {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
-                href="https://discord.gg/freearena"
+                href="https://free-arena.ro"
                 target="_blank"
                 rel="noreferrer"
                 className="button-glow inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-arena-green px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
