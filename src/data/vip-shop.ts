@@ -119,13 +119,14 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
     },
     packages: {
       queen: {
-        name: "QUEEN / QUIN",
+        name: "QUEEN",
         price: "Gratis",
         tone: "queen",
-        purpose: "Grad cosmetic gratuit pentru jucătorii comunității.",
-        cta: "Cere Queen / Quin",
+        purpose: "Grad cosmetic gratuit pentru comunitate, evidentiat special pentru fete si jucatoare active.",
+        cta: "Cere Queen",
         benefits: [
-          "QUEEN / QUIN tag",
+          "QUEEN tag cosmetic",
+          "Grad vizual special pentru prezenta feminina in comunitate",
           "Apare în lista VIP online",
           "Acces la /vip, /beneficii, /vips, /arme",
           "Bonus basic la spawn",
@@ -242,13 +243,14 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
     },
     packages: {
       queen: {
-        name: "QUEEN / QUIN",
+        name: "QUEEN",
         price: "Free",
         tone: "queen",
-        purpose: "Free community cosmetic rank for FREE-ARENA players.",
-        cta: "Request Queen / Quin",
+        purpose: "Free community cosmetic rank, highlighted especially for active female players.",
+        cta: "Request Queen",
         benefits: [
-          "QUEEN / QUIN tag",
+          "QUEEN cosmetic tag",
+          "Visual rank for female presence in the community",
           "Appears in the VIP online list",
           "Access to /vip, /beneficii, /vips, /arme",
           "Basic spawn bonus",
