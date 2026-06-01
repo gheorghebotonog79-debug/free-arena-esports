@@ -23,7 +23,7 @@ export function SiteFooter() {
       <div className="mx-auto w-full max-w-7xl">
         <div className="neon-panel hud-frame grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-5">
           {footerStatus.map(({ key, Icon }) => (
-            <div key={key} className="flex items-center gap-3 border border-white/10 bg-black/32 p-3">
+            <div key={key} className="premium-card glass-panel neon-hover animated-border flex items-center gap-3 rounded-lg border border-white/10 bg-black/32 p-3">
               <Icon size={19} className="shrink-0 text-cyan-200" aria-hidden="true" />
               <span className="text-xs font-black uppercase tracking-[0.14em] text-white/72">
                 {t(`status.${key}`)}
@@ -31,8 +31,8 @@ export function SiteFooter() {
             </div>
           ))}
         </div>
-        <div className="mt-6 grid gap-6 border-t border-cyan-300/14 pt-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
-          <div className="site-footer__brand-panel">
+        <div className="mt-6 grid gap-5 border-t border-cyan-300/14 pt-6 lg:grid-cols-2 xl:grid-cols-[minmax(25rem,1.35fr)_minmax(9rem,0.72fr)_minmax(10rem,0.76fr)_minmax(10rem,0.76fr)]">
+          <div className="premium-card glass-panel neon-hover animated-border site-footer__brand-panel min-w-0 lg:col-span-2 xl:col-span-1">
             <div className="site-footer__badge-row" aria-label={t("brand.badgeGroupLabel")}>
               {brandBadges.map((badge) => (
                 <span key={badge} className="site-footer__badge">
@@ -41,7 +41,7 @@ export function SiteFooter() {
               ))}
             </div>
 
-            <p className="neon-heading site-footer__brand mt-5 whitespace-nowrap font-display text-[clamp(2rem,5vw,3.4rem)] font-black uppercase leading-none text-white">
+            <p className="neon-heading site-footer__brand mt-5 break-words font-display text-[clamp(2rem,4vw,3.2rem)] font-black uppercase leading-none text-white">
               <span>FREE-</span><span className="text-cyan-200">ARENA</span><span>.RO</span>
             </p>
             <p className="site-footer__brand-subtitle mt-4 font-display text-sm font-black uppercase tracking-[0.2em] text-orange-200 sm:text-base">
@@ -60,6 +60,7 @@ export function SiteFooter() {
           </FooterColumn>
           <FooterColumn title="Links">
             <Link href={routes.servers}>{t("links.servers")}</Link>
+            <Link href={routes.shop}>{t("links.shop")}</Link>
             <Link href={routes.community}>{t("links.community")}</Link>
             <Link href={routes.joinStaff}>{t("links.staff")}</Link>
             <Link href={routes.terms}>{t("links.terms")}</Link>
@@ -83,7 +84,7 @@ export function SiteFooter() {
 
 function FooterColumn({ children, title }: { children: ReactNode; title: string }) {
   return (
-    <div className="grid gap-2 text-sm font-semibold text-white/56">
+    <div className="premium-card glass-panel neon-hover animated-border grid h-full gap-2 rounded-lg p-4 text-sm font-semibold text-white/56">
       <p className="mb-1 text-xs font-black uppercase tracking-[0.18em] text-cyan-200">{title}</p>
       {children}
     </div>

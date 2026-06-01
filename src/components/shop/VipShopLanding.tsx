@@ -81,6 +81,24 @@ const packageMotion = {
   }),
 };
 
+const sectionMotion = {
+  hidden: { opacity: 0, y: 26 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.5, staggerChildren: 0.08 },
+    y: 0,
+  },
+};
+
+const panelMotion = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (index = 0) => ({
+    opacity: 1,
+    transition: { delay: index * 0.07, duration: 0.42 },
+    y: 0,
+  }),
+};
+
 export function VipShopLanding({ locale }: { locale: Locale }) {
   const page = vipShopContent[locale];
   const rows = vipComparisonRows[locale];
@@ -124,6 +142,7 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
           <motion.aside
             animate={{ opacity: 1, scale: 1, y: 0 }}
             className="premium-card glass-panel neon-hover relative rounded-lg border border-cyan-200/22 p-5"
+            data-motion-card="true"
             initial={{ opacity: 0, scale: 0.96, y: 18 }}
             transition={{ duration: 0.5 }}
           >
@@ -148,7 +167,14 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section id="vip-packages" className="neon-section scroll-mt-32 px-4 py-16 sm:px-6 lg:px-8">
+      <motion.section
+        className="neon-section scroll-mt-32 px-4 py-16 sm:px-6 lg:px-8"
+        id="vip-packages"
+        initial="hidden"
+        variants={sectionMotion}
+        viewport={{ once: true, amount: 0.18 }}
+        whileInView="visible"
+      >
         <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-3">
           {vipPackageOrder.map((tier, index) => {
             const vipPackage = page.packages[tier];
@@ -162,14 +188,20 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
             );
           })}
         </div>
-      </section>
+      </motion.section>
 
-      <section className="neon-section px-4 pb-16 sm:px-6 lg:px-8">
+      <motion.section
+        className="neon-section px-4 pb-16 sm:px-6 lg:px-8"
+        initial="hidden"
+        variants={sectionMotion}
+        viewport={{ once: true, amount: 0.18 }}
+        whileInView="visible"
+      >
         <div className="mx-auto w-full max-w-7xl">
-          <h2 className="font-display text-4xl font-black uppercase text-white sm:text-5xl">
+          <motion.h2 className="font-display text-4xl font-black uppercase text-white sm:text-5xl" variants={panelMotion}>
             {page.comparisonTitle}
-          </h2>
-          <div className="mt-6 hidden overflow-hidden rounded-lg border border-cyan-200/18 bg-black/34 md:block">
+          </motion.h2>
+          <motion.div className="premium-card glass-panel neon-hover animated-border mt-6 hidden overflow-hidden rounded-lg border border-cyan-200/18 bg-black/34 md:block" data-motion-card="true" variants={panelMotion}>
             <table className="w-full border-collapse text-left">
               <thead>
                 <tr className="border-b border-cyan-200/14 bg-cyan-300/8">
@@ -196,11 +228,17 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                 ))}
               </tbody>
             </table>
-          </div>
+          </motion.div>
 
           <div className="mt-6 grid gap-3 md:hidden">
-            {rows.map((row) => (
-              <article key={row.label} className="rounded-lg border border-cyan-200/16 bg-black/34 p-4">
+            {rows.map((row, index) => (
+              <motion.article
+                className="premium-card glass-panel neon-hover animated-border rounded-lg border border-cyan-200/16 bg-black/34 p-4"
+                custom={index}
+                data-motion-card="true"
+                key={row.label}
+                variants={panelMotion}
+              >
                 <h3 className="text-sm font-black uppercase tracking-[0.12em] text-white">
                   {row.label}
                 </h3>
@@ -214,15 +252,21 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                     </div>
                   ))}
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="neon-section px-4 pb-16 sm:px-6 lg:px-8">
+      <motion.section
+        className="neon-section px-4 pb-16 sm:px-6 lg:px-8"
+        initial="hidden"
+        variants={sectionMotion}
+        viewport={{ once: true, amount: 0.18 }}
+        whileInView="visible"
+      >
         <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-          <article className="premium-card glass-panel neon-hover rounded-lg border border-orange-300/20 p-5 sm:p-6">
+          <motion.article className="premium-card glass-panel neon-hover animated-border rounded-lg border border-orange-300/20 p-5 sm:p-6" custom={0} data-motion-card="true" variants={panelMotion}>
             <div className="flex items-center gap-3">
               <span className="grid size-12 place-items-center rounded-lg border border-orange-300/30 bg-orange-400/12 text-orange-100">
                 <ShieldAlert size={22} aria-hidden="true" />
@@ -239,9 +283,9 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ul>
-          </article>
+          </motion.article>
 
-          <article className="premium-card glass-panel neon-hover rounded-lg border border-cyan-200/24 p-5 sm:p-6">
+          <motion.article className="premium-card glass-panel neon-hover animated-border rounded-lg border border-cyan-200/24 p-5 sm:p-6" custom={1} data-motion-card="true" variants={panelMotion}>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-100">
               FREE-ARENA
             </p>
@@ -265,13 +309,19 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                 {page.cta.discord}
               </a>
             </div>
-          </article>
+          </motion.article>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="neon-section px-4 pb-20 sm:px-6 lg:px-8">
+      <motion.section
+        className="neon-section px-4 pb-20 sm:px-6 lg:px-8"
+        initial="hidden"
+        variants={sectionMotion}
+        viewport={{ once: true, amount: 0.18 }}
+        whileInView="visible"
+      >
         <div className="mx-auto w-full max-w-7xl">
-          <article className="premium-card glass-panel neon-hover overflow-hidden rounded-lg border border-cyan-200/24 p-5 sm:p-6 lg:p-8">
+          <motion.article className="premium-card glass-panel neon-hover animated-border overflow-hidden rounded-lg border border-cyan-200/24 p-5 sm:p-6 lg:p-8" data-motion-card="true" variants={panelMotion}>
             <div className="grid gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-start">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-100">
@@ -299,6 +349,7 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                   copy={page.support.teamSpeakCopy}
                   cta={page.support.teamSpeakCta}
                   href={vipShopContact.teamSpeakHref}
+                  index={0}
                   label={vipShopContact.teamSpeakAddress}
                   title={page.support.teamSpeakTitle}
                 />
@@ -307,14 +358,15 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                   copy={page.support.emailCopy}
                   cta={page.support.emailCta}
                   href={vipShopContact.emailHref}
+                  index={1}
                   label={vipShopContact.email}
                   title={page.support.emailTitle}
                 />
               </div>
             </div>
-          </article>
+          </motion.article>
         </div>
-      </section>
+      </motion.section>
     </main>
   );
 }
@@ -335,6 +387,7 @@ function VipPackageCard({
     <motion.article
       className={`premium-card glass-panel neon-hover relative flex min-h-full flex-col overflow-hidden rounded-lg border p-5 ${tone.border} ${tone.glow}`}
       custom={index}
+      data-motion-card="true"
       initial="hidden"
       viewport={{ once: true, amount: 0.25 }}
       variants={packageMotion}
@@ -413,6 +466,7 @@ function SupportCard({
   cta,
   href,
   Icon,
+  index,
   label,
   title,
 }: {
@@ -420,11 +474,17 @@ function SupportCard({
   cta: string;
   href: string;
   Icon: LucideIcon;
+  index: number;
   label: string;
   title: string;
 }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-black/30 p-4">
+    <motion.div
+      className="premium-card glass-panel neon-hover animated-border rounded-lg border border-white/10 bg-black/30 p-4"
+      custom={index}
+      data-motion-card="true"
+      variants={panelMotion}
+    >
       <div className="flex items-start gap-3">
         <span className="grid size-12 shrink-0 place-items-center rounded-lg border border-cyan-200/30 bg-cyan-300/10 text-cyan-100">
           <Icon size={22} aria-hidden="true" />
@@ -447,6 +507,6 @@ function SupportCard({
       >
         {cta}
       </a>
-    </div>
+    </motion.div>
   );
 }
