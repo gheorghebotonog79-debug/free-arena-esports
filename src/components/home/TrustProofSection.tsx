@@ -1,6 +1,7 @@
 import { Camera, Headphones, MessageSquare, Server, Trophy, type LucideIcon } from "lucide-react";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import type { Locale } from "@/i18n/routing";
+import { forumLinks } from "@/lib/forum-links";
 
 type ProofCard = {
   Icon: LucideIcon;
@@ -46,7 +47,7 @@ const content: Record<
       {
         Icon: MessageSquare,
         copy: "Forumul este locul pentru cereri, reguli, suport si anunturi.",
-        href: "https://free-arena.ro",
+        href: forumLinks.home,
         linkType: "external",
         title: "Forum comunitate",
       },
@@ -84,7 +85,7 @@ const content: Record<
       {
         Icon: MessageSquare,
         copy: "The forum is the place for requests, rules, support, and announcements.",
-        href: "https://free-arena.ro",
+        href: forumLinks.home,
         linkType: "external",
         title: "Community forum",
       },

@@ -26,6 +26,7 @@ import { ServerStats, type ServerStatItem } from "@/components/server/ServerStat
 import { Link } from "@/i18n/navigation";
 import { trackEvent } from "@/lib/analytics";
 import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
+import { forumLinks } from "@/lib/forum-links";
 import type { LiveServerStatus, LiveServersResponse, LiveServerStatusKind } from "@/lib/live-server-targets";
 import type { PublicServerConfig } from "@/lib/servers";
 
@@ -414,7 +415,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
                   <Headphones size={17} aria-hidden="true" />
                   TeamSpeak
                 </a>
-                <a href="https://free-arena.ro" target="_blank" rel="noreferrer" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10" onClick={() => trackEvent("click_forum", { location: "legacy_server_community", server: server.key })}>
+                <a href={forumLinks.support} target="_blank" rel="noreferrer" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10" onClick={() => trackEvent("click_forum", { location: "legacy_server_community", server: server.key })}>
                   <MessageSquare size={17} aria-hidden="true" />
                   Forum
                 </a>

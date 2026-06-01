@@ -1,8 +1,8 @@
 import { ExternalLink, Headphones, MessageCircle, MessagesSquare, Radio } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { forumLinks } from "@/lib/forum-links";
 
 const DISCORD_URL = "https://discord.gg/freearena";
-const FORUM_URL = "https://free-arena.ro";
 const TEAMSPEAK_URL = "ts3server://ts.free-arena.ro";
 
 const channels = [
@@ -22,7 +22,7 @@ const channels = [
   },
   {
     key: "forum",
-    href: FORUM_URL,
+    href: forumLinks.support,
     icon: MessageCircle,
     iconClass: "border-arena-green/30 bg-arena-green/12 text-arena-green",
     external: true,

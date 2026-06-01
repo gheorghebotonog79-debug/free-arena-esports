@@ -1,9 +1,9 @@
 import { ArrowRight, CheckCircle2, Clock3, MessageSquare, ShieldCheck, Trophy, UserPlus, type LucideIcon } from "lucide-react";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import type { Locale } from "@/i18n/routing";
+import { forumLinks } from "@/lib/forum-links";
 
 const DISCORD_URL = "https://discord.gg/freearena";
-const FORUM_URL = "https://free-arena.ro";
 
 const content = {
   ro: {
@@ -93,7 +93,7 @@ export function JoinStaffLanding({ locale }: { locale: Locale }) {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <TrackedAnchor
-                href={FORUM_URL}
+                href={forumLinks.adminRequests}
                 target="_blank"
                 rel="noreferrer"
                 eventName="click_apply_staff"

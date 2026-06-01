@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { TrackedAnchor } from "@/components/analytics/TrackedLink";
 import type { Locale } from "@/i18n/routing";
+import { forumLinks } from "@/lib/forum-links";
 import {
   vipComparisonRows,
   vipPackageOrder,
@@ -29,7 +30,6 @@ import {
 } from "@/data/vip-shop";
 
 const DISCORD_TICKET_URL = "https://discord.gg/freearena";
-const FORUM_URL = "https://free-arena.ro";
 
 const tierIcons: Record<VipTierKey, LucideIcon> = {
   queen: Crown,
@@ -250,7 +250,7 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                 className="button-ghost inline-flex min-h-12 items-center justify-center rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/12"
                 eventName="click_forum"
                 eventPayload={{ location: "shop_custom_contact" }}
-                href={FORUM_URL}
+                href={forumLinks.vipRequests}
                 rel="noreferrer"
                 target="_blank"
               >
@@ -527,7 +527,7 @@ function VipPackageCard({
             className="inline-flex min-h-10 items-center justify-center rounded-lg border border-cyan-200/14 bg-cyan-300/8 px-4 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-cyan-100 transition hover:border-cyan-100/70 hover:bg-cyan-300/14"
             eventName="click_forum"
             eventPayload={{ location: "shop_package_card_secondary", package: tier }}
-            href={FORUM_URL}
+            href={forumLinks.vipRequests}
             rel="noreferrer"
             target="_blank"
           >

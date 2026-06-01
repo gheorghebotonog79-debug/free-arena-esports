@@ -20,6 +20,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { trackEvent, type AnalyticsEventName } from "@/lib/analytics";
+import { forumLinks } from "@/lib/forum-links";
 import { routes } from "@/lib/routes";
 
 const primaryNavigationItems = [
@@ -31,7 +32,7 @@ const primaryNavigationItems = [
 ] as const;
 
 const communityNavigationItems = [
-  { href: "https://free-arena.ro", key: "forum", external: true, Icon: MessageCircle },
+  { href: forumLinks.home, key: "forum", external: true, Icon: MessageCircle },
   { href: "https://discord.gg/freearena", key: "discord", external: true, Icon: MessageCircle },
   { href: "ts3server://ts.free-arena.ro", key: "ts3", external: true, Icon: Headphones },
 ] as const;
@@ -280,7 +281,7 @@ export function SiteHeader() {
             </div>
             <div className="header-actions__bottom">
               <a
-                href="https://free-arena.ro"
+                href={forumLinks.home}
                 target="_blank"
                 rel="noreferrer"
                 className="neon-nav-link header-nav-link hidden min-h-12 items-center gap-2 whitespace-nowrap px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/72 transition hover:text-white lg:inline-flex"

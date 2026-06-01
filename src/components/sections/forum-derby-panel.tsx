@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Activity, ArrowRight, MessageSquareText, RadioTower, UsersRound } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { forumLinks } from "@/lib/forum-links";
 import type { ForumStatusResponse } from "@/lib/forum-status";
 
 const FORUM_REFRESH_INTERVAL_MS = 60_000;
@@ -67,7 +68,7 @@ export function ForumDerbyPanel() {
 
   const status = forumStatus?.status ?? (isLoading ? "degraded" : "offline");
   const isLive = status === "online" || status === "degraded";
-  const forumUrl = forumStatus?.forumUrl || "https://free-arena.ro";
+  const forumUrl = forumStatus?.forumUrl || forumLinks.home;
   const latestTopics = forumStatus?.latestTopics ?? [];
   const fallback = t(
     forumStatus?.message === "permission_denied"

@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { DatabaseBackup, Gauge, Headset, ShieldCheck, Star } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
+import { forumLinks } from "@/lib/forum-links";
 import { routes } from "@/lib/routes";
 
 const footerStatus = [
@@ -87,16 +88,16 @@ export function SiteFooter() {
             <TrackedLink eventName="click_server_details" eventPayload={{ location: "footer_links", target: "terms_en" }} href={routes.terms} locale="en">Terms of Use</TrackedLink>
           </FooterColumn>
           <FooterColumn title="Forum">
-            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_forum", target: "forum" }} href="https://free-arena.ro" target="_blank" rel="noreferrer">{forumLabels.forum}</TrackedAnchor>
-            <TrackedAnchor eventName="click_apply_staff" eventPayload={{ location: "footer_forum", target: "admin_requests" }} href="https://free-arena.ro" target="_blank" rel="noreferrer">{forumLabels.admin}</TrackedAnchor>
-            <TrackedAnchor eventName="click_shop_vip" eventPayload={{ location: "footer_forum", target: "vip_requests" }} href="https://free-arena.ro" target="_blank" rel="noreferrer">{forumLabels.vip}</TrackedAnchor>
-            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_forum", target: "rules" }} href="https://free-arena.ro" target="_blank" rel="noreferrer">{forumLabels.rules}</TrackedAnchor>
-            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_forum", target: "support" }} href="https://free-arena.ro" target="_blank" rel="noreferrer">{forumLabels.support}</TrackedAnchor>
+            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_forum", target: "forum" }} href={forumLinks.home} target="_blank" rel="noreferrer">{forumLabels.forum}</TrackedAnchor>
+            <TrackedAnchor eventName="click_apply_staff" eventPayload={{ location: "footer_forum", target: "admin_requests" }} href={forumLinks.adminRequests} target="_blank" rel="noreferrer">{forumLabels.admin}</TrackedAnchor>
+            <TrackedAnchor eventName="click_shop_vip" eventPayload={{ location: "footer_forum", target: "vip_requests" }} href={forumLinks.vipRequests} target="_blank" rel="noreferrer">{forumLabels.vip}</TrackedAnchor>
+            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_forum", target: "rules" }} href={forumLinks.rules} target="_blank" rel="noreferrer">{forumLabels.rules}</TrackedAnchor>
+            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_forum", target: "support" }} href={forumLinks.support} target="_blank" rel="noreferrer">{forumLabels.support}</TrackedAnchor>
           </FooterColumn>
           <FooterColumn title="Social">
             <TrackedAnchor eventName="click_join_discord" eventPayload={{ location: "footer_social" }} href="https://discord.gg/freearena" target="_blank" rel="noreferrer">Discord</TrackedAnchor>
             <TrackedAnchor eventName="click_teamspeak" eventPayload={{ location: "footer_social" }} href="ts3server://ts.free-arena.ro">TeamSpeak</TrackedAnchor>
-            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_social" }} href="https://free-arena.ro" target="_blank" rel="noreferrer">Forum</TrackedAnchor>
+            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_social" }} href={forumLinks.home} target="_blank" rel="noreferrer">Forum</TrackedAnchor>
             <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_social", target: "email" }} href="mailto:contact@free-arena.ro">contact@free-arena.ro</TrackedAnchor>
           </FooterColumn>
         </div>

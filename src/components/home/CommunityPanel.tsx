@@ -14,6 +14,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { forumLinks } from "@/lib/forum-links";
 import {
   formatCompactNumber,
   type PlayerProgressPlayer,
@@ -41,7 +42,7 @@ const channels = [
   },
   {
     key: "forum",
-    href: "https://free-arena.ro",
+    href: forumLinks.home,
     Icon: ExternalLink,
     external: true,
     tone: "text-cyber-red",

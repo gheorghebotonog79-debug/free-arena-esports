@@ -1,8 +1,7 @@
 import { FileText, LifeBuoy, Megaphone, ShieldCheck, Sparkles, type LucideIcon } from "lucide-react";
 import { TrackedAnchor } from "@/components/analytics/TrackedLink";
 import type { Locale } from "@/i18n/routing";
-
-const FORUM_URL = "https://free-arena.ro";
+import { forumLinks } from "@/lib/forum-links";
 
 type ForumCard = {
   Icon: LucideIcon;
@@ -31,31 +30,31 @@ const content: Record<
       {
         Icon: ShieldCheck,
         copy: "Locul potrivit pentru jucatorii care vor sa ajute comunitatea ca admini.",
-        href: FORUM_URL,
+        href: forumLinks.adminRequests,
         title: "Cereri admin",
       },
       {
         Icon: Sparkles,
         copy: "Intrebari despre pachete, activare manuala si beneficii VIP.",
-        href: FORUM_URL,
+        href: forumLinks.vipRequests,
         title: "Cereri VIP",
       },
       {
         Icon: FileText,
         copy: "Reguli generale, comportament pe server si informatii pentru jucatori noi.",
-        href: FORUM_URL,
+        href: forumLinks.rules,
         title: "Regulament servere",
       },
       {
         Icon: LifeBuoy,
         copy: "Suport pentru cont, servere, TeamSpeak, Discord sau probleme de comunitate.",
-        href: FORUM_URL,
+        href: forumLinks.support,
         title: "Suport comunitate",
       },
       {
         Icon: Megaphone,
         copy: "Update-uri, mentenanta si anunturi importante pentru FREE-ARENA.",
-        href: FORUM_URL,
+        href: forumLinks.announcements,
         title: "Anunturi importante",
       },
     ],
@@ -70,31 +69,31 @@ const content: Record<
       {
         Icon: ShieldCheck,
         copy: "The place for players who want to help the community as admins.",
-        href: FORUM_URL,
+        href: forumLinks.adminRequests,
         title: "Admin requests",
       },
       {
         Icon: Sparkles,
         copy: "Questions about packages, manual activation, and VIP benefits.",
-        href: FORUM_URL,
+        href: forumLinks.vipRequests,
         title: "VIP requests",
       },
       {
         Icon: FileText,
         copy: "General rules, server behavior, and information for new players.",
-        href: FORUM_URL,
+        href: forumLinks.rules,
         title: "Server rules",
       },
       {
         Icon: LifeBuoy,
         copy: "Support for accounts, servers, TeamSpeak, Discord, or community issues.",
-        href: FORUM_URL,
+        href: forumLinks.support,
         title: "Community support",
       },
       {
         Icon: Megaphone,
         copy: "Updates, maintenance, and important FREE-ARENA announcements.",
-        href: FORUM_URL,
+        href: forumLinks.announcements,
         title: "Important announcements",
       },
     ],
@@ -122,7 +121,7 @@ export function ForumActivitySection({ locale }: { locale: Locale }) {
               className="button-glow mt-6 inline-flex min-h-12 items-center justify-center rounded-lg bg-cyan-300 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
               eventName="click_forum"
               eventPayload={{ location: "forum_activity_intro" }}
-              href={FORUM_URL}
+              href={forumLinks.home}
               rel="noreferrer"
               target="_blank"
             >

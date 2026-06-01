@@ -12,9 +12,9 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { trackEvent } from "@/lib/analytics";
+import { forumLinks } from "@/lib/forum-links";
 
 const DISCORD_URL = "https://discord.gg/freearena";
-const FORUM_URL = "https://free-arena.ro";
 const TEAMSPEAK_URL = "ts3server://ts.free-arena.ro";
 
 export function LiveChatLauncher() {
@@ -114,7 +114,7 @@ export function LiveChatLauncher() {
               </a>
 
               <a
-                href={FORUM_URL}
+                href={forumLinks.support}
                 target="_blank"
                 rel="noreferrer"
                 className="group flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.045] p-3 transition hover:border-arena-green/45 hover:bg-arena-green/10"

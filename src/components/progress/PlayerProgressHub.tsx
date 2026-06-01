@@ -20,6 +20,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { MotionCard } from "@/components/ui/motion-card";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { forumLinks } from "@/lib/forum-links";
 import {
   formatCompactNumber,
   formatPlayedTime,
@@ -339,7 +340,7 @@ export function PlayerProgressHub() {
               <div className="mt-4 grid gap-2 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
                 <CommunityLink href="https://discord.gg/freearena" label="Discord" Icon={MessageSquare} />
                 <CommunityLink href="ts3server://ts.free-arena.ro" label="TeamSpeak" Icon={Headphones} />
-                <CommunityLink href="https://free-arena.ro" label="Forum" Icon={ExternalLink} external />
+                <CommunityLink href={forumLinks.home} label="Forum" Icon={ExternalLink} external />
               </div>
             </MotionCard>
           </div>

@@ -1,5 +1,6 @@
 import { ArrowRight, ExternalLink, Headphones, MessageSquare, type LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { forumLinks } from "@/lib/forum-links";
 
 const channels = [
   {
@@ -20,7 +21,7 @@ const channels = [
   },
   {
     key: "forum",
-    href: "https://free-arena.ro",
+    href: forumLinks.home,
     Icon: ExternalLink,
     external: true,
     status: "FORUM LIVE",
