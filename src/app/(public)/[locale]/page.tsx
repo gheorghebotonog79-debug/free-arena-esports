@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
 import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
 import { CommunitySection } from "@/components/home/CommunitySection";
+import { ContactRecruitmentSection } from "@/components/home/ContactRecruitmentSection";
 import { ForumActivitySection } from "@/components/home/ForumActivitySection";
 import { HeroCinematic } from "@/components/home/HeroCinematic";
 import { HomeActivitySection } from "@/components/home/HomeActivitySection";
@@ -44,6 +45,7 @@ export default async function Home({ params }: HomeProps) {
         <HomeInternalLinks locale={safeLocale} />
         <HomeActivitySection locale={safeLocale} />
         <StaffRecruitmentSection locale={safeLocale} />
+        <ContactRecruitmentSection locale={safeLocale} />
         <ForumActivitySection locale={safeLocale} />
         <TrustProofSection locale={safeLocale} />
         <CommunitySection />
