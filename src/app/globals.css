@@ -589,6 +589,86 @@ img {
     animation: neonPulse 2.8s ease-in-out infinite alternate;
   }
 
+  .premium-card:hover {
+    filter: saturate(1.14) contrast(1.02);
+  }
+
+  .premium-card:not([data-motion-card]):hover {
+    transform:
+      perspective(1200px)
+      rotateX(var(--tilt-x))
+      rotateY(var(--tilt-y))
+      translate3d(0, -8px, 0)
+      scale(1.014);
+  }
+
+  .premium-card:hover::before {
+    background:
+      linear-gradient(112deg, transparent 0 20%, rgba(255, 255, 255, 0.3) 42%, transparent 61%),
+      radial-gradient(520px 220px at var(--mx, 50%) var(--my, 0%), rgb(var(--neon-cyan-rgb) / 0.28), transparent 66%),
+      radial-gradient(380px 180px at calc(var(--mx, 50%) + 12%) calc(var(--my, 0%) + 16%), rgb(var(--neon-orange-rgb) / 0.16), transparent 72%),
+      radial-gradient(360px 170px at calc(var(--mx, 50%) - 10%) calc(var(--my, 0%) + 18%), rgb(var(--neon-red-rgb) / 0.13), transparent 72%);
+    opacity: 0.92;
+    animation: wowCardShimmer 1.18s ease both;
+  }
+
+  .animated-border:hover::after,
+  .animated-border:focus-within::after {
+    opacity: 0.82;
+    animation: wowBorderBreathe 2.6s ease-in-out infinite alternate;
+  }
+
+  .neon-scanline:hover::after,
+  .neon-scanline:focus-within::after {
+    opacity: 0.36;
+    animation-duration: 3.1s;
+  }
+
+  .server-tactical-card:hover .server-card__scanline,
+  .server-tactical-card:focus-within .server-card__scanline {
+    opacity: 0.46;
+    animation-duration: 3s;
+  }
+
+  .server-tactical-card:hover .server-card__shine,
+  .server-tactical-card:focus-within .server-card__shine {
+    opacity: 0.78;
+    transform: translateX(130%);
+  }
+
+  .server-tactical-card:hover .server-card__icon,
+  .server-tactical-card:focus-within .server-card__icon {
+    transform: translateY(-4px) scale(1.07);
+  }
+
+  .server-tactical-card.neon-hover:hover,
+  .server-tactical-card.neon-hover:focus-within {
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.085),
+      inset 0 -58px 118px rgb(0 0 0 / 0.5),
+      0 38px 112px rgb(0 0 0 / 0.68),
+      0 0 72px rgb(var(--card-glow-rgb) / 0.36),
+      0 0 42px color-mix(in srgb, var(--card-accent-2) 54%, transparent);
+    transform:
+      perspective(980px)
+      rotateX(var(--tilt-x))
+      rotateY(var(--tilt-y))
+      translate3d(0, -10px, 0)
+      scale(1.018);
+  }
+
+  .community-portal-card.neon-hover:hover,
+  .community-portal-card.neon-hover:focus-within,
+  .news-command-card.neon-hover:hover,
+  .news-command-card.neon-hover:focus-within {
+    transform:
+      perspective(1050px)
+      rotateX(var(--tilt-x))
+      rotateY(var(--tilt-y))
+      translate3d(0, -7px, 0)
+      scale(1.012);
+  }
+
   .animated-border {
     position: relative;
   }
@@ -706,6 +786,26 @@ img {
 
   100% {
     filter: hue-rotate(55deg);
+  }
+}
+
+@keyframes wowCardShimmer {
+  0% {
+    background-position: 140% 0, 50% 0, 50% 0, 50% 0;
+  }
+
+  100% {
+    background-position: -40% 0, 50% 0, 50% 0, 50% 0;
+  }
+}
+
+@keyframes wowBorderBreathe {
+  0% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+
+  100% {
+    filter: hue-rotate(35deg) brightness(1.28);
   }
 }
 

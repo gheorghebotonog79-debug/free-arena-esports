@@ -48,8 +48,8 @@ export function CinematicInteractions() {
 
       card.style.setProperty("--mx", `${Math.round(x * 100)}%`);
       card.style.setProperty("--my", `${Math.round(y * 100)}%`);
-      card.style.setProperty("--tilt-x", `${((0.5 - y) * 2.4).toFixed(2)}deg`);
-      card.style.setProperty("--tilt-y", `${((x - 0.5) * 3.2).toFixed(2)}deg`);
+      card.style.setProperty("--tilt-x", `${((0.5 - y) * 4.2).toFixed(2)}deg`);
+      card.style.setProperty("--tilt-y", `${((x - 0.5) * 5.6).toFixed(2)}deg`);
     };
 
     const handlePointerOut = (event: PointerEvent) => {
