@@ -15,6 +15,16 @@ function normalizeNewsLocale(locale: string) {
   return supportedPublicNewsLocales.has(locale) ? locale : "ro";
 }
 
+function getPublicAuthorName(username: string | null | undefined) {
+  const authorName = username?.trim();
+
+  if (!authorName || authorName.includes("@") || authorName.toLowerCase() === "serveradmiin") {
+    return null;
+  }
+
+  return authorName;
+}
+
 export async function getPublishedNews(locale: string, limit = 3): Promise<PublicNewsPost[]> {
   if (!process.env.DATABASE_URL) {
     return [];
@@ -52,7 +62,7 @@ export async function getPublishedNews(locale: string, limit = 3): Promise<Publi
       title: post.title,
       excerpt: post.excerpt,
       publishedAt: post.publishedAt,
-      authorName: post.author?.username ?? post.author?.email ?? null,
+      authorName: getPublicAuthorName(post.author?.username),
     }));
   } catch (error) {
     if (process.env.NODE_ENV === "development") {
