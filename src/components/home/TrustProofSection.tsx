@@ -1,5 +1,6 @@
 import { Camera, Headphones, MessageSquare, Server, Trophy, type LucideIcon } from "lucide-react";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
+import { TacticalCardChrome, TacticalStatusBadge, TacticalTag } from "@/components/home/HomeTacticalPrimitives";
 import type { Locale } from "@/i18n/routing";
 import { forumLinks } from "@/lib/forum-links";
 
@@ -8,7 +9,17 @@ type ProofCard = {
   copy: string;
   href: string;
   linkType: "external" | "internal";
+  status: string;
+  tags: readonly string[];
   title: string;
+  tone: "cs16" | "respawn" | "cs2" | "global";
+};
+
+const cardVariantClass: Record<ProofCard["tone"], string> = {
+  cs16: "server-card--cs16",
+  respawn: "server-card--respawn",
+  cs2: "server-card--cs2",
+  global: "server-card--global",
 };
 
 const content: Record<
@@ -35,28 +46,40 @@ const content: Record<
         copy: "Statusul live si IP-urile serverelor raman vizibile pentru jucatori.",
         href: "/servers",
         linkType: "internal",
+        status: "LIVE",
+        tags: ["servere", "ip"],
         title: "Servere CS active",
+        tone: "cs2",
       },
       {
         Icon: Trophy,
         copy: "Clasamentul arata progresul jucatorilor fara promisiuni artificiale.",
         href: "/rankings",
         linkType: "internal",
+        status: "TOP",
+        tags: ["rankings", "xp"],
         title: "Clasament live",
+        tone: "global",
       },
       {
         Icon: MessageSquare,
         copy: "Forumul este locul pentru cereri, reguli, suport si anunturi.",
         href: forumLinks.home,
         linkType: "external",
+        status: "FORUM",
+        tags: ["cereri", "suport"],
         title: "Forum comunitate",
+        tone: "respawn",
       },
       {
         Icon: Headphones,
         copy: "TeamSpeak si Discord raman canalele rapide pentru voice si discutii.",
         href: "ts3server://ts.free-arena.ro",
         linkType: "external",
+        status: "VOICE",
+        tags: ["ts3", "discord"],
         title: "Voice comunitate",
+        tone: "cs16",
       },
     ],
   },
@@ -73,28 +96,40 @@ const content: Record<
         copy: "Live status and server IPs stay visible for players.",
         href: "/servers",
         linkType: "internal",
+        status: "LIVE",
+        tags: ["servers", "ip"],
         title: "Active CS servers",
+        tone: "cs2",
       },
       {
         Icon: Trophy,
         copy: "Rankings show player progress without artificial promises.",
         href: "/rankings",
         linkType: "internal",
+        status: "TOP",
+        tags: ["rankings", "xp"],
         title: "Live rankings",
+        tone: "global",
       },
       {
         Icon: MessageSquare,
         copy: "The forum is the place for requests, rules, support, and announcements.",
         href: forumLinks.home,
         linkType: "external",
+        status: "FORUM",
+        tags: ["requests", "support"],
         title: "Community forum",
+        tone: "respawn",
       },
       {
         Icon: Headphones,
         copy: "TeamSpeak and Discord stay the fast channels for voice and discussion.",
         href: "ts3server://ts.free-arena.ro",
         linkType: "external",
+        status: "VOICE",
+        tags: ["ts3", "discord"],
         title: "Community voice",
+        tone: "cs16",
       },
     ],
   },
@@ -121,39 +156,48 @@ export function TrustProofSection({ locale }: { locale: Locale }) {
         </div>
 
         <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {page.cards.map(({ Icon, copy, href, linkType, title }) => {
+          {page.cards.map(({ Icon, copy, href, linkType, status, tags, title, tone }) => {
             const card = (
               <>
-                <div className="grid aspect-video place-items-center rounded-lg border border-cyan-200/14 bg-black/36">
-                  <div className="text-center">
-                    <Camera size={32} className="mx-auto text-cyan-200" aria-hidden="true" />
-                    <p className="mt-3 px-4 text-xs font-black uppercase tracking-[0.14em] text-white/44">
-                      {page.placeholder}
-                    </p>
+                <TacticalCardChrome />
+                <div className="relative z-10 flex h-full flex-col">
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="server-card__icon grid size-14 shrink-0 place-items-center">
+                      <Icon size={26} className="server-card__accent-icon" aria-hidden="true" />
+                    </span>
+                    <TacticalStatusBadge label={status} />
                   </div>
-                </div>
-                <div className="mt-5 flex items-start gap-3">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
-                    <Icon size={20} aria-hidden="true" />
+                  <div className="server-player-core mt-5 grid aspect-video place-items-center p-4">
+                    <div className="text-center">
+                      <Camera size={32} className="mx-auto server-card__accent-icon" aria-hidden="true" />
+                      <p className="mt-3 px-4 text-xs font-black uppercase tracking-[0.14em] text-white/44">
+                        {page.placeholder}
+                      </p>
+                    </div>
+                  </div>
+                  <h3 className="server-card__title mt-5 font-display text-xl font-black uppercase text-white">
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-sm font-semibold leading-6 text-white/58">
+                    {copy}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {tags.map((tag) => (
+                      <TacticalTag key={tag} label={tag} />
+                    ))}
+                  </div>
+                  <span className="server-details-button mt-auto inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition">
+                    {page.cta}
                   </span>
-                  <div>
-                    <h3 className="font-display text-xl font-black uppercase text-white">
-                      {title}
-                    </h3>
-                    <p className="mt-2 text-sm font-semibold leading-6 text-white/58">
-                      {copy}
-                    </p>
-                  </div>
                 </div>
-                <span className="mt-auto pt-5 text-xs font-black uppercase tracking-[0.16em] text-cyan-200">
-                  {page.cta}
-                </span>
               </>
             );
 
             return linkType === "internal" ? (
               <TrackedLink
-                className="premium-card glass-panel neon-hover animated-border flex h-full flex-col rounded-lg p-4"
+                className={`server-tactical-card neon-hover ${cardVariantClass[tone]} server-tactical-card--online home-trust-card group flex h-full min-w-0 flex-col p-5`}
+                data-occupancy="low"
+                data-status="online"
                 eventName="click_server_details"
                 eventPayload={{ location: "trust_proof", title }}
                 href={href}
@@ -163,7 +207,9 @@ export function TrustProofSection({ locale }: { locale: Locale }) {
               </TrackedLink>
             ) : (
               <TrackedAnchor
-                className="premium-card glass-panel neon-hover animated-border flex h-full flex-col rounded-lg p-4"
+                className={`server-tactical-card neon-hover ${cardVariantClass[tone]} server-tactical-card--online home-trust-card group flex h-full min-w-0 flex-col p-5`}
+                data-occupancy="low"
+                data-status="online"
                 eventName={href.startsWith("ts3server") ? "click_teamspeak" : "click_forum"}
                 eventPayload={{ location: "trust_proof", title }}
                 href={href}

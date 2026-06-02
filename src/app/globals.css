@@ -786,6 +786,49 @@ img {
     }
   }
 
+  .home-unified-card {
+    min-height: 24rem;
+  }
+
+  .home-forum-card {
+    min-height: 24.5rem;
+  }
+
+  .home-trust-card {
+    min-height: 29rem;
+  }
+
+  .home-community-card {
+    min-height: 23rem;
+  }
+
+  .home-feature-panel {
+    min-height: 25rem;
+  }
+
+  .home-mini-tactical-card {
+    min-height: 0;
+  }
+
+  .footer-tactical-card {
+    min-height: 17rem;
+  }
+
+  .footer-status-card {
+    min-height: 5.3rem;
+  }
+
+  .site-footer__brand-panel.footer-tactical-card {
+    min-height: 24rem;
+  }
+
+  .home-unified-card .server-details-button,
+  .home-forum-card .server-details-button,
+  .home-trust-card .server-details-button,
+  .home-community-card .server-details-button {
+    margin-top: 1.5rem;
+  }
+
   .nav-link {
     position: relative;
   }

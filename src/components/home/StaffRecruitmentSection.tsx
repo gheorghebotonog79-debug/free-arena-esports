@@ -1,5 +1,6 @@
 import { ArrowRight, MessageSquare, ShieldCheck, UserPlus } from "lucide-react";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
+import { TacticalCardChrome, TacticalMetric, TacticalStatusBadge, TacticalTag } from "@/components/home/HomeTacticalPrimitives";
 import type { Locale } from "@/i18n/routing";
 
 const DISCORD_URL = "https://discord.gg/freearena";
@@ -23,16 +24,40 @@ const content = {
   },
 } as const;
 
+const proofItems = {
+  ro: [
+    { Icon: ShieldCheck, label: "Reguli", value: "Clare" },
+    { Icon: UserPlus, label: "Aplicare", value: "Forum" },
+    { Icon: MessageSquare, label: "Coordonare", value: "Discord" },
+  ],
+  en: [
+    { Icon: ShieldCheck, label: "Rules", value: "Clear" },
+    { Icon: UserPlus, label: "Apply", value: "Forum" },
+    { Icon: MessageSquare, label: "Coordination", value: "Discord" },
+  ],
+} as const;
+
 export function StaffRecruitmentSection({ locale }: { locale: Locale }) {
   const page = content[locale];
 
   return (
     <section className="neon-section px-4 pb-16 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
-        <article className="premium-card glass-panel neon-hover animated-border overflow-hidden rounded-lg p-5 sm:p-6 lg:p-8">
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(18rem,0.48fr)] lg:items-center">
-            <div>
-              <p className="neon-kicker section-badge-label inline-flex px-4 py-2">
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.42fr)]">
+          <article
+            className="server-tactical-card neon-hover server-card--respawn server-tactical-card--online home-feature-panel group flex h-full min-w-0 flex-col p-5 sm:p-6 lg:p-8"
+            data-occupancy="low"
+            data-status="online"
+          >
+            <TacticalCardChrome />
+            <div className="relative z-10 flex h-full flex-col">
+              <div className="flex items-start justify-between gap-3">
+                <span className="server-card__icon grid size-16 shrink-0 place-items-center">
+                  <UserPlus size={32} className="server-card__accent-icon" aria-hidden="true" />
+                </span>
+                <TacticalStatusBadge label="OPEN" />
+              </div>
+              <p className="neon-kicker section-badge-label mt-5 inline-flex px-4 py-2">
                 {page.eyebrow}
               </p>
               <h2 className="neon-heading mt-5 max-w-3xl font-display text-[clamp(2.3rem,5vw,4.8rem)] font-black uppercase leading-[0.9] text-white">
@@ -41,45 +66,53 @@ export function StaffRecruitmentSection({ locale }: { locale: Locale }) {
               <p className="mt-4 max-w-3xl text-base font-semibold leading-7 text-white/64">
                 {page.copy}
               </p>
-            </div>
-
-            <div className="grid gap-3">
-              <TrackedLink
-                className="button-glow inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-arena-green px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
-                eventName="click_apply_staff"
-                eventPayload={{ location: "homepage_staff_block" }}
-                href="/join-staff"
-              >
-                <UserPlus size={18} aria-hidden="true" />
-                {page.apply}
-                <ArrowRight size={18} aria-hidden="true" />
-              </TrackedLink>
-              <TrackedAnchor
-                className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-[#98a3ff]/60 hover:bg-[#5865f2]/10"
-                eventName="click_join_discord"
-                eventPayload={{ location: "homepage_staff_block" }}
-                href={DISCORD_URL}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <MessageSquare size={18} aria-hidden="true" />
-                {page.discord}
-              </TrackedAnchor>
-            </div>
-          </div>
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            {[ShieldCheck, UserPlus, MessageSquare].map((Icon, index) => (
-              <div key={index} className="server-metric flex items-center gap-3 p-3">
-                <Icon size={18} className="text-cyan-200" aria-hidden="true" />
-                <span className="text-xs font-black uppercase tracking-[0.13em] text-white/58">
-                  {locale === "ro"
-                    ? ["Reguli clare", "Aplicare pe forum", "Coordonare pe Discord"][index]
-                    : ["Clear rules", "Forum application", "Discord coordination"][index]}
-                </span>
+              <div className="mt-5 flex flex-wrap gap-2">
+                <TacticalTag label="admin" />
+                <TacticalTag label="forum" />
+                <TacticalTag label="discord" />
               </div>
+              <div className="mt-auto grid gap-3 pt-7 sm:grid-cols-2">
+                <TrackedLink
+                  className="server-join-button inline-flex min-h-12 items-center justify-center gap-2 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] transition"
+                  eventName="click_apply_staff"
+                  eventPayload={{ location: "homepage_staff_block" }}
+                  href="/join-staff"
+                >
+                  <UserPlus size={18} aria-hidden="true" />
+                  {page.apply}
+                  <ArrowRight size={18} aria-hidden="true" />
+                </TrackedLink>
+                <TrackedAnchor
+                  className="server-details-button inline-flex min-h-12 items-center justify-center gap-2 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition"
+                  eventName="click_join_discord"
+                  eventPayload={{ location: "homepage_staff_block" }}
+                  href={DISCORD_URL}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <MessageSquare size={18} aria-hidden="true" />
+                  {page.discord}
+                </TrackedAnchor>
+              </div>
+            </div>
+          </article>
+
+          <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+            {proofItems[locale].map(({ Icon, label, value }) => (
+              <article
+                key={label}
+                className="server-tactical-card neon-hover server-card--global server-tactical-card--online home-mini-tactical-card p-4"
+                data-occupancy="low"
+                data-status="online"
+              >
+                <TacticalCardChrome />
+                <div className="relative z-10">
+                  <TacticalMetric Icon={Icon} label={label} value={value} />
+                </div>
+              </article>
             ))}
           </div>
-        </article>
+        </div>
       </div>
     </section>
   );

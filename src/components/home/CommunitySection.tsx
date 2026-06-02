@@ -1,5 +1,6 @@
 import { ArrowRight, ExternalLink, Headphones, MessageSquare, type LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { TacticalCardChrome, TacticalStatusBadge, TacticalTag } from "@/components/home/HomeTacticalPrimitives";
 import { forumLinks } from "@/lib/forum-links";
 
 const channels = [
@@ -10,6 +11,7 @@ const channels = [
     external: true,
     status: "LIVE CHAT",
     tone: "text-[#98a3ff]",
+    variant: "server-card--global",
   },
   {
     key: "teamspeak",
@@ -18,6 +20,7 @@ const channels = [
     external: false,
     status: "VOICE ONLINE",
     tone: "text-cyber-cyan",
+    variant: "server-card--respawn",
   },
   {
     key: "forum",
@@ -26,6 +29,7 @@ const channels = [
     external: true,
     status: "FORUM LIVE",
     tone: "text-cyber-amber",
+    variant: "server-card--cs16",
   },
 ] as const;
 
@@ -63,6 +67,7 @@ export function CommunitySection() {
                 title={t(`cards.${channel.key}.title`)}
                 tone={channel.tone}
                 variant={channel.key}
+                variantClass={channel.variant}
               />
             ))}
           </div>
@@ -82,6 +87,7 @@ function CommunityCard({
   title,
   tone,
   variant,
+  variantClass,
 }: {
   Icon: LucideIcon;
   copy: string;
@@ -92,32 +98,37 @@ function CommunityCard({
   title: string;
   tone: string;
   variant: CommunityChannelKey;
+  variantClass: string;
 }) {
   return (
     <a
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
-      className={`neon-card neon-hover community-portal-card community-portal-card--${variant} group p-5`}
+      className={`server-tactical-card neon-hover ${variantClass} server-tactical-card--online home-community-card group flex h-full min-w-0 flex-col p-5`}
+      data-occupancy="low"
+      data-status="online"
     >
-      <span className="community-card__backdrop" aria-hidden="true" />
-      <span className="community-card__scanline" aria-hidden="true" />
-      <span className="community-card__shine" aria-hidden="true" />
+      <TacticalCardChrome />
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
-          <span className="community-card__icon neon-icon-cell grid size-16 place-items-center">
+          <span className="server-card__icon grid size-16 shrink-0 place-items-center">
             <Icon size={36} className={tone} aria-hidden="true" />
           </span>
-          <span className="community-card__status border px-2 py-1 text-[0.62rem] font-black uppercase tracking-[0.16em]">
-            {status}
-          </span>
+          <TacticalStatusBadge label={status} />
         </div>
-        <h3 className="community-card__title mt-8 inline-flex items-center gap-2 font-display font-black uppercase text-white">
-          <Icon size={21} className={tone} aria-hidden="true" />
+        <h3 className="server-card__title mt-8 inline-flex items-center gap-2 font-display text-2xl font-black uppercase leading-none text-white">
           {title}
         </h3>
+        <p className="server-card__region mt-1 text-xs font-black uppercase tracking-[0.18em] text-white/42">
+          FREE-ARENA
+        </p>
         <p className="mt-3 text-sm font-semibold leading-6 text-white/58">{copy}</p>
-        <span className="community-card__cta mt-auto inline-flex items-center gap-2 pt-6 text-xs font-black uppercase tracking-[0.18em]">
+        <div className="mt-5 flex flex-wrap gap-2">
+          <TacticalTag label={variant} />
+          <TacticalTag label="community" />
+        </div>
+        <span className="server-details-button mt-auto inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition">
           {cta}
           <ArrowRight size={18} className="transition group-hover:translate-x-1" aria-hidden="true" />
         </span>
