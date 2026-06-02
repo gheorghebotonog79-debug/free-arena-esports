@@ -15,13 +15,6 @@ export type VipPackage = {
   tone: VipPackageTone;
 };
 
-export type VipComparisonRow = {
-  diamond: boolean;
-  gold: boolean;
-  label: string;
-  queen: boolean;
-};
-
 export type VipShopContent = {
   activation: {
     copy: string;
@@ -33,7 +26,6 @@ export type VipShopContent = {
     steps: readonly string[];
     title: string;
   };
-  comparisonTitle: string;
   cta: {
     diamond: string;
     discord: string;
@@ -149,7 +141,6 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         "Cand iesi de pe TeamSpeak, VIP TS se dezactiveaza automat.",
       ],
     },
-    comparisonTitle: "Comparație pachete VIP",
     cta: {
       title: "Cere activare VIP manual",
       gold: "Cere Gold",
@@ -318,7 +309,6 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         "When you leave TeamSpeak, VIP TS is removed automatically.",
       ],
     },
-    comparisonTitle: "VIP package comparison",
     cta: {
       title: "Request manual VIP activation",
       gold: "Request Gold",
@@ -432,32 +422,3 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
 };
 
 export const vipPackageOrder: readonly VipTierKey[] = ["queen", "gold", "diamond"];
-
-export const vipComparisonRows: Record<Locale, readonly VipComparisonRow[]> = {
-  ro: [
-    { label: "VIP tag", queen: true, gold: true, diamond: true },
-    { label: "Listă VIP online", queen: true, gold: true, diamond: true },
-    { label: "Meniuri VIP", queen: true, gold: true, diamond: true },
-    { label: "Slot rezervat", queen: false, gold: true, diamond: true },
-    { label: "Meniu arme runda 3", queen: false, gold: true, diamond: true },
-    { label: "Double jump", queen: false, gold: true, diamond: true },
-    { label: "Revive", queen: false, gold: false, diamond: true },
-    { label: "Wallbang", queen: false, gold: false, diamond: true },
-    { label: "Hitmarker", queen: false, gold: false, diamond: true },
-    { label: "Skinuri premium", queen: false, gold: false, diamond: true },
-    { label: "Killstreak rewards", queen: false, gold: true, diamond: true },
-  ],
-  en: [
-    { label: "VIP tag", queen: true, gold: true, diamond: true },
-    { label: "VIP online list", queen: true, gold: true, diamond: true },
-    { label: "VIP menus", queen: true, gold: true, diamond: true },
-    { label: "Reserved slot", queen: false, gold: true, diamond: true },
-    { label: "Weapon menu round 3", queen: false, gold: true, diamond: true },
-    { label: "Double jump", queen: false, gold: true, diamond: true },
-    { label: "Revive", queen: false, gold: false, diamond: true },
-    { label: "Wallbang", queen: false, gold: false, diamond: true },
-    { label: "Hitmarker", queen: false, gold: false, diamond: true },
-    { label: "Premium skins", queen: false, gold: false, diamond: true },
-    { label: "Killstreak rewards", queen: false, gold: true, diamond: true },
-  ],
-};

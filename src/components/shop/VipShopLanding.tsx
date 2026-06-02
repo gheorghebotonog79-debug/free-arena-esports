@@ -20,7 +20,6 @@ import { TrackedAnchor } from "@/components/analytics/TrackedLink";
 import type { Locale } from "@/i18n/routing";
 import { forumLinks } from "@/lib/forum-links";
 import {
-  vipComparisonRows,
   vipPackageOrder,
   vipShopContact,
   vipShopContent,
@@ -104,7 +103,6 @@ const panelMotion = {
 
 export function VipShopLanding({ locale }: { locale: Locale }) {
   const page = vipShopContent[locale];
-  const rows = vipComparisonRows[locale];
 
   return (
     <main className="neon-page-shell cyber-root overflow-hidden bg-arena-black text-white">
@@ -363,74 +361,6 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
         viewport={{ once: true, amount: 0.18 }}
         whileInView="visible"
       >
-        <div className="mx-auto w-full max-w-7xl">
-          <motion.h2 className="font-display text-4xl font-black uppercase text-white sm:text-5xl" variants={panelMotion}>
-            {page.comparisonTitle}
-          </motion.h2>
-          <motion.div className="premium-card glass-panel neon-hover animated-border mt-6 hidden overflow-hidden rounded-lg border border-cyan-200/18 bg-black/34 md:block" data-motion-card="true" variants={panelMotion}>
-            <table className="w-full border-collapse text-left">
-              <thead>
-                <tr className="border-b border-cyan-200/14 bg-cyan-300/8">
-                  <th className="px-4 py-4 text-xs font-black uppercase tracking-[0.16em] text-white/56">
-                    {locale === "ro" ? "Beneficiu" : "Benefit"}
-                  </th>
-                  {vipPackageOrder.map((tier) => (
-                    <th key={tier} className="px-4 py-4 text-center text-xs font-black uppercase tracking-[0.16em] text-white">
-                      {page.packages[tier].name}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((row) => (
-                  <tr key={row.label} className="border-b border-white/8 last:border-b-0">
-                    <td className="px-4 py-4 text-sm font-bold text-white/68">{row.label}</td>
-                    {vipPackageOrder.map((tier) => (
-                      <td key={tier} className="px-4 py-4">
-                        <FeatureState enabled={row[tier]} />
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </motion.div>
-
-          <div className="mt-6 grid gap-3 md:hidden">
-            {rows.map((row, index) => (
-              <motion.article
-                className="premium-card glass-panel neon-hover animated-border rounded-lg border border-cyan-200/16 bg-black/34 p-4"
-                custom={index}
-                data-motion-card="true"
-                key={row.label}
-                variants={panelMotion}
-              >
-                <h3 className="text-sm font-black uppercase tracking-[0.12em] text-white">
-                  {row.label}
-                </h3>
-                <div className="mt-4 grid grid-cols-3 gap-2">
-                  {vipPackageOrder.map((tier) => (
-                    <div key={tier} className="rounded-lg border border-white/10 bg-white/[0.035] p-2 text-center">
-                      <p className="mb-2 text-[0.62rem] font-black uppercase tracking-[0.1em] text-white/46">
-                        {page.packages[tier].name}
-                      </p>
-                      <FeatureState enabled={row[tier]} />
-                    </div>
-                  ))}
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        className="neon-section px-4 pb-16 sm:px-6 lg:px-8"
-        initial="hidden"
-        variants={sectionMotion}
-        viewport={{ once: true, amount: 0.18 }}
-        whileInView="visible"
-      >
         <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <motion.article className="premium-card glass-panel neon-hover animated-border rounded-lg border border-orange-300/20 p-5 sm:p-6" custom={0} data-motion-card="true" variants={panelMotion}>
             <div className="flex items-center gap-3">
@@ -631,15 +561,6 @@ function VipPackageCard({
         </div>
       </div>
     </motion.article>
-  );
-}
-
-function FeatureState({ enabled }: { enabled: boolean }) {
-  return (
-    <span className={`mx-auto grid size-9 place-items-center rounded-lg border ${enabled ? "border-arena-green/34 bg-arena-green/12 text-arena-green" : "border-arena-red/30 bg-arena-red/10 text-arena-red"}`}>
-      {enabled ? <Check size={18} aria-hidden="true" /> : <X size={18} aria-hidden="true" />}
-      <span className="sr-only">{enabled ? "included" : "not included"}</span>
-    </span>
   );
 }
 
