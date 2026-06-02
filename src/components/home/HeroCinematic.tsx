@@ -102,7 +102,7 @@ export function HeroCinematic() {
         fill
         priority
         sizes="100vw"
-        className="absolute inset-0 -z-30 size-full object-cover object-[68%_center] opacity-90"
+        className="hero-cinematic-art absolute inset-0 -z-30 size-full object-cover object-[68%_center] opacity-90"
         aria-hidden="true"
       />
       <div
@@ -117,7 +117,7 @@ export function HeroCinematic() {
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-300/45 to-transparent" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] w-full max-w-[96rem] flex-col justify-end px-4 pb-0 pt-20 sm:px-6 md:min-h-[44rem] lg:min-h-[48rem] lg:px-8 lg:pt-24">
-        <div className="max-w-4xl pb-10 sm:pb-12 lg:pb-14">
+        <div className="hero-copy-reveal max-w-4xl pb-10 sm:pb-12 lg:pb-14">
           <p className="neon-kicker hero-signal-rack inline-flex max-w-full items-center gap-2 overflow-hidden px-4 py-2 text-[0.68rem] font-black uppercase tracking-[0.18em] text-white/82">
             <Gamepad2 size={15} className="text-cyber-red" aria-hidden="true" />
             {copy.eyebrow}
@@ -147,7 +147,7 @@ export function HeroCinematic() {
             ))}
           </p>
 
-          <div className="mt-3 h-px w-full max-w-2xl bg-gradient-to-r from-cyber-red via-cyber-cyan to-transparent" aria-hidden="true" />
+          <div className="hero-energy-line mt-3 h-px w-full max-w-2xl bg-gradient-to-r from-cyber-red via-cyber-cyan to-transparent" aria-hidden="true" />
 
           <p className="mt-6 max-w-3xl text-base font-medium leading-7 text-white/78 sm:text-lg">
             {copy.body}
@@ -178,13 +178,13 @@ export function HeroCinematic() {
           </div>
         </div>
 
-        <div className="grid gap-0 border-t border-cyan-300/14 bg-black/44 backdrop-blur-md sm:grid-cols-2 lg:grid-cols-4">
+        <div className="hero-feature-bar grid gap-0 border-t border-cyan-300/14 bg-black/44 backdrop-blur-md sm:grid-cols-2 lg:grid-cols-4">
           {copy.features.map(({ Icon, copy: featureCopy, title }) => (
             <article
               key={title}
-              className="group relative flex gap-4 border-b border-cyan-300/10 px-4 py-5 last:border-b-0 sm:border-r sm:last:border-r-0 lg:border-b-0 lg:px-6 lg:py-6"
+              className="hero-feature-card group relative flex gap-4 border-b border-cyan-300/10 px-4 py-5 last:border-b-0 sm:border-r sm:last:border-r-0 lg:border-b-0 lg:px-6 lg:py-6"
             >
-              <span className="grid size-14 shrink-0 place-items-center border border-cyan-300/34 bg-cyan-300/8 text-cyan-200 shadow-[0_0_28px_rgba(0,216,255,0.12)] transition group-hover:border-red-400/45 group-hover:text-white">
+              <span className="hero-feature-icon grid size-14 shrink-0 place-items-center border border-cyan-300/34 bg-cyan-300/8 text-cyan-200 shadow-[0_0_28px_rgba(0,216,255,0.12)] transition group-hover:border-red-400/45 group-hover:text-white">
                 <Icon size={26} aria-hidden="true" />
               </span>
               <span className="min-w-0">
