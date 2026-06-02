@@ -760,20 +760,30 @@ img {
       0 0 34px color-mix(in srgb, var(--card-accent-2, var(--neon-red)) 28%, transparent);
   }
   .home-path-card {
-    min-height: 28rem;
+    min-height: 34rem;
   }
 
   .home-path-card .server-player-core {
-    min-height: 11rem;
+    min-height: 10.5rem;
   }
 
   .home-path-card .server-player-count {
-    font-size: clamp(2rem, 5vw, 2.55rem);
-    letter-spacing: 0.02em;
+    font-size: 2.35rem;
+    letter-spacing: 0;
   }
 
   .home-path-card .server-details-button {
-    margin-top: 1.5rem;
+    margin-top: 0;
+  }
+
+  .home-path-card--action {
+    min-height: 31rem;
+  }
+
+  @media (max-width: 420px) {
+    .home-path-card .server-player-count {
+      font-size: 2rem;
+    }
   }
 
   .nav-link {
