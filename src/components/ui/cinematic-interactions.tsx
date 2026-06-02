@@ -37,7 +37,7 @@ export function CinematicInteractions() {
         return;
       }
 
-      const card = target.closest<HTMLElement>(".premium-card, .server-tactical-card, .home-link-card");
+      const card = target.closest<HTMLElement>(".premium-card, .server-tactical-card");
       if (!card) {
         return;
       }
@@ -58,7 +58,7 @@ export function CinematicInteractions() {
         return;
       }
 
-      const card = target.closest<HTMLElement>(".premium-card, .server-tactical-card, .home-link-card");
+      const card = target.closest<HTMLElement>(".premium-card, .server-tactical-card");
       const nextTarget = event.relatedTarget;
 
       if (!card || (nextTarget instanceof Node && card.contains(nextTarget))) {
