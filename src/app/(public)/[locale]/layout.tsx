@@ -60,7 +60,7 @@ export async function generateMetadata({
       google: "YPSDQtpKFKcdm_fRnLQ0w9osoavDxRefXTmptX6hTzI",
     },
     icons: {
-      icon: "/assets/game-icons/CS.png",
+      icon: "/favicon.ico",
     },
     openGraph: {
       title: t("openGraphTitle"),

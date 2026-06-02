@@ -112,7 +112,6 @@ export function SiteFooter() {
             <TrackedLink eventName="click_apply_staff" eventPayload={{ location: "footer_links" }} href={routes.joinStaff}>{t("links.staff")}</TrackedLink>
             <TrackedLink eventName="click_server_details" eventPayload={{ location: "footer_links", target: "terms" }} href={routes.terms}>{t("links.terms")}</TrackedLink>
             <TrackedLink eventName="click_server_details" eventPayload={{ location: "footer_links", target: "privacy" }} href={routes.privacy}>{t("links.privacy")}</TrackedLink>
-            <TrackedLink eventName="click_server_details" eventPayload={{ location: "footer_links", target: "terms_en" }} href={routes.terms} locale="en">Terms of Use</TrackedLink>
           </FooterColumn>
           <FooterColumn title="Forum" tone="respawn">
             <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_forum", target: "forum" }} href={forumLinks.home} target="_blank" rel="noreferrer">{forumLabels.forum}</TrackedAnchor>

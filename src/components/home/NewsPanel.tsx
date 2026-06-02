@@ -1,4 +1,4 @@
-import { ArrowRight, CalendarDays, RadioTower, Trophy, Wrench, Zap } from "lucide-react";
+import { CalendarDays, RadioTower, Trophy, Wrench, Zap } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { PublicNewsPost } from "@/lib/public-news";
@@ -104,7 +104,7 @@ export function NewsPanel({ locale, posts }: NewsPanelProps) {
               index={index}
               key={card.id}
               publishedLabel={t("published")}
-              readMoreLabel={t("readMore")}
+              statusLabel={posts.length > 0 ? t("live") : t("emptyTitle")}
             />
           ))}
         </div>
@@ -118,13 +118,13 @@ function NewsHudCard({
   category,
   index,
   publishedLabel,
-  readMoreLabel,
+  statusLabel,
 }: {
   card: NewsCardData;
   category: NewsCategory;
   index: number;
   publishedLabel: string;
-  readMoreLabel: string;
+  statusLabel: string;
 }) {
   const CategoryIcon = categoryIcons[category];
 
@@ -163,10 +163,9 @@ function NewsHudCard({
           <span className="min-w-0 truncate text-xs font-black uppercase tracking-[0.16em] text-white/38">
             {card.author}
           </span>
-          <a href="#news" className="news-card__read-more inline-flex shrink-0 items-center gap-1.5 text-xs font-black uppercase tracking-[0.14em] no-underline hover:underline">
-            {readMoreLabel}
-            <ArrowRight size={15} aria-hidden="true" />
-          </a>
+          <span className="news-card__read-more inline-flex shrink-0 items-center gap-1.5 text-xs font-black uppercase tracking-[0.14em]">
+            {statusLabel}
+          </span>
         </div>
       </div>
     </article>

@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { contactEmail } from "@/lib/routes";
 
 export type VipTierKey = "queen" | "gold" | "diamond";
 
@@ -76,8 +77,8 @@ export type VipShopContent = {
 };
 
 export const vipShopContact = {
-  email: "gheorghe.botonog79@gmail.com",
-  emailHref: "mailto:gheorghe.botonog79@gmail.com?subject=FREE-ARENA%20VIP%20acces%20garantat",
+  email: contactEmail,
+  emailHref: `mailto:${contactEmail}?subject=FREE-ARENA%20VIP%20acces%20garantat`,
   teamSpeakAddress: "ts.free-arena.ro",
   teamSpeakHref: "ts3server://ts.free-arena.ro",
 } as const;
@@ -94,14 +95,14 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
       title: "Alege gradul tău VIP",
       subtitle: "Premium benefits for active FREE-ARENA players.",
       packages: "Vezi pachete",
-      ticket: "Deschide ticket",
+      ticket: "Intra pe Discord",
     },
     activation: {
       title: "Cum se activeaza VIP?",
       copy:
         "Shop-ul FREE-ARENA functioneaza momentan ca funnel manual. Nu exista plata online automata, iar activarea se face dupa confirmare.",
-      forumCta: "Intreaba pe forum",
-      discordCta: "Cere activare VIP",
+      forumCta: "Vezi cererile VIP",
+      discordCta: "Discuta cu staff",
       customTitle: "VIP Custom / Contact",
       customCopy:
         "Ai nevoie de acces garantat, activare speciala sau clarificari pentru un server anume? Contacteaza-ne inainte de plata.",
@@ -142,10 +143,10 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
       ],
     },
     cta: {
-      title: "Cere activare VIP manual",
+      title: "Activare VIP manuala",
       gold: "Cere Gold",
       diamond: "Cere Diamond",
-      discord: "Deschide ticket",
+      discord: "Discuta pe Discord",
     },
     importantNotes: {
       title: "Note importante",
@@ -172,7 +173,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
       emailCta: "Trimite email",
       items: [
         "Adresa TeamSpeak: ts.free-arena.ro",
-        "Email acces garantat: gheorghe.botonog79@gmail.com",
+        `Email acces garantat: ${contactEmail}`,
         "Include numele folosit pe server si pachetul VIP dorit.",
         "Activarea se face dupa confirmarea platii.",
       ],
@@ -206,7 +207,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         badge: "Recomandat",
         tone: "gold",
         purpose: "Pachet echilibrat pentru jucători activi pe serverele FREE-ARENA.",
-        cta: "Cere activare VIP",
+        cta: "Alege Gold",
         benefits: [
           "Slot rezervat",
           "VIP Gold tag",
@@ -230,7 +231,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         badge: "Premium",
         tone: "diamond",
         purpose: "Cel mai complet pachet pentru jucătorii care intră des și vor beneficii premium.",
-        cta: "Cere activare VIP",
+        cta: "Alege Diamond",
         benefits: [
           "Tot ce include Gold",
           "VIP Diamond tag",
@@ -262,14 +263,14 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
       title: "Choose your VIP rank",
       subtitle: "Premium benefits for active FREE-ARENA players.",
       packages: "View packages",
-      ticket: "Open ticket",
+      ticket: "Join Discord",
     },
     activation: {
       title: "How is VIP activated?",
       copy:
         "The FREE-ARENA shop currently works as a manual funnel. There is no automatic online payment, and activation happens after confirmation.",
-      forumCta: "Ask on forum",
-      discordCta: "Request VIP activation",
+      forumCta: "View VIP requests",
+      discordCta: "Talk to staff",
       customTitle: "VIP Custom / Contact",
       customCopy:
         "Need guaranteed access, special activation, or clarification for a specific server? Contact us before payment.",
@@ -310,10 +311,10 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
       ],
     },
     cta: {
-      title: "Request manual VIP activation",
+      title: "Manual VIP activation",
       gold: "Request Gold",
       diamond: "Request Diamond",
-      discord: "Open ticket",
+      discord: "Talk on Discord",
     },
     importantNotes: {
       title: "Important notes",
@@ -340,7 +341,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
       emailCta: "Send email",
       items: [
         "TeamSpeak address: ts.free-arena.ro",
-        "Guaranteed access email: gheorghe.botonog79@gmail.com",
+        `Guaranteed access email: ${contactEmail}`,
         "Include your server name and desired VIP package.",
         "Activation is completed after payment confirmation.",
       ],
@@ -374,7 +375,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         badge: "Recommended",
         tone: "gold",
         purpose: "Balanced package for active players on FREE-ARENA servers.",
-        cta: "Request VIP activation",
+        cta: "Choose Gold",
         benefits: [
           "Reserved slot",
           "VIP Gold tag",
@@ -398,7 +399,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         badge: "Premium",
         tone: "diamond",
         purpose: "The strongest package for active players who want premium benefits.",
-        cta: "Request VIP activation",
+        cta: "Choose Diamond",
         benefits: [
           "Everything from Gold",
           "VIP Diamond tag",

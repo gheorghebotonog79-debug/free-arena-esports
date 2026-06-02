@@ -22,6 +22,7 @@ type ServerHudCardProps = {
     copied: string;
     details: string;
     ip: string;
+    loading: string;
     map: string;
     ping: string;
     players: string;
@@ -74,8 +75,9 @@ export function ServerHudCard({
   const isPending = status === "pending";
   const isLoading = status === "loading";
   const isOffline = status === "offline";
+  const unavailableLabel = isLoading ? labels.loading : labels.planned;
   const serverHref = getCanonicalServerPath(serverKey);
-  const progress = maxPlayers > 0 ? Math.min(100, Math.round((players / maxPlayers) * 100)) : 0;
+  const progress = !isLoading && maxPlayers > 0 ? Math.min(100, Math.round((players / maxPlayers) * 100)) : 0;
   const occupancyTone = isPending || isOffline || isLoading
     ? "idle"
     : progress >= 85
@@ -125,9 +127,9 @@ export function ServerHudCard({
               <UsersRound size={16} className="server-card__accent-icon" aria-hidden="true" />
               {labels.players}
             </div>
-            <p className="server-player-count font-display text-4xl font-black text-white" aria-label={isPending ? labels.planned : playersLabel}>
-              {isPending ? (
-                labels.planned
+            <p className="server-player-count font-display text-4xl font-black text-white" aria-label={isPending || isLoading ? unavailableLabel : playersLabel}>
+              {isPending || isLoading ? (
+                unavailableLabel
               ) : (
                 <>
                   <span className="server-player-count__current">{players}</span>
@@ -138,11 +140,11 @@ export function ServerHudCard({
             </p>
           </div>
           <div className="server-player-bar mt-4">
-            <span style={{ width: isPending || isLoading ? "0%" : `${progress}%` }} />
+            <span className={isLoading ? "animate-pulse opacity-35" : undefined} style={{ width: isPending ? "0%" : isLoading ? "100%" : `${progress}%` }} />
           </div>
           <div className="mt-4 grid grid-cols-2 gap-2">
-            <Metric label={labels.map} value={isPending ? labels.planned : map} />
-            <Metric label={labels.ping} value={isPending ? labels.planned : ping} />
+            <Metric label={labels.map} value={isPending || isLoading ? unavailableLabel : map} />
+            <Metric label={labels.ping} value={isPending || isLoading ? unavailableLabel : ping} />
           </div>
         </div>
 

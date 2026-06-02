@@ -195,7 +195,11 @@ export function ServerWarRoom() {
       maxPlayers,
       ping,
       players,
-      playersLabel: isPending ? serverT("fallback.unavailable") : playersLabel,
+      playersLabel: isPending
+        ? serverT("fallback.unavailable")
+        : status === "loading"
+          ? serverT("loading.value")
+          : playersLabel,
       region: serverT(`items.${server.key}.region`),
       status,
       statusLabel,
@@ -262,6 +266,7 @@ export function ServerWarRoom() {
                 copyIp: t("copyIp"),
                 details: "DETAILS",
                 ip: t("labels.ip"),
+                loading: serverT("loading.value"),
                 map: t("labels.map"),
                 ping: t("labels.ping"),
                 players: t("labels.players"),

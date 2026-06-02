@@ -163,7 +163,7 @@ export function ServerGrid() {
     const playersLabel = status === "pending"
       ? t("fallback.unavailable")
       : status === "loading"
-        ? `0/${server.fallbackMaxPlayers}`
+        ? t("loading.value")
         : liveServer
           ? `${liveServer.players}/${liveServer.maxPlayers}`
           : t("fallback.players");
@@ -243,6 +243,9 @@ export function ServerGrid() {
   const averagePing = pingValues.length > 0
     ? `${Math.round(pingValues.reduce((sum, value) => sum + value, 0) / pingValues.length)}ms`
     : t("fallback.ping");
+  const activeServersLabel = isLoading ? t("loading.value") : `${onlineCount}/${activeServers.length}`;
+  const playersLabel = isLoading ? t("loading.value") : `${totalPlayers}/${totalSlots}`;
+  const averagePingLabel = isLoading ? t("loading.value") : averagePing;
 
   function getFilterCount(filter: ServerStatusFilter) {
     return filter === "all"
@@ -294,18 +297,18 @@ export function ServerGrid() {
           <div className="neon-border neon-hover rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-arena-cyan">{hubLabels.active}</p>
             <p className="mt-2 font-display text-3xl font-black text-white">
-              {onlineCount}/{activeServers.length}
+              {activeServersLabel}
             </p>
           </div>
           <div className="neon-border neon-hover rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-arena-cyan">{hubLabels.players}</p>
             <p className="mt-2 font-display text-3xl font-black text-white">
-              {totalPlayers}/{totalSlots}
+              {playersLabel}
             </p>
           </div>
           <div className="neon-border neon-hover rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-arena-cyan">{hubLabels.avgPing}</p>
-            <p className="mt-2 font-display text-3xl font-black text-white">{averagePing}</p>
+            <p className="mt-2 font-display text-3xl font-black text-white">{averagePingLabel}</p>
           </div>
         </div>
 
@@ -352,6 +355,7 @@ export function ServerGrid() {
                 copyIp: warRoomT("copyIp"),
                 details: "DETAILS",
                 ip: warRoomT("labels.ip"),
+                loading: t("loading.value"),
                 map: warRoomT("labels.map"),
                 ping: warRoomT("labels.ping"),
                 players: warRoomT("labels.players"),

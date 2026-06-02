@@ -78,13 +78,13 @@ export function WarzoneStatus() {
           {t("title")}
         </h2>
         <div className="warzone-status-card__meter mt-4" aria-hidden="true">
-          <span style={{ width: `${stats.onlinePercent}%` }} />
+          <span className={isLoading ? "animate-pulse opacity-35" : undefined} style={{ width: isLoading ? "100%" : `${stats.onlinePercent}%` }} />
         </div>
 
         <dl className="mt-6 grid gap-3">
-          <StatusRow Icon={UsersRound} label={t("playersOnline")} value={isLoading ? "0" : String(stats.playersOnline)} tone="text-cyan-200" />
-          <StatusRow Icon={Activity} label={t("serversOnline")} value={isLoading ? "0/3" : stats.serversOnline} tone="text-fuchsia-300" />
-          <StatusRow Icon={Gauge} label={t("uptime")} value={stats.uptime} tone="text-blue-300" />
+          <StatusRow Icon={UsersRound} label={t("playersOnline")} loading={isLoading} value={String(stats.playersOnline)} tone="text-cyan-200" />
+          <StatusRow Icon={Activity} label={t("serversOnline")} loading={isLoading} value={stats.serversOnline} tone="text-fuchsia-300" />
+          <StatusRow Icon={Gauge} label={t("uptime")} loading={isLoading} value={stats.uptime} tone="text-blue-300" />
         </dl>
       </div>
     </aside>
@@ -94,11 +94,13 @@ export function WarzoneStatus() {
 function StatusRow({
   Icon,
   label,
+  loading = false,
   tone,
   value,
 }: {
   Icon: LucideIcon;
   label: string;
+  loading?: boolean;
   tone: string;
   value: string;
 }) {
@@ -108,7 +110,9 @@ function StatusRow({
         <Icon size={18} className={tone} aria-hidden="true" />
       </span>
       <dt className="text-xs font-black uppercase tracking-[0.16em] text-white/56">{label}</dt>
-      <dd className="font-display text-2xl font-black text-white">{value}</dd>
+      <dd className="font-display text-2xl font-black text-white">
+        {loading ? <span className="block h-7 w-24 animate-pulse rounded bg-white/14" aria-label="Loading" /> : value}
+      </dd>
     </div>
   );
 }

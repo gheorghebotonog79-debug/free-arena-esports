@@ -540,10 +540,12 @@ function Tag({ label }: { label: string }) {
 }
 
 function Metric({ label, value }: { label: string; value: string }) {
+  const isCommand = value.startsWith("/");
+
   return (
     <div className="server-metric min-w-0 p-2">
       <p className="text-[0.64rem] font-black uppercase tracking-[0.14em] text-white/34">{label}</p>
-      <p className="mt-1 truncate text-sm font-black uppercase text-white">{value}</p>
+      <p className={`mt-1 truncate text-sm font-black text-white ${isCommand ? "" : "uppercase"}`}>{value}</p>
     </div>
   );
 }

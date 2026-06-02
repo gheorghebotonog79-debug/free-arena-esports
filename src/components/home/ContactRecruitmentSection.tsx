@@ -3,10 +3,10 @@ import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { TacticalCardChrome, TacticalMetric, TacticalStatusBadge, TacticalTag } from "@/components/home/HomeTacticalPrimitives";
 import type { Locale } from "@/i18n/routing";
 import { forumLinks } from "@/lib/forum-links";
+import { contactEmail } from "@/lib/routes";
 
 const DISCORD_URL = "https://discord.gg/freearena";
 const TEAMSPEAK_URL = "ts3server://ts.free-arena.ro";
-const CONTACT_EMAIL = "gheorghe.botonog79@gmail.com";
 
 type ContactCard = {
   Icon: LucideIcon;
@@ -91,12 +91,12 @@ const content: Record<
       {
         Icon: Mail,
         eventName: "click_forum",
-        href: `mailto:${CONTACT_EMAIL}`,
+        href: `mailto:${contactEmail}`,
         label: "Email",
         status: "CONTACT",
         tags: ["direct", "support"],
         tone: "cs16",
-        value: CONTACT_EMAIL,
+        value: contactEmail,
       },
     ],
   },
@@ -149,12 +149,12 @@ const content: Record<
       {
         Icon: Mail,
         eventName: "click_forum",
-        href: `mailto:${CONTACT_EMAIL}`,
+        href: `mailto:${contactEmail}`,
         label: "Email",
         status: "CONTACT",
         tags: ["direct", "support"],
         tone: "cs16",
-        value: CONTACT_EMAIL,
+        value: contactEmail,
       },
     ],
   },

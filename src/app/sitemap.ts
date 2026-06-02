@@ -15,6 +15,7 @@ const localizedPages = [
   { path: "", changeFrequency: "weekly", priority: 1 },
   { path: "/servers", changeFrequency: "daily", priority: 0.9 },
   { path: "/rankings", changeFrequency: "daily", priority: 0.9 },
+  { path: "/join-staff", changeFrequency: "monthly", priority: 0.8 },
   { path: "/shop", changeFrequency: "weekly", priority: 0.85 },
   { path: "/teamspeak", changeFrequency: "monthly", priority: 0.8 },
   { path: "/discord", changeFrequency: "monthly", priority: 0.8 },

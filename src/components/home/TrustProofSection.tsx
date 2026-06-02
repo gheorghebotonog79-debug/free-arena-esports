@@ -1,4 +1,4 @@
-import { Camera, Headphones, MessageSquare, Server, Trophy, type LucideIcon } from "lucide-react";
+import { Activity, Headphones, MessageSquare, Server, Trophy, type LucideIcon } from "lucide-react";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { TacticalCardChrome, TacticalStatusBadge, TacticalTag } from "@/components/home/HomeTacticalPrimitives";
 import type { Locale } from "@/i18n/routing";
@@ -29,7 +29,7 @@ const content: Record<
     copy: string;
     cta: string;
     eyebrow: string;
-    placeholder: string;
+    proofLabel: string;
     title: string;
   }
 > = {
@@ -39,7 +39,7 @@ const content: Record<
     copy:
       "Nu folosim cifre inventate. Pe masura ce apar capturi reale din servere, forum sau voice, le putem urca aici.",
     cta: "Deschide",
-    placeholder: "Screenshot real pregatit pentru upload",
+    proofLabel: "Activitate verificabila",
     cards: [
       {
         Icon: Server,
@@ -89,7 +89,7 @@ const content: Record<
     copy:
       "We do not use fake numbers. As real screenshots from servers, forum, or voice appear, they can be uploaded here.",
     cta: "Open",
-    placeholder: "Real screenshot ready for upload",
+    proofLabel: "Verifiable activity",
     cards: [
       {
         Icon: Server,
@@ -169,9 +169,9 @@ export function TrustProofSection({ locale }: { locale: Locale }) {
                   </div>
                   <div className="server-player-core mt-5 grid aspect-video place-items-center p-4">
                     <div className="text-center">
-                      <Camera size={32} className="mx-auto server-card__accent-icon" aria-hidden="true" />
+                      <Activity size={32} className="mx-auto server-card__accent-icon" aria-hidden="true" />
                       <p className="mt-3 px-4 text-xs font-black uppercase tracking-[0.14em] text-white/44">
-                        {page.placeholder}
+                        {page.proofLabel}
                       </p>
                     </div>
                   </div>
