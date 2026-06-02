@@ -1,180 +1,168 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { ArrowRight, Gamepad2, Headphones, Map, MessageSquare, RadioTower, ShieldCheck, Trophy, UsersRound, type LucideIcon } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { ArrowRight, CalendarDays, Gamepad2, MessageSquare, Server, ShieldCheck, Trophy, type LucideIcon } from "lucide-react";
+import { useLocale } from "next-intl";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { ParticlesBackground } from "@/components/effects/ParticlesBackground";
 import type { Locale } from "@/i18n/routing";
-import type { LiveServerKey, LiveServerStatus, LiveServersResponse, LiveServerStatusKind } from "@/lib/live-server-targets";
-import { getCanonicalServerPath } from "@/lib/server-url";
-import { publicServers } from "@/lib/servers";
 
-const REFRESH_MS = 30_000;
+type HeroFeature = {
+  Icon: LucideIcon;
+  copy: string;
+  title: string;
+};
 
 const heroCopy: Record<
   Locale,
   {
-    connect: string;
+    body: string;
     discord: string;
     eyebrow: string;
-    mapFallback: string;
-    players: string;
-    servers: string;
-    status: Record<LiveServerStatusKind, string>;
+    play: string;
     subtitle: string;
-    title: string;
-    trust: readonly { Icon: LucideIcon; href: string; label: string }[];
+    tagline: readonly string[];
+    features: readonly HeroFeature[];
   }
 > = {
   ro: {
-    eyebrow: "Comunitate gaming romaneasca",
-    title: "FREE-ARENA - Comunitate CS 1.6 si CS2 din Romania",
-    subtitle:
-      "Intra pe serverele noastre Classic, Respawn si CS2. Joaca, urca in clasament si alatura-te comunitatii pe Discord si TeamSpeak.",
-    connect: "Joaca CS 1.6",
+    eyebrow: "Comunitate gaming globală",
+    subtitle: "Global Gaming Community",
+    tagline: ["Joacă.", "Concurează.", "Conectează-te."],
+    body:
+      "Mai mult decât o simplă rețea de servere, FREE-ARENA este o comunitate construită în jurul competiției, fair-play-ului și pasiunii pentru gaming. Descoperă servere active, clasamente live, evenimente și o experiență creată pentru jucători din întreaga lume.",
+    play: "Joacă acum",
     discord: "Join Discord",
-    servers: "Vezi serverele",
-    players: "Jucatori",
-    mapFallback: "In verificare",
-    status: {
-      loading: "Se verifica...",
-      online: "Online",
-      offline: "Offline",
-      pending: "In pregatire",
-    },
-    trust: [
-      { Icon: Gamepad2, href: "/servers", label: "3 servere active" },
-      { Icon: Headphones, href: "/discord", label: "Discord + TeamSpeak" },
-      { Icon: Trophy, href: "/rankings", label: "Clasament live" },
-      { Icon: ShieldCheck, href: "/join-staff", label: "Comunitate romaneasca in crestere" },
+    features: [
+      {
+        Icon: Server,
+        title: "Servere performante",
+        copy: "Infrastructură stabilă pentru o experiență optimă.",
+      },
+      {
+        Icon: Trophy,
+        title: "Clasamente live",
+        copy: "Urcă în clasament și dovedește că ești cel mai bun.",
+      },
+      {
+        Icon: CalendarDays,
+        title: "Evenimente & premii",
+        copy: "Participă la evenimente și câștigă premii exclusive.",
+      },
+      {
+        Icon: ShieldCheck,
+        title: "Fair play",
+        copy: "Respect, corectitudine și un mediu de joc sănătos pentru toți.",
+      },
     ],
   },
   en: {
-    eyebrow: "Romanian gaming community",
-    title: "FREE-ARENA - CS 1.6 and CS2 Community from Romania",
-    subtitle:
-      "Join our Classic, Respawn, and CS2 servers. Play, climb the rankings, and connect with the community on Discord and TeamSpeak.",
-    connect: "Play CS 1.6",
+    eyebrow: "Global gaming community",
+    subtitle: "Global Gaming Community",
+    tagline: ["Play.", "Compete.", "Connect."],
+    body:
+      "More than a simple server network, FREE-ARENA is a community built around competition, fair play, and passion for gaming. Discover active servers, live rankings, events, and an experience created for players around the world.",
+    play: "Play now",
     discord: "Join Discord",
-    servers: "View servers",
-    players: "Players",
-    mapFallback: "Checking",
-    status: {
-      loading: "Checking...",
-      online: "Online",
-      offline: "Offline",
-      pending: "In preparation",
-    },
-    trust: [
-      { Icon: Gamepad2, href: "/servers", label: "3 active servers" },
-      { Icon: Headphones, href: "/discord", label: "Discord + TeamSpeak" },
-      { Icon: Trophy, href: "/rankings", label: "Live rankings" },
-      { Icon: ShieldCheck, href: "/join-staff", label: "Growing Romanian community" },
+    features: [
+      {
+        Icon: Server,
+        title: "Performance servers",
+        copy: "Stable infrastructure for an optimal experience.",
+      },
+      {
+        Icon: Trophy,
+        title: "Live rankings",
+        copy: "Climb the leaderboard and prove you are the best.",
+      },
+      {
+        Icon: CalendarDays,
+        title: "Events & rewards",
+        copy: "Join events and win exclusive rewards.",
+      },
+      {
+        Icon: ShieldCheck,
+        title: "Fair play",
+        copy: "Respect, fairness, and a healthy gaming environment for everyone.",
+      },
     ],
   },
 };
 
-const statusClasses: Record<LiveServerStatusKind, string> = {
-  loading: "border-white/14 bg-white/[0.055] text-white/70",
-  online: "border-arena-green/34 bg-arena-green/12 text-arena-green",
-  offline: "border-arena-red/34 bg-arena-red/12 text-arena-red",
-  pending: "border-arena-gold/34 bg-arena-gold/12 text-arena-gold",
-};
-
-function isLiveServersResponse(value: unknown): value is LiveServersResponse {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    Array.isArray((value as LiveServersResponse).servers)
-  );
-}
-
 export function HeroCinematic() {
   const locale = useLocale() as Locale;
-  const t = useTranslations("Servers");
   const copy = heroCopy[locale];
-  const [serverStatuses, setServerStatuses] = useState<Partial<Record<LiveServerKey, LiveServerStatus>>>({});
-  const [isLoading, setIsLoading] = useState(true);
-
-  const loadServers = useCallback(async () => {
-    try {
-      const response = await fetch("/api/servers", { cache: "no-store" });
-
-      if (!response.ok) {
-        throw new Error("Server status request failed");
-      }
-
-      const payload: unknown = await response.json();
-
-      if (!isLiveServersResponse(payload)) {
-        throw new Error("Unexpected server payload");
-      }
-
-      setServerStatuses(Object.fromEntries(payload.servers.map((server) => [server.key, server])));
-    } catch {
-      setServerStatuses({});
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    void loadServers();
-    const interval = window.setInterval(() => {
-      void loadServers();
-    }, REFRESH_MS);
-
-    return () => window.clearInterval(interval);
-  }, [loadServers]);
-
-  const activeServers = useMemo(() => publicServers.filter((server) => server.pending !== true), []);
 
   return (
-    <section className="neon-hero neon-hero--wow neon-hero--compact relative isolate overflow-hidden border-b border-cyan-300/15 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
+    <section className="neon-hero neon-hero--wow relative isolate overflow-hidden border-b border-cyan-300/15 bg-[#040202]">
       <ParticlesBackground />
-      <div className="neon-hero__flames" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
-      <div className="neon-hero__cinematic-light neon-hero__cinematic-light--red" aria-hidden="true" />
-      <div className="neon-hero__cinematic-light neon-hero__cinematic-light--cyan" aria-hidden="true" />
-      <div className="neon-hero__visual" aria-hidden="true" />
-      <div className="neon-hero__soldier" aria-hidden="true" />
-      <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#080202] via-[#120304]/78 to-transparent" aria-hidden="true" />
+      <Image
+        src="/assets/hero/free-arena-global-hero.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="absolute inset-0 -z-30 size-full object-cover object-[68%_center] opacity-90"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(0,0,0,0.95)_0%,rgba(0,0,0,0.84)_28%,rgba(0,0,0,0.44)_55%,rgba(0,0,0,0.24)_76%,rgba(0,0,0,0.72)_100%)]"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 -z-10 bg-[radial-gradient(760px_440px_at_17%_42%,rgba(255,0,51,0.28),transparent_70%),radial-gradient(760px_440px_at_87%_30%,rgba(0,216,255,0.16),transparent_72%),linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.34)_68%,rgba(2,2,5,0.94)_100%)]"
+        aria-hidden="true"
+      />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/80 to-red-500/70" aria-hidden="true" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-300/45 to-transparent" aria-hidden="true" />
 
-      <div className="relative z-10 mx-auto grid min-h-[32rem] w-full max-w-7xl items-center gap-8 pt-2 lg:min-h-[34rem] lg:grid-cols-[minmax(0,0.98fr)_minmax(22rem,0.82fr)] lg:pt-0">
-        <div className="mx-auto w-full min-w-0 max-w-5xl text-center lg:mx-0 lg:text-left">
-          <p className="neon-kicker hero-signal-rack mx-auto inline-flex max-w-full items-center justify-center gap-2 overflow-hidden px-4 py-2 text-[0.68rem] font-black uppercase tracking-[0.18em] text-white/78 lg:mx-0">
-            <RadioTower size={15} className="text-cyber-cyan" aria-hidden="true" />
+      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] w-full max-w-[96rem] flex-col justify-end px-4 pb-0 pt-20 sm:px-6 md:min-h-[44rem] lg:min-h-[48rem] lg:px-8 lg:pt-24">
+        <div className="max-w-4xl pb-10 sm:pb-12 lg:pb-14">
+          <p className="neon-kicker hero-signal-rack inline-flex max-w-full items-center gap-2 overflow-hidden px-4 py-2 text-[0.68rem] font-black uppercase tracking-[0.18em] text-white/82">
+            <Gamepad2 size={15} className="text-cyber-red" aria-hidden="true" />
             {copy.eyebrow}
           </p>
 
           <h1
-            className="neon-heading neon-title neon-text-pulse hero-wow-title glitch-text mx-auto mt-6 max-w-[24rem] break-words font-display text-[clamp(2.15rem,7.2vw,3.6rem)] font-black uppercase leading-[0.88] tracking-normal text-white sm:max-w-5xl sm:text-6xl md:text-7xl lg:mx-0 xl:text-[5.8rem]"
+            className="hero-wow-title mt-6 max-w-[11ch] font-display text-[clamp(3.2rem,10vw,8.25rem)] font-black uppercase leading-[0.78] tracking-normal text-white"
             data-text="FREE-ARENA"
           >
-            <span className="hero-wow-title__energy">{copy.title}</span>
+            <span className="hero-wow-title__energy" data-text="FREE-ARENA">
+              FREE-ARENA
+            </span>
           </h1>
 
-          <p className="mx-auto mt-5 max-w-[22rem] text-base font-semibold leading-7 text-white/82 sm:max-w-3xl sm:text-xl lg:mx-0">
+          <p className="mt-4 text-[clamp(1.45rem,3vw,2.55rem)] font-semibold leading-tight text-white/92">
             {copy.subtitle}
           </p>
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
+          <p className="hero-wow-subtitle mt-7 flex flex-wrap gap-x-3 gap-y-1 font-display text-[clamp(1.45rem,3.2vw,2.4rem)] font-black uppercase leading-tight">
+            {copy.tagline.map((word, index) => (
+              <span
+                key={word}
+                className={index === 0 ? "text-cyber-red" : index === 1 ? "text-cyber-cyan" : "text-white"}
+              >
+                {word}
+              </span>
+            ))}
+          </p>
+
+          <div className="mt-3 h-px w-full max-w-2xl bg-gradient-to-r from-cyber-red via-cyber-cyan to-transparent" aria-hidden="true" />
+
+          <p className="mt-6 max-w-3xl text-base font-medium leading-7 text-white/78 sm:text-lg">
+            {copy.body}
+          </p>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <TrackedLink
-              href="/server/cs16-classic"
+              href="/servers"
               eventName="click_play_now"
-              eventPayload={{ location: "homepage_hero", server: "cs16-classic" }}
-              className="button-glow inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-arena-green px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
+              eventPayload={{ location: "homepage_hero", target: "servers" }}
+              className="cyber-red-button button-glow inline-flex min-h-14 items-center justify-center gap-3 px-6 py-4 text-sm font-black uppercase tracking-[0.14em] transition hover:scale-[1.02]"
             >
-              <Gamepad2 size={18} aria-hidden="true" />
-              {copy.connect}
+              <Gamepad2 size={19} aria-hidden="true" />
+              {copy.play}
+              <ArrowRight size={18} aria-hidden="true" />
             </TrackedLink>
             <TrackedAnchor
               href="https://discord.gg/freearena"
@@ -182,115 +170,35 @@ export function HeroCinematic() {
               rel="noreferrer"
               eventName="click_join_discord"
               eventPayload={{ location: "homepage_hero" }}
-              className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#98a3ff]/35 bg-[#5865f2]/12 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-[#98a3ff]/70 hover:bg-[#5865f2]/20"
+              className="button-ghost inline-flex min-h-14 items-center justify-center gap-3 border border-cyan-300/42 bg-black/38 px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-white transition hover:border-cyan-200 hover:bg-cyan-300/10"
             >
-              <MessageSquare size={18} aria-hidden="true" />
+              <MessageSquare size={19} aria-hidden="true" />
               {copy.discord}
             </TrackedAnchor>
-            <TrackedLink
-              href="/servers"
-              eventName="click_server_details"
-              eventPayload={{ location: "homepage_hero", target: "servers" }}
-              className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
-            >
-              {copy.servers}
-              <ArrowRight size={18} aria-hidden="true" />
-            </TrackedLink>
-          </div>
-
-          <div className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            {copy.trust.map(({ Icon, href, label }) => (
-              <TrackedLink
-                key={label}
-                href={href}
-                eventName={href === "/join-staff" ? "click_apply_staff" : href === "/rankings" ? "click_server_details" : "click_server_details"}
-                eventPayload={{ location: "homepage_trust_bar", target: href }}
-                className="neon-border rounded-lg border border-white/10 bg-black/28 px-3 py-3 text-left transition hover:border-cyan-200/45 hover:bg-cyan-300/10"
-              >
-                <div className="flex items-center gap-2">
-                  <Icon size={17} className="shrink-0 text-cyan-200" aria-hidden="true" />
-                  <span className="text-xs font-black uppercase tracking-[0.12em] text-white/72">{label}</span>
-                </div>
-              </TrackedLink>
-            ))}
           </div>
         </div>
 
-        <aside className="neon-panel hud-frame neon-scanline p-4 sm:p-5" aria-busy={isLoading}>
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-200">
-                Live server bar
-              </p>
-              <h2 className="mt-2 font-display text-3xl font-black uppercase text-white">
-                {locale === "ro" ? "Alege serverul" : "Choose server"}
-              </h2>
-            </div>
-            <span className="inline-flex items-center gap-2 rounded-lg border border-cyan-300/24 bg-cyan-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-cyan-200">
-              <RadioTower size={14} aria-hidden="true" />
-              Live
-            </span>
-          </div>
-
-          <div className="mt-5 grid gap-3">
-            {activeServers.map((server) => {
-              const live = serverStatuses[server.key];
-              const status: LiveServerStatusKind = isLoading && !live ? "loading" : live?.status ?? "offline";
-              const players = status === "loading" ? 0 : live?.players ?? 0;
-              const maxPlayers = live?.maxPlayers ?? server.fallbackMaxPlayers;
-              const map = status === "loading" ? copy.mapFallback : live?.map || copy.mapFallback;
-
-              return (
-                <article key={server.key} className="rounded-lg border border-white/10 bg-black/34 p-3">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex min-w-0 items-center gap-3">
-                      <span className="grid size-11 shrink-0 place-items-center rounded-lg border border-cyan-300/18 bg-cyan-300/8">
-                        <Image src={server.icon} alt={`${t(`items.${server.key}.name`)} icon`} width={36} height={36} className="size-9 object-contain" />
-                      </span>
-                      <div className="min-w-0">
-                        <h3 className="truncate font-display text-lg font-black uppercase text-white">
-                          {t(`items.${server.key}.name`)}
-                        </h3>
-                        <p className="mt-1 truncate text-[0.68rem] font-black uppercase tracking-[0.14em] text-white/42">
-                          {t(`items.${server.key}.region`)}
-                        </p>
-                      </div>
-                    </div>
-                    <span className={`shrink-0 rounded-lg border px-2 py-1 text-[0.64rem] font-black uppercase tracking-[0.12em] ${statusClasses[status]}`}>
-                      {copy.status[status]}
-                    </span>
-                  </div>
-                  <dl className="mt-3 grid grid-cols-2 gap-2">
-                    <Metric Icon={UsersRound} label={copy.players} value={`${players}/${maxPlayers}`} />
-                    <Metric Icon={Map} label={locale === "ro" ? "Harta" : "Map"} value={map} />
-                  </dl>
-                  <TrackedLink
-                    href={getCanonicalServerPath(server.slug)}
-                    eventName="click_server_details"
-                    eventPayload={{ location: "homepage_live_bar", server: server.slug }}
-                    className="button-glow mt-3 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-lg bg-arena-green px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
-                  >
-                    {locale === "ro" ? "Conecteaza-te" : "Connect"}
-                    <ArrowRight size={15} aria-hidden="true" />
-                  </TrackedLink>
-                </article>
-              );
-            })}
-          </div>
-        </aside>
+        <div className="grid gap-0 border-t border-cyan-300/14 bg-black/44 backdrop-blur-md sm:grid-cols-2 lg:grid-cols-4">
+          {copy.features.map(({ Icon, copy: featureCopy, title }) => (
+            <article
+              key={title}
+              className="group relative flex gap-4 border-b border-cyan-300/10 px-4 py-5 last:border-b-0 sm:border-r sm:last:border-r-0 lg:border-b-0 lg:px-6 lg:py-6"
+            >
+              <span className="grid size-14 shrink-0 place-items-center border border-cyan-300/34 bg-cyan-300/8 text-cyan-200 shadow-[0_0_28px_rgba(0,216,255,0.12)] transition group-hover:border-red-400/45 group-hover:text-white">
+                <Icon size={26} aria-hidden="true" />
+              </span>
+              <span className="min-w-0">
+                <strong className="block text-sm font-black uppercase tracking-[0.08em] text-white">
+                  {title}
+                </strong>
+                <span className="mt-2 block text-sm leading-6 text-white/58">
+                  {featureCopy}
+                </span>
+              </span>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
-  );
-}
-
-function Metric({ Icon, label, value }: { Icon: typeof UsersRound; label: string; value: string }) {
-  return (
-    <div className="server-metric min-w-0 p-2">
-      <dt className="flex items-center gap-2 text-[0.62rem] font-black uppercase tracking-[0.12em] text-white/34">
-        <Icon size={14} className="text-cyan-200" aria-hidden="true" />
-        {label}
-      </dt>
-      <dd className="mt-1 truncate text-sm font-black uppercase text-white">{value}</dd>
-    </div>
   );
 }
