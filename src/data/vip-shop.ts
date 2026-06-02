@@ -95,7 +95,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
     metadata: {
       title: "Shop VIP FREE-ARENA | Gold și Diamond",
       description:
-        "Cere VIP Gold sau VIP Diamond pe FREE-ARENA, testeaza VIP cu /testvip si afla beneficiile VIP TS pentru TeamSpeak.",
+        "Cere VIP Gold sau VIP Diamond pe FREE-ARENA, testeaza VIP cu /testvip si activeaza VIP TS prin /ts si TeamSpeak.",
     },
     hero: {
       eyebrow: "FREE-ARENA VIP SHOP",
@@ -139,14 +139,14 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         "Testul VIP nu inseamna imunitate la reguli si poate fi limitat daca serverul sau modul de joc impune restrictii.",
       vipTsTitle: "VIP TS",
       vipTsCopy:
-        "VIP TS este accesul de comunitate pentru TeamSpeak. Nu schimba gameplay-ul pe server, dar iti ofera identitate si suport mai rapid pe voice.",
-      vipTsCta: "Deschide TeamSpeak",
+        "VIP TS este un sistem automat de pe serverul CS care iti ofera VIP gratuit cat timp esti conectat pe TeamSpeak. Intra pe cs.free-arena.ro, scrie /ts, primeste codul si trimite-l botului VIP Verify pe TeamSpeak.",
+      vipTsCta: "Intra pe server si scrie /ts",
       vipTsBenefits: [
-        "Rol / tag VIP vizibil pe TeamSpeak.",
-        "Acces la zona sau camera VIP atunci cand este activa.",
-        "Suport mai rapid pentru activare VIP, acces garantat si verificari.",
-        "Prezenta mai clara pentru staff si comunitate in sesiunile de voice.",
-        "Potrivit pentru jucatori activi, admini si membri care folosesc TeamSpeak constant.",
+        "Activeaza tagul [VIPTS] in joc pentru jucatorii fara VIP premium.",
+        "Comenzi disponibile pe server: /ts, /tsvip si /tslink.",
+        "Codul de verificare expira in 5 minute si se trimite botului VIP Verify pe TeamSpeak.",
+        "VIP TS ramane activ cat timp esti online pe TeamSpeak.",
+        "Cand iesi de pe TeamSpeak, VIP TS se dezactiveaza automat.",
       ],
     },
     comparisonTitle: "Comparație pachete VIP",
@@ -264,7 +264,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
     metadata: {
       title: "FREE-ARENA VIP Shop | Gold and Diamond",
       description:
-        "Request VIP Gold or VIP Diamond on FREE-ARENA, test VIP with /testvip, and see VIP TS TeamSpeak benefits.",
+        "Request VIP Gold or VIP Diamond on FREE-ARENA, test VIP with /testvip, and activate VIP TS through /ts and TeamSpeak.",
     },
     hero: {
       eyebrow: "FREE-ARENA VIP SHOP",
@@ -308,14 +308,14 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
         "VIP testing does not mean immunity from rules and may be limited when the server or game mode requires restrictions.",
       vipTsTitle: "VIP TS",
       vipTsCopy:
-        "VIP TS is the community access layer for TeamSpeak. It does not change server gameplay, but it gives you identity and faster voice support.",
-      vipTsCta: "Open TeamSpeak",
+        "VIP TS is an automatic CS server system that gives you free in-game VIP while you are connected on TeamSpeak. Join cs.free-arena.ro, type /ts, receive the code, and send it to the VIP Verify bot on TeamSpeak.",
+      vipTsCta: "Join the server and type /ts",
       vipTsBenefits: [
-        "Visible VIP role / tag on TeamSpeak.",
-        "Access to the VIP area or room when active.",
-        "Faster support for VIP activation, guaranteed access, and checks.",
-        "Clearer presence for staff and community during voice sessions.",
-        "Useful for active players, admins, and members who use TeamSpeak often.",
+        "Activates the [VIPTS] in-game tag for players without premium VIP.",
+        "Available server commands: /ts, /tsvip, and /tslink.",
+        "The verification code expires in 5 minutes and is sent to the VIP Verify bot on TeamSpeak.",
+        "VIP TS stays active while you are online on TeamSpeak.",
+        "When you leave TeamSpeak, VIP TS is removed automatically.",
       ],
     },
     comparisonTitle: "VIP package comparison",

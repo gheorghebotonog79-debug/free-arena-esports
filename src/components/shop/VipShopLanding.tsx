@@ -256,9 +256,9 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
             </ul>
             <TrackedAnchor
               className="button-ghost mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-cyan-200/18 bg-cyan-300/8 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/14"
-              eventName="click_teamspeak"
+              eventName="click_play_now"
               eventPayload={{ location: "shop_vipts" }}
-              href={vipShopContact.teamSpeakHref}
+              href={PRIMARY_SERVER_CONNECT_URL}
             >
               {page.trial.vipTsCta}
             </TrackedAnchor>
