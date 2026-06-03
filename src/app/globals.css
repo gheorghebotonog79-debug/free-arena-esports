@@ -2481,6 +2481,22 @@ img {
     }
   }
 
+  /* Mobile tap target pass: keep conversion controls comfortable after density tuning. */
+  @media (max-width: 640px) {
+    .server-status-filter-button {
+      display: inline-flex;
+      min-height: 2.5rem !important;
+      align-items: center;
+      justify-content: center;
+      padding-block: 0.58rem !important;
+    }
+
+    .premium-footer-link {
+      min-height: 2.5rem !important;
+      padding-block: 0.5rem !important;
+    }
+  }
+
 }
 
 @keyframes ambient-drift {

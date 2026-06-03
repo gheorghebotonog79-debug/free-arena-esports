@@ -323,7 +323,7 @@ export function ServerGrid() {
                   key={option.key}
                   type="button"
                   onClick={() => setStatusFilter(option.key)}
-                  className={`rounded-lg border px-3 py-2 text-xs font-black uppercase tracking-[0.12em] transition ${
+                  className={`server-status-filter-button rounded-lg border px-3 py-2 text-xs font-black uppercase tracking-[0.12em] transition ${
                     isActive
                       ? "border-arena-cyan/70 bg-arena-cyan/12 text-arena-cyan"
                       : "border-white/12 bg-black/24 text-white/54 hover:border-arena-cyan/44 hover:text-white"
