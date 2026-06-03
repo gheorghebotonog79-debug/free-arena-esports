@@ -95,7 +95,7 @@ export function JoinStaffLanding({ locale }: { locale: Locale }) {
               <TrackedAnchor
                 href={forumLinks.adminRequests}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 eventName="click_apply_staff"
                 eventPayload={{ location: "join_staff_hero", channel: "forum" }}
                 className="button-glow inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-arena-green px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
@@ -106,7 +106,7 @@ export function JoinStaffLanding({ locale }: { locale: Locale }) {
               <TrackedAnchor
                 href={DISCORD_URL}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 eventName="click_join_discord"
                 eventPayload={{ location: "join_staff_hero" }}
                 className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#98a3ff]/35 bg-[#5865f2]/12 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-[#98a3ff]/70 hover:bg-[#5865f2]/20"

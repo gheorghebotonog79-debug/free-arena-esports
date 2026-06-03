@@ -152,7 +152,7 @@ export function ForumDerbyPanel() {
                 key={topic.id}
                 href={topic.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="group rounded-lg border border-white/8 bg-white/[0.035] px-3 py-2 transition hover:border-arena-cyan/40 hover:bg-arena-cyan/10"
               >
                 <span className="line-clamp-1 text-sm font-bold text-white group-hover:text-arena-cyan">
@@ -176,7 +176,7 @@ export function ForumDerbyPanel() {
       <a
         href={forumUrl}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className="button-ghost mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
       >
         {t("open")}

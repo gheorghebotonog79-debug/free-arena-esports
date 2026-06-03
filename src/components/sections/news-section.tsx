@@ -236,7 +236,7 @@ function LiveOpsBoard() {
           <a
             href={forumLinks.announcements}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
           >
             {t("ops.cta.forum")}

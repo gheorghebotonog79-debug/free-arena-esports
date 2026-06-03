@@ -104,7 +104,7 @@ function CommunityCard({
     <a
       href={href}
       target={external ? "_blank" : undefined}
-      rel={external ? "noreferrer" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
       className={`server-tactical-card neon-hover ${variantClass} server-tactical-card--online home-community-card group flex h-full min-w-0 flex-col p-5`}
       data-occupancy="low"
       data-status="online"

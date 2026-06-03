@@ -163,7 +163,7 @@ export function ForumActivitySection({ locale }: { locale: Locale }) {
               eventName="click_forum"
               eventPayload={{ location: "forum_activity_intro" }}
               href={forumLinks.home}
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
             >
               {page.cta}
@@ -181,7 +181,7 @@ export function ForumActivitySection({ locale }: { locale: Locale }) {
                 eventName="click_forum"
                 eventPayload={{ location: "forum_activity_card", title }}
                 href={href}
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 <TacticalCardChrome />

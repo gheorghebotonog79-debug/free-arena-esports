@@ -80,7 +80,7 @@ export function LiveChatLauncher() {
               <a
                 href={DISCORD_URL}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="group flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.045] p-3 transition hover:border-[#98a3ff]/45 hover:bg-[#5865f2]/12"
                 onClick={() => trackEvent("click_join_discord", { location: "live_chat_launcher" })}
               >
@@ -116,7 +116,7 @@ export function LiveChatLauncher() {
               <a
                 href={forumLinks.support}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="group flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.045] p-3 transition hover:border-arena-green/45 hover:bg-arena-green/10"
                 onClick={() => trackEvent("click_forum", { location: "live_chat_launcher" })}
               >

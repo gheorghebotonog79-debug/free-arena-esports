@@ -214,7 +214,7 @@ export function TrustProofSection({ locale }: { locale: Locale }) {
                 eventPayload={{ location: "trust_proof", title }}
                 href={href}
                 key={title}
-                rel={href.startsWith("http") ? "noreferrer" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 target={href.startsWith("http") ? "_blank" : undefined}
               >
                 {card}

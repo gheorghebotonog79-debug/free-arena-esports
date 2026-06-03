@@ -211,7 +211,7 @@ export function HeroCinematic() {
             <TrackedAnchor
               href="https://discord.gg/freearena"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               eventName="click_join_discord"
               eventPayload={{ location: "homepage_hero" }}
               className="button-ghost inline-flex min-h-14 items-center justify-center gap-3 border border-cyan-300/42 bg-black/38 px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-white transition hover:border-cyan-200 hover:bg-cyan-300/10"
@@ -262,7 +262,7 @@ export function HeroCinematic() {
                 eventPayload={{ location: "homepage_hero_feature", target: title }}
                 href={href}
                 key={title}
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 {content}

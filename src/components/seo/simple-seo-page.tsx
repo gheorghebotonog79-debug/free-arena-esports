@@ -46,7 +46,7 @@ export function SimpleSeoPage({
               <a
                 href={action.href}
                 target={action.external ? "_blank" : undefined}
-                rel={action.external ? "noreferrer" : undefined}
+                rel={action.external ? "noopener noreferrer" : undefined}
                 className="button-glow mt-8 inline-flex items-center gap-2 rounded-lg border border-transparent bg-arena-cyan px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
               >
                 {action.label}

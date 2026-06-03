@@ -320,7 +320,7 @@ function CommunityChannel({
     <a
       href={href}
       target={external ? "_blank" : undefined}
-      rel={external ? "noreferrer" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
       className="cyber-panel cyber-card group min-h-44 p-5"
     >
       <div className="relative z-10 flex h-full flex-col">

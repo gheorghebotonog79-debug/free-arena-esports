@@ -287,7 +287,7 @@ export function SiteHeader() {
               <a
                 href={forumLinks.home}
                 target="_blank"
-                rel="noreferrer"
+              rel="noopener noreferrer"
                 className="neon-nav-link header-nav-link hidden min-h-12 items-center gap-2 whitespace-nowrap px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/72 transition hover:text-white 2xl:inline-flex"
                 onClick={() => trackNavigationItem("forum", "header_quick_action")}
               >
@@ -339,7 +339,7 @@ export function SiteHeader() {
               key={item.key}
               href={item.href}
               target={item.href.startsWith("http") ? "_blank" : undefined}
-              rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+              rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
               className="header-community-menu__item inline-flex items-center gap-2 px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/76 transition"
               role="menuitem"
               onClick={() => {
@@ -374,7 +374,7 @@ export function SiteHeader() {
                   key={item.key}
                   href={item.href}
                   target={isExternal ? "_blank" : undefined}
-                  rel={isExternal ? "noreferrer" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
                   className={className}
                   onClick={() => trackNavigationItem(item.key, "header_mobile_nav")}
                 >

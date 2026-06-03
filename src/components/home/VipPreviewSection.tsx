@@ -88,7 +88,7 @@ export function VipPreviewSection() {
                   eventName="click_shop_vip"
                   eventPayload={{ location: "vip_preview", package: key }}
                   href={forumLinks.vipRequests}
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   {t("cta")}

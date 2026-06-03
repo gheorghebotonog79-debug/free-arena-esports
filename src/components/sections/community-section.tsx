@@ -279,7 +279,7 @@ export function CommunitySection() {
                     <a
                       href={channel.href}
                       target={channel.external ? "_blank" : undefined}
-                      rel={channel.external ? "noreferrer" : undefined}
+                      rel={channel.external ? "noopener noreferrer" : undefined}
                       onClick={() => {
                         if (channel.key === "discord") {
                           trackEvent("click_join_discord", { location: "community_section" });

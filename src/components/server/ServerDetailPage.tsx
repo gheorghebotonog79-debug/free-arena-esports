@@ -419,7 +419,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
                 </p>
               </div>
               <div className="grid gap-2 sm:grid-cols-3 lg:w-[34rem]">
-                <a href="https://discord.gg/freearena" target="_blank" rel="noreferrer" className="button-glow inline-flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-arena-green" onClick={() => trackEvent("click_join_discord", { location: "legacy_server_community", server: server.key })}>
+                <a href="https://discord.gg/freearena" target="_blank" rel="noopener noreferrer" className="button-glow inline-flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-arena-green" onClick={() => trackEvent("click_join_discord", { location: "legacy_server_community", server: server.key })}>
                   <MessageSquare size={17} aria-hidden="true" />
                   Discord
                 </a>
@@ -427,7 +427,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
                   <Headphones size={17} aria-hidden="true" />
                   TeamSpeak
                 </a>
-                <a href={forumLinks.support} target="_blank" rel="noreferrer" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10" onClick={() => trackEvent("click_forum", { location: "legacy_server_community", server: server.key })}>
+                <a href={forumLinks.support} target="_blank" rel="noopener noreferrer" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10" onClick={() => trackEvent("click_forum", { location: "legacy_server_community", server: server.key })}>
                   <MessageSquare size={17} aria-hidden="true" />
                   Forum
                 </a>

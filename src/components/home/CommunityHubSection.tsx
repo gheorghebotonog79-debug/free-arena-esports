@@ -284,7 +284,7 @@ function CommunityHubCard({
               href={mainHref}
               eventName={mainEventName}
               eventPayload={{ location: "community_hub", target: title }}
-              rel={mainHref.startsWith("http") ? "noreferrer" : undefined}
+              rel={mainHref.startsWith("http") ? "noopener noreferrer" : undefined}
               target={mainHref.startsWith("http") ? "_blank" : undefined}
               className="server-join-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
             >
@@ -318,7 +318,7 @@ function CommunityHubCard({
                 href={secondaryHref}
                 eventName={secondaryEventName}
                 eventPayload={{ location: "community_hub", target: title }}
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 target="_blank"
                 className="server-details-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
               >

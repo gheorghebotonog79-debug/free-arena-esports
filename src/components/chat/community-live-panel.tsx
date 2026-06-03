@@ -56,7 +56,7 @@ export function CommunityLivePanel() {
                 key={channel.key}
                 href={channel.href}
                 target={channel.external ? "_blank" : undefined}
-                rel={channel.external ? "noreferrer" : undefined}
+                rel={channel.external ? "noopener noreferrer" : undefined}
                 className="group rounded-lg border border-white/10 bg-white/[0.045] p-3 transition hover:border-arena-cyan/40 hover:bg-arena-cyan/10"
               >
                 <div className="flex items-center justify-between gap-3">

@@ -173,10 +173,10 @@ export function SiteFooter() {
           </FooterColumn>
 
           <FooterColumn title={t("columns.community")} tone="respawn">
-            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_community", target: "forum" }} href={forumLinks.home} target="_blank" rel="noreferrer" className={footerLinkClass}>
+            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_community", target: "forum" }} href={forumLinks.home} target="_blank" rel="noopener noreferrer" className={footerLinkClass}>
               {t("community.forum")}
             </TrackedAnchor>
-            <TrackedAnchor eventName="click_join_discord" eventPayload={{ location: "footer_community" }} href={DISCORD_URL} target="_blank" rel="noreferrer" className={footerLinkClass}>
+            <TrackedAnchor eventName="click_join_discord" eventPayload={{ location: "footer_community" }} href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className={footerLinkClass}>
               {t("community.discord")}
             </TrackedAnchor>
             <TrackedAnchor eventName="click_teamspeak" eventPayload={{ location: "footer_community" }} href={TEAMSPEAK_URL} className={footerLinkClass}>
@@ -188,13 +188,13 @@ export function SiteFooter() {
           </FooterColumn>
 
           <FooterColumn title={t("columns.support")} tone="cs2">
-            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_support", target: "rules" }} href={forumLinks.rules} target="_blank" rel="noreferrer" className={footerLinkClass}>
+            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_support", target: "rules" }} href={forumLinks.rules} target="_blank" rel="noopener noreferrer" className={footerLinkClass}>
               {t("support.rules")}
             </TrackedAnchor>
-            <TrackedAnchor eventName="click_apply_staff" eventPayload={{ location: "footer_support", target: "admin_requests" }} href={forumLinks.adminRequests} target="_blank" rel="noreferrer" className={footerLinkClass}>
+            <TrackedAnchor eventName="click_apply_staff" eventPayload={{ location: "footer_support", target: "admin_requests" }} href={forumLinks.adminRequests} target="_blank" rel="noopener noreferrer" className={footerLinkClass}>
               {t("support.adminRequests")}
             </TrackedAnchor>
-            <TrackedAnchor eventName="click_shop_vip" eventPayload={{ location: "footer_support", target: "vip_requests" }} href={forumLinks.vipRequests} target="_blank" rel="noreferrer" className={footerLinkClass}>
+            <TrackedAnchor eventName="click_shop_vip" eventPayload={{ location: "footer_support", target: "vip_requests" }} href={forumLinks.vipRequests} target="_blank" rel="noopener noreferrer" className={footerLinkClass}>
               {t("support.vipRequests")}
             </TrackedAnchor>
             <TrackedLink eventName="click_contact" eventPayload={{ location: "footer_support", target: "contact" }} href={routes.contact} className={footerLinkClass}>

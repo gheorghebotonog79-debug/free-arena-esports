@@ -467,7 +467,7 @@ function CommunityLink({
       eventPayload={{ location: "player_progress_community", target: label.toLowerCase() }}
       href={href}
       target={external ? "_blank" : undefined}
-      rel={external ? "noreferrer" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
       className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-3 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10"
     >
       <Icon size={17} aria-hidden="true" />

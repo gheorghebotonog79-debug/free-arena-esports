@@ -109,7 +109,7 @@ export function RecruitmentTerminalSection() {
                     eventPayload={{ location: "recruitment_terminal_routes", route: key }}
                     href={href}
                     key={key}
-                    rel={href.startsWith("http") ? "noreferrer" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                     target={href.startsWith("http") ? "_blank" : undefined}
                   >
                     <span className="inline-flex items-center gap-2">
@@ -229,7 +229,7 @@ function RecruitmentCard({
             eventName="click_apply_staff"
             eventPayload={{ location: "recruitment_terminal", role: roleKey, route: routeLabel }}
             href={routeHref}
-            rel={routeHref.startsWith("http") ? "noreferrer" : undefined}
+            rel={routeHref.startsWith("http") ? "noopener noreferrer" : undefined}
             target={routeHref.startsWith("http") ? "_blank" : undefined}
           >
             {applyLabel}

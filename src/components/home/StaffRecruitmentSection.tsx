@@ -87,7 +87,7 @@ export function StaffRecruitmentSection({ locale }: { locale: Locale }) {
                   eventName="click_join_discord"
                   eventPayload={{ location: "homepage_staff_block" }}
                   href={DISCORD_URL}
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   <MessageSquare size={18} aria-hidden="true" />

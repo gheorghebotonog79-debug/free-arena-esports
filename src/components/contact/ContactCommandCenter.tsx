@@ -283,7 +283,7 @@ function ContactChannelCard({
                 location: "contact_command_center",
               })}
               className="server-join-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] transition sm:col-span-2"
-              rel={isExternalHttp ? "noreferrer" : undefined}
+              rel={isExternalHttp ? "noopener noreferrer" : undefined}
               target={isExternalHttp ? "_blank" : undefined}
             >
               {card.primaryLabel}

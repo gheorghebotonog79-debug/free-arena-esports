@@ -147,7 +147,7 @@ export function HomeActivitySection({ locale }: { locale: Locale }) {
               <TrackedAnchor
                 href="https://discord.gg/freearena"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 eventName="click_join_discord"
                 eventPayload={{ location: "homepage_events" }}
                 className="server-join-button inline-flex min-h-12 items-center justify-center gap-2 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] transition"

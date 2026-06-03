@@ -131,7 +131,7 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
               <TrackedAnchor
                 href={DISCORD_TICKET_URL}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 eventName="click_join_discord"
                 eventPayload={{ location: "shop_hero_ticket" }}
                 className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-cyan-200/24 bg-cyan-300/8 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/14"
@@ -333,7 +333,7 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                 eventName="click_shop_vip"
                 eventPayload={{ location: "shop_custom_contact", channel: "discord" }}
                 href={DISCORD_TICKET_URL}
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 {page.activation.customCta}
@@ -343,7 +343,7 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                 eventName="click_forum"
                 eventPayload={{ location: "shop_custom_contact" }}
                 href={forumLinks.vipRequests}
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 {page.activation.forumCta}
@@ -393,13 +393,13 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
                 : "There is no automatic checkout yet. Purchase is handled through a Discord ticket with manual confirmation and server activation."}
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <TrackedAnchor className="button-glow inline-flex min-h-12 items-center justify-center rounded-lg bg-orange-400 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-orange-200" eventName="click_shop_vip" eventPayload={{ location: "shop_cta", package: "gold" }} href={DISCORD_TICKET_URL} rel="noreferrer" target="_blank">
+              <TrackedAnchor className="button-glow inline-flex min-h-12 items-center justify-center rounded-lg bg-orange-400 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-orange-200" eventName="click_shop_vip" eventPayload={{ location: "shop_cta", package: "gold" }} href={DISCORD_TICKET_URL} rel="noopener noreferrer" target="_blank">
                 {page.cta.gold}
               </TrackedAnchor>
-              <TrackedAnchor className="button-glow inline-flex min-h-12 items-center justify-center rounded-lg bg-cyan-300 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-cyan-100" eventName="click_shop_vip" eventPayload={{ location: "shop_cta", package: "diamond" }} href={DISCORD_TICKET_URL} rel="noreferrer" target="_blank">
+              <TrackedAnchor className="button-glow inline-flex min-h-12 items-center justify-center rounded-lg bg-cyan-300 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-black transition hover:bg-cyan-100" eventName="click_shop_vip" eventPayload={{ location: "shop_cta", package: "diamond" }} href={DISCORD_TICKET_URL} rel="noopener noreferrer" target="_blank">
                 {page.cta.diamond}
               </TrackedAnchor>
-              <TrackedAnchor className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/12" eventName="click_join_discord" eventPayload={{ location: "shop_cta" }} href={DISCORD_TICKET_URL} rel="noreferrer" target="_blank">
+              <TrackedAnchor className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/12" eventName="click_join_discord" eventPayload={{ location: "shop_cta" }} href={DISCORD_TICKET_URL} rel="noopener noreferrer" target="_blank">
                 <MessageSquare size={16} aria-hidden="true" />
                 {page.cta.discord}
               </TrackedAnchor>
@@ -540,7 +540,7 @@ function VipPackageCard({
             eventName="click_shop_vip"
             eventPayload={{ location: "shop_package_card", package: tier }}
             href={DISCORD_TICKET_URL}
-            rel="noreferrer"
+            rel="noopener noreferrer"
             target="_blank"
           >
             {vipPackage.cta}

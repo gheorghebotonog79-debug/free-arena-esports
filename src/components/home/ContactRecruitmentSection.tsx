@@ -268,7 +268,7 @@ export function ContactRecruitmentSection({ locale }: { locale: Locale }) {
             eventName="click_forum"
             eventPayload={{ location: "homepage_contact_recruitment", target: "game_proposal" }}
             href={forumLinks.support}
-            rel="noreferrer"
+            rel="noopener noreferrer"
             target="_blank"
           >
             <MessagesSquare size={18} aria-hidden="true" />
