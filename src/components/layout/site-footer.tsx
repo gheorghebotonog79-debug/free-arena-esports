@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { TacticalCardChrome } from "@/components/home/HomeTacticalPrimitives";
 import { FooterIpCopyButton } from "@/components/layout/footer-ip-copy-button";
+import { officialContactChannels } from "@/lib/contact";
 import { forumLinks } from "@/lib/forum-links";
 import { routes } from "@/lib/routes";
 import { getCanonicalServerPath } from "@/lib/server-url";
@@ -12,7 +13,7 @@ import { publicServers, type PublicServerSlug } from "@/lib/servers";
 const DISCORD_URL = "https://discord.gg/freearena";
 const TEAMSPEAK_ADDRESS = "ts.free-arena.ro";
 const TEAMSPEAK_URL = `ts3server://${TEAMSPEAK_ADDRESS}`;
-const FOOTER_CONTACT_EMAIL = "gheorghe.botonog79@gmail.com";
+const FOOTER_CONTACT_EMAIL = officialContactChannels.generalEmail;
 
 type FooterTone = "cs16" | "respawn" | "cs2" | "global";
 
@@ -196,9 +197,9 @@ export function SiteFooter() {
             <TrackedAnchor eventName="click_shop_vip" eventPayload={{ location: "footer_support", target: "vip_requests" }} href={forumLinks.vipRequests} target="_blank" rel="noreferrer" className={footerLinkClass}>
               {t("support.vipRequests")}
             </TrackedAnchor>
-            <TrackedAnchor eventName="click_forum" eventPayload={{ location: "footer_support", target: "contact" }} href={`mailto:${FOOTER_CONTACT_EMAIL}`} className={footerLinkClass}>
+            <TrackedLink eventName="click_forum" eventPayload={{ location: "footer_support", target: "contact" }} href={routes.contact} className={footerLinkClass}>
               {t("support.contact")}
-            </TrackedAnchor>
+            </TrackedLink>
           </FooterColumn>
 
           <FooterColumn title={t("columns.legal")} tone="global">
