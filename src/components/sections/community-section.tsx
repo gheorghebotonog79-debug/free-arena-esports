@@ -332,6 +332,7 @@ export function CommunitySection() {
                 alt={t("asset.alt")}
                 width={150}
                 height={84}
+                sizes="(min-width: 640px) 144px, calc(100vw - 4.5rem)"
                 className="h-24 w-full rounded-lg object-cover shadow-[0_18px_52px_rgba(0,0,0,0.3)] sm:h-20 sm:w-36"
               />
               <div>

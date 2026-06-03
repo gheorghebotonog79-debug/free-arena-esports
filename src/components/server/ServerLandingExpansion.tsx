@@ -236,6 +236,7 @@ function GallerySection({ landing }: { landing: ServerLandingPageContent }) {
                   alt={item.alt}
                   width={180}
                   height={180}
+                  sizes="(min-width: 768px) 180px, 42vw"
                   className="max-h-36 w-auto object-contain drop-shadow-[0_0_28px_rgba(56,213,255,0.22)]"
                 />
               </div>

@@ -32,7 +32,18 @@ const securityHeaders = [
   },
 ];
 
+const publicAssetCacheHeaders = [
+  {
+    key: "Cache-Control",
+    value: "public, max-age=86400, stale-while-revalidate=604800",
+  },
+];
+
 const nextConfig: NextConfig = {
+  images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 2_592_000,
+  },
   poweredByHeader: false,
   serverExternalPackages: ["gamedig"],
   async redirects() {
@@ -101,6 +112,22 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        source: "/assets/:path*",
+        headers: publicAssetCacheHeaders,
+      },
+      {
+        source: "/og/:path*",
+        headers: publicAssetCacheHeaders,
+      },
+      {
+        source: "/og-image.png",
+        headers: publicAssetCacheHeaders,
+      },
+      {
+        source: "/favicon.ico",
+        headers: publicAssetCacheHeaders,
+      },
       {
         source: "/:path*",
         headers: securityHeaders,
