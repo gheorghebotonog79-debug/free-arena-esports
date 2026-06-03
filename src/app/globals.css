@@ -1415,6 +1415,878 @@ img {
     transform: scaleX(1);
   }
 
+  /* Homepage density pass: keep the premium shell, trim oversized landing-page spacing. */
+  .neon-page-shell {
+    --home-section-y: clamp(1.65rem, 2.8vw, 2.8rem);
+    --home-section-y-tight: clamp(1.18rem, 2.35vw, 2.2rem);
+  }
+
+  .neon-page-shell > .neon-section,
+  .neon-page-shell > .fa-premium-section,
+  .neon-page-shell > .fa-premium-section-tight {
+    padding-top: var(--home-section-y) !important;
+    padding-bottom: var(--home-section-y) !important;
+  }
+
+  .neon-page-shell > .fa-premium-section-tight {
+    padding-top: var(--home-section-y-tight) !important;
+    padding-bottom: var(--home-section-y-tight) !important;
+  }
+
+  .neon-page-shell .neon-section h2.neon-heading,
+  .neon-page-shell .fa-premium-section-tight h2.neon-heading,
+  .premium-footer .neon-heading {
+    font-size: clamp(2rem, 4.2vw, 4.45rem) !important;
+    line-height: 0.9 !important;
+  }
+
+  .neon-page-shell .section-badge-label {
+    padding: 0.42rem 0.82rem !important;
+  }
+
+  .neon-page-shell .server-status-badge,
+  .premium-footer .server-status-badge {
+    padding: 0.22rem 0.55rem !important;
+    letter-spacing: 0.11em !important;
+  }
+
+  .neon-page-shell .server-copy-button,
+  .neon-page-shell .server-join-button,
+  .neon-page-shell .server-disabled-button,
+  .neon-page-shell .server-details-button,
+  .premium-footer .server-copy-button,
+  .premium-footer .server-join-button,
+  .premium-footer .server-disabled-button,
+  .premium-footer .server-details-button {
+    min-height: 2.38rem !important;
+    padding-block: 0.62rem !important;
+  }
+
+  .neon-hero--wow {
+    min-height: clamp(31.5rem, 68vh, 36.5rem);
+  }
+
+  .neon-hero--wow > .relative.z-10 {
+    min-height: clamp(31.5rem, 68svh, 36.5rem) !important;
+    padding-top: clamp(5.25rem, 7vw, 7rem) !important;
+    padding-bottom: clamp(1.2rem, 2.2vw, 2rem) !important;
+  }
+
+  .hero-copy-reveal {
+    padding-bottom: clamp(1.45rem, 3vw, 2.25rem) !important;
+  }
+
+  .hero-wow-title {
+    margin-top: clamp(1rem, 2.2vw, 1.5rem) !important;
+    font-size: clamp(2.8rem, 8vw, 6.15rem) !important;
+  }
+
+  .hero-wow-title + p {
+    margin-top: 0.75rem !important;
+    font-size: clamp(1.12rem, 2.2vw, 1.75rem) !important;
+  }
+
+  .hero-wow-subtitle {
+    margin-top: 1.15rem !important;
+    font-size: clamp(1.12rem, 2.35vw, 1.78rem) !important;
+  }
+
+  .hero-energy-line {
+    margin-top: 0.65rem !important;
+  }
+
+  .hero-copy-reveal > p:not(.neon-kicker) {
+    margin-top: 1rem !important;
+    max-width: 42rem !important;
+    font-size: 0.98rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .hero-copy-reveal > div.mt-8 {
+    margin-top: 1.35rem !important;
+  }
+
+  .hero-copy-reveal .cyber-red-button,
+  .hero-copy-reveal .button-ghost {
+    min-height: 2.85rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  .hero-feature-card {
+    min-height: 6.35rem !important;
+    gap: 0.7rem !important;
+    padding: 0.82rem !important;
+  }
+
+  .hero-feature-icon {
+    width: 2.45rem !important;
+    height: 2.45rem !important;
+  }
+
+  .hero-feature-icon svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+
+  .hero-feature-card strong {
+    font-size: 0.78rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .hero-feature-card span.mt-2 {
+    display: -webkit-box !important;
+    overflow: hidden;
+    font-size: 0.78rem !important;
+    line-height: 1.35 !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .hero-feature-card .mt-2 {
+    margin-top: 0.35rem !important;
+  }
+
+  .hero-feature-card .pt-4 {
+    padding-top: 0.65rem !important;
+  }
+
+  .server-spotlight-section {
+    margin-top: 0;
+  }
+
+  .server-spotlight-section .mt-8,
+  .community-hub-section .mt-9,
+  .recruitment-terminal-section .mt-9,
+  .hall-legends-section .mt-8,
+  .hall-legends-section .mt-9,
+  .vip-preview-section .mt-9 {
+    margin-top: clamp(1.35rem, 2.5vw, 2rem) !important;
+  }
+
+  .server-spotlight-section .gap-5,
+  .community-hub-section .gap-5,
+  .recruitment-terminal-section .gap-5,
+  .hall-legends-section .gap-5,
+  .vip-preview-section .gap-5 {
+    gap: 1rem !important;
+  }
+
+  .server-spotlight-card.server-tactical-card {
+    min-height: 19.5rem;
+  }
+
+  .server-spotlight-cover,
+  .server-spotlight-cover > .relative {
+    min-height: 6.35rem !important;
+  }
+
+  .server-spotlight-cover > .relative {
+    padding: 0.85rem !important;
+  }
+
+  .server-spotlight-cover .server-card__icon {
+    width: 2.85rem !important;
+    height: 2.85rem !important;
+  }
+
+  .server-spotlight-cover .server-card__icon img {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+  }
+
+  .server-spotlight-card > .relative.z-10.flex {
+    padding: 0.75rem !important;
+  }
+
+  .server-spotlight-card .server-card__title {
+    font-size: clamp(1.55rem, 2.1vw, 2.05rem) !important;
+  }
+
+  .server-spotlight-card p,
+  .server-spotlight-card dd {
+    line-height: 1.35 !important;
+  }
+
+  .server-spotlight-card > .relative.z-10.flex > p:first-child {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .server-spotlight-card dl,
+  .server-spotlight-card .mt-4 {
+    margin-top: 0.65rem !important;
+  }
+
+  .server-spotlight-card .server-player-bar {
+    display: none;
+  }
+
+  .server-spotlight-card .server-metric {
+    padding: 0.52rem !important;
+  }
+
+  .server-spotlight-card .server-ip-row {
+    padding-block: 0.5rem !important;
+  }
+
+  .server-spotlight-card .flex.flex-wrap.gap-2 {
+    max-height: 1.85rem;
+    overflow: hidden;
+  }
+
+  .server-spotlight-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-top: 0.75rem !important;
+  }
+
+  .server-spotlight-actions .server-details-button {
+    grid-column: 1 / -1;
+  }
+
+  .server-spotlight-actions > :is(a, button, span) {
+    min-height: 2.35rem !important;
+  }
+
+  .server-tag {
+    padding-block: 0.18rem !important;
+    padding-inline: 0.52rem !important;
+  }
+
+  .community-hub-card.server-tactical-card {
+    min-height: 18rem;
+  }
+
+  .community-hub-card.server-tactical-card,
+  .recruitment-terminal-card.server-tactical-card,
+  .vip-preview-card {
+    padding: 0.85rem !important;
+  }
+
+  .community-hub-icon {
+    width: 3.25rem !important;
+    height: 3.25rem !important;
+  }
+
+  .community-hub-icon svg {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+
+  .community-hub-card .server-card__title {
+    margin-top: 1rem !important;
+    font-size: clamp(1.4rem, 2vw, 2.05rem) !important;
+  }
+
+  .community-hub-card p.mt-5 {
+    display: -webkit-box;
+    overflow: hidden;
+    margin-top: 0.65rem !important;
+    line-height: 1.4 !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .community-hub-card .pt-8 {
+    padding-top: 0.75rem !important;
+  }
+
+  .recruitment-terminal-card.server-tactical-card {
+    min-height: 19rem;
+  }
+
+  .recruitment-route-panel.server-tactical-card {
+    padding: 0.85rem !important;
+  }
+
+  .recruitment-route-link {
+    min-height: 2.35rem !important;
+  }
+
+  .recruitment-terminal-icon {
+    width: 3.15rem !important;
+    height: 3.15rem !important;
+  }
+
+  .recruitment-terminal-icon svg {
+    width: 1.65rem !important;
+    height: 1.65rem !important;
+  }
+
+  .recruitment-terminal-card .server-card__title {
+    margin-top: 1rem !important;
+    font-size: clamp(1.35rem, 2vw, 1.9rem) !important;
+  }
+
+  .recruitment-terminal-card > .relative.z-10 p.mt-4 {
+    display: -webkit-box;
+    overflow: hidden;
+    line-height: 1.4 !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .recruitment-terminal-card p.mt-4,
+  .recruitment-terminal-card .mt-5,
+  .recruitment-terminal-card ul.mt-3 {
+    margin-top: 0.55rem !important;
+  }
+
+  .recruitment-terminal-lists {
+    display: grid;
+    gap: 0.7rem;
+    margin-top: 0.75rem;
+  }
+
+  .recruitment-terminal-list {
+    min-width: 0;
+  }
+
+  .recruitment-terminal-list ul {
+    margin-top: 0.48rem !important;
+    gap: 0.35rem !important;
+  }
+
+  @media (min-width: 768px) {
+    .recruitment-terminal-lists {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .recruitment-terminal-line {
+    display: -webkit-box !important;
+    overflow: hidden;
+    min-height: 0;
+    line-height: 1.45 !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .recruitment-terminal-card .pt-6 {
+    padding-top: 0.75rem !important;
+  }
+
+  .recruitment-terminal-card .mt-3.rounded-lg {
+    margin-top: 0.55rem !important;
+    padding: 0.48rem !important;
+  }
+
+  .recruitment-terminal-card .mt-3.rounded-lg p {
+    line-height: 1.25 !important;
+  }
+
+  .hall-legends-stat.server-tactical-card {
+    min-height: 4.7rem;
+    padding: 0.7rem !important;
+  }
+
+  .hall-legends-stat .server-card__title {
+    margin-top: 0.55rem !important;
+    font-size: 1.7rem !important;
+  }
+
+  .hall-legend-card--champion {
+    min-height: 17rem;
+    padding: 0.85rem !important;
+  }
+
+  .hall-legend-card--champion .server-card__region {
+    margin-top: 1.35rem !important;
+  }
+
+  .hall-legend-card--champion .server-card__title {
+    margin-top: 0.65rem !important;
+    font-size: clamp(2rem, 5vw, 3.5rem) !important;
+  }
+
+  .hall-legend-card--champion dl {
+    padding-top: 0.9rem !important;
+  }
+
+  .hall-legend-row {
+    min-height: 4.15rem;
+    padding: 0.7rem !important;
+  }
+
+  .hall-legend-row .relative.z-10 {
+    gap: 0.8rem !important;
+  }
+
+  .hall-legend-rank {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+  }
+
+  .hall-legend-medal {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  .vip-preview-card {
+    min-height: 17.5rem;
+  }
+
+  .vip-preview-icon {
+    width: 3.15rem !important;
+    height: 3.15rem !important;
+  }
+
+  .vip-preview-card .server-card__title {
+    margin-top: 1rem !important;
+    font-size: clamp(1.55rem, 2.6vw, 2.25rem) !important;
+  }
+
+  .vip-preview-card p.mt-4 {
+    display: -webkit-box;
+    overflow: hidden;
+    line-height: 1.4 !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .vip-preview-card p.mt-4,
+  .vip-preview-card .mt-6,
+  .vip-preview-card ul.mt-3 {
+    margin-top: 0.8rem !important;
+  }
+
+  .vip-preview-benefit {
+    display: -webkit-box !important;
+    overflow: hidden;
+    min-height: 0;
+    line-height: 1.45 !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .vip-preview-section .mt-6.flex {
+    margin-top: 1rem !important;
+    padding: 0.7rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .home-path-card {
+    min-height: 16.5rem;
+    padding: 0.75rem !important;
+  }
+
+  .home-path-card--action {
+    min-height: 15.5rem;
+  }
+
+  .home-path-card .server-card__icon {
+    width: 3.15rem !important;
+    height: 3.15rem !important;
+  }
+
+  .home-path-card .server-card__icon img {
+    width: 2.4rem !important;
+    height: 2.4rem !important;
+  }
+
+  .home-path-card .server-player-core {
+    min-height: 3.8rem;
+    margin-top: 0.58rem !important;
+    padding: 0.55rem !important;
+  }
+
+  .home-path-card .server-player-bar {
+    display: none;
+  }
+
+  .home-path-card .server-player-count {
+    font-size: clamp(1.35rem, 2.1vw, 1.85rem);
+  }
+
+  .home-path-card p.mt-4,
+  .home-path-card .mt-4 {
+    margin-top: 0.6rem !important;
+  }
+
+  .home-path-card > .relative.z-10 > p.mt-4 {
+    display: -webkit-box;
+    overflow: hidden;
+    line-height: 1.4 !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .home-path-card .flex.flex-wrap.gap-2 {
+    max-height: 1.75rem;
+    overflow: hidden;
+  }
+
+  .home-path-card .pt-6 {
+    padding-top: 0.7rem !important;
+  }
+
+  .home-path-card .server-ip-row {
+    padding-block: 0.65rem !important;
+  }
+
+  .home-unified-card,
+  .home-forum-card,
+  .home-community-card,
+  .home-feature-panel {
+    min-height: 12rem;
+    padding: 0.8rem !important;
+  }
+
+  .home-trust-card {
+    min-height: 12.5rem;
+    padding: 0.8rem !important;
+  }
+
+  .home-feature-panel .server-card__icon,
+  .home-unified-card .server-card__icon,
+  .home-forum-card .server-card__icon,
+  .home-trust-card .server-card__icon,
+  .home-community-card .server-card__icon {
+    width: 2.85rem !important;
+    height: 2.85rem !important;
+  }
+
+  .home-feature-panel .server-card__title,
+  .home-unified-card .server-card__title,
+  .home-forum-card .server-card__title,
+  .home-trust-card .server-card__title,
+  .home-community-card .server-card__title {
+    margin-top: 0.85rem !important;
+    font-size: clamp(1.25rem, 2vw, 1.75rem) !important;
+    line-height: 0.98 !important;
+  }
+
+  .home-feature-panel p.mt-4,
+  .home-unified-card p.mt-4,
+  .home-unified-card p.mt-3,
+  .home-forum-card p.mt-3,
+  .home-trust-card p.mt-2,
+  .home-community-card p.mt-5 {
+    display: -webkit-box;
+    overflow: hidden;
+    margin-top: 0.6rem !important;
+    line-height: 1.4 !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .home-feature-panel .mt-5,
+  .home-unified-card .mt-5,
+  .home-forum-card .mt-5,
+  .home-trust-card .mt-5,
+  .home-community-card .mt-5 {
+    margin-top: 0.7rem !important;
+  }
+
+  .home-feature-panel .pt-7,
+  .home-unified-card .pt-5,
+  .home-forum-card .pt-5,
+  .home-trust-card .pt-5,
+  .home-community-card .pt-5 {
+    padding-top: 0.8rem !important;
+  }
+
+  .home-trust-card .server-player-core {
+    min-height: 3.8rem !important;
+    padding: 0.55rem !important;
+    aspect-ratio: auto !important;
+  }
+
+  .home-trust-card .server-player-core svg {
+    width: 1.55rem !important;
+    height: 1.55rem !important;
+  }
+
+  .home-trust-card .server-player-core p {
+    margin-top: 0.45rem !important;
+    padding-inline: 0 !important;
+    font-size: 0.66rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .news-command-card,
+  .warzone-status-card,
+  .community-portal-card {
+    min-height: 11.25rem !important;
+    padding: 0.8rem !important;
+  }
+
+  .news-command-card .mt-5,
+  .news-command-card .mt-4,
+  .news-command-card .pt-5 {
+    margin-top: 0.7rem !important;
+    padding-top: 0.75rem !important;
+  }
+
+  .news-command-card .news-card__title {
+    font-size: clamp(1.35rem, 2.1vw, 1.85rem) !important;
+  }
+
+  .news-command-card p.line-clamp-4 {
+    -webkit-line-clamp: 3;
+  }
+
+  .footer-tactical-card,
+  .premium-footer-column.server-tactical-card {
+    min-height: 9rem;
+  }
+
+  .site-footer__brand-panel.footer-tactical-card,
+  .premium-footer-brand.server-tactical-card {
+    min-height: 13.5rem;
+  }
+
+  .premium-footer-ip-panel.server-tactical-card {
+    min-height: 13.5rem;
+  }
+
+  .premium-footer {
+    padding-top: clamp(1.75rem, 2.6vw, 2.55rem) !important;
+    padding-bottom: clamp(1.5rem, 2.3vw, 2.25rem) !important;
+  }
+
+  .premium-footer-brand.server-tactical-card,
+  .premium-footer-ip-panel.server-tactical-card,
+  .premium-footer-column.server-tactical-card {
+    padding: 1rem !important;
+  }
+
+  .premium-footer .site-footer__brand {
+    margin-top: 0.9rem !important;
+    font-size: clamp(2.15rem, 4.4vw, 4.25rem) !important;
+  }
+
+  .premium-footer .site-footer__brand-subtitle,
+  .premium-footer .site-footer__brand-subtitle + p,
+  .premium-footer .mt-7 {
+    margin-top: 0.72rem !important;
+  }
+
+  .premium-footer .site-footer__brand-subtitle + p {
+    display: -webkit-box;
+    overflow: hidden;
+    line-height: 1.45 !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .premium-footer-brand .site-footer__badge {
+    padding: 0.28rem 0.55rem !important;
+    font-size: 0.62rem !important;
+  }
+
+  .premium-footer-ip-panel .mt-5.grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem !important;
+  }
+
+  .premium-footer-ip-row {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 2.75rem;
+    padding: 0.45rem;
+  }
+
+  .footer-ip-copy-button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .premium-footer-link {
+    min-height: 1.82rem;
+    padding: 0.34rem 0.5rem;
+  }
+
+  .premium-footer-meta-link {
+    min-height: 2.85rem;
+    padding: 0.52rem;
+  }
+
+  @media (min-width: 768px) {
+    .premium-footer-ip-row {
+      grid-template-columns: minmax(0, 1fr) auto;
+      min-height: 2.25rem;
+      padding: 0.35rem;
+    }
+
+    .footer-ip-copy-button {
+      width: auto;
+      min-width: 4.7rem;
+      padding-inline: 0.52rem !important;
+    }
+
+    .premium-footer-meta-link {
+      min-height: 2.55rem;
+      padding: 0.45rem;
+    }
+
+    .premium-footer-column.server-tactical-card {
+      padding: 0.78rem !important;
+    }
+
+    .premium-footer-column.server-tactical-card .relative.z-10 {
+      gap: 0.36rem !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .neon-page-shell {
+      --home-section-y: 1.65rem;
+      --home-section-y-tight: 1.35rem;
+    }
+
+    .neon-hero--wow,
+    .neon-hero--wow > .relative.z-10 {
+      min-height: auto !important;
+    }
+
+    .neon-hero--wow > .relative.z-10 {
+      padding-top: 5rem !important;
+    }
+
+    .hero-copy-reveal > p:not(.neon-kicker) {
+      font-size: 0.94rem !important;
+      line-height: 1.5 !important;
+    }
+
+    .hero-feature-card {
+      min-height: 4.95rem !important;
+      padding: 0.68rem !important;
+    }
+
+    .hero-feature-card span.mt-2 {
+      -webkit-line-clamp: 1;
+    }
+
+    .hero-feature-card .pt-4 {
+      padding-top: 0.4rem !important;
+    }
+
+    .server-spotlight-card dl {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .server-spotlight-cover,
+    .server-spotlight-cover > .relative {
+      min-height: 5.65rem !important;
+    }
+
+    .recruitment-terminal-card ul {
+      gap: 0.35rem !important;
+    }
+
+    .hall-legends-section dl.mt-8 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.5rem !important;
+    }
+
+    .hall-legends-stat.server-tactical-card {
+      min-height: 4.2rem !important;
+      padding: 0.55rem !important;
+    }
+
+    .hall-legends-stat dt {
+      gap: 0.25rem !important;
+      font-size: 0.58rem !important;
+      letter-spacing: 0.08em !important;
+    }
+
+    .hall-legends-stat .server-card__title {
+      font-size: 1.25rem !important;
+    }
+
+    .hall-legend-card--champion dl {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.45rem !important;
+    }
+
+    .hall-legend-row .relative.z-10 {
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: center;
+    }
+
+    .hall-legend-row .relative.z-10 > dl {
+      grid-column: 2;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%;
+    }
+
+    .hall-legend-row h3 {
+      font-size: 1.2rem !important;
+      margin-top: 0.25rem !important;
+    }
+
+    .hall-legend-metric {
+      padding: 0.45rem !important;
+    }
+
+    .home-path-card .server-actions-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .premium-footer > .mx-auto > .mt-5.grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem !important;
+    }
+
+    .premium-footer-column.server-tactical-card {
+      padding: 0.75rem !important;
+      font-size: 0.78rem !important;
+    }
+
+    .premium-footer-link {
+      min-height: 1.85rem;
+      padding: 0.36rem 0.45rem;
+      font-size: 0.76rem !important;
+    }
+
+    .premium-footer-ip-row {
+      min-height: 2.35rem;
+      gap: 0.45rem;
+    }
+
+    .server-spotlight-card.server-tactical-card,
+    .community-hub-card.server-tactical-card,
+    .recruitment-terminal-card.server-tactical-card,
+    .hall-legend-card--champion,
+    .vip-preview-card,
+    .home-path-card,
+    .home-path-card--action,
+    .home-unified-card,
+    .home-forum-card,
+    .home-trust-card,
+    .home-community-card,
+    .home-feature-panel,
+    .news-command-card,
+    .warzone-status-card,
+    .community-portal-card {
+      min-height: 0 !important;
+    }
+
+    .server-spotlight-cover,
+    .server-spotlight-cover > .relative {
+      min-height: 8rem !important;
+    }
+
+    .community-hub-card .server-card__title,
+    .recruitment-terminal-card .server-card__title,
+    .vip-preview-card .server-card__title {
+      margin-top: 1rem !important;
+    }
+
+    .home-path-card .server-player-core {
+      min-height: 0 !important;
+    }
+
+    .premium-footer-brand.server-tactical-card,
+    .premium-footer-ip-panel.server-tactical-card,
+    .premium-footer-column.server-tactical-card,
+    .footer-tactical-card,
+    .site-footer__brand-panel.footer-tactical-card {
+      min-height: 0 !important;
+    }
+  }
+
 }
 
 @keyframes ambient-drift {

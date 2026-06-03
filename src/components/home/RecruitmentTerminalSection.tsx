@@ -215,8 +215,10 @@ function RecruitmentCard({
           {text.description}
         </p>
 
-        <RecruitmentList label={text.requirements} items={requirements} />
-        <RecruitmentList label={text.responsibilities} items={responsibilities} />
+        <div className="recruitment-terminal-lists">
+          <RecruitmentList label={text.requirements} items={requirements} />
+          <RecruitmentList label={text.responsibilities} items={responsibilities} />
+        </div>
 
         <div className="mt-auto pt-6">
           <p className="mb-3 text-xs font-black uppercase tracking-[0.16em] text-white/38">
@@ -255,7 +257,7 @@ function RecruitmentCard({
 
 function RecruitmentList({ items, label }: { items: string[]; label: string }) {
   return (
-    <div className="mt-5">
+    <div className="recruitment-terminal-list">
       <p className="text-xs font-black uppercase tracking-[0.16em] text-white/38">{label}</p>
       <ul className="mt-3 grid gap-2">
         {items.map((item) => (
