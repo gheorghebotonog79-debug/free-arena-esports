@@ -942,6 +942,12 @@ img {
     backdrop-filter: blur(20px) saturate(140%);
   }
 
+  .community-hub-icon {
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.06),
+      0 0 34px rgb(var(--card-glow-rgb) / 0.18);
+  }
+
   .community-hub-card .server-status-badge {
     max-width: min(14rem, 48vw);
     white-space: normal;

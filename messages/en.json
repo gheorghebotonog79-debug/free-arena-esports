@@ -600,8 +600,8 @@
         "secondary": "Apply staff"
       },
       "teamspeak": {
-        "title": "TeamSpeak 3",
-        "description": "Stable voice for players, clans, and staff. Server: {address}",
+        "title": "TeamSpeak",
+        "description": "Stable voice for players, clans, and staff.",
         "activityFallback": "TS3 voice server",
         "activityOnline": "TS3 online",
         "activityUsers": "{users}/{maxUsers} online",

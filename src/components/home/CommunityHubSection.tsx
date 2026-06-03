@@ -170,7 +170,7 @@ export function CommunityHubSection() {
           <CommunityHubCard
             Icon={Headphones}
             activity={teamSpeakActivity}
-            description={t("cards.teamspeak.description", { address: TEAMSPEAK_ADDRESS })}
+            description={t("cards.teamspeak.description")}
             mainCta={t("cards.teamspeak.cta")}
             mainHref={TEAMSPEAK_URL}
             mainEventName="click_teamspeak"
@@ -234,8 +234,8 @@ function CommunityHubCard({
       <div className="server-card__shine" aria-hidden="true" />
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex items-start justify-between gap-4">
-          <span className="server-card__icon grid size-16 shrink-0 place-items-center">
-            <Icon size={32} className="server-card__accent-icon" aria-hidden="true" />
+          <span className="server-card__icon community-hub-icon grid size-20 shrink-0 place-items-center">
+            <Icon size={40} className="server-card__accent-icon" aria-hidden="true" />
           </span>
           <span className="server-status-badge inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em]">
             <span className="server-status-badge__dot size-2 rounded-full" aria-hidden="true" />
@@ -243,7 +243,7 @@ function CommunityHubCard({
           </span>
         </div>
 
-        <h3 className="server-card__title mt-8 font-display text-[clamp(2rem,3vw,3.35rem)] font-black uppercase leading-none text-white">
+        <h3 className="server-card__title mt-9 font-display text-[clamp(2rem,3vw,3.35rem)] font-black uppercase leading-none text-white">
           {title}
         </h3>
         <p className="server-card__region mt-2 text-xs font-black uppercase tracking-[0.18em]">
