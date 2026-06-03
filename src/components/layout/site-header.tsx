@@ -7,6 +7,7 @@ import {
   Headphones,
   Home,
   Info,
+  Mail,
   Menu,
   MessageCircle,
   RadioTower,
@@ -29,6 +30,7 @@ const primaryNavigationItems = [
   { href: routes.rankings, key: "rankings", external: false, Icon: Trophy },
   { href: routes.shop, key: "shop", external: false, Icon: ShoppingCart },
   { href: routes.about, key: "about", external: false, Icon: Info },
+  { href: routes.contact, key: "contact", external: false, Icon: Mail },
 ] as const;
 
 const communityNavigationItems = [
@@ -41,12 +43,14 @@ const mobileNavigationItems = [
   primaryNavigationItems[0],
   primaryNavigationItems[1],
   ...communityNavigationItems,
+  primaryNavigationItems[5],
   primaryNavigationItems[2],
   primaryNavigationItems[3],
   primaryNavigationItems[4],
 ] as const;
 
 const navigationEvents: Partial<Record<string, AnalyticsEventName>> = {
+  contact: "click_contact",
   discord: "click_join_discord",
   forum: "click_forum",
   shop: "click_shop_vip",
@@ -284,13 +288,13 @@ export function SiteHeader() {
                 href={forumLinks.home}
                 target="_blank"
                 rel="noreferrer"
-                className="neon-nav-link header-nav-link hidden min-h-12 items-center gap-2 whitespace-nowrap px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/72 transition hover:text-white lg:inline-flex"
+                className="neon-nav-link header-nav-link hidden min-h-12 items-center gap-2 whitespace-nowrap px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/72 transition hover:text-white 2xl:inline-flex"
                 onClick={() => trackNavigationItem("forum", "header_quick_action")}
               >
                 <MessageCircle size={15} className="header-nav-link__icon" aria-hidden="true" />
                 Forum
               </a>
-              <span className="header-live-pill hidden min-h-12 items-center gap-2 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] md:inline-flex">
+              <span className="header-live-pill hidden min-h-12 items-center gap-2 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] 2xl:inline-flex">
                 <span className="header-live-pulse" aria-hidden="true" />
                 <RadioTower size={15} aria-hidden="true" />
                 <span>{t("live")}</span>

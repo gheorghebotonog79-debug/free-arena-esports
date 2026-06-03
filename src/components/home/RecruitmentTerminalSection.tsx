@@ -15,9 +15,10 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { TrackedAnchor } from "@/components/analytics/TrackedLink";
+import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { forumLinks } from "@/lib/forum-links";
 import type { AnalyticsEventName } from "@/lib/analytics";
+import { routes } from "@/lib/routes";
 
 const DISCORD_URL = "https://discord.gg/freearena";
 const EMAIL_ADDRESS = "gheorghe.botonog79@gmail.com";
@@ -128,6 +129,8 @@ export function RecruitmentTerminalSection() {
             <RecruitmentCard
               Icon={role.Icon}
               applyLabel={t("apply")}
+              contactLabel={t("contact.cta")}
+              contactPrompt={t("contact.prompt")}
               key={role.key}
               requirements={[t(`roles.${role.key}.requirements.one`), t(`roles.${role.key}.requirements.two`)]}
               responsibilities={[t(`roles.${role.key}.responsibilities.one`), t(`roles.${role.key}.responsibilities.two`)]}
@@ -154,6 +157,8 @@ export function RecruitmentTerminalSection() {
 function RecruitmentCard({
   Icon,
   applyLabel,
+  contactLabel,
+  contactPrompt,
   requirements,
   responsibilities,
   roleKey,
@@ -165,6 +170,8 @@ function RecruitmentCard({
 }: {
   Icon: LucideIcon;
   applyLabel: string;
+  contactLabel: string;
+  contactPrompt: string;
   requirements: string[];
   responsibilities: string[];
   roleKey: RecruitmentTone;
@@ -226,6 +233,20 @@ function RecruitmentCard({
             {applyLabel}
             <ArrowRight size={15} aria-hidden="true" />
           </TrackedAnchor>
+          <div className="mt-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 text-center">
+            <p className="text-[0.68rem] font-black uppercase leading-5 tracking-[0.12em] text-white/42">
+              {contactPrompt}
+            </p>
+            <TrackedLink
+              className="mt-2 inline-flex items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-cyan-200 transition hover:text-white"
+              eventName="click_contact"
+              eventPayload={{ location: "recruitment_terminal", role: roleKey }}
+              href={routes.contact}
+            >
+              {contactLabel}
+              <ArrowRight size={14} aria-hidden="true" />
+            </TrackedLink>
+          </div>
         </div>
       </div>
     </article>

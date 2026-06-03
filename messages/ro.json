@@ -24,7 +24,8 @@
       "ts3": "TS3",
       "rankings": "Clasamente",
       "shop": "Shop",
-      "about": "Despre noi"
+      "about": "Despre noi",
+      "contact": "Contact"
     },
     "live": "Live",
     "join": "Intră",
@@ -312,6 +313,12 @@
       "eyebrow": "Comunitate",
       "title": "Continua in hub-ul FREE-ARENA",
       "copy": "Foloseste Discord, TeamSpeak si forumul pentru suport, anunturi, voice si discutii cu staff-ul."
+    },
+    "support": {
+      "eyebrow": "Suport conectare",
+      "title": "Probleme de conectare?",
+      "text": "Contactează echipa FREE-ARENA.",
+      "cta": "Contactează-ne"
     },
     "items": {
       "cs16": {
@@ -602,7 +609,7 @@
   "CommunityHub": {
     "eyebrow": "Community Hub",
     "title": "Comunitatea FREE-ARENA",
-    "copy": "Forum, Discord și TeamSpeak într-un hub clar pentru cereri, suport, voice și comunicare cu staff-ul.",
+    "copy": "Forum, Discord, TeamSpeak și Contact într-un hub clar pentru cereri, suport, voice și comunicare cu staff-ul.",
     "cards": {
       "forum": {
         "title": "Forum",
@@ -630,6 +637,12 @@
         "copy": "Copiaza adresa",
         "copied": "Copiat",
         "toastCopied": "Adresa copiata: {address}"
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Canal oficial pentru suport, recrutare, parteneriate și comunitate.",
+        "activity": "Echipă contact",
+        "cta": "Contactează echipa"
       }
     }
   },
@@ -638,6 +651,10 @@
     "title": "Recrutare staff",
     "copy": "Aplică pentru echipa FREE-ARENA pe forum, Discord sau email. Căutăm oameni maturi, activi și corecți.",
     "apply": "APLICĂ ACUM",
+    "contact": {
+      "prompt": "Ai întrebări înainte să aplici?",
+      "cta": "Contactează echipa"
+    },
     "contacts": {
       "label": "Rute contact",
       "forum": "Forum",
@@ -731,6 +748,10 @@
     "note": "Fără plată online. Fără checkout. Doar informare și contact.",
     "benefitsLabel": "Beneficii",
     "cta": "Vezi beneficii VIP",
+    "support": {
+      "copy": "Ai întrebări despre beneficii sau activare? Contactează echipa.",
+      "cta": "Contactează echipa"
+    },
     "packages": {
       "gold": {
         "label": "Echilibrat",

@@ -90,7 +90,7 @@ export function SiteFooter() {
                   <strong>{TEAMSPEAK_ADDRESS}</strong>
                 </TrackedAnchor>
                 <TrackedAnchor
-                  eventName="click_forum"
+                  eventName="click_contact"
                   eventPayload={{ location: "footer_brand", target: "email" }}
                   href={`mailto:${FOOTER_CONTACT_EMAIL}`}
                   className={footerMetaLinkClass}
@@ -197,7 +197,7 @@ export function SiteFooter() {
             <TrackedAnchor eventName="click_shop_vip" eventPayload={{ location: "footer_support", target: "vip_requests" }} href={forumLinks.vipRequests} target="_blank" rel="noreferrer" className={footerLinkClass}>
               {t("support.vipRequests")}
             </TrackedAnchor>
-            <TrackedLink eventName="click_forum" eventPayload={{ location: "footer_support", target: "contact" }} href={routes.contact} className={footerLinkClass}>
+            <TrackedLink eventName="click_contact" eventPayload={{ location: "footer_support", target: "contact" }} href={routes.contact} className={footerLinkClass}>
               {t("support.contact")}
             </TrackedLink>
           </FooterColumn>

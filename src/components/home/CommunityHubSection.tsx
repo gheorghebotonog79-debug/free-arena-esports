@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Check, Copy, ExternalLink, Headphones, MessageCircle, MessagesSquare } from "lucide-react";
+import { ArrowRight, Check, Copy, ExternalLink, Headphones, Mail, MessageCircle, MessagesSquare } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -8,6 +8,7 @@ import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { CopyToast } from "@/components/ui/copy-toast";
 import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
 import { forumLinks } from "@/lib/forum-links";
+import { routes } from "@/lib/routes";
 import type { ForumStatusResponse } from "@/lib/forum-status";
 import type { TeamSpeakStatusResponse } from "@/lib/teamspeak-status";
 
@@ -15,12 +16,13 @@ const DISCORD_URL = "https://discord.gg/freearena";
 const TEAMSPEAK_ADDRESS = "ts.free-arena.ro";
 const TEAMSPEAK_URL = `ts3server://${TEAMSPEAK_ADDRESS}`;
 
-type HubTone = "forum" | "discord" | "teamspeak";
+type HubTone = "forum" | "discord" | "teamspeak" | "contact";
 
 const toneClass: Record<HubTone, string> = {
   forum: "server-card--cs16",
   discord: "server-card--global",
   teamspeak: "server-card--cs2",
+  contact: "server-card--respawn",
 };
 
 function isForumStatus(value: unknown): value is ForumStatusResponse {
@@ -139,7 +141,7 @@ export function CommunityHubSection() {
           </p>
         </div>
 
-        <div className="mt-9 grid gap-5 lg:grid-cols-3">
+        <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           <CommunityHubCard
             Icon={MessagesSquare}
             activity={forumActivity}
@@ -182,6 +184,17 @@ export function CommunityHubSection() {
             title={t("cards.teamspeak.title")}
             tone="teamspeak"
           />
+          <CommunityHubCard
+            Icon={Mail}
+            activity={t("cards.contact.activity")}
+            description={t("cards.contact.description")}
+            mainCta={t("cards.contact.cta")}
+            mainHref={routes.contact}
+            mainEventName="click_contact"
+            mainInternal
+            title={t("cards.contact.title")}
+            tone="contact"
+          />
         </div>
       </div>
       <CopyToast message={toastMessage} />
@@ -196,6 +209,7 @@ function CommunityHubCard({
   mainCta,
   mainEventName,
   mainHref,
+  mainInternal = false,
   secondaryButton,
   secondaryCta,
   secondaryEventName,
@@ -208,8 +222,9 @@ function CommunityHubCard({
   activity: string;
   description: string;
   mainCta: string;
-  mainEventName: "click_forum" | "click_join_discord" | "click_teamspeak";
+  mainEventName: "click_contact" | "click_forum" | "click_join_discord" | "click_teamspeak";
   mainHref: string;
+  mainInternal?: boolean;
   secondaryButton?: {
     Icon: LucideIcon;
     label: string;
@@ -254,17 +269,29 @@ function CommunityHubCard({
         </p>
 
         <div className="mt-auto grid gap-2 pt-8">
-          <TrackedAnchor
-            href={mainHref}
-            eventName={mainEventName}
-            eventPayload={{ location: "community_hub", target: title }}
-            rel={mainHref.startsWith("http") ? "noreferrer" : undefined}
-            target={mainHref.startsWith("http") ? "_blank" : undefined}
-            className="server-join-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
-          >
-            {mainCta}
-            <ExternalLink size={15} aria-hidden="true" />
-          </TrackedAnchor>
+          {mainInternal ? (
+            <TrackedLink
+              href={mainHref}
+              eventName={mainEventName}
+              eventPayload={{ location: "community_hub", target: title }}
+              className="server-join-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
+            >
+              {mainCta}
+              <ArrowRight size={15} aria-hidden="true" />
+            </TrackedLink>
+          ) : (
+            <TrackedAnchor
+              href={mainHref}
+              eventName={mainEventName}
+              eventPayload={{ location: "community_hub", target: title }}
+              rel={mainHref.startsWith("http") ? "noreferrer" : undefined}
+              target={mainHref.startsWith("http") ? "_blank" : undefined}
+              className="server-join-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
+            >
+              {mainCta}
+              <ExternalLink size={15} aria-hidden="true" />
+            </TrackedAnchor>
+          )}
 
           {secondaryButton ? (
             <button

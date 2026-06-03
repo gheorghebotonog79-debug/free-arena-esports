@@ -1,6 +1,7 @@
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
 import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
 import { ServerFaq } from "@/components/server/ServerFaq";
+import { ServerContactSupportCard } from "@/components/server/ServerContactSupportCard";
 import { ServerFeatureGrid } from "@/components/server/ServerFeatureGrid";
 import { ServerInfoSection } from "@/components/server/ServerInfoSection";
 import { ServerInternalLinks } from "@/components/server/ServerInternalLinks";
@@ -42,6 +43,12 @@ const labels = {
       port: "Port",
       status: "Status",
       title: "Server info",
+    },
+    support: {
+      cta: "Contactează-ne",
+      eyebrow: "Suport conectare",
+      text: "Contactează echipa FREE-ARENA.",
+      title: "Probleme de conectare?",
     },
     contentLabel: "Despre server",
     features: {
@@ -86,6 +93,12 @@ const labels = {
       status: "Status",
       title: "Server info",
     },
+    support: {
+      cta: "Contact Us",
+      eyebrow: "Connection support",
+      text: "Contact the FREE-ARENA team.",
+      title: "Need help connecting?",
+    },
     contentLabel: "About server",
     features: {
       label: "Foundation",
@@ -115,6 +128,18 @@ export function ServerSeoPage({ locale, page, server }: ServerSeoPageProps) {
         <NeonAtmosphere />
         <ServerSeoHero labels={copy.hero} locale={locale} page={page} server={server} />
         <ServerInfoSection labels={copy.info} locale={locale} page={page} server={server} />
+        <section className="neon-section px-4 pb-12 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-7xl">
+            <ServerContactSupportCard
+              cta={copy.support.cta}
+              eyebrow={copy.support.eyebrow}
+              location="server_seo_support"
+              serverKey={server.key}
+              text={copy.support.text}
+              title={copy.support.title}
+            />
+          </div>
+        </section>
         <ServerLandingExpansion locale={locale} page={page} />
         <ServerFeatureGrid
           label={copy.features.label}

@@ -1,7 +1,8 @@
 import { ArrowRight, Check, Crown, Gem, Medal, type LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { TrackedAnchor } from "@/components/analytics/TrackedLink";
+import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { forumLinks } from "@/lib/forum-links";
+import { routes } from "@/lib/routes";
 
 type VipPreviewTier = {
   Icon: LucideIcon;
@@ -96,6 +97,19 @@ export function VipPreviewSection() {
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="mt-6 flex flex-col gap-3 rounded-lg border border-cyan-300/16 bg-white/[0.035] p-4 text-sm font-semibold leading-7 text-white/62 sm:flex-row sm:items-center sm:justify-between">
+          <p>{t("support.copy")}</p>
+          <TrackedLink
+            className="server-details-button inline-flex min-h-11 shrink-0 items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition"
+            eventName="click_contact"
+            eventPayload={{ location: "vip_preview" }}
+            href={routes.contact}
+          >
+            {t("support.cta")}
+            <ArrowRight size={15} aria-hidden="true" />
+          </TrackedLink>
         </div>
       </div>
     </section>

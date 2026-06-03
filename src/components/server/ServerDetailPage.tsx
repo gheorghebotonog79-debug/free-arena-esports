@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { CopyToast } from "@/components/ui/copy-toast";
+import { ServerContactSupportCard } from "@/components/server/ServerContactSupportCard";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServerStats, type ServerStatItem } from "@/components/server/ServerStats";
 import { Link } from "@/i18n/navigation";
@@ -369,6 +370,17 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
               pendingTitle={t("pending.title")}
               pendingCopy={t("pending.copy")}
               items={stats}
+            />
+          </div>
+
+          <div className="mt-10">
+            <ServerContactSupportCard
+              cta={t("support.cta")}
+              eyebrow={t("support.eyebrow")}
+              location="legacy_server_support"
+              serverKey={server.key}
+              text={t("support.text")}
+              title={t("support.title")}
             />
           </div>
 

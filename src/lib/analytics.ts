@@ -1,5 +1,6 @@
 export type AnalyticsEventName =
   | "click_apply_staff"
+  | "click_contact"
   | "click_copy_ip"
   | "click_forum"
   | "click_join_discord"

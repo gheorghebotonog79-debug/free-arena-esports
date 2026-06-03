@@ -24,7 +24,8 @@
       "ts3": "TS3",
       "rankings": "Rankings",
       "shop": "Shop",
-      "about": "About us"
+      "about": "About us",
+      "contact": "Contact"
     },
     "live": "Live",
     "join": "Join",
@@ -312,6 +313,12 @@
       "eyebrow": "Community",
       "title": "Continue in the FREE-ARENA hub",
       "copy": "Use Discord, TeamSpeak, and the forum for support, announcements, voice, and staff conversations."
+    },
+    "support": {
+      "eyebrow": "Connection support",
+      "title": "Need help connecting?",
+      "text": "Contact the FREE-ARENA team.",
+      "cta": "Contact Us"
     },
     "items": {
       "cs16": {
@@ -602,7 +609,7 @@
   "CommunityHub": {
     "eyebrow": "Community Hub",
     "title": "The FREE-ARENA community",
-    "copy": "Forum, Discord, and TeamSpeak in one clear hub for requests, support, voice, and staff communication.",
+    "copy": "Forum, Discord, TeamSpeak, and Contact in one clear hub for requests, support, voice, and staff communication.",
     "cards": {
       "forum": {
         "title": "Forum",
@@ -630,6 +637,12 @@
         "copy": "Copy address",
         "copied": "Copied",
         "toastCopied": "Address copied: {address}"
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Official channel for support, recruitment, partnerships, and community communication.",
+        "activity": "Contact team",
+        "cta": "Contact the team"
       }
     }
   },
@@ -638,6 +651,10 @@
     "title": "Staff recruitment",
     "copy": "Apply for the FREE-ARENA team through the forum, Discord, or email. We are looking for mature, active, fair people.",
     "apply": "APPLY NOW",
+    "contact": {
+      "prompt": "Questions before applying?",
+      "cta": "Contact Team"
+    },
     "contacts": {
       "label": "Contact routes",
       "forum": "Forum",
@@ -731,6 +748,10 @@
     "note": "No online payment. No checkout. Information and contact only.",
     "benefitsLabel": "Benefits",
     "cta": "View VIP benefits",
+    "support": {
+      "copy": "Questions about benefits or activation? Contact our team.",
+      "cta": "Contact our team"
+    },
     "packages": {
       "gold": {
         "label": "Balanced",
