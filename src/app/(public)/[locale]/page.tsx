@@ -8,6 +8,7 @@ import { HeroCinematic } from "@/components/home/HeroCinematic";
 import { HomeActivitySection } from "@/components/home/HomeActivitySection";
 import { HomeInternalLinks } from "@/components/home/HomeInternalLinks";
 import { NewsSection } from "@/components/home/NewsSection";
+import { RecruitmentTerminalSection } from "@/components/home/RecruitmentTerminalSection";
 import { ServerSection } from "@/components/home/ServerSection";
 import { StaffRecruitmentSection } from "@/components/home/StaffRecruitmentSection";
 import { TopPlayersSection } from "@/components/home/TopPlayersSection";
@@ -43,6 +44,7 @@ export default async function Home({ params }: HomeProps) {
         <HeroCinematic />
         <ServerSection />
         <CommunityHubSection />
+        <RecruitmentTerminalSection />
         <TopPlayersSection />
         <HomeInternalLinks locale={safeLocale} />
         <StaffRecruitmentSection locale={safeLocale} />

@@ -612,6 +612,97 @@
       }
     }
   },
+  "RecruitmentTerminal": {
+    "eyebrow": "Recruitment Terminal",
+    "title": "Staff recruitment",
+    "copy": "Apply for the FREE-ARENA team through the forum, Discord, or email. We are looking for mature, active, fair people.",
+    "apply": "APPLY NOW",
+    "contacts": {
+      "label": "Contact routes",
+      "forum": "Forum",
+      "discord": "Discord",
+      "email": "Email"
+    },
+    "labels": {
+      "requirements": "Requirements",
+      "responsibilities": "Responsibilities",
+      "route": "Apply via"
+    },
+    "roles": {
+      "forum": {
+        "title": "Forum Staff",
+        "description": "Moderate topics, guide requests, and keep discussions clean.",
+        "requirements": {
+          "one": "Steady forum activity and clear communication.",
+          "two": "Rules knowledge and patience with new players."
+        },
+        "responsibilities": {
+          "one": "Review admin requests, VIP requests, and support topics.",
+          "two": "Escalate important issues quickly to senior staff."
+        }
+      },
+      "teamspeak": {
+        "title": "TS3 Staff",
+        "description": "Voice support for players, clans, and staff rooms.",
+        "requirements": {
+          "one": "TeamSpeak presence during busy community hours.",
+          "two": "Decent microphone and calm conflict handling."
+        },
+        "responsibilities": {
+          "one": "Help users with access, rooms, and voice issues.",
+          "two": "Keep channels orderly and report abuse."
+        }
+      },
+      "cs16": {
+        "title": "CS 1.6 Staff",
+        "description": "Active admin support for classic rules and fair play.",
+        "requirements": {
+          "one": "CS 1.6 experience and evening or weekend activity.",
+          "two": "Fair decisions with no abuse and no favoritism."
+        },
+        "responsibilities": {
+          "one": "Watch chat, behavior, and possible cheating.",
+          "two": "Help players and keep the server flow clean."
+        }
+      },
+      "cs2": {
+        "title": "CS2 Staff",
+        "description": "Support the modern CS2 direction and competitive sessions.",
+        "requirements": {
+          "one": "Understand CS2 mechanics and competitive communication.",
+          "two": "Can collect clear feedback from the community."
+        },
+        "responsibilities": {
+          "one": "Follow matches, report issues, and help testing.",
+          "two": "Support a competitive, mature, predictable environment."
+        }
+      },
+      "respawn": {
+        "title": "Respawn Staff",
+        "description": "Admin support for fast rhythm, warm-up, and high-frag sessions.",
+        "requirements": {
+          "one": "Fast attention to spam, toxicity, and gameplay blocking.",
+          "two": "Understand respawn mode and new player pacing."
+        },
+        "responsibilities": {
+          "one": "Keep gameplay fluid and intervene when the experience breaks.",
+          "two": "Report bugs, problematic maps, and abusive behavior."
+        }
+      },
+      "community": {
+        "title": "Community Staff",
+        "description": "Community coordination, announcements, events, and general support.",
+        "requirements": {
+          "one": "Mature communication across Discord, forum, and voice.",
+          "two": "Availability for organization and staff follow-up."
+        },
+        "responsibilities": {
+          "one": "Receive feedback, route requests, and help onboarding.",
+          "two": "Support FREE-ARENA events and official messages."
+        }
+      }
+    }
+  },
   "PlayerProgress": {
     "heading": {
       "eyebrow": "Player Progress",

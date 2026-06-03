@@ -612,6 +612,97 @@
       }
     }
   },
+  "RecruitmentTerminal": {
+    "eyebrow": "Recruitment Terminal",
+    "title": "Recrutare staff",
+    "copy": "Aplică pentru echipa FREE-ARENA pe forum, Discord sau email. Căutăm oameni maturi, activi și corecți.",
+    "apply": "APLICĂ ACUM",
+    "contacts": {
+      "label": "Rute contact",
+      "forum": "Forum",
+      "discord": "Discord",
+      "email": "Email"
+    },
+    "labels": {
+      "requirements": "Cerințe",
+      "responsibilities": "Responsabilități",
+      "route": "Aplicare"
+    },
+    "roles": {
+      "forum": {
+        "title": "Forum Staff",
+        "description": "Moderare topicuri, ghidare cereri și menținerea discuțiilor curate.",
+        "requirements": {
+          "one": "Activitate constantă pe forum și comunicare clară.",
+          "two": "Cunoașterea regulamentului și răbdare cu jucătorii noi."
+        },
+        "responsibilities": {
+          "one": "Verifici cereri admin, cereri VIP și topicuri de suport.",
+          "two": "Escaladezi rapid problemele importante către staff-ul senior."
+        }
+      },
+      "teamspeak": {
+        "title": "TS3 Staff",
+        "description": "Suport voice pentru jucători, clanuri și camerele staff.",
+        "requirements": {
+          "one": "Prezență pe TeamSpeak în intervalele aglomerate.",
+          "two": "Microfon decent și atitudine calmă în conflicte."
+        },
+        "responsibilities": {
+          "one": "Ajuți utilizatorii cu acces, camere și probleme voice.",
+          "two": "Menții ordinea în canale și raportezi abuzurile."
+        }
+      },
+      "cs16": {
+        "title": "CS 1.6 Staff",
+        "description": "Admin activ pentru serverul classic, reguli și fair-play.",
+        "requirements": {
+          "one": "Experiență CS 1.6 și activitate seara sau în weekend.",
+          "two": "Decizii corecte, fără abuz și fără favoritisme."
+        },
+        "responsibilities": {
+          "one": "Monitorizezi chatul, comportamentul și posibilele cheat-uri.",
+          "two": "Ajuți jucătorii și păstrezi ritmul serverului curat."
+        }
+      },
+      "cs2": {
+        "title": "CS2 Staff",
+        "description": "Suport pentru direcția modernă CS2 și sesiuni competitive.",
+        "requirements": {
+          "one": "Înțelegi mecanicile CS2 și comunicarea competitivă.",
+          "two": "Poți colecta feedback clar de la comunitate."
+        },
+        "responsibilities": {
+          "one": "Urmărești meciurile, raportezi probleme și ajuți testarea.",
+          "two": "Susții un mediu competitiv, matur și predictibil."
+        }
+      },
+      "respawn": {
+        "title": "Respawn Staff",
+        "description": "Admin pentru ritm rapid, warm-up și sesiuni cu multe fraguri.",
+        "requirements": {
+          "one": "Activitate rapidă și atenție la spam, toxicitate și blocaje.",
+          "two": "Înțelegi modul respawn și ritmul jucătorilor noi."
+        },
+        "responsibilities": {
+          "one": "Menții jocul fluid și intervii când experiența se strică.",
+          "two": "Raportezi buguri, hărți problematice și comportament abuziv."
+        }
+      },
+      "community": {
+        "title": "Community Staff",
+        "description": "Coordonare comunitate, anunțuri, evenimente și suport general.",
+        "requirements": {
+          "one": "Comunicare matură pe Discord, forum și voice.",
+          "two": "Disponibilitate pentru organizare și follow-up cu staff-ul."
+        },
+        "responsibilities": {
+          "one": "Primești feedback, direcționezi cereri și ajuți onboarding-ul.",
+          "two": "Susții evenimentele și mesajele oficiale FREE-ARENA."
+        }
+      }
+    }
+  },
   "PlayerProgress": {
     "heading": {
       "eyebrow": "Player Progress",
