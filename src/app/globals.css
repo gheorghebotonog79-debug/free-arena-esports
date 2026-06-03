@@ -973,6 +973,10 @@ img {
     backdrop-filter: blur(20px) saturate(138%);
   }
 
+  .recruitment-route-panel.server-tactical-card {
+    min-height: 0;
+  }
+
   .recruitment-terminal-card.server-tactical-card {
     min-height: 35rem;
   }

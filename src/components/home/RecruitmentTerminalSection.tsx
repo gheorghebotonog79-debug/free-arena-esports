@@ -91,7 +91,7 @@ export function RecruitmentTerminalSection() {
             </p>
           </div>
 
-          <div className="recruitment-route-panel server-tactical-card server-card--global server-tactical-card--online p-4" data-occupancy="low" data-status="online">
+          <div className="recruitment-route-panel server-tactical-card server-card--global server-tactical-card--online h-fit p-4" data-occupancy="low" data-status="online">
             <div className="server-card__backdrop" aria-hidden="true" />
             <div className="server-card__noise" aria-hidden="true" />
             <div className="server-card__scanline" aria-hidden="true" />
