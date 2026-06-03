@@ -2495,6 +2495,26 @@ img {
       min-height: 2.5rem !important;
       padding-block: 0.5rem !important;
     }
+
+    .premium-footer-ip-row > a,
+    .premium-footer .footer-ip-copy-button {
+      min-height: 2.5rem !important;
+    }
+
+    .neon-page-shell .server-support-contact-button,
+    .cinematic-section .server-support-contact-button {
+      min-height: 44px !important;
+    }
+
+    .premium-footer-ip-row > a {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .premium-footer .footer-ip-copy-button {
+      padding-block: 0.5rem !important;
+    }
   }
 
 }

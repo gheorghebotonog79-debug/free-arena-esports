@@ -46,7 +46,7 @@ export function ServerContactSupportCard({
           </div>
         </div>
         <TrackedLink
-          className="server-join-button inline-flex min-h-12 shrink-0 items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] transition md:min-w-44"
+          className="server-support-contact-button server-join-button inline-flex min-h-12 shrink-0 items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] transition md:min-w-44"
           eventName="click_contact"
           eventPayload={{ location, server: serverKey }}
           href={routes.contact}
