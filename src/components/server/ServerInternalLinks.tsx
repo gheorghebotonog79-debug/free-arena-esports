@@ -1,7 +1,7 @@
 import { ArrowRight, Network } from "lucide-react";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { serverSeoPages, serverSeoSlugs } from "@/data/servers/seo-pages";
 import type { Locale } from "@/i18n/routing";
-import { Link } from "@/i18n/navigation";
 import type { ServerSeoPageData } from "@/lib/serverSeo";
 
 type ServerInternalLinksProps = {
@@ -33,22 +33,22 @@ export function ServerInternalLinks({ labels, locale, page }: ServerInternalLink
             </h2>
           </div>
           <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-            <Link href="/servers" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10">
+            <TrackedLink eventName="click_server_details" eventPayload={{ location: "server_internal_hub", server: page.slug, target: "servers" }} href="/servers" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10">
               {labels.servers}
               <ArrowRight size={17} aria-hidden="true" />
-            </Link>
-            <Link href="/discord" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-[#98a3ff]/60 hover:bg-[#5865f2]/10">
+            </TrackedLink>
+            <TrackedLink eventName="click_join_discord" eventPayload={{ location: "server_internal_hub", server: page.slug }} href="/discord" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-[#98a3ff]/60 hover:bg-[#5865f2]/10">
               {labels.discord}
               <ArrowRight size={17} aria-hidden="true" />
-            </Link>
-            <Link href="/teamspeak" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10">
+            </TrackedLink>
+            <TrackedLink eventName="click_teamspeak" eventPayload={{ location: "server_internal_hub", server: page.slug }} href="/teamspeak" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10">
               {labels.teamspeak}
               <ArrowRight size={17} aria-hidden="true" />
-            </Link>
-            <Link href="/join-staff" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-gold/60 hover:bg-arena-gold/10">
+            </TrackedLink>
+            <TrackedLink eventName="click_apply_staff" eventPayload={{ location: "server_internal_hub", server: page.slug }} href="/join-staff" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-gold/60 hover:bg-arena-gold/10">
               {labels.staff}
               <ArrowRight size={17} aria-hidden="true" />
-            </Link>
+            </TrackedLink>
           </div>
         </div>
 
@@ -58,13 +58,15 @@ export function ServerInternalLinks({ labels, locale, page }: ServerInternalLink
           </h2>
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
             {relatedServers.map((serverPage) => (
-              <Link
+              <TrackedLink
                 key={serverPage.slug}
+                eventName="click_server_details"
+                eventPayload={{ location: "server_related_links", server: page.slug, target: serverPage.slug }}
                 href={`/server/${serverPage.slug}`}
                 className="neon-border neon-hover rounded-lg border border-white/10 bg-black/28 p-4 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
               >
                 {serverPage.hero[locale].name}
-              </Link>
+              </TrackedLink>
             ))}
           </div>
         </div>

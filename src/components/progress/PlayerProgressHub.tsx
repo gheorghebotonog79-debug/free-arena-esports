@@ -17,10 +17,12 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { TrackedAnchor } from "@/components/analytics/TrackedLink";
 import { MotionCard } from "@/components/ui/motion-card";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { forumLinks } from "@/lib/forum-links";
+import type { AnalyticsEventName } from "@/lib/analytics";
 import {
   formatCompactNumber,
   formatPlayedTime,
@@ -338,9 +340,9 @@ export function PlayerProgressHub() {
                 {t("community.eyebrow")}
               </p>
               <div className="mt-4 grid gap-2 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                <CommunityLink href="https://discord.gg/freearena" label="Discord" Icon={MessageSquare} />
-                <CommunityLink href="ts3server://ts.free-arena.ro" label="TeamSpeak" Icon={Headphones} />
-                <CommunityLink href={forumLinks.home} label="Forum" Icon={ExternalLink} external />
+                <CommunityLink eventName="click_join_discord" href="https://discord.gg/freearena" label="Discord" Icon={MessageSquare} external />
+                <CommunityLink eventName="click_teamspeak" href="ts3server://ts.free-arena.ro" label="TeamSpeak" Icon={Headphones} />
+                <CommunityLink eventName="click_forum" href={forumLinks.home} label="Forum" Icon={ExternalLink} external />
               </div>
             </MotionCard>
           </div>
@@ -447,18 +449,22 @@ function SmallMetric({ label, value }: { label: string; value: string }) {
 }
 
 function CommunityLink({
+  eventName,
   href,
   label,
   Icon,
   external = false,
 }: {
+  eventName: AnalyticsEventName;
   href: string;
   label: string;
   Icon: LucideIcon;
   external?: boolean;
 }) {
   return (
-    <a
+    <TrackedAnchor
+      eventName={eventName}
+      eventPayload={{ location: "player_progress_community", target: label.toLowerCase() }}
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
@@ -467,7 +473,7 @@ function CommunityLink({
       <Icon size={17} aria-hidden="true" />
       {label}
       <ArrowRight size={15} aria-hidden="true" />
-    </a>
+    </TrackedAnchor>
   );
 }
 

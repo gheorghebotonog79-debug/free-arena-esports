@@ -12,9 +12,10 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { serverLandingPages, type ServerLandingPageContent } from "@/data/servers/landing-pages";
 import type { Locale } from "@/i18n/routing";
-import { Link } from "@/i18n/navigation";
+import type { AnalyticsEventName } from "@/lib/analytics";
 import type { ServerSeoPageData } from "@/lib/serverSeo";
 
 type ServerLandingExpansionProps = {
@@ -53,7 +54,7 @@ export function ServerLandingExpansion({ locale, page }: ServerLandingExpansionP
       <RulesSection landing={landing} />
       <CommunitySection landing={landing} />
       <GallerySection landing={landing} />
-      <DeepLinksSection landing={landing} />
+      <DeepLinksSection landing={landing} serverSlug={page.slug} />
     </>
   );
 }
@@ -252,7 +253,7 @@ function GallerySection({ landing }: { landing: ServerLandingPageContent }) {
   );
 }
 
-function DeepLinksSection({ landing }: { landing: ServerLandingPageContent }) {
+function DeepLinksSection({ landing, serverSlug }: { landing: ServerLandingPageContent; serverSlug: string }) {
   return (
     <section className="neon-section px-4 pb-14 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
@@ -266,8 +267,10 @@ function DeepLinksSection({ landing }: { landing: ServerLandingPageContent }) {
         </div>
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {landing.internalLinks.map((item) => (
-            <Link
+            <TrackedLink
               key={item.href}
+              eventName={getInternalLinkEventName(item.href)}
+              eventPayload={{ location: "server_landing_deep_links", server: serverSlug, target: item.href }}
               href={item.href}
               className="premium-card glass-panel neon-hover group h-full rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
             >
@@ -278,10 +281,30 @@ function DeepLinksSection({ landing }: { landing: ServerLandingPageContent }) {
                 <ArrowRight size={18} className="shrink-0 text-cyan-200 transition group-hover:translate-x-1" aria-hidden="true" />
               </div>
               <p className="mt-3 text-sm leading-6 text-white/62">{item.copy}</p>
-            </Link>
+            </TrackedLink>
           ))}
         </div>
       </div>
     </section>
   );
+}
+
+function getInternalLinkEventName(href: string): AnalyticsEventName {
+  if (href === "/discord") {
+    return "click_join_discord";
+  }
+
+  if (href === "/teamspeak") {
+    return "click_teamspeak";
+  }
+
+  if (href === "/join-staff") {
+    return "click_apply_staff";
+  }
+
+  if (href === "/shop") {
+    return "click_shop_vip";
+  }
+
+  return "click_server_details";
 }

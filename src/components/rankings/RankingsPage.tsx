@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Activity, ArrowRight, Clock, Crosshair, Gauge, Medal, Skull, Trophy } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { TopPlayersSection } from "@/components/home/TopPlayersSection";
 import { rankingsPageContent, type RankingMetricKey } from "@/data/rankings-page";
 import { Link } from "@/i18n/navigation";
@@ -152,8 +153,10 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {content.serverLinks.map((item) => (
-              <Link
+              <TrackedLink
                 key={item.href}
+                eventName="click_server_details"
+                eventPayload={{ location: "rankings_internal_links", target: item.href }}
                 href={item.href}
                 className="premium-card glass-panel neon-hover group rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
               >
@@ -164,7 +167,7 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
                   <ArrowRight size={18} className="shrink-0 text-cyan-200 transition group-hover:translate-x-1" aria-hidden="true" />
                 </div>
                 <p className="mt-3 text-sm leading-6 text-white/62">{item.copy}</p>
-              </Link>
+              </TrackedLink>
             ))}
           </div>
         </div>
