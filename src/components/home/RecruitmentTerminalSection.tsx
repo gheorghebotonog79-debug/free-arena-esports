@@ -22,12 +22,15 @@ import type { AnalyticsEventName } from "@/lib/analytics";
 const DISCORD_URL = "https://discord.gg/freearena";
 const EMAIL_ADDRESS = "gheorghe.botonog79@gmail.com";
 const EMAIL_URL = `mailto:${EMAIL_ADDRESS}?subject=FREE-ARENA%20staff%20application`;
+const FORUM_STAFF_APPLICATION_URL = "https://free-arena.ro/index.php?/forum/10-aplic%C4%83-pentru-grad/";
+const TS3_STAFF_APPLICATION_URL = "https://free-arena.ro/index.php?/forum/77-aplic%C4%83-pentru-grad/";
 
 type RecruitmentStatus = "open" | "limited";
 type ContactRoute = "forum" | "discord" | "email";
 type RecruitmentTone = "forum" | "teamspeak" | "cs16" | "cs2" | "respawn" | "community";
 
 type RecruitmentRole = {
+  applicationHref?: string;
   Icon: LucideIcon;
   key: RecruitmentTone;
   route: ContactRoute;
@@ -42,8 +45,8 @@ type ContactOption = {
 };
 
 const roles: RecruitmentRole[] = [
-  { Icon: FileText, key: "forum", route: "forum", status: "open" },
-  { Icon: Headphones, key: "teamspeak", route: "discord", status: "limited" },
+  { applicationHref: FORUM_STAFF_APPLICATION_URL, Icon: FileText, key: "forum", route: "forum", status: "open" },
+  { applicationHref: TS3_STAFF_APPLICATION_URL, Icon: Headphones, key: "teamspeak", route: "forum", status: "limited" },
   { Icon: Crosshair, key: "cs16", route: "forum", status: "open" },
   { Icon: Gamepad2, key: "cs2", route: "discord", status: "limited" },
   { Icon: RotateCcw, key: "respawn", route: "forum", status: "open" },
@@ -129,7 +132,7 @@ export function RecruitmentTerminalSection() {
               requirements={[t(`roles.${role.key}.requirements.one`), t(`roles.${role.key}.requirements.two`)]}
               responsibilities={[t(`roles.${role.key}.responsibilities.one`), t(`roles.${role.key}.responsibilities.two`)]}
               roleKey={role.key}
-              routeHref={contactHref[role.route]}
+              routeHref={role.applicationHref ?? contactHref[role.route]}
               routeLabel={t(`contacts.${role.route}`)}
               status={role.status}
               statusLabel={role.status === "open" ? "OPEN" : "LIMITED"}
