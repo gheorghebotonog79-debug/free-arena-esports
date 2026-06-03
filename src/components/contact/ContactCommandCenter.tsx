@@ -23,6 +23,7 @@ import {
   type ContactCardTone,
 } from "@/data/contact-command-center";
 import type { Locale } from "@/i18n/routing";
+import { trackEvent, type AnalyticsEventName } from "@/lib/analytics";
 import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
 
 const COPIED_RESET_MS = 1800;
@@ -43,6 +44,22 @@ const toneClass: Record<ContactCardTone, string> = {
   orange: "server-card--cs16",
   red: "server-card--respawn",
 };
+
+function getContactEventName(card: ContactCardContent): AnalyticsEventName {
+  if (card.key === "discord") {
+    return "click_join_discord";
+  }
+
+  if (card.key === "forum") {
+    return "click_forum";
+  }
+
+  if (card.key === "teamspeak") {
+    return "click_teamspeak";
+  }
+
+  return "click_contact";
+}
 
 export function ContactCommandCenter({ locale }: { locale: Locale }) {
   const content = contactCommandCenterContent[locale];
@@ -65,6 +82,11 @@ export function ContactCommandCenter({ locale }: { locale: Locale }) {
 
   async function handleCopy(card: ContactCardContent) {
     try {
+      trackEvent(getContactEventName(card), {
+        action: "copy",
+        channel: card.key,
+        location: "contact_command_center",
+      });
       await copyTextToClipboard(card.value);
       setCopiedKey(card.key);
       setToastMessage(content.actions.copiedToast.replace("{value}", card.value));
@@ -201,6 +223,8 @@ function ContactChannelCard({
   const Icon = iconByCardKey[card.key];
   const copyLabel = copied ? copiedLabel : card.secondaryLabel;
   const isExternalHttp = card.href?.startsWith("http") ?? false;
+  const eventName = getContactEventName(card);
+  const primaryAction = card.type === "email" ? "mailto" : card.type === "teamspeak" ? "connect" : "open";
   const primaryAriaLabel = card.type === "email"
     ? emailAriaTemplate.replace("{value}", card.value)
     : openAriaTemplate.replace("{title}", card.title);
@@ -239,6 +263,11 @@ function ContactChannelCard({
             <a
               href={`mailto:${card.value}`}
               aria-label={primaryAriaLabel}
+              onClick={() => trackEvent(eventName, {
+                action: primaryAction,
+                channel: card.key,
+                location: "contact_command_center",
+              })}
               className="server-join-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
             >
               <Mail size={15} aria-hidden="true" />
@@ -248,6 +277,11 @@ function ContactChannelCard({
             <a
               href={card.href}
               aria-label={primaryAriaLabel}
+              onClick={() => trackEvent(eventName, {
+                action: primaryAction,
+                channel: card.key,
+                location: "contact_command_center",
+              })}
               className="server-join-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] transition sm:col-span-2"
               rel={isExternalHttp ? "noreferrer" : undefined}
               target={isExternalHttp ? "_blank" : undefined}
