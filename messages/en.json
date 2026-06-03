@@ -578,6 +578,40 @@
       }
     }
   },
+  "CommunityHub": {
+    "eyebrow": "Community Hub",
+    "title": "The FREE-ARENA community",
+    "copy": "Forum, Discord, and TeamSpeak in one clear hub for requests, support, voice, and staff communication.",
+    "cards": {
+      "forum": {
+        "title": "Forum",
+        "description": "Admin requests, VIP requests, rules, support, and official announcements.",
+        "activityFallback": "Active forum",
+        "activityOnline": "Active forum",
+        "activityTopics": "{count} recent topics",
+        "cta": "Open forum",
+        "secondary": "View rules"
+      },
+      "discord": {
+        "title": "Discord",
+        "description": "Fast chat, news, events, support, and staff communication.",
+        "activity": "Discord community",
+        "cta": "Join Discord",
+        "secondary": "Apply staff"
+      },
+      "teamspeak": {
+        "title": "TeamSpeak 3",
+        "description": "Stable voice for players, clans, and staff. Server: {address}",
+        "activityFallback": "TS3 voice server",
+        "activityOnline": "TS3 online",
+        "activityUsers": "{users}/{maxUsers} online",
+        "cta": "Connect",
+        "copy": "Copy address",
+        "copied": "Copied",
+        "toastCopied": "Address copied: {address}"
+      }
+    }
+  },
   "PlayerProgress": {
     "heading": {
       "eyebrow": "Player Progress",

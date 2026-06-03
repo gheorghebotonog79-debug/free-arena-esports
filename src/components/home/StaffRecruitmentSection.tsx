@@ -41,7 +41,7 @@ export function StaffRecruitmentSection({ locale }: { locale: Locale }) {
   const page = content[locale];
 
   return (
-    <section className="neon-section px-4 pb-16 sm:px-6 lg:px-8">
+    <section id="staff" className="neon-section fa-premium-section-tight scroll-mt-32 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.42fr)]">
           <article

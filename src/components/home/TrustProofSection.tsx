@@ -37,7 +37,7 @@ const content: Record<
     eyebrow: "Trust proof",
     title: "Comunitate reala. Activitate reala.",
     copy:
-      "Nu folosim cifre inventate. Pe masura ce apar capturi reale din servere, forum sau voice, le putem urca aici.",
+      "Nu folosim cifre inventate. Statusul live, rankings RSU, forumul si voice-ul sunt traseele verificabile pentru activitatea FREE-ARENA.",
     cta: "Deschide",
     proofLabel: "Activitate verificabila",
     cards: [
@@ -87,7 +87,7 @@ const content: Record<
     eyebrow: "Trust proof",
     title: "Real community. Real activity.",
     copy:
-      "We do not use fake numbers. As real screenshots from servers, forum, or voice appear, they can be uploaded here.",
+      "We do not use fake numbers. Live status, RSU rankings, forum, and voice are the verifiable paths for FREE-ARENA activity.",
     cta: "Open",
     proofLabel: "Verifiable activity",
     cards: [
@@ -139,7 +139,7 @@ export function TrustProofSection({ locale }: { locale: Locale }) {
   const page = content[locale];
 
   return (
-    <section className="neon-section px-4 pb-16 sm:px-6 lg:px-8">
+    <section className="neon-section fa-premium-section-tight px-4 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>

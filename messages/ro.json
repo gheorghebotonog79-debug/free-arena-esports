@@ -578,6 +578,40 @@
       }
     }
   },
+  "CommunityHub": {
+    "eyebrow": "Community Hub",
+    "title": "Comunitatea FREE-ARENA",
+    "copy": "Forum, Discord si TeamSpeak intr-un hub clar pentru cereri, suport, voice si comunicare cu staff-ul.",
+    "cards": {
+      "forum": {
+        "title": "Forum",
+        "description": "Cereri admin, cereri VIP, regulament, suport si anunturi oficiale.",
+        "activityFallback": "Forum activ",
+        "activityOnline": "Forum activ",
+        "activityTopics": "{count} topicuri recente",
+        "cta": "Deschide forumul",
+        "secondary": "Vezi regulamentul"
+      },
+      "discord": {
+        "title": "Discord",
+        "description": "Chat rapid, noutati, evenimente, suport si comunicare cu staff-ul.",
+        "activity": "Discord comunitate",
+        "cta": "Intra pe Discord",
+        "secondary": "Aplica staff"
+      },
+      "teamspeak": {
+        "title": "TeamSpeak 3",
+        "description": "Voice stabil pentru jucatori, clanuri si staff. Server: {address}",
+        "activityFallback": "TS3 voice server",
+        "activityOnline": "TS3 online",
+        "activityUsers": "{users}/{maxUsers} online",
+        "cta": "Conecteaza-te",
+        "copy": "Copiaza adresa",
+        "copied": "Copiat",
+        "toastCopied": "Adresa copiata: {address}"
+      }
+    }
+  },
   "PlayerProgress": {
     "heading": {
       "eyebrow": "Player Progress",

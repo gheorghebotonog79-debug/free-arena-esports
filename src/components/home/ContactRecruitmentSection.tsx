@@ -164,7 +164,7 @@ export function ContactRecruitmentSection({ locale }: { locale: Locale }) {
   const page = content[locale];
 
   return (
-    <section className="neon-section px-4 pb-16 sm:px-6 lg:px-8">
+    <section className="neon-section fa-premium-section-tight px-4 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-5 lg:grid-cols-[minmax(0,0.95fr)_minmax(18rem,0.42fr)] lg:items-end">
           <div>

@@ -10,23 +10,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        freeArena: {
+          cyan: "#00E5FF",
+          red: "#FF1744",
+          orange: "#FF6D00",
+          background: "#050505",
+          surface: "#090909",
+          panel: "#0F1115",
+        },
         arena: {
-          ash: "#06131d",
-          black: "#020711",
-          carbon: "#0a1f2c",
-          red: "#ff2a1f",
-          green: "#11f0ff",
-          cyan: "#00d8ff",
-          gold: "#ffd34d",
+          ash: "#0F1115",
+          black: "#050505",
+          carbon: "#090909",
+          red: "#FF1744",
+          green: "#00E5FF",
+          cyan: "#00E5FF",
+          gold: "#FF6D00",
           steel: "#b8d7e8",
         },
         cyber: {
-          red: "#ff0033",
-          cyan: "#00e6ff",
-          amber: "#ff6a00",
+          red: "#FF1744",
+          cyan: "#00E5FF",
+          amber: "#FF6D00",
           steel: "#d8efff",
           black: "#050509",
-          panel: "#0b0f16",
+          panel: "#0F1115",
         },
       },
       boxShadow: {

@@ -145,7 +145,7 @@ export function ForumActivitySection({ locale }: { locale: Locale }) {
   const page = content[locale];
 
   return (
-    <section className="neon-section px-4 pb-16 sm:px-6 lg:px-8">
+    <section className="neon-section fa-premium-section-tight px-4 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
           <div>

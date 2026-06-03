@@ -310,9 +310,12 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
 
 export function HomeInternalLinks({ locale }: { locale: Locale }) {
   const page = content[locale];
+  const intro = locale === "ro"
+    ? "Pentru jucatori, staff si comunitate: server, top, VIP, admin sau hub complet."
+    : "For players, staff, and community: server, top, VIP, admin, or the full hub.";
 
   return (
-    <section className="px-4 pb-16 sm:px-6 lg:px-8">
+    <section className="fa-premium-section-tight px-4 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -322,6 +325,9 @@ export function HomeInternalLinks({ locale }: { locale: Locale }) {
             <h2 className="neon-heading mt-5 max-w-4xl font-display text-[clamp(2.3rem,5vw,4.8rem)] font-black uppercase leading-[0.9] text-white">
               {page.title}
             </h2>
+            <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-white/62">
+              {intro}
+            </p>
           </div>
         </div>
         <div className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

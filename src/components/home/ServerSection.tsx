@@ -1,5 +1,5 @@
-import { ServerWarRoom } from "@/components/home/ServerWarRoom";
+import { ServerSpotlight } from "@/components/home/ServerSpotlight";
 
 export function ServerSection() {
-  return <ServerWarRoom />;
+  return <ServerSpotlight />;
 }

@@ -207,9 +207,31 @@ export function ServerWarRoom() {
     };
   });
   const selectedServer = serverCards.find((server) => server.key === selectedServerKey) ?? null;
+  const liveServerCount = serverCards.filter((server) => server.status === "online").length;
+  const activePlayerCount = serverCards.reduce((total, server) => (
+    server.status === "online" ? total + server.players : total
+  ), 0);
+  const isRo = locale === "ro";
+  const conversionStats = [
+    {
+      label: isRo ? "Servere online" : "Online servers",
+      value: isLoading ? serverT("loading.value") : String(liveServerCount),
+      helper: isRo ? "din status live" : "from live status",
+    },
+    {
+      label: isRo ? "Jucatori acum" : "Players now",
+      value: isLoading ? serverT("loading.value") : String(activePlayerCount),
+      helper: isRo ? "numar raportat live" : "reported live",
+    },
+    {
+      label: isRo ? "Traseu rapid" : "Quick path",
+      value: isRo ? "IP + Connect" : "IP + Connect",
+      helper: isRo ? "copiaza IP sau intra direct" : "copy IP or join directly",
+    },
+  ];
 
   return (
-    <section className="neon-section px-4 pb-20 pt-12 sm:px-6 lg:px-8 lg:pb-24 lg:pt-14">
+    <section className="neon-section fa-premium-section-tight px-4 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
@@ -224,7 +246,7 @@ export function ServerWarRoom() {
             </p>
           </div>
 
-          <div className="neon-panel neon-border neon-hover neon-scanline flex flex-col gap-3 p-3 sm:flex-row sm:items-center">
+          <div className="neon-panel neon-border neon-hover neon-scanline fa-glass fa-neon-border flex flex-col gap-3 p-3 sm:flex-row sm:items-center">
             <div className="flex items-center gap-2 px-2 text-xs font-black uppercase tracking-[0.14em] text-white/54">
               <Clock3 size={16} className="text-cyan-200" aria-hidden="true" />
               {t("updated")}: {formattedLastUpdatedAt}
@@ -247,6 +269,25 @@ export function ServerWarRoom() {
             </Link>
           </div>
         </div>
+
+        <dl className="mt-7 grid gap-3 md:grid-cols-3">
+          {conversionStats.map((stat) => (
+            <div
+              key={stat.label}
+              className="fa-glass fa-neon-border fa-scanline-subtle min-w-0 p-4"
+            >
+              <dt className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-white/42">
+                {stat.label}
+              </dt>
+              <dd className="mt-2 font-display text-3xl font-black uppercase leading-none text-white">
+                {stat.value}
+              </dd>
+              <p className="mt-2 text-xs font-bold uppercase tracking-[0.12em] text-cyan-100/56">
+                {stat.helper}
+              </p>
+            </div>
+          ))}
+        </dl>
 
         <div className="server-card-grid mt-10">
           {serverCards.map((server) => (

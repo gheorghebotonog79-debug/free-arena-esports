@@ -1,9 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AlertTriangle, Check, Copy, Crown, Crosshair, Search, Skull, UsersRound } from "lucide-react";
+import { AlertTriangle, ArrowRight, Check, Copy, Crown, Crosshair, Search, Skull, UsersRound } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
 import {
   formatCompactNumber,
@@ -50,6 +51,7 @@ function filterLocalPlayers(players: PlayerProgressPlayer[] | undefined, query: 
 
 export function TopPlayersSection() {
   const t = useTranslations("PlayerProgress");
+  const locale = useLocale();
   const copiedPlayerTimeoutRef = useRef<number | null>(null);
   const [progress, setProgress] = useState<PlayerProgressResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -180,6 +182,7 @@ export function TopPlayersSection() {
   const topPlayers = players.slice(0, 5);
   const searchActive = query.trim().length >= 2;
   const shownSearchResults = searchActive ? results : [];
+  const rankingsCta = locale === "ro" ? "Vezi clasamentul complet" : "View full rankings";
 
   async function handleCopySteamId(playerId: string) {
     try {
@@ -200,7 +203,7 @@ export function TopPlayersSection() {
   }
 
   return (
-    <section id="top-players" className="neon-section scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+    <section id="top-players" className="neon-section fa-premium-section-tight scroll-mt-32 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem]">
           <div>
@@ -216,14 +219,25 @@ export function TopPlayersSection() {
                   {t("heading.copy")}
                 </p>
               </div>
-              <span className="live-badge inline-flex w-fit items-center gap-2 border border-cyan-300/24 bg-cyan-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyan-200">
-                <span className="signal-bars" aria-hidden="true">
-                  <span />
-                  <span />
-                  <span />
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                <span className="live-badge inline-flex w-fit items-center gap-2 border border-cyan-300/24 bg-cyan-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyan-200">
+                  <span className="signal-bars" aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                  </span>
+                  {t("status.live")}
                 </span>
-                {t("status.live")}
-              </span>
+                <TrackedLink
+                  href="/rankings"
+                  eventName="click_server_details"
+                  eventPayload={{ location: "homepage_top_players", target: "rankings" }}
+                  className="server-details-button inline-flex min-h-11 items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition"
+                >
+                  {rankingsCta}
+                  <ArrowRight size={15} aria-hidden="true" />
+                </TrackedLink>
+              </div>
             </div>
 
             <dl className="mt-8 grid gap-3 sm:grid-cols-3">

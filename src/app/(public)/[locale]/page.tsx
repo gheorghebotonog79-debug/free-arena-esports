@@ -1,7 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
 import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
-import { CommunitySection } from "@/components/home/CommunitySection";
+import { CommunityHubSection } from "@/components/home/CommunityHubSection";
 import { ContactRecruitmentSection } from "@/components/home/ContactRecruitmentSection";
 import { ForumActivitySection } from "@/components/home/ForumActivitySection";
 import { HeroCinematic } from "@/components/home/HeroCinematic";
@@ -38,18 +38,18 @@ export default async function Home({ params }: HomeProps) {
   return (
     <>
       <SiteHeader />
-      <main className="neon-page-shell cyber-root">
+      <main className="neon-page-shell cyber-root fa-dark-flame-bg">
         <NeonAtmosphere />
         <HeroCinematic />
         <ServerSection />
-        <HomeInternalLinks locale={safeLocale} />
-        <HomeActivitySection locale={safeLocale} />
-        <StaffRecruitmentSection locale={safeLocale} />
-        <ContactRecruitmentSection locale={safeLocale} />
-        <ForumActivitySection locale={safeLocale} />
-        <TrustProofSection locale={safeLocale} />
-        <CommunitySection />
+        <CommunityHubSection />
         <TopPlayersSection />
+        <HomeInternalLinks locale={safeLocale} />
+        <StaffRecruitmentSection locale={safeLocale} />
+        <ForumActivitySection locale={safeLocale} />
+        <HomeActivitySection locale={safeLocale} />
+        <ContactRecruitmentSection locale={safeLocale} />
+        <TrustProofSection locale={safeLocale} />
         {SHOW_TOURNAMENTS_SECTION ? <TournamentSection locale={locale} tournaments={tournaments} /> : null}
         <NewsSection locale={locale} posts={newsPosts} />
       </main>

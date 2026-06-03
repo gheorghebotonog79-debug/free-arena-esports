@@ -130,7 +130,7 @@ export function HomeActivitySection({ locale }: { locale: Locale }) {
   const page = content[locale];
 
   return (
-    <section id="events" className="neon-section scroll-mt-32 px-4 pb-16 sm:px-6 lg:px-8">
+    <section id="events" className="neon-section fa-premium-section-tight scroll-mt-32 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
           <div>
