@@ -880,14 +880,16 @@ img {
   }
 
   .server-spotlight-section {
+    position: relative;
+    margin-top: clamp(1.25rem, 3vw, 3rem);
     background:
-      radial-gradient(980px 420px at 12% 0%, rgb(var(--neon-red-rgb) / 0.1), transparent 70%),
-      radial-gradient(920px 420px at 88% 10%, rgb(var(--neon-cyan-rgb) / 0.08), transparent 72%),
-      linear-gradient(180deg, rgb(5 5 5 / 0.42), rgb(9 9 9 / 0.74));
+      radial-gradient(980px 420px at 12% 0%, rgb(var(--neon-red-rgb) / 0.07), transparent 70%),
+      radial-gradient(920px 420px at 88% 10%, rgb(var(--neon-cyan-rgb) / 0.06), transparent 72%),
+      linear-gradient(180deg, rgb(5 5 5 / 0.34), rgb(9 9 9 / 0.68));
   }
 
   .server-spotlight-card.server-tactical-card {
-    min-height: 43rem;
+    min-height: 37rem;
   }
 
   .server-spotlight-cover {
@@ -912,6 +914,14 @@ img {
 
   .server-spotlight-cover__image {
     filter: saturate(1.1) contrast(1.04);
+  }
+
+  .server-spotlight-actions > :is(a, button, span) {
+    min-height: 2.9rem;
+  }
+
+  .server-spotlight-card .server-tag {
+    padding-block: 0.22rem;
   }
 
   .community-hub-section {

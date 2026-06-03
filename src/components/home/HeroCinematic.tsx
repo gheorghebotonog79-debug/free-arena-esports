@@ -160,7 +160,7 @@ export function HeroCinematic() {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/80 to-red-500/70" aria-hidden="true" />
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-300/45 to-transparent" aria-hidden="true" />
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] w-full max-w-[96rem] flex-col justify-end px-4 pb-0 pt-20 sm:px-6 md:min-h-[44rem] lg:min-h-[49rem] lg:px-8 lg:pt-24">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] w-full max-w-[96rem] flex-col justify-end px-4 pb-8 pt-24 sm:px-6 sm:pb-10 sm:pt-28 md:min-h-[44rem] lg:min-h-[49rem] lg:px-8 lg:pb-12 lg:pt-32">
         <div className="hero-copy-reveal max-w-4xl pb-10 sm:pb-12 lg:pb-14">
           <p className="neon-kicker hero-signal-rack inline-flex max-w-full items-center gap-2 overflow-hidden px-4 py-2 text-[0.68rem] font-black uppercase tracking-[0.18em] text-white/82">
             <Gamepad2 size={15} className="text-cyber-red" aria-hidden="true" />

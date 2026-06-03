@@ -95,17 +95,17 @@ const sectionCopy: Record<
   }
 > = {
   ro: {
-    eyebrow: "Server spotlight",
-    title: "Alege produsul de joc",
-    copy: "Fiecare server este tratat ca o destinatie proprie: cover, status live, IP, connect si pagina dedicata.",
+    eyebrow: "Servere live",
+    title: "SERVER NETWORK",
+    copy: "Alege serverul tău și intră direct în joc.",
     features: "Features",
     mapUnavailable: "In verificare",
     planned: "Planificat",
   },
   en: {
-    eyebrow: "Server spotlight",
-    title: "Choose your game product",
-    copy: "Each server is treated as its own destination: cover, live status, IP, connect, and dedicated page.",
+    eyebrow: "Live servers",
+    title: "SERVER NETWORK",
+    copy: "Choose your server and jump straight into the game.",
     features: "Features",
     mapUnavailable: "Checking",
     planned: "Planned",
@@ -271,17 +271,17 @@ export function ServerSpotlight() {
   ));
 
   return (
-    <section id="server-spotlight" className="neon-section server-spotlight-section scroll-mt-32 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+    <section id="server-spotlight" className="neon-section server-spotlight-section scroll-mt-32 px-4 pb-16 pt-20 sm:px-6 sm:pt-24 lg:px-8 lg:pb-24 lg:pt-32">
       <div className="mx-auto w-full max-w-[92rem]">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-4xl">
+          <div className="max-w-3xl">
             <p className="neon-kicker section-badge-label inline-flex px-4 py-2">
               {labels.eyebrow}
             </p>
-            <h2 className="neon-heading mt-5 font-display text-[clamp(2.5rem,6vw,5.8rem)] font-black uppercase leading-[0.86] text-white">
+            <h2 className="neon-heading mt-4 font-display text-[clamp(2.25rem,4.6vw,4.5rem)] font-black uppercase leading-[0.9] text-white">
               {labels.title}
             </h2>
-            <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-white/62">
+            <p className="mt-3 max-w-2xl text-base font-semibold leading-7 text-white/68">
               {labels.copy}
             </p>
           </div>
@@ -295,7 +295,7 @@ export function ServerSpotlight() {
           </button>
         </div>
 
-        <div className="mt-9 grid gap-5 lg:grid-cols-2 2xl:grid-cols-4">
+        <div className="mt-8 grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
           {spotlightServers.map((server) => (
             <SpotlightCard
               copied={copiedServer === server.key}
@@ -358,7 +358,7 @@ function SpotlightCard({
       <div className="server-card__scanline" aria-hidden="true" />
       <div className="server-card__shine" aria-hidden="true" />
 
-      <div className="server-spotlight-cover relative min-h-56 overflow-hidden">
+      <div className="server-spotlight-cover relative min-h-48 overflow-hidden">
         <Image
           src={COVER_IMAGE}
           alt={`${server.displayName} cover`}
@@ -368,10 +368,10 @@ function SpotlightCard({
           style={{ objectPosition: server.coverPosition }}
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.58)_74%,rgba(0,0,0,0.86)),radial-gradient(420px_220px_at_24%_12%,rgb(var(--card-glow-rgb)/0.24),transparent_68%)]" aria-hidden="true" />
-        <div className="relative z-10 flex h-full min-h-56 flex-col justify-between p-5">
+        <div className="relative z-10 flex h-full min-h-48 flex-col justify-between p-4">
           <div className="flex items-start justify-between gap-3">
-            <span className="server-card__icon grid size-16 shrink-0 place-items-center">
-              <Image src={server.icon} alt="" width={52} height={52} className="size-12 object-contain" aria-hidden="true" />
+            <span className="server-card__icon grid size-14 shrink-0 place-items-center">
+              <Image src={server.icon} alt="" width={44} height={44} className="size-10 object-contain" aria-hidden="true" />
             </span>
             <span className="server-status-badge inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em]">
               <span className="server-status-badge__dot size-2 rounded-full" aria-hidden="true" />
@@ -382,37 +382,37 @@ function SpotlightCard({
             <p className="server-card__region text-xs font-black uppercase tracking-[0.18em]">
               FREE-ARENA.RO
             </p>
-            <h3 className="server-card__title mt-2 font-display text-[clamp(2rem,3vw,3rem)] font-black uppercase leading-none text-white">
+            <h3 className="server-card__title mt-2 font-display text-[clamp(1.8rem,2.35vw,2.45rem)] font-black uppercase leading-none text-white">
               {server.displayName}
             </h3>
           </div>
         </div>
       </div>
 
-      <div className="relative z-10 flex flex-1 flex-col p-5">
-        <p className="text-sm font-semibold leading-6 text-white/64">
+      <div className="relative z-10 flex flex-1 flex-col p-4">
+        <p className="text-sm font-semibold leading-6 text-white/66">
           {server.summary}
         </p>
 
-        <dl className="mt-5 grid gap-3 sm:grid-cols-2">
+        <dl className="mt-4 grid gap-2.5 sm:grid-cols-2">
           <SpotlightMetric Icon={UsersRound} label={labels.players} value={server.playersLabel} />
           <SpotlightMetric Icon={Map} label={labels.map} value={server.map} />
         </dl>
 
-        <div className="server-player-bar mt-4">
+        <div className="server-player-bar mt-3">
           <span style={{ width: `${progress}%` }} />
         </div>
 
-        <div className="mt-5">
-          <p className="mb-3 text-xs font-black uppercase tracking-[0.16em] text-white/38">{labels.serverIp}</p>
-          <div className="server-ip-row flex min-w-0 items-center gap-2 px-3 py-3">
+        <div className="mt-4">
+          <p className="mb-2.5 text-xs font-black uppercase tracking-[0.16em] text-white/38">{labels.serverIp}</p>
+          <div className="server-ip-row flex min-w-0 items-center gap-2 px-3 py-2.5">
             <RadioTower size={16} className="server-card__accent-icon shrink-0" aria-hidden="true" />
             <span className="min-w-0 truncate font-mono text-sm font-black text-white">{server.address}</span>
           </div>
         </div>
 
-        <div className="mt-5">
-          <p className="mb-3 text-xs font-black uppercase tracking-[0.16em] text-white/38">{featuresLabel}</p>
+        <div className="mt-4">
+          <p className="mb-2.5 text-xs font-black uppercase tracking-[0.16em] text-white/38">{featuresLabel}</p>
           <div className="flex flex-wrap gap-2">
             {server.features.map((feature) => (
               <span key={feature} className="server-tag px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/56">
@@ -422,7 +422,7 @@ function SpotlightCard({
           </div>
         </div>
 
-        <div className="mt-auto grid gap-2 pt-6 sm:grid-cols-2">
+        <div className="server-spotlight-actions mt-auto grid auto-rows-fr gap-2 pt-5 sm:grid-cols-2">
           {canConnect ? (
             <TrackedAnchor
               href={server.connectHref}
@@ -472,12 +472,12 @@ function SpotlightMetric({
   value: string;
 }) {
   return (
-    <div className="server-metric min-w-0 p-3">
+    <div className="server-metric min-w-0 p-2.5">
       <dt className="flex items-center gap-2 text-[0.64rem] font-black uppercase tracking-[0.14em] text-white/34">
         <Icon size={15} className="server-card__accent-icon" aria-hidden="true" />
         {label}
       </dt>
-      <dd className="mt-2 truncate text-sm font-black uppercase text-white">{value}</dd>
+      <dd className="mt-1.5 truncate text-sm font-black uppercase text-white">{value}</dd>
     </div>
   );
 }
