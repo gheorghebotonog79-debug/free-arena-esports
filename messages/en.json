@@ -724,6 +724,46 @@
       }
     }
   },
+  "VipPreview": {
+    "eyebrow": "VIP Preview",
+    "title": "VIP Packages",
+    "copy": "Quickly compare Gold, Diamond, and Queen. Benefits are shown clearly, while activation stays manual through the community.",
+    "note": "No online payment. No checkout. Information and contact only.",
+    "benefitsLabel": "Benefits",
+    "cta": "View VIP benefits",
+    "packages": {
+      "gold": {
+        "label": "Balanced",
+        "name": "Gold",
+        "description": "Premium package for active players who want identity, a reserved slot, and controlled bonuses.",
+        "benefits": {
+          "one": "Reserved slot and VIP Gold tag.",
+          "two": "Weapon menu from round 3, where the map allows it.",
+          "three": "Spawn, kill, and headshot bonuses."
+        }
+      },
+      "diamond": {
+        "label": "Premium",
+        "name": "Diamond",
+        "description": "The complete package for steady players who want extended access and visible benefits.",
+        "benefits": {
+          "one": "Includes Gold benefits.",
+          "two": "Full kit, player model, and Diamond skins.",
+          "three": "Manual revive and extra functions where rules allow."
+        }
+      },
+      "queen": {
+        "label": "Community",
+        "name": "Queen",
+        "description": "Free cosmetic rank for active community presence and special visual identity.",
+        "benefits": {
+          "one": "Queen cosmetic tag.",
+          "two": "Visible presence in the online VIP list.",
+          "three": "Access to VIP information commands."
+        }
+      }
+    }
+  },
   "PlayerProgress": {
     "heading": {
       "eyebrow": "Player Progress",

@@ -724,6 +724,46 @@
       }
     }
   },
+  "VipPreview": {
+    "eyebrow": "VIP Preview",
+    "title": "Pachete VIP",
+    "copy": "Compară rapid Gold, Diamond și Queen. Beneficiile sunt prezentate clar, iar activarea rămâne manuală prin comunitate.",
+    "note": "Fără plată online. Fără checkout. Doar informare și contact.",
+    "benefitsLabel": "Beneficii",
+    "cta": "Vezi beneficii VIP",
+    "packages": {
+      "gold": {
+        "label": "Echilibrat",
+        "name": "Gold",
+        "description": "Pachet premium pentru jucători activi care vor identitate, slot rezervat și bonusuri controlate.",
+        "benefits": {
+          "one": "Slot rezervat și tag VIP Gold.",
+          "two": "Meniu arme din runda 3, unde harta permite.",
+          "three": "Bonusuri la spawn, kill și headshot."
+        }
+      },
+      "diamond": {
+        "label": "Premium",
+        "name": "Diamond",
+        "description": "Pachetul complet pentru jucători constanți care vor acces extins și beneficii vizibile.",
+        "benefits": {
+          "one": "Include beneficiile Gold.",
+          "two": "Kit complet, model player și skinuri Diamond.",
+          "three": "Revive manual și extra funcții unde regulile permit."
+        }
+      },
+      "queen": {
+        "label": "Community",
+        "name": "Queen",
+        "description": "Grad cosmetic gratuit pentru prezență activă în comunitate și identitate vizuală specială.",
+        "benefits": {
+          "one": "Tag cosmetic Queen.",
+          "two": "Prezență vizibilă în lista VIP online.",
+          "three": "Acces la comenzile de informare VIP."
+        }
+      }
+    }
+  },
   "PlayerProgress": {
     "heading": {
       "eyebrow": "Player Progress",

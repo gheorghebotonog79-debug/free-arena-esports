@@ -13,6 +13,7 @@ import { ServerSection } from "@/components/home/ServerSection";
 import { StaffRecruitmentSection } from "@/components/home/StaffRecruitmentSection";
 import { TopPlayersSection } from "@/components/home/TopPlayersSection";
 import { TrustProofSection } from "@/components/home/TrustProofSection";
+import { VipPreviewSection } from "@/components/home/VipPreviewSection";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { TournamentSection } from "@/components/sections/tournament-section";
@@ -54,6 +55,7 @@ export default async function Home({ params }: HomeProps) {
         <TrustProofSection locale={safeLocale} />
         {SHOW_TOURNAMENTS_SECTION ? <TournamentSection locale={locale} tournaments={tournaments} /> : null}
         <NewsSection locale={locale} posts={newsPosts} />
+        <VipPreviewSection />
       </main>
       <SiteFooter />
       <LiveChatLauncher />
