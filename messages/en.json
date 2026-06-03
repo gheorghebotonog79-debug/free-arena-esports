@@ -765,6 +765,29 @@
     }
   },
   "PlayerProgress": {
+    "preview": {
+      "eyebrow": "Hall of Legends",
+      "title": "Hall of Legends",
+      "copy": "Top 5 players from the real RSU leaderboard. No invented players, no simulated lists.",
+      "statusLive": "RSU live",
+      "statusUpdating": "Updating",
+      "cta": "View full rankings",
+      "topFive": "Top 5 players",
+      "champion": "Top 1",
+      "fallbackEyebrow": "Leaderboard",
+      "fallback": "Rankings are updating.",
+      "stats": {
+        "players": "Players",
+        "kills": "Kills",
+        "points": "Leader points"
+      },
+      "labels": {
+        "points": "Points",
+        "kills": "Kills",
+        "kd": "K/D",
+        "headshots": "Headshots"
+      }
+    },
     "heading": {
       "eyebrow": "Player Progress",
       "title": "Live leaderboard",

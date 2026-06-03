@@ -1,21 +1,19 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { AlertTriangle, ArrowRight, Check, Copy, Crown, Crosshair, Search, Skull, UsersRound } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { AlertTriangle, ArrowRight, Crown, Medal, Skull, Sparkles, Trophy, UsersRound } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
-import { copyTextToClipboard } from "@/lib/copy-to-clipboard";
 import {
   formatCompactNumber,
-  formatPlayedTime,
   type PlayerProgressPlayer,
   type PlayerProgressResponse,
-  type PlayerSearchResponse,
 } from "@/lib/player-progress";
 
 const REFRESH_MS = 60_000;
-const SEARCH_DEBOUNCE_MS = 350;
+const BUNDLED_FALLBACK_UPDATED_AT = "2026-05-27T10:01:17+03:00";
+const BUNDLED_FALLBACK_TOP_PLAYER = "rds";
 
 function isProgressResponse(value: unknown): value is PlayerProgressResponse {
   return (
@@ -25,43 +23,23 @@ function isProgressResponse(value: unknown): value is PlayerProgressResponse {
   );
 }
 
-function isSearchResponse(value: unknown): value is PlayerSearchResponse {
+function getRankLabel(rank: number) {
+  return `#${String(rank).padStart(2, "0")}`;
+}
+
+function isBundledFallbackProgress(payload: PlayerProgressResponse) {
   return (
-    typeof value === "object" &&
-    value !== null &&
-    Array.isArray((value as PlayerSearchResponse).players)
+    payload.cached &&
+    payload.updatedAt === BUNDLED_FALLBACK_UPDATED_AT &&
+    payload.summary?.topPlayer?.nick === BUNDLED_FALLBACK_TOP_PLAYER
   );
 }
 
-function filterLocalPlayers(players: PlayerProgressPlayer[] | undefined, query: string) {
-  const normalizedQuery = query.trim().toLowerCase();
-
-  if (normalizedQuery.length < 2) {
-    return [];
-  }
-
-  return (players ?? []).filter((player) => {
-    return (
-      player.nick.toLowerCase().includes(normalizedQuery) ||
-      player.player.toLowerCase().includes(normalizedQuery) ||
-      player.steamId.toLowerCase().includes(normalizedQuery)
-    );
-  });
-}
-
 export function TopPlayersSection() {
-  const t = useTranslations("PlayerProgress");
-  const locale = useLocale();
-  const copiedPlayerTimeoutRef = useRef<number | null>(null);
+  const t = useTranslations("PlayerProgress.preview");
   const [progress, setProgress] = useState<PlayerProgressResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState<PlayerProgressPlayer[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
-  const [searchError, setSearchError] = useState(false);
-  const [copiedPlayerId, setCopiedPlayerId] = useState<string | null>(null);
-  const cachedProgressPlayers = progress?.players;
+  const [isUnavailable, setIsUnavailable] = useState(false);
 
   const loadProgress = useCallback(async () => {
     try {
@@ -77,10 +55,13 @@ export function TopPlayersSection() {
         throw new Error("Unexpected player progress payload");
       }
 
-      setProgress(payload);
-      setHasError(!payload.ok);
+      const hasRealRankingData = payload.ok && payload.players.length > 0 && !isBundledFallbackProgress(payload);
+
+      setProgress(hasRealRankingData ? payload : null);
+      setIsUnavailable(!hasRealRankingData);
     } catch {
-      setHasError(true);
+      setProgress(null);
+      setIsUnavailable(true);
     } finally {
       setIsLoading(false);
     }
@@ -92,225 +73,96 @@ export function TopPlayersSection() {
       void loadProgress();
     }, REFRESH_MS);
 
-    return () => {
-      window.clearInterval(interval);
-      if (copiedPlayerTimeoutRef.current !== null) {
-        window.clearTimeout(copiedPlayerTimeoutRef.current);
-      }
-    };
+    return () => window.clearInterval(interval);
   }, [loadProgress]);
 
-  useEffect(() => {
-    const value = query.trim();
-
-    if (value.length < 2) {
-      setResults([]);
-      setSearchError(false);
-      setIsSearching(false);
-      return;
-    }
-
-    const localMatches = filterLocalPlayers(cachedProgressPlayers, value);
-
-    if (localMatches.length > 0) {
-      setResults(localMatches);
-      setSearchError(false);
-      setIsSearching(false);
-    } else {
-      setResults([]);
-    }
-
-    const controller = new AbortController();
-    const timeout = window.setTimeout(async () => {
-      setIsSearching(localMatches.length === 0);
-
-      try {
-        const response = await fetch(`/api/player-progress/search?q=${encodeURIComponent(value)}`, {
-          cache: "no-store",
-          signal: controller.signal,
-        });
-
-        if (!response.ok) {
-          throw new Error("Search failed");
-        }
-
-        const payload: unknown = await response.json();
-
-        if (!isSearchResponse(payload)) {
-          throw new Error("Unexpected search payload");
-        }
-
-        let nextResults = payload.players;
-
-        nextResults = nextResults.length > 0 ? nextResults : localMatches;
-
-        if (nextResults.length === 0) {
-          const topResponse = await fetch("/api/player-progress?limit=10", {
-            cache: "no-store",
-            signal: controller.signal,
-          });
-
-          if (topResponse.ok) {
-            const topPayload: unknown = await topResponse.json();
-
-            if (isProgressResponse(topPayload)) {
-              nextResults = filterLocalPlayers(topPayload.players, value);
-            }
-          }
-        }
-
-        setResults(nextResults);
-        setSearchError(false);
-      } catch (error) {
-        if (!(error instanceof DOMException && error.name === "AbortError")) {
-          setResults(localMatches);
-          setSearchError(localMatches.length === 0);
-        }
-      } finally {
-        setIsSearching(false);
-      }
-    }, SEARCH_DEBOUNCE_MS);
-
-    return () => {
-      controller.abort();
-      window.clearTimeout(timeout);
-    };
-  }, [cachedProgressPlayers, query]);
-
-  const summary = progress?.summary;
-  const players = progress?.players ?? [];
-  const topPlayers = players.slice(0, 5);
-  const searchActive = query.trim().length >= 2;
-  const shownSearchResults = searchActive ? results : [];
-  const rankingsCta = locale === "ro" ? "Vezi clasamentul complet" : "View full rankings";
-
-  async function handleCopySteamId(playerId: string) {
-    try {
-      await copyTextToClipboard(playerId);
-      setCopiedPlayerId(playerId);
-
-      if (copiedPlayerTimeoutRef.current !== null) {
-        window.clearTimeout(copiedPlayerTimeoutRef.current);
-      }
-
-      copiedPlayerTimeoutRef.current = window.setTimeout(() => {
-        setCopiedPlayerId((current) => (current === playerId ? null : current));
-        copiedPlayerTimeoutRef.current = null;
-      }, 1800);
-    } catch {
-      setCopiedPlayerId(null);
-    }
-  }
+  const players = progress?.players.slice(0, 5) ?? [];
+  const champion = players[0] ?? null;
+  const challengers = players.slice(1, 5);
+  const summary = progress?.summary ?? null;
+  const hasLiveRankings = !isLoading && !isUnavailable && players.length > 0;
 
   return (
-    <section id="top-players" className="neon-section fa-premium-section-tight scroll-mt-32 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto w-full max-w-7xl">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem]">
-          <div>
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-              <div>
-                <p className="neon-kicker section-badge-label px-4 py-2">
-                  HALL OF FAME
-                </p>
-                <h2 className="neon-heading neon-title neon-text-pulse mt-5 max-w-4xl font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[0.84] text-white">
-                  {t("heading.title")}
-                </h2>
-                <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-white/62">
-                  {t("heading.copy")}
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
-                <span className="live-badge inline-flex w-fit items-center gap-2 border border-cyan-300/24 bg-cyan-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyan-200">
-                  <span className="signal-bars" aria-hidden="true">
-                    <span />
-                    <span />
-                    <span />
-                  </span>
-                  {t("status.live")}
-                </span>
-                <TrackedLink
-                  href="/rankings"
-                  eventName="click_server_details"
-                  eventPayload={{ location: "homepage_top_players", target: "rankings" }}
-                  className="server-details-button inline-flex min-h-11 items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition"
-                >
-                  {rankingsCta}
-                  <ArrowRight size={15} aria-hidden="true" />
-                </TrackedLink>
-              </div>
-            </div>
-
-            <dl className="mt-8 grid gap-3 sm:grid-cols-3">
-              <TopStat Icon={UsersRound} label={t("stats.players")} value={isLoading ? "0" : formatCompactNumber(summary?.totalPlayers ?? 0)} />
-              <TopStat Icon={Skull} label={t("stats.kills")} value={isLoading ? "0" : formatCompactNumber(summary?.totalKills ?? 0)} />
-              <TopStat Icon={Crosshair} label={t("stats.headshots")} value={isLoading ? "0" : formatCompactNumber(summary?.totalHeadshots ?? 0)} />
-            </dl>
-
-            {hasError ? (
-              <div className="mt-5 flex gap-3 border border-amber-300/28 bg-amber-300/10 p-4 text-sm font-semibold text-white/70">
-                <AlertTriangle size={19} className="shrink-0 text-amber-200" aria-hidden="true" />
-                <span>{t("states.error")}</span>
-              </div>
-            ) : null}
+    <section id="top-players" className="hall-legends-section neon-section scroll-mt-32 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <div className="mx-auto w-full max-w-[92rem]">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-4xl">
+            <p className="neon-kicker section-badge-label inline-flex items-center gap-2 px-4 py-2">
+              <Trophy size={15} aria-hidden="true" />
+              {t("eyebrow")}
+            </p>
+            <h2 className="neon-heading mt-5 font-display text-[clamp(2.55rem,5.8vw,5.8rem)] font-black uppercase leading-[0.86] text-white">
+              {t("title")}
+            </h2>
+            <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-white/64">
+              {t("copy")}
+            </p>
           </div>
 
-          <aside className="server-tactical-card neon-hover leaderboard-search-card h-fit p-5" data-occupancy="low" data-status="online">
-            <div className="server-card__backdrop" aria-hidden="true" />
-            <div className="server-card__noise" aria-hidden="true" />
-            <div className="server-card__scanline" aria-hidden="true" />
-            <div className="server-card__shine" aria-hidden="true" />
-            <div className="relative z-10">
-              <label className="server-card__region text-xs font-black uppercase tracking-[0.2em]" htmlFor="player-search">
-                {t("search.label")}
-              </label>
-              <div className="server-ip-row mt-3 flex items-center gap-2 px-3 py-2 focus-within:border-cyan-300/70">
-                <Search size={18} className="server-card__accent-icon shrink-0" aria-hidden="true" />
-                <input
-                  id="player-search"
-                  type="search"
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder={t("search.placeholder")}
-                  className="min-h-10 w-full bg-transparent text-sm font-black text-white outline-none placeholder:text-white/34"
-                />
-              </div>
+          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+            <span className="hall-legends-live inline-flex w-fit items-center gap-2 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyan-100">
+              <span className="signal-bars" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
+              {hasLiveRankings ? t("statusLive") : t("statusUpdating")}
+            </span>
+            <TrackedLink
+              href="/rankings"
+              eventName="click_server_details"
+              eventPayload={{ location: "homepage_hall_of_legends", target: "rankings" }}
+              className="server-details-button inline-flex min-h-11 items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition"
+            >
+              {t("cta")}
+              <ArrowRight size={15} aria-hidden="true" />
+            </TrackedLink>
+          </div>
+        </div>
 
-              <div className="mt-4 grid gap-2">
-                {!searchActive ? (
-                  <p className="server-metric p-3 text-sm font-semibold text-white/50">{t("search.min")}</p>
-                ) : isSearching ? (
-                  <p className="server-metric p-3 text-sm font-bold text-cyan-200">{t("search.loading")}</p>
-                ) : searchError ? (
-                  <p className="server-metric p-3 text-sm font-bold text-white/60">{t("search.error")}</p>
-                ) : shownSearchResults.length > 0 ? (
-                  shownSearchResults.map((player) => (
-                    <CompactPlayer
-                      copied={copiedPlayerId === player.player}
-                      key={player.player}
-                      onCopySteamId={() => void handleCopySteamId(player.player)}
-                      player={player}
-                    />
-                  ))
-                ) : (
-                  <p className="server-metric p-3 text-sm font-semibold text-white/50">{t("search.empty")}</p>
-                )}
-              </div>
-            </div>
-          </aside>
+        {hasLiveRankings && summary ? (
+          <dl className="mt-8 grid gap-3 sm:grid-cols-3">
+            <TopStat Icon={UsersRound} label={t("stats.players")} value={formatCompactNumber(summary.totalPlayers)} />
+            <TopStat Icon={Skull} label={t("stats.kills")} value={formatCompactNumber(summary.totalKills)} />
+            <TopStat Icon={Sparkles} label={t("stats.points")} value={formatCompactNumber(champion?.xp ?? summary.topPlayer?.xp ?? 0)} />
+          </dl>
+        ) : null}
 
-          <div className="lg:col-span-2">
-            {isLoading ? (
-              <LeaderboardSkeleton />
-            ) : topPlayers.length > 0 ? (
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-                {topPlayers.map((player, index) => (
-                  <PodiumCard key={player.player} player={player} rank={index + 1} />
+        <div className="mt-9">
+          {isLoading ? (
+            <LeaderboardSkeleton />
+          ) : hasLiveRankings && champion ? (
+            <div className="hall-legends-grid grid gap-5 lg:grid-cols-[minmax(0,1.06fr)_minmax(0,0.94fr)]">
+              <LegendChampion player={champion} />
+              <div className="grid gap-3">
+                <p className="server-card__region px-1 text-xs font-black uppercase tracking-[0.18em]">
+                  {t("topFive")}
+                </p>
+                {challengers.map((player, index) => (
+                  <LegendRow key={player.player} player={player} rank={index + 2} />
                 ))}
               </div>
-            ) : (
-              <p className="border border-white/10 bg-black/30 p-4 text-sm font-bold text-white/58">{t("states.empty")}</p>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="hall-legends-fallback server-tactical-card server-card--global server-tactical-card--online p-6 sm:p-7" data-occupancy="idle" data-status="online">
+              <div className="server-card__backdrop" aria-hidden="true" />
+              <div className="server-card__noise" aria-hidden="true" />
+              <div className="server-card__scanline" aria-hidden="true" />
+              <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <span className="hall-legend-fallback-icon grid size-14 shrink-0 place-items-center">
+                  <AlertTriangle size={28} className="server-card__accent-icon" aria-hidden="true" />
+                </span>
+                <div>
+                  <p className="server-card__region text-xs font-black uppercase tracking-[0.18em]">
+                    {t("fallbackEyebrow")}
+                  </p>
+                  <p className="mt-2 text-lg font-black text-white">
+                    {t("fallback")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -319,11 +171,10 @@ export function TopPlayersSection() {
 
 function TopStat({ Icon, label, value }: { Icon: LucideIcon; label: string; value: string }) {
   return (
-    <div className="server-tactical-card neon-hover leaderboard-stat-card h-full p-4" data-occupancy="low" data-status="online">
+    <div className="hall-legends-stat server-tactical-card neon-hover server-tactical-card--online h-full p-4" data-occupancy="low" data-status="online">
       <div className="server-card__backdrop" aria-hidden="true" />
       <div className="server-card__noise" aria-hidden="true" />
       <div className="server-card__scanline" aria-hidden="true" />
-      <div className="server-card__shine" aria-hidden="true" />
       <div className="relative z-10">
         <dt className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-white/46">
           <Icon size={17} className="server-card__accent-icon" aria-hidden="true" />
@@ -335,14 +186,14 @@ function TopStat({ Icon, label, value }: { Icon: LucideIcon; label: string; valu
   );
 }
 
-function PodiumCard({ player, rank }: { player: PlayerProgressPlayer; rank: number }) {
-  const isChampion = rank === 1;
+function LegendChampion({ player }: { player: PlayerProgressPlayer }) {
+  const t = useTranslations("PlayerProgress.preview");
 
   return (
     <article
-      className="server-tactical-card neon-hover server-tactical-card--online leaderboard-player-card group flex h-full min-w-0 flex-col p-5"
-      data-occupancy="low"
-      data-rank={rank}
+      className="hall-legend-card hall-legend-card--champion hall-legend-card--rank-1 server-tactical-card neon-hover server-tactical-card--online group flex min-w-0 flex-col p-5 sm:p-7"
+      data-occupancy="high"
+      data-rank="1"
       data-status="online"
     >
       <div className="server-card__backdrop" aria-hidden="true" />
@@ -350,107 +201,109 @@ function PodiumCard({ player, rank }: { player: PlayerProgressPlayer; rank: numb
       <div className="server-card__scanline" aria-hidden="true" />
       <div className="server-card__shine" aria-hidden="true" />
       <div className="relative z-10 flex h-full flex-col">
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="leaderboard-rank-medal grid size-11 place-items-center font-display text-xl font-black text-white">
-              {rank}
-            </div>
-            <div className="leaderboard-avatar grid size-12 place-items-center rounded-full" aria-hidden="true">
-              <UsersRound size={21} />
-            </div>
+            <span className="hall-legend-rank hall-legend-rank--gold grid size-16 place-items-center font-display text-2xl font-black text-white">
+              1
+            </span>
+            <span className="hall-legend-medal grid size-14 place-items-center" aria-hidden="true">
+              <Crown size={30} />
+            </span>
           </div>
-          {isChampion ? (
-            <span className="server-status-badge inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em]">
-              <Crown size={15} aria-hidden="true" />
-              Top 1
-            </span>
-          ) : (
-            <span className="server-status-badge inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em]">
-              <span className="server-status-badge__dot size-2 rounded-full" aria-hidden="true" />
-              Top {rank}
-            </span>
-          )}
+          <span className="hall-legend-badge px-3 py-1 text-[0.68rem] font-black uppercase tracking-[0.16em]">
+            {t("champion")}
+          </span>
         </div>
-        <h3 className="server-card__title mt-5 truncate font-display text-3xl font-black uppercase leading-none text-white" title={player.nick}>
+
+        <p className="server-card__region mt-8 text-xs font-black uppercase tracking-[0.18em]">
+          {getRankLabel(1)}
+        </p>
+        <h3 className="server-card__title mt-3 min-w-0 break-words font-display text-[clamp(2.55rem,6vw,5rem)] font-black uppercase leading-[0.82] text-white">
           {player.nick}
         </h3>
-        <p className="server-card__region mt-2 truncate font-mono text-xs opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
-          {player.player}
-        </p>
-        <dl className="server-player-core mt-auto grid grid-cols-2 gap-2 p-3">
-          <SmallMetric label="XP" value={formatCompactNumber(player.xp)} />
-          <SmallMetric label="Kills" value={formatCompactNumber(player.kills)} />
-          <SmallMetric label="HS" value={formatCompactNumber(player.headshots)} />
-          <SmallMetric label="Time" value={formatPlayedTime(player.playedTime)} />
+
+        <dl className="mt-auto grid gap-3 pt-8 sm:grid-cols-2">
+          <LegendMetric label={t("labels.points")} value={formatCompactNumber(player.xp)} />
+          <LegendMetric label={t("labels.kills")} value={formatCompactNumber(player.kills)} />
+          <LegendMetric label={t("labels.kd")} value={player.kdRatio.toFixed(2)} />
+          <LegendMetric label={t("labels.headshots")} value={formatCompactNumber(player.headshots)} />
         </dl>
       </div>
     </article>
   );
 }
 
-function CompactPlayer({
-  copied,
-  onCopySteamId,
-  player,
-}: {
-  copied: boolean;
-  onCopySteamId: () => void;
-  player: PlayerProgressPlayer;
-}) {
+function LegendRow({ player, rank }: { player: PlayerProgressPlayer; rank: number }) {
+  const t = useTranslations("PlayerProgress.preview");
+  const isMedalRank = rank <= 3;
+
   return (
-    <article className="server-metric group grid gap-3 p-3">
-      <div className="flex min-w-0 items-start gap-3">
-        <span className="grid size-11 shrink-0 place-items-center rounded-full border border-white/12 bg-white/[0.07] text-white/46 shadow-[0_0_24px_rgba(34,211,238,0.08)]">
-          <UsersRound size={18} aria-hidden="true" />
-        </span>
-        <div className="min-w-0 flex-1">
-          <h3 className="server-card__title truncate text-sm font-black text-white" title={player.nick}>
+    <article
+      className={`hall-legend-row hall-legend-card--rank-${rank} server-tactical-card neon-hover server-tactical-card--online min-w-0 p-4`}
+      data-occupancy={isMedalRank ? "medium" : "low"}
+      data-rank={rank}
+      data-status="online"
+    >
+      <div className="server-card__backdrop" aria-hidden="true" />
+      <div className="server-card__noise" aria-hidden="true" />
+      <div className="server-card__scanline" aria-hidden="true" />
+      <div className="server-card__shine" aria-hidden="true" />
+      <div className="relative z-10 grid gap-4 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-center">
+        <div className="flex items-center gap-3">
+          <span className="hall-legend-rank grid size-12 place-items-center font-display text-xl font-black text-white">
+            {rank}
+          </span>
+          {isMedalRank ? (
+            <span className="hall-legend-medal hall-legend-medal--small grid size-10 place-items-center" aria-hidden="true">
+              <Medal size={22} />
+            </span>
+          ) : null}
+        </div>
+
+        <div className="min-w-0">
+          <p className="server-card__region text-xs font-black uppercase tracking-[0.18em]">
+            {getRankLabel(rank)}
+          </p>
+          <h3 className="mt-2 truncate font-display text-2xl font-black uppercase text-white" title={player.nick}>
             {player.nick}
           </h3>
-          <p className="mt-1 truncate font-mono text-[0.68rem] text-white/38">
-            {player.player}
-          </p>
         </div>
-        <button
-          type="button"
-          onClick={onCopySteamId}
-          className="server-copy-button grid size-9 shrink-0 place-items-center text-white transition"
-          title={copied ? "Copied" : "Copy SteamID"}
-          aria-label={copied ? "SteamID copied" : `Copy SteamID for ${player.nick}`}
-        >
-          {copied ? <Check size={15} aria-hidden="true" /> : <Copy size={15} aria-hidden="true" />}
-        </button>
-      </div>
 
-      <dl className="grid grid-cols-4 gap-2">
-        <SmallMetric label="XP" value={formatCompactNumber(player.xp)} />
-        <SmallMetric label="Kills" value={formatCompactNumber(player.kills)} />
-        <SmallMetric label="HS" value={formatCompactNumber(player.headshots)} />
-        <SmallMetric label="Time" value={formatPlayedTime(player.playedTime)} />
-      </dl>
+        <dl className="grid grid-cols-2 gap-2 sm:w-56">
+          <LegendMetric compact label={t("labels.points")} value={formatCompactNumber(player.xp)} />
+          <LegendMetric compact label={t("labels.kills")} value={formatCompactNumber(player.kills)} />
+        </dl>
+      </div>
     </article>
   );
 }
 
-function SmallMetric({ label, value }: { label: string; value: string }) {
+function LegendMetric({ compact = false, label, value }: { compact?: boolean; label: string; value: string }) {
   return (
-    <div className="server-metric min-w-0 p-2">
-      <dt className="text-[0.64rem] font-black uppercase tracking-[0.12em] text-white/34">{label}</dt>
-      <dd className="mt-1 text-sm font-black text-white">{value}</dd>
+    <div className={`hall-legend-metric min-w-0 ${compact ? "p-2.5" : "p-3"}`}>
+      <dt className="text-[0.64rem] font-black uppercase tracking-[0.12em] text-white/36">{label}</dt>
+      <dd className={`mt-1 font-black text-white ${compact ? "text-base" : "font-display text-2xl"}`}>{value}</dd>
     </div>
   );
 }
 
 function LeaderboardSkeleton() {
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-      {Array.from({ length: 5 }).map((_, index) => (
-        <div key={index} className="server-tactical-card neon-hover leaderboard-player-card animate-pulse p-5" data-occupancy="low" data-status="loading">
-          <div className="server-card__backdrop" aria-hidden="true" />
-          <div className="server-card__noise" aria-hidden="true" />
-          <div className="server-card__scanline" aria-hidden="true" />
-        </div>
-      ))}
+    <div className="grid gap-5 lg:grid-cols-[minmax(0,1.06fr)_minmax(0,0.94fr)]">
+      <div className="server-tactical-card hall-legend-card hall-legend-card--champion animate-pulse p-5 sm:p-7" data-occupancy="low" data-status="loading">
+        <div className="server-card__backdrop" aria-hidden="true" />
+        <div className="server-card__noise" aria-hidden="true" />
+        <div className="server-card__scanline" aria-hidden="true" />
+      </div>
+      <div className="grid gap-3">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <div key={index} className="server-tactical-card hall-legend-row animate-pulse p-4" data-occupancy="low" data-status="loading">
+            <div className="server-card__backdrop" aria-hidden="true" />
+            <div className="server-card__noise" aria-hidden="true" />
+            <div className="server-card__scanline" aria-hidden="true" />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

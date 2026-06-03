@@ -765,6 +765,29 @@
     }
   },
   "PlayerProgress": {
+    "preview": {
+      "eyebrow": "Hall of Legends",
+      "title": "Hall of Legends",
+      "copy": "Top 5 jucători din clasamentul real RSU. Fără jucători inventați, fără liste simulate.",
+      "statusLive": "RSU live",
+      "statusUpdating": "Se actualizează",
+      "cta": "Vezi clasamentul complet",
+      "topFive": "Top 5 jucători",
+      "champion": "Top 1",
+      "fallbackEyebrow": "Clasament",
+      "fallback": "Clasamentul se actualizează.",
+      "stats": {
+        "players": "Jucători",
+        "kills": "Kill-uri",
+        "points": "Puncte lider"
+      },
+      "labels": {
+        "points": "Puncte",
+        "kills": "Kill-uri",
+        "kd": "K/D",
+        "headshots": "Headshot-uri"
+      }
+    },
     "heading": {
       "eyebrow": "Player Progress",
       "title": "Clasament live",
