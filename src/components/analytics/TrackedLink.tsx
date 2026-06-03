@@ -14,15 +14,31 @@ type TrackedLinkProps = ComponentProps<typeof Link> & {
   eventPayload?: AnalyticsPayload;
 };
 
+function getSafeBlankRel(target: ComponentProps<"a">["target"], rel: ComponentProps<"a">["rel"]) {
+  if (target !== "_blank") {
+    return rel;
+  }
+
+  const tokens = new Set((rel ?? "").split(/\s+/).filter(Boolean));
+  tokens.add("noopener");
+  tokens.add("noreferrer");
+
+  return Array.from(tokens).join(" ");
+}
+
 export function TrackedAnchor({
   eventName,
   eventPayload,
   onClick,
+  rel,
+  target,
   ...props
 }: TrackedAnchorProps) {
   return (
     <a
       {...props}
+      rel={getSafeBlankRel(target, rel)}
+      target={target}
       onClick={(event) => {
         trackEvent(eventName, eventPayload);
         onClick?.(event);

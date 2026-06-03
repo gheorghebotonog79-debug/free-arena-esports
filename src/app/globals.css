@@ -75,6 +75,14 @@ body::before {
   color: #ffffff;
 }
 
+:where(a, button, input, select, textarea, [role="button"], [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid var(--fa-cyan);
+  outline-offset: 3px;
+  box-shadow:
+    0 0 0 4px rgba(0, 229, 255, 0.16),
+    0 0 24px rgba(0, 229, 255, 0.32);
+}
+
 img {
   user-select: none;
 }
