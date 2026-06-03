@@ -37,37 +37,58 @@
     "en": "EN"
   },
   "Footer": {
-    "copy": "Fairness, dedication, and evolution for the FREE-ARENA community.",
+    "copy": "Gaming community built for active players, fair play, and real competition.",
     "brand": {
       "badgeGroupLabel": "FREE-ARENA values",
-      "badges": {
-        "established": "ESTABLISHED 2025",
-        "communityFirst": "COMMUNITY FIRST",
+      "values": {
         "fairPlay": "FAIR PLAY",
-        "antiCheatProtected": "ANTI-CHEAT PROTECTED"
+        "activePlayers": "ACTIVE PLAYERS",
+        "realCompetition": "REAL COMPETITION"
       },
-      "subtitle": "FAIRNESS. DEDICATION. EVOLUTION.",
-      "paragraphOne": "These are the values that define FREE-ARENA.",
-      "paragraphTwo": "We are building a community based on respect, real competition, and constant involvement. We keep investing in stable servers, modern systems, and experiences that put players first.",
-      "paragraphThree": "Whether you are new or a veteran, this is a place where activity, performance, and respect are valued."
+      "motto": "FAIRNESS. DEDICATION. EVOLUTION.",
+      "copy": "Gaming community built for active players, fair play, and real competition."
     },
-    "links": {
+    "meta": {
+      "teamspeak": "TeamSpeak",
+      "email": "Email"
+    },
+    "ip": {
+      "eyebrow": "Quick connect",
+      "title": "Server IP",
+      "copy": "Copy",
+      "copied": "Copied",
+      "copyAria": "Copy the {address} IP for {server}"
+    },
+    "servers": {
+      "cs16": "CS 1.6 Classic",
+      "respawn": "Respawn",
+      "cs2": "CS2",
+      "global": "Global"
+    },
+    "columns": {
       "servers": "Servers",
-      "shop": "VIP Shop",
       "community": "Community",
-      "staff": "Join staff",
-      "home": "Home",
-      "terms": "Terms",
-      "privacy": "Privacy",
+      "support": "Support",
+      "legal": "Legal / Info"
+    },
+    "community": {
+      "forum": "Forum",
+      "discord": "Discord",
+      "teamspeak": "TeamSpeak",
+      "staff": "Staff Recruitment"
+    },
+    "support": {
+      "rules": "Rules",
+      "adminRequests": "Admin Requests",
+      "vipRequests": "VIP Requests",
       "contact": "Contact"
     },
-    "status": {
-      "antiCheat": "Anti Cheat Protected",
-      "vip": "VIP Free 24/7",
-      "uptime": "Server Uptime 99.8%",
-      "backup": "Daily Backup",
-      "support": "Fast Support 24/7"
-    }
+    "legal": {
+      "about": "About us",
+      "terms": "Terms",
+      "privacy": "Privacy"
+    },
+    "bottom": "Play hub for FREE-ARENA servers, community, and staff."
   },
   "Hero": {
     "eyebrow": "Arena online",

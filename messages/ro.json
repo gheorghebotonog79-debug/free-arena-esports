@@ -37,37 +37,58 @@
     "en": "EN"
   },
   "Footer": {
-    "copy": "Corectitudine, devotament și evoluție pentru comunitatea FREE-ARENA.",
+    "copy": "Comunitate gaming construită pentru jucători activi, fair-play și competiție reală.",
     "brand": {
       "badgeGroupLabel": "Valori FREE-ARENA",
-      "badges": {
-        "established": "ESTABLISHED 2025",
-        "communityFirst": "COMMUNITY FIRST",
+      "values": {
         "fairPlay": "FAIR PLAY",
-        "antiCheatProtected": "ANTI-CHEAT PROTECTED"
+        "activePlayers": "JUCĂTORI ACTIVI",
+        "realCompetition": "COMPETIȚIE REALĂ"
       },
-      "subtitle": "CORECTITUDINE. DEVOTAMENT. EVOLUȚIE.",
-      "paragraphOne": "Acestea sunt valorile care definesc FREE-ARENA.",
-      "paragraphTwo": "Construim o comunitate bazată pe respect, competiție reală și implicare constantă. Investim permanent în servere stabile, sisteme moderne și experiențe care pun jucătorul pe primul loc.",
-      "paragraphThree": "Indiferent dacă ești nou sau veteran, aici găsești un loc unde activitatea, performanța și respectul sunt apreciate."
+      "motto": "CORECTITUDINE. DEVOTAMENT. EVOLUȚIE.",
+      "copy": "Comunitate gaming construită pentru jucători activi, fair-play și competiție reală."
     },
-    "links": {
+    "meta": {
+      "teamspeak": "TeamSpeak",
+      "email": "Email"
+    },
+    "ip": {
+      "eyebrow": "Conectare rapidă",
+      "title": "Server IP",
+      "copy": "Copiază",
+      "copied": "Copiat",
+      "copyAria": "Copiază IP-ul {address} pentru {server}"
+    },
+    "servers": {
+      "cs16": "CS 1.6 Classic",
+      "respawn": "Respawn",
+      "cs2": "CS2",
+      "global": "Global"
+    },
+    "columns": {
       "servers": "Servere",
-      "shop": "Shop VIP",
       "community": "Comunitate",
-      "staff": "Aplica staff",
-      "home": "Acasă",
-      "terms": "Termeni",
-      "privacy": "Confidențialitate",
+      "support": "Suport",
+      "legal": "Legal / Info"
+    },
+    "community": {
+      "forum": "Forum",
+      "discord": "Discord",
+      "teamspeak": "TeamSpeak",
+      "staff": "Recrutare Staff"
+    },
+    "support": {
+      "rules": "Regulament",
+      "adminRequests": "Cereri Admin",
+      "vipRequests": "Cereri VIP",
       "contact": "Contact"
     },
-    "status": {
-      "antiCheat": "Anti Cheat Protected",
-      "vip": "VIP Free 24/7",
-      "uptime": "Server Uptime 99.8%",
-      "backup": "Backup zilnic",
-      "support": "Suport rapid 24/7"
-    }
+    "legal": {
+      "about": "Despre noi",
+      "terms": "Termeni",
+      "privacy": "Confidențialitate"
+    },
+    "bottom": "Play hub pentru servere, comunitate și staff FREE-ARENA."
   },
   "Hero": {
     "eyebrow": "Arena este online",
