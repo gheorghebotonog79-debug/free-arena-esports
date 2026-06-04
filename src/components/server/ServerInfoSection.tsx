@@ -20,13 +20,15 @@ type ServerInfoSectionProps = {
 
 export function ServerInfoSection({ labels, locale, page, server }: ServerInfoSectionProps) {
   const info = page.info[locale];
+  const pendingHostLabel = locale === "ro" ? "DNS nepornit încă" : "DNS not live yet";
+  const pendingValue = locale === "ro" ? "Pregătit pentru lansare" : "Ready for launch";
   const items = [
-    { key: "ip", label: labels.ip, value: server.host, Icon: Server, tone: "text-arena-cyan" },
+    { key: "ip", label: labels.ip, value: server.pending ? pendingHostLabel : server.host, Icon: Server, tone: "text-arena-cyan" },
     { key: "port", label: labels.port, value: String(server.port), Icon: RadioTower, tone: "text-arena-green" },
     { key: "status", label: labels.status, value: info.status, Icon: Activity, tone: "text-arena-gold" },
     { key: "players", label: labels.players, value: info.players, Icon: UsersRound, tone: "text-[#98a3ff]" },
-    { key: "map", label: labels.currentMap, value: info.map, Icon: Map, tone: "text-arena-red" },
-    { key: "latency", label: labels.latency, value: info.latency, Icon: Gauge, tone: "text-white" },
+    { key: "map", label: labels.currentMap, value: server.pending ? pendingValue : info.map, Icon: Map, tone: "text-arena-red" },
+    { key: "latency", label: labels.latency, value: server.pending ? pendingValue : info.latency, Icon: Gauge, tone: "text-white" },
   ];
 
   return (

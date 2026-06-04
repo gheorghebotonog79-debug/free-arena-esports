@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, Copy, Headphones, Map, MessageSquare, RadioTower, ShieldCheck, UserPlus, UsersRound, type LucideIcon } from "lucide-react";
+import { ArrowRight, Check, Copy, Headphones, Lock, Map, MessageSquare, RadioTower, ShieldCheck, UserPlus, UsersRound, type LucideIcon } from "lucide-react";
 import { CopyToast } from "@/components/ui/copy-toast";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
@@ -20,10 +20,12 @@ type ServerSeoHeroProps = {
     checking: string;
     copied: string;
     copyIp: string;
+    dnsPending: string;
     discord: string;
     joinServer: string;
     map: string;
     monitored: string;
+    plannedLaunch: string;
     players: string;
     server: string;
     staff: string;
@@ -140,9 +142,12 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
         : "Offline";
   const players = status === "loading" || status === "pending" ? 0 : liveServer?.players ?? 0;
   const maxPlayers = status === "pending" ? server.fallbackMaxPlayers : liveServer?.maxPlayers ?? server.fallbackMaxPlayers;
-  const map = status === "loading" || status === "pending" ? labels.checking : liveServer?.map || labels.checking;
-  const ping = status === "pending" ? labels.monitored : formatPing(liveServer?.ping, labels.monitored);
-  const canConnect = server.connectable && Boolean(server.connectHref);
+  const isPending = status === "pending";
+  const map = status === "loading" ? labels.checking : isPending ? labels.plannedLaunch : liveServer?.map || labels.checking;
+  const ping = isPending ? labels.plannedLaunch : formatPing(liveServer?.ping, labels.monitored);
+  const addressValue = isPending ? labels.dnsPending : server.address;
+  const hostValue = isPending ? labels.dnsPending : server.host;
+  const canConnect = !isPending && server.connectable && Boolean(server.connectHref);
 
   return (
     <>
@@ -174,19 +179,26 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
                   {labels.address}
                 </p>
                 <p className="mt-3 break-all font-mono text-2xl font-black text-white sm:break-normal sm:text-3xl">
-                  {server.address}
+                  {addressValue}
                 </p>
               </div>
 
               <div className="grid gap-2">
-                <button
-                  type="button"
-                  onClick={() => void handleCopyAddress()}
-                  className="button-ghost inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
-                >
-                  {copied ? <Check size={17} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
-                  {copied ? labels.copied : labels.copyIp}
-                </button>
+                {isPending ? (
+                  <span className="button-ghost inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/48">
+                    <Lock size={17} aria-hidden="true" />
+                    {labels.dnsPending}
+                  </span>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => void handleCopyAddress()}
+                    className="button-ghost inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                  >
+                    {copied ? <Check size={17} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
+                    {copied ? labels.copied : labels.copyIp}
+                  </button>
+                )}
                 {canConnect ? (
                   <a
                     href={server.connectHref}
@@ -242,7 +254,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
             </div>
             <div className="mt-8 grid gap-3">
               <InfoRow label={labels.server} value={hero.name} />
-              <InfoRow label="Host" value={server.host} />
+              <InfoRow label="Host" value={hostValue} />
               <InfoRow label="Port" value={String(server.port)} />
               <div className="grid gap-2 sm:grid-cols-2">
                 <Link

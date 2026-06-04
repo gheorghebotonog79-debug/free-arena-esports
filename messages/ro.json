@@ -268,35 +268,35 @@
       "address": "IP server"
     },
     "overview": {
-      "eyebrow": "Status si progres",
-      "title": "Date live pentru jucatori",
-      "copy": "Pagina foloseste acelasi flux live ca homepage-ul, cu fallback curat pentru offline si pending."
+      "eyebrow": "Status și progres",
+      "title": "Date live pentru jucători",
+      "copy": "Pagina folosește același flux live ca homepage-ul, cu fallback curat pentru offline și pending."
     },
     "stats": {
       "title": "Statistici live",
-      "players": "Jucatori",
-      "map": "Harta",
+      "players": "Jucători",
+      "map": "Hartă",
       "ping": "Ping",
       "status": "Status",
       "lastUpdated": "Ultima actualizare"
     },
     "states": {
-      "loadingValue": "Se verifica...",
-      "unknown": "In verificare",
+      "loadingValue": "Se verifică...",
+      "unknown": "În verificare",
       "notAvailable": "Monitorizat",
       "offlinePlayers": "0/32",
-      "offline": "Serverul nu raspunde momentan la interogarea live. Adresa ramane disponibila pentru copiere.",
-      "error": "Statusul live nu a putut fi incarcat acum. Poti reincerca fara sa parasesti pagina."
+      "offline": "Serverul nu răspunde momentan la interogarea live. Adresa rămâne disponibilă pentru copiere.",
+      "error": "Statusul live nu a putut fi încărcat acum. Poți reîncerca fără să părăsești pagina."
     },
     "pending": {
       "title": "Pending / coming soon",
-      "copy": "Acest server este planificat si nu este interogat live. Statisticile reale vor aparea cand slotul devine activ."
+      "copy": "Acest server este planificat și nu este interogat live. Statisticile reale vor apărea când slotul devine activ."
     },
     "actions": {
-      "backToServers": "Inapoi la servere",
-      "copyIp": "Copiaza IP",
+      "backToServers": "Înapoi la servere",
+      "copyIp": "Copiază IP",
       "copied": "Copiat",
-      "connect": "Conecteaza-te",
+      "connect": "Conectează-te",
       "refresh": "Refresh status",
       "refreshing": "Se actualizeaza"
     },
@@ -307,7 +307,7 @@
       "description": "Descriere",
       "rules": "Reguli",
       "vipBenefits": "Beneficii VIP",
-      "planned": "Functionalitati planificate"
+      "planned": "Funcționalități planificate"
     },
     "community": {
       "eyebrow": "Comunitate",

@@ -3,7 +3,7 @@ import { routing } from "@/i18n/routing";
 import { siteUrl } from "@/lib/seo";
 import { serverSeoSlugs } from "@/lib/serverSeo";
 
-const lastModified = new Date("2026-05-30");
+const lastModified = new Date();
 
 const serverSeoSitemapPages = serverSeoSlugs.map((slug) => ({
   path: `/server/${slug}`,

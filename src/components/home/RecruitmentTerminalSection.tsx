@@ -18,11 +18,10 @@ import { useTranslations } from "next-intl";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { forumLinks } from "@/lib/forum-links";
 import type { AnalyticsEventName } from "@/lib/analytics";
-import { routes } from "@/lib/routes";
+import { contactEmail, routes } from "@/lib/routes";
 
 const DISCORD_URL = "https://discord.gg/freearena";
-const EMAIL_ADDRESS = "gheorghe.botonog79@gmail.com";
-const EMAIL_URL = `mailto:${EMAIL_ADDRESS}?subject=FREE-ARENA%20staff%20application`;
+const EMAIL_URL = `mailto:${contactEmail}?subject=FREE-ARENA%20staff%20application`;
 const FORUM_STAFF_APPLICATION_URL = "https://free-arena.ro/index.php?/forum/10-aplic%C4%83-pentru-grad/";
 const TS3_STAFF_APPLICATION_URL = "https://free-arena.ro/index.php?/forum/77-aplic%C4%83-pentru-grad/";
 

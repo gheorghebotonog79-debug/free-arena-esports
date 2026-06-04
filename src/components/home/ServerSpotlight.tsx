@@ -41,22 +41,22 @@ const productCopy: Record<
     cs16: {
       coverPosition: "58% center",
       name: "CS 1.6 Classic",
-      summary: "Runde clasice, IP direct si progres pentru jucatorii care vor Counter-Strike curat.",
+      summary: "Runde clasice, IP direct și progres pentru jucătorii care vor Counter-Strike curat.",
     },
     respawn: {
       coverPosition: "64% center",
       name: "Respawn",
-      summary: "Dueluri rapide, warm-up continuu si activitate zilnica pentru fraguri multe.",
+      summary: "Dueluri rapide, warm-up continuu și activitate zilnică pentru fraguri multe.",
     },
     cs2: {
       coverPosition: "72% center",
       name: "CS2",
-      summary: "Directia moderna FREE-ARENA pentru jucatori competitivi si meciuri actuale.",
+      summary: "Direcția modernă FREE-ARENA pentru jucători competitivi și meciuri actuale.",
     },
     global: {
       coverPosition: "50% center",
       name: "Global",
-      summary: "Slotul pregatit pentru extinderea comunitatii si servere conectate.",
+      summary: "Slotul pregătit pentru extinderea comunității și servere conectate.",
     },
   },
   en: {
@@ -90,6 +90,8 @@ const sectionCopy: Record<
     eyebrow: string;
     features: string;
     mapUnavailable: string;
+    pendingAddress: string;
+    pendingAddressLabel: string;
     planned: string;
     title: string;
   }
@@ -99,8 +101,10 @@ const sectionCopy: Record<
     title: "SERVER NETWORK",
     copy: "Alege serverul tău și intră direct în joc.",
     features: "Features",
-    mapUnavailable: "In verificare",
-    planned: "Planificat",
+    mapUnavailable: "În verificare",
+    pendingAddress: "DNS nepornit încă",
+    pendingAddressLabel: "Lansare",
+    planned: "Pregătit pentru lansare",
   },
   en: {
     eyebrow: "Live servers",
@@ -108,7 +112,9 @@ const sectionCopy: Record<
     copy: "Choose your server and jump straight into the game.",
     features: "Features",
     mapUnavailable: "Checking",
-    planned: "Planned",
+    pendingAddress: "DNS not live yet",
+    pendingAddressLabel: "Launch",
+    planned: "Ready for launch",
   },
 };
 
@@ -230,6 +236,10 @@ export function ServerSpotlight() {
   }, [loadServers]);
 
   async function handleCopy(server: SpotlightServer) {
+    if (server.status === "pending") {
+      return;
+    }
+
     try {
       await copyTextToClipboard(server.address);
       setCopiedServer(server.key);
@@ -307,6 +317,8 @@ export function ServerSpotlight() {
                 copyIp: serverT("actions.copyIp"),
                 details: serverT("actions.details"),
                 map: serverT("labels.map"),
+                pendingAddress: labels.pendingAddress,
+                pendingAddressLabel: labels.pendingAddressLabel,
                 players: serverT("labels.players"),
                 serverIp: serverT("labels.host"),
               }}
@@ -336,12 +348,15 @@ function SpotlightCard({
     copyIp: string;
     details: string;
     map: string;
+    pendingAddress: string;
+    pendingAddressLabel: string;
     players: string;
     serverIp: string;
   };
   onCopy: () => void;
   server: SpotlightServer;
 }) {
+  const isPending = server.status === "pending";
   const canConnect = server.connectable && server.status === "online";
   const progress = server.status === "online" && server.maxPlayers > 0
     ? Math.min(100, Math.round((server.players / server.maxPlayers) * 100))
@@ -404,10 +419,14 @@ function SpotlightCard({
         </div>
 
         <div className="mt-4">
-          <p className="mb-2.5 text-xs font-black uppercase tracking-[0.16em] text-white/38">{labels.serverIp}</p>
+          <p className="mb-2.5 text-xs font-black uppercase tracking-[0.16em] text-white/38">
+            {isPending ? labels.pendingAddressLabel : labels.serverIp}
+          </p>
           <div className="server-ip-row flex min-w-0 items-center gap-2 px-3 py-2.5">
             <RadioTower size={16} className="server-card__accent-icon shrink-0" aria-hidden="true" />
-            <span className="min-w-0 truncate font-mono text-sm font-black text-white">{server.address}</span>
+            <span className="min-w-0 truncate font-mono text-sm font-black text-white">
+              {isPending ? labels.pendingAddress : server.address}
+            </span>
           </div>
         </div>
 
@@ -439,14 +458,21 @@ function SpotlightCard({
               {server.statusLabel}
             </span>
           )}
-          <button
-            type="button"
-            onClick={onCopy}
-            className="server-copy-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
-          >
-            {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
-            {copied ? labels.copied : labels.copyIp}
-          </button>
+          {isPending ? (
+            <span className="server-disabled-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/42">
+              <Lock size={15} aria-hidden="true" />
+              {labels.pendingAddress}
+            </span>
+          ) : (
+            <button
+              type="button"
+              onClick={onCopy}
+              className="server-copy-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
+            >
+              {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
+              {copied ? labels.copied : labels.copyIp}
+            </button>
+          )}
           <TrackedLink
             href={getCanonicalServerPath(server.key)}
             eventName="click_server_details"

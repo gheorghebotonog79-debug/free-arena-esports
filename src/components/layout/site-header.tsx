@@ -97,7 +97,7 @@ export function SiteHeader() {
   }, [pathname, hash]);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 1280px)");
+    const mediaQuery = window.matchMedia("(min-width: 1536px)");
     const updateDesktopNav = () => setIsDesktopNav(mediaQuery.matches);
 
     updateDesktopNav();
@@ -222,7 +222,7 @@ export function SiteHeader() {
         </Link>
 
         {isDesktopNav ? (
-          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-1 xl:flex" aria-label={t("aria.main")}>
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-1 2xl:flex" aria-label={t("aria.main")}>
             {primaryNavigationItems.slice(0, 2).map((item) => {
               const active = !item.external && isActive(item.href);
               const className = `neon-nav-link header-nav-link inline-flex min-h-12 items-center gap-2 whitespace-nowrap px-2.5 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] transition ${
@@ -287,14 +287,14 @@ export function SiteHeader() {
               <a
                 href={forumLinks.home}
                 target="_blank"
-              rel="noopener noreferrer"
-                className="neon-nav-link header-nav-link hidden min-h-12 items-center gap-2 whitespace-nowrap px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/72 transition hover:text-white 2xl:inline-flex"
+                rel="noopener noreferrer"
+                className="neon-nav-link header-nav-link hidden min-h-12 items-center gap-2 whitespace-nowrap px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white/72 transition hover:text-white min-[1720px]:inline-flex"
                 onClick={() => trackNavigationItem("forum", "header_quick_action")}
               >
                 <MessageCircle size={15} className="header-nav-link__icon" aria-hidden="true" />
                 Forum
               </a>
-              <span className="header-live-pill hidden min-h-12 items-center gap-2 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] 2xl:inline-flex">
+              <span className="header-live-pill hidden min-h-12 items-center gap-2 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] min-[1720px]:inline-flex">
                 <span className="header-live-pulse" aria-hidden="true" />
                 <RadioTower size={15} aria-hidden="true" />
                 <span>{t("live")}</span>
@@ -313,7 +313,7 @@ export function SiteHeader() {
           </div>
           <button
             type="button"
-            className="header-menu-button inline-flex size-10 items-center justify-center xl:hidden"
+            className="header-menu-button inline-flex size-10 items-center justify-center 2xl:hidden"
             aria-controls="site-mobile-navigation"
             aria-expanded={isMenuOpen}
             aria-label={isMenuOpen ? t("aria.closeMenu") : t("aria.openMenu")}
@@ -355,7 +355,7 @@ export function SiteHeader() {
       ) : null}
 
       <div
-        className={`header-mobile-panel mx-auto w-full max-w-7xl px-3 sm:px-6 xl:hidden ${
+        className={`header-mobile-panel mx-auto w-full max-w-7xl px-3 sm:px-6 2xl:hidden ${
           isMenuOpen ? "header-mobile-panel--open pb-3" : ""
         }`}
       >

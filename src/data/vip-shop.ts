@@ -93,7 +93,7 @@ export const vipShopContent: Record<Locale, VipShopContent> = {
     hero: {
       eyebrow: "FREE-ARENA VIP SHOP",
       title: "Alege gradul tău VIP",
-      subtitle: "Premium benefits for active FREE-ARENA players.",
+      subtitle: "Beneficii premium pentru jucătorii activi FREE-ARENA.",
       packages: "Vezi pachete",
       ticket: "Intra pe Discord",
     },
