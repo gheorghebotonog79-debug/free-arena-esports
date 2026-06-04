@@ -1,5 +1,5 @@
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
-import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
+import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
 import { ServerFaq } from "@/components/server/ServerFaq";
 import { ServerContactSupportCard } from "@/components/server/ServerContactSupportCard";
 import { ServerFeatureGrid } from "@/components/server/ServerFeatureGrid";
@@ -128,8 +128,7 @@ export function ServerSeoPage({ locale, page, server }: ServerSeoPageProps) {
 
   return (
     <>
-      <main className="neon-page-shell cyber-root bg-arena-black text-white">
-        <NeonAtmosphere />
+      <PublicPageShell>
         <ServerSeoHero labels={copy.hero} locale={locale} page={page} server={server} />
         <ServerInfoSection labels={copy.info} locale={locale} page={page} server={server} />
         <section className="neon-section px-4 pb-12 sm:px-6 lg:px-8">
@@ -154,7 +153,7 @@ export function ServerSeoPage({ locale, page, server }: ServerSeoPageProps) {
         <ServerFaq label={copy.faq.label} locale={locale} page={page} title={copy.faq.title} />
         <ServerInternalLinks labels={copy.links} locale={locale} page={page} />
         <ServerSeoContent label={copy.contentLabel} locale={locale} page={page} />
-      </main>
+      </PublicPageShell>
       <LiveChatLauncher />
     </>
   );

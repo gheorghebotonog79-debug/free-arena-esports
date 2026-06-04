@@ -20,6 +20,7 @@ import {
   UsersRound,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
 import { CopyToast } from "@/components/ui/copy-toast";
 import { ServerContactSupportCard } from "@/components/server/ServerContactSupportCard";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -181,8 +182,10 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
     : isLoading && !liveServer
       ? "loading"
       : liveServer?.status ?? "offline";
+  const isPending = status === "pending";
   const isOnline = status === "online";
   const statusLabel = serverT(`status.${status}`);
+  const pendingAddress = locale === "ro" ? "DNS nepornit încă" : "DNS not live yet";
   const translatedTags = server.tags.map((tag) => serverT(`tags.${tag}`));
   const description = t(`items.${server.key}.description`);
   const rules = readStringList(t.raw(`items.${server.key}.rules`));
@@ -195,6 +198,8 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
       label: t("stats.players"),
       value: isLoading && !liveServer
         ? `0/${server.fallbackMaxPlayers}`
+        : isPending
+          ? t("pending.title")
         : liveServer
           ? `${liveServer.players}/${liveServer.maxPlayers}`
           : t("states.offlinePlayers"),
@@ -204,14 +209,20 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
     {
       key: "map",
       label: t("stats.map"),
-      value: isLoading && !liveServer ? t("states.unknown") : liveServer?.map || t("states.unknown"),
+      value: isPending
+        ? t("pending.title")
+        : isLoading && !liveServer
+          ? t("states.unknown")
+          : liveServer?.map || t("states.unknown"),
       Icon: Map,
       toneClass: "text-arena-green",
     },
     {
       key: "ping",
       label: t("stats.ping"),
-      value: isLoading && !liveServer
+      value: isPending
+        ? pendingAddress
+        : isLoading && !liveServer
         ? t("states.notAvailable")
         : formatPing(liveServer?.ping, t("states.notAvailable")),
       Icon: RadioTower,
@@ -235,7 +246,8 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
 
   return (
     <>
-      <main className="cinematic-section min-h-screen bg-arena-black px-4 py-16 text-white sm:px-6 lg:px-8">
+      <PublicPageShell>
+        <div className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-7xl">
           <Link
             href="/#servers"
@@ -292,17 +304,24 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
                     {t("hero.address")}
                   </p>
                   <p className="mt-2 break-all font-mono text-sm font-black text-white sm:break-normal sm:text-base">
-                    {server.address}
+                    {isPending ? pendingAddress : server.address}
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => void handleCopyAddress()}
-                  className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
-                >
-                  {copied ? <Check size={17} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
-                  {copied ? t("actions.copied") : t("actions.copyIp")}
-                </button>
+                {isPending ? (
+                  <span className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white/46">
+                    <Clock3 size={17} aria-hidden="true" />
+                    {statusLabel}
+                  </span>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => void handleCopyAddress()}
+                    className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                  >
+                    {copied ? <Check size={17} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
+                    {copied ? t("actions.copied") : t("actions.copyIp")}
+                  </button>
+                )}
                 {server.connectable && isOnline ? (
                   <a
                     href={server.connectHref}
@@ -435,7 +454,8 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
             </div>
           </section>
         </div>
-      </main>
+        </div>
+      </PublicPageShell>
       <CopyToast message={copyToastMessage} />
     </>
   );

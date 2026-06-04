@@ -100,7 +100,7 @@ const sectionCopy: Record<
     eyebrow: "Servere live",
     title: "SERVER NETWORK",
     copy: "Alege serverul tău și intră direct în joc.",
-    features: "Features",
+    features: "Funcții",
     mapUnavailable: "În verificare",
     pendingAddress: "DNS nepornit încă",
     pendingAddressLabel: "Lansare",
@@ -281,7 +281,7 @@ export function ServerSpotlight() {
   ));
 
   return (
-    <section id="server-spotlight" className="neon-section server-spotlight-section scroll-mt-32 px-4 pb-16 pt-20 sm:px-6 sm:pt-24 lg:px-8 lg:pb-24 lg:pt-32">
+    <section id="server-spotlight" className="neon-section server-spotlight-section scroll-mt-44 px-4 pb-16 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pb-24 lg:pt-40">
       <div className="mx-auto w-full max-w-[92rem]">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
@@ -305,7 +305,7 @@ export function ServerSpotlight() {
           </button>
         </div>
 
-        <div className="mt-8 grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-10 grid gap-5 lg:grid-cols-2 2xl:grid-cols-4">
           {spotlightServers.map((server) => (
             <SpotlightCard
               copied={copiedServer === server.key}

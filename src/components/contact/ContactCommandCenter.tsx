@@ -15,6 +15,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { TacticalCardChrome } from "@/components/home/HomeTacticalPrimitives";
+import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
 import { CopyToast } from "@/components/ui/copy-toast";
 import {
   contactCommandCenterContent,
@@ -115,7 +116,7 @@ export function ContactCommandCenter({ locale }: { locale: Locale }) {
   }
 
   return (
-    <main className="min-h-screen bg-[#050505]">
+    <PublicPageShell>
       <section className="neon-section relative overflow-hidden px-4 pb-12 pt-16 sm:px-6 sm:pt-20 lg:px-8 lg:pb-16 lg:pt-24">
         <div className="mx-auto w-full max-w-[92rem]">
           <div className="max-w-5xl">
@@ -199,7 +200,7 @@ export function ContactCommandCenter({ locale }: { locale: Locale }) {
       </section>
 
       <CopyToast message={toastMessage} />
-    </main>
+    </PublicPageShell>
   );
 }
 

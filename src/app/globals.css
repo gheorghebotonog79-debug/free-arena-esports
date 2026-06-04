@@ -183,7 +183,7 @@ img {
   .server-card-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
+    gap: 1.25rem;
     align-items: stretch;
   }
 
@@ -195,13 +195,13 @@ img {
 
   @media (min-width: 1024px) {
     .server-card-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   @media (min-width: 1536px) {
     .server-card-grid {
-      gap: 1.25rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 
@@ -857,7 +857,7 @@ img {
     min-height: 31rem;
   }
 
-  @media (max-width: 420px) {
+  @media (max-width: 640px) {
     .home-path-card .server-player-count {
       font-size: 2rem;
     }
@@ -1425,8 +1425,8 @@ img {
 
   /* Homepage density pass: keep the premium shell, trim oversized landing-page spacing. */
   .neon-page-shell {
-    --home-section-y: clamp(1.65rem, 2.8vw, 2.8rem);
-    --home-section-y-tight: clamp(1.18rem, 2.35vw, 2.2rem);
+    --home-section-y: clamp(3rem, 5.6vw, 5.25rem);
+    --home-section-y-tight: clamp(2.35rem, 4.2vw, 4rem);
   }
 
   .neon-page-shell > .neon-section,
@@ -1559,16 +1559,21 @@ img {
   }
 
   .server-spotlight-section {
-    margin-top: 0;
+    margin-top: clamp(1.75rem, 4.5vw, 4.25rem);
+    padding-top: clamp(7rem, 9vw, 9rem) !important;
+  }
+
+  .neon-page-shell > .server-spotlight-section {
+    padding-top: clamp(7rem, 9vw, 9rem) !important;
   }
 
   .server-spotlight-section .mt-8,
   .community-hub-section .mt-9,
   .recruitment-terminal-section .mt-9,
-  .hall-legends-section .mt-8,
-  .hall-legends-section .mt-9,
-  .vip-preview-section .mt-9 {
-    margin-top: clamp(1.35rem, 2.5vw, 2rem) !important;
+    .hall-legends-section .mt-8,
+    .hall-legends-section .mt-9,
+    .vip-preview-section .mt-9 {
+    margin-top: clamp(1.75rem, 3vw, 2.5rem) !important;
   }
 
   .server-spotlight-section .gap-5,
@@ -1580,16 +1585,16 @@ img {
   }
 
   .server-spotlight-card.server-tactical-card {
-    min-height: 19.5rem;
+    min-height: 33rem;
   }
 
   .server-spotlight-cover,
   .server-spotlight-cover > .relative {
-    min-height: 6.35rem !important;
+    min-height: 12rem !important;
   }
 
   .server-spotlight-cover > .relative {
-    padding: 0.85rem !important;
+    padding: 1rem !important;
   }
 
   .server-spotlight-cover .server-card__icon {
@@ -1603,7 +1608,7 @@ img {
   }
 
   .server-spotlight-card > .relative.z-10.flex {
-    padding: 0.75rem !important;
+    padding: 1rem !important;
   }
 
   .server-spotlight-card .server-card__title {
@@ -1619,34 +1624,34 @@ img {
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
   }
 
   .server-spotlight-card dl,
   .server-spotlight-card .mt-4 {
-    margin-top: 0.65rem !important;
+    margin-top: 0.9rem !important;
   }
 
   .server-spotlight-card .server-player-bar {
-    display: none;
+    display: block;
   }
 
   .server-spotlight-card .server-metric {
-    padding: 0.52rem !important;
+    padding: 0.72rem !important;
   }
 
   .server-spotlight-card .server-ip-row {
-    padding-block: 0.5rem !important;
+    padding-block: 0.68rem !important;
   }
 
   .server-spotlight-card .flex.flex-wrap.gap-2 {
-    max-height: 1.85rem;
-    overflow: hidden;
+    max-height: none;
+    overflow: visible;
   }
 
   .server-spotlight-actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding-top: 0.75rem !important;
+    padding-top: 1rem !important;
   }
 
   .server-spotlight-actions .server-details-button {
@@ -2411,7 +2416,11 @@ img {
     }
 
     .server-spotlight-section {
-      padding-top: 1.55rem !important;
+      padding-top: 2.75rem !important;
+    }
+
+    .neon-page-shell > .server-spotlight-section {
+      padding-top: 2.75rem !important;
     }
 
     .server-spotlight-section .flex.flex-col.gap-5 {
@@ -2438,7 +2447,7 @@ img {
 
     .server-spotlight-cover,
     .server-spotlight-cover > .relative {
-      min-height: 5.25rem !important;
+      min-height: 7.25rem !important;
     }
 
     .server-spotlight-cover > .relative {
@@ -2522,6 +2531,92 @@ img {
 
     .premium-footer .footer-ip-copy-button {
       padding-block: 0.5rem !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    html,
+    body {
+      overflow-x: hidden;
+    }
+
+    .header-play-button {
+      display: none !important;
+    }
+
+    .header-actions__stack {
+      display: none !important;
+    }
+
+    .header-menu-button {
+      display: inline-flex !important;
+      flex: 0 0 auto;
+      position: absolute;
+      top: 50%;
+      right: 0.75rem;
+      z-index: 5;
+      transform: translateY(-50%);
+    }
+
+    .hero-copy-reveal {
+      max-width: 100% !important;
+      overflow-x: hidden;
+    }
+
+    .hero-wow-title {
+      max-width: 100% !important;
+      font-size: clamp(2.75rem, 14vw, 3.45rem) !important;
+      line-height: 0.86 !important;
+    }
+
+    .hero-wow-subtitle {
+      gap: 0.25rem 0.55rem !important;
+      font-size: 1.06rem !important;
+      line-height: 1.2 !important;
+    }
+
+    .hero-copy-reveal > p:not(.neon-kicker) {
+      max-width: 100% !important;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      -webkit-line-clamp: 5;
+    }
+
+    .hero-copy-reveal > .mt-6.max-w-3xl,
+    .hero-energy-line + p {
+      display: none !important;
+    }
+
+    .hero-copy-reveal > div.mt-8 {
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 0.55rem !important;
+    }
+
+    .hero-copy-reveal > div.mt-8 > :is(a, button) {
+      grid-column: 1 / -1 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      white-space: normal !important;
+    }
+
+    .hero-copy-reveal .button-ghost,
+    .hero-copy-reveal .cyber-red-button {
+      justify-content: center;
+      padding-inline: 0.75rem !important;
+      text-align: center;
+    }
+
+    .hero-feature-bar {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    .hero-feature-card {
+      border-right: 0 !important;
+    }
+
+    .hero-feature-card strong,
+    .hero-feature-card .mt-auto {
+      white-space: normal !important;
     }
   }
 

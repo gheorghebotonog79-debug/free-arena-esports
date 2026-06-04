@@ -3,9 +3,9 @@ import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
-import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
 import { ServerGrid } from "@/components/sections/server-grid";
 import {
   RomanianServersSeoHub,
@@ -59,11 +59,10 @@ export default async function ServersPage({ params }: ServersPageProps) {
   return (
     <>
       <SiteHeader />
-      <main className="neon-page-shell cyber-root">
-        <NeonAtmosphere />
+      <PublicPageShell>
         <ServerGrid />
         {locale === "ro" ? <RomanianServersSeoHub /> : null}
-      </main>
+      </PublicPageShell>
       <SiteFooter />
       <LiveChatLauncher />
       <script

@@ -181,7 +181,7 @@ export function ServerGrid() {
     const statusLabel = status === "online"
       ? "LIVE"
       : status === "pending"
-        ? "COMING SOON"
+        ? t("actions.pending")
         : t(`status.${status}`);
 
     return {
@@ -210,11 +210,11 @@ export function ServerGrid() {
         active: "ACTIVE",
         all: "TOATE",
         avgPing: "PING MEDIU",
-        filter: "STATUS FILTER",
+        filter: "FILTRU STATUS",
         offline: "OFFLINE",
         online: "ONLINE",
-        pending: "SOON",
-        players: "JUCATORI",
+        pending: "ÎN CURÂND",
+        players: "JUCĂTORI",
       }
     : {
         active: "ACTIVE",
@@ -350,13 +350,14 @@ export function ServerGrid() {
               isOnline={server.isOnline}
               key={server.key}
               labels={{
-                connect: "CONNECT",
+                connect: locale === "ro" ? "CONECTEAZĂ-TE" : "CONNECT",
                 copied: warRoomT("copied"),
                 copyIp: warRoomT("copyIp"),
-                details: "DETAILS",
+                details: locale === "ro" ? "DETALII" : "DETAILS",
                 ip: warRoomT("labels.ip"),
                 loading: t("loading.value"),
                 map: warRoomT("labels.map"),
+                pendingAddress: locale === "ro" ? "DNS nepornit încă" : "DNS not live yet",
                 ping: warRoomT("labels.ping"),
                 players: warRoomT("labels.players"),
                 planned: warRoomT("planned"),

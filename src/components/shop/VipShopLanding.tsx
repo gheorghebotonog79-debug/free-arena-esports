@@ -17,6 +17,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { TrackedAnchor } from "@/components/analytics/TrackedLink";
+import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
 import type { Locale } from "@/i18n/routing";
 import { forumLinks } from "@/lib/forum-links";
 import {
@@ -105,7 +106,7 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
   const page = vipShopContent[locale];
 
   return (
-    <main className="neon-page-shell cyber-root overflow-hidden bg-arena-black text-white">
+    <PublicPageShell>
       <section className="relative isolate border-b border-cyan-300/14 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,45,117,0.22),transparent_34%),radial-gradient(circle_at_82%_20%,rgba(0,229,255,0.2),transparent_30%),linear-gradient(140deg,rgba(255,122,0,0.14),transparent_42%)]" aria-hidden="true" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#05070d] to-transparent" aria-hidden="true" />
@@ -462,7 +463,7 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
           </motion.article>
         </div>
       </motion.section>
-    </main>
+    </PublicPageShell>
   );
 }
 

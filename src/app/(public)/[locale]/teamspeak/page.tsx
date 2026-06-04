@@ -24,17 +24,17 @@ const content: Record<
   }
 > = {
   ro: {
-    metadataTitle: "FREE-ARENA TeamSpeak | Voice pentru CS 1.6 si CS2",
+    metadataTitle: "FREE-ARENA TeamSpeak | Voice pentru CS 1.6 și CS2",
     metadataDescription:
-      "Conecteaza-te pe TeamSpeak FREE-ARENA pentru voice, suport si comunitatea CS 1.6 si CS2 din Romania.",
+      "Conectează-te pe TeamSpeak FREE-ARENA pentru voice, suport și comunitatea CS 1.6 și CS2 din România.",
     eyebrow: "Voice server",
     title: "TeamSpeak FREE-ARENA",
     description:
-      "TeamSpeak-ul FREE-ARENA este zona de voice pentru jucatori, admini si comunitatea CS 1.6 / CS2.",
+      "TeamSpeak-ul FREE-ARENA este zona de voice pentru jucători, admini și comunitatea CS 1.6 / CS2.",
     highlights: [
-      "Adresa publica: ts.free-arena.ro",
-      "Canale pentru CS 1.6, CS2, suport admin si comunitate.",
-      "Parte din comunitatea FREE-ARENA Romania alaturi de servere si Discord.",
+      "Adresa publică: ts.free-arena.ro",
+      "Canale pentru CS 1.6, CS2, suport admin și comunitate.",
+      "Parte din comunitatea FREE-ARENA România alături de servere și Discord.",
     ],
     action: {
       href: "ts3server://ts.free-arena.ro",

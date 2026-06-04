@@ -1,5 +1,6 @@
-import { ArrowRight, CheckCircle2, Clock3, MessageSquare, ShieldCheck, Trophy, UserPlus, type LucideIcon } from "lucide-react";
-import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
+import { CheckCircle2, Clock3, MessageSquare, ShieldCheck, Trophy, UserPlus, type LucideIcon } from "lucide-react";
+import { TrackedAnchor } from "@/components/analytics/TrackedLink";
+import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
 import type { Locale } from "@/i18n/routing";
 import { forumLinks } from "@/lib/forum-links";
 
@@ -8,35 +9,34 @@ const DISCORD_URL = "https://discord.gg/freearena";
 const content = {
   ro: {
     eyebrow: "Recrutare staff",
-    title: "Cautam admini activi pentru FREE-ARENA",
+    title: "Căutăm admini activi pentru FREE-ARENA",
     copy:
-      "FREE-ARENA este la inceputul unei etape in care comunitatea conteaza mai mult decat orice pagina. Avem nevoie de oameni maturi, prezenti seara, care pot ajuta jucatorii si pot tine serverele curate.",
-    apply: "Aplica pe Forum",
-    discord: "Discuta pe Discord",
-    servers: "Vezi serverele",
-    requirementsTitle: "Cerinte",
+      "FREE-ARENA este la începutul unei etape în care comunitatea contează mai mult decât orice pagină. Avem nevoie de oameni maturi, prezenți seara, care pot ajuta jucătorii și pot ține serverele curate.",
+    apply: "Aplică pe Forum",
+    discord: "Discută pe Discord",
+    requirementsTitle: "Cerințe",
     benefitsTitle: "Beneficii",
-    noteTitle: "Ce cautam de fapt",
+    noteTitle: "Ce căutăm de fapt",
     note:
-      "Nu cautam admini doar pentru comenzi. Cautam oameni care pot vorbi normal cu jucatorii, pot calma conflicte si pot ajuta comunitatea sa creasca fara promisiuni false.",
+      "Nu căutăm admini doar pentru comenzi. Căutăm oameni care pot vorbi normal cu jucătorii, pot calma conflicte și pot ajuta comunitatea să crească fără promisiuni false.",
     requirements: [
       "Minim 16 ani.",
-      "Activitate seara, cand serverele au cea mai mare sansa sa stranga jucatori.",
-      "Comportament matur si rabdare cu jucatorii noi.",
+      "Activitate seara, când serverele au cea mai mare șansă să strângă jucători.",
+      "Comportament matur și răbdare cu jucătorii noi.",
       "Cont pe forum obligatoriu pentru comunicarea cu echipa.",
-      "Experienta CS reprezinta avantaj.",
+      "Experiența CS reprezintă avantaj.",
     ],
     benefits: [
-      "Rol staff in comunitatea FREE-ARENA.",
-      "Acces la organizarea comunitatii si la deciziile operationale.",
-      "Prioritate la evenimente, testari si activitati comunitare.",
-      "Posibilitate de avansare daca activitatea este serioasa.",
+      "Rol staff în comunitatea FREE-ARENA.",
+      "Acces la organizarea comunității și la deciziile operaționale.",
+      "Prioritate la evenimente, testări și activități comunitare.",
+      "Posibilitate de avansare dacă activitatea este serioasă.",
     ],
     steps: [
-      "Intra pe Forum.",
-      "Spune pentru ce server vrei sa ajuti.",
-      "Scrie varsta, experienta si intervalul in care poti fi activ.",
-      "Asteapta un raspuns de la echipa.",
+      "Intră pe Forum.",
+      "Spune pentru ce server vrei să ajuți.",
+      "Scrie vârsta, experiența și intervalul în care poți fi activ.",
+      "Așteaptă un răspuns de la echipă.",
     ],
   },
   en: {
@@ -78,7 +78,7 @@ export function JoinStaffLanding({ locale }: { locale: Locale }) {
   const page = content[locale];
 
   return (
-    <main className="neon-page-shell cyber-root bg-arena-black text-white">
+    <PublicPageShell>
       <section className="neon-section px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[minmax(0,0.96fr)_minmax(22rem,0.78fr)] lg:items-center">
           <div>
@@ -114,15 +114,6 @@ export function JoinStaffLanding({ locale }: { locale: Locale }) {
                 <MessageSquare size={18} aria-hidden="true" />
                 {page.discord}
               </TrackedAnchor>
-              <TrackedLink
-                href="/servers"
-                eventName="click_server_details"
-                eventPayload={{ location: "join_staff_hero", target: "servers" }}
-                className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
-              >
-                {page.servers}
-                <ArrowRight size={18} aria-hidden="true" />
-              </TrackedLink>
             </div>
           </div>
 
@@ -178,7 +169,7 @@ export function JoinStaffLanding({ locale }: { locale: Locale }) {
           </article>
         </div>
       </section>
-    </main>
+    </PublicPageShell>
   );
 }
 

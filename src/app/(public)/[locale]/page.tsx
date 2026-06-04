@@ -1,6 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
-import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
 import { CommunityHubSection } from "@/components/home/CommunityHubSection";
 import { HeroCinematic } from "@/components/home/HeroCinematic";
 import { RecruitmentTerminalSection } from "@/components/home/RecruitmentTerminalSection";
@@ -9,6 +8,7 @@ import { TopPlayersSection } from "@/components/home/TopPlayersSection";
 import { VipPreviewSection } from "@/components/home/VipPreviewSection";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
 
 export const revalidate = 60;
 
@@ -23,15 +23,14 @@ export default async function Home({ params }: HomeProps) {
   return (
     <>
       <SiteHeader />
-      <main className="neon-page-shell cyber-root fa-dark-flame-bg">
-        <NeonAtmosphere />
+      <PublicPageShell>
         <HeroCinematic />
         <ServerSection />
         <CommunityHubSection />
         <RecruitmentTerminalSection />
         <TopPlayersSection />
         <VipPreviewSection />
-      </main>
+      </PublicPageShell>
       <SiteFooter />
       <LiveChatLauncher />
     </>

@@ -219,14 +219,14 @@ export function ServerWarRoom() {
       helper: isRo ? "din status live" : "from live status",
     },
     {
-      label: isRo ? "Jucatori acum" : "Players now",
+      label: isRo ? "Jucători acum" : "Players now",
       value: isLoading ? serverT("loading.value") : String(activePlayerCount),
-      helper: isRo ? "numar raportat live" : "reported live",
+      helper: isRo ? "număr raportat live" : "reported live",
     },
     {
       label: isRo ? "Traseu rapid" : "Quick path",
       value: isRo ? "IP + Connect" : "IP + Connect",
-      helper: isRo ? "copiaza IP sau intra direct" : "copy IP or join directly",
+      helper: isRo ? "copiază IP sau intră direct" : "copy IP or join directly",
     },
   ];
 
@@ -309,6 +309,7 @@ export function ServerWarRoom() {
                 ip: t("labels.ip"),
                 loading: serverT("loading.value"),
                 map: t("labels.map"),
+                pendingAddress: isRo ? "DNS nepornit încă" : "DNS not live yet",
                 ping: t("labels.ping"),
                 players: t("labels.players"),
                 planned: t("planned"),

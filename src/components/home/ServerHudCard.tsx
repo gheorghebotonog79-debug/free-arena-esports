@@ -24,6 +24,7 @@ type ServerHudCardProps = {
     ip: string;
     loading: string;
     map: string;
+    pendingAddress: string;
     ping: string;
     players: string;
     planned: string;
@@ -100,7 +101,7 @@ export function ServerHudCard({
         <div className="server-coming-soon-overlay" aria-hidden="true">
           <span>
             <Lock size={26} />
-            COMING SOON
+            {statusLabel}
           </span>
         </div>
       ) : null}
@@ -160,7 +161,9 @@ export function ServerHudCard({
           <p className="mb-3 text-xs font-black uppercase tracking-[0.16em] text-white/38">{labels.ip}</p>
           <div className="server-ip-row flex min-w-0 items-center gap-2 px-3 py-3">
             <RadioTower size={16} className="server-card__accent-icon shrink-0" aria-hidden="true" />
-            <span className="min-w-0 truncate font-mono text-sm font-black text-white">{address}</span>
+            <span className="min-w-0 truncate font-mono text-sm font-black text-white">
+              {isPending ? labels.pendingAddress : address}
+            </span>
           </div>
 
           <div className="server-actions-grid mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
@@ -171,7 +174,7 @@ export function ServerHudCard({
                 aria-label={detailsLabel}
               >
                 <Lock size={15} aria-hidden="true" />
-                COMING SOON
+                {statusLabel}
               </Link>
             ) : (
               <>

@@ -24,22 +24,22 @@ const content: Record<
   }
 > = {
   ro: {
-    metadataTitle: "FREE-ARENA Discord | Comunitate gaming CS 1.6 si CS2",
+    metadataTitle: "FREE-ARENA Discord | Comunitate gaming CS 1.6 și CS2",
     metadataDescription:
-      "Intra pe Discord FREE-ARENA pentru anunturi, evenimente, suport si comunitatea CS 1.6 si CS2.",
+      "Intră pe Discord FREE-ARENA pentru anunțuri, evenimente, suport și comunitatea CS 1.6 și CS2.",
     eyebrow: "Community chat",
     title: "Discord FREE-ARENA",
     description:
-      "Discord-ul FREE-ARENA aduna comunitatea pentru anunturi, discutii, evenimente si suport rapid.",
+      "Discord-ul FREE-ARENA adună comunitatea pentru anunțuri, discuții, evenimente și suport rapid.",
     highlights: [
-      "Invitatie publica: discord.gg/freearena",
-      "Canale pentru servere, evenimente, staff si comunitate.",
-      "Conectat cu serverele FREE-ARENA CS 1.6, CS2 si TeamSpeak.",
+      "Invitație publică: discord.gg/freearena",
+      "Canale pentru servere, evenimente, staff și comunitate.",
+      "Conectat cu serverele FREE-ARENA CS 1.6, CS2 și TeamSpeak.",
     ],
     action: {
       external: true,
       href: "https://discord.gg/freearena",
-      label: "Intra pe Discord",
+      label: "Intră pe Discord",
     },
   },
   en: {

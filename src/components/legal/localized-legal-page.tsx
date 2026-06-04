@@ -2,6 +2,13 @@ import { Mail } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import {
+  CTAButton,
+  PremiumGlassCard,
+  PublicPageHero,
+  PublicPageShell,
+  PublicSection,
+} from "@/components/public/PublicPagePrimitives";
 import { contactEmail } from "@/lib/routes";
 
 const legalSectionKeys = {
@@ -21,23 +28,21 @@ export async function LocalizedLegalPage({ kind }: LocalizedLegalPageProps) {
   return (
     <>
       <SiteHeader />
-      <main className="cinematic-section min-h-screen bg-arena-black px-4 py-16 text-white sm:px-6 lg:px-8">
-        <div className="mx-auto w-full max-w-4xl">
-          <div className="rounded-lg border border-white/10 bg-white/[0.04] p-6 shadow-panel backdrop-blur-xl sm:p-8">
-            <p className="inline-flex rounded-lg border border-arena-green/30 bg-arena-green/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.2em] text-arena-green">
-              {t("eyebrow")}
-            </p>
-            <h1 className="mt-5 font-display text-4xl font-black uppercase leading-tight text-white sm:text-5xl">
-              {t("title")}
-            </h1>
-            <p className="mt-4 text-base leading-7 text-white/66">
-              {t("intro")}
-            </p>
-            <p className="mt-3 text-sm font-semibold text-white/42">
+      <PublicPageShell>
+        <PublicPageHero
+          Icon={Mail}
+          description={t("intro")}
+          eyebrow={t("eyebrow")}
+          meta={t("updated")}
+          title={t("title")}
+        />
+        <PublicSection className="pt-0">
+          <PremiumGlassCard className="mx-auto max-w-4xl p-5 sm:p-7 lg:p-8">
+            <p className="text-sm font-semibold text-white/46">
               {t("updated")}
             </p>
 
-            <div className="mt-8 grid gap-4">
+            <div className="mt-7 grid gap-4">
               {legalSectionKeys[kind].map((sectionKey) => (
                 <section
                   key={sectionKey}
@@ -53,16 +58,18 @@ export async function LocalizedLegalPage({ kind }: LocalizedLegalPageProps) {
               ))}
             </div>
 
-            <a
+            <CTAButton
+              className="mt-8"
               href={`mailto:${contactEmail}`}
-              className="button-glow mt-8 inline-flex items-center gap-2 rounded-lg bg-arena-green px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
+              tone="green"
+              variant="ghost"
             >
               <Mail size={17} aria-hidden="true" />
               {contactEmail}
-            </a>
-          </div>
-        </div>
-      </main>
+            </CTAButton>
+          </PremiumGlassCard>
+        </PublicSection>
+      </PublicPageShell>
       <SiteFooter />
     </>
   );

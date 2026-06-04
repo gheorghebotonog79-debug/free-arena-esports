@@ -3,9 +3,9 @@ import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
-import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
 import { RankingsPage } from "@/components/rankings/RankingsPage";
 import { rankingsPageContent } from "@/data/rankings-page";
 import { routing, type Locale } from "@/i18n/routing";
@@ -48,10 +48,9 @@ export default async function RankingsRoute({ params }: RankingsRouteProps) {
   return (
     <>
       <SiteHeader />
-      <main className="neon-page-shell cyber-root bg-arena-black text-white">
-        <NeonAtmosphere />
+      <PublicPageShell>
         <RankingsPage locale={locale} progress={progress} />
-      </main>
+      </PublicPageShell>
       <SiteFooter />
       <LiveChatLauncher />
       <script
