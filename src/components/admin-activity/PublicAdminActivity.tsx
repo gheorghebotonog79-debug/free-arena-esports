@@ -64,7 +64,8 @@ function CompactCard({
       as={as}
       tone={tone}
       status={status}
-      className={classes("!p-3 sm:!p-4", className)}
+      className={classes("!h-auto !min-h-0 !p-3 sm:!p-4", className)}
+      contentClassName="!h-auto"
     >
       {children}
     </TacticalCard>
