@@ -452,7 +452,7 @@ export function PublicAdminActivityDetailPage({
               title={t.daily}
             />
             {detail.dailyScores.length > 0 ? (
-              <div className="mt-4 grid gap-2">
+              <div className="mt-4 grid max-h-[28rem] gap-2 overflow-y-auto overscroll-contain pr-1">
                 {detail.dailyScores.map((score) => (
                   <div key={`${score.serverKey}-${score.date.toISOString()}`} className="server-metric p-3">
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -484,7 +484,7 @@ export function PublicAdminActivityDetailPage({
                 eyebrow="ACTIONS"
                 title={t.latestActions}
               />
-              <div className="mt-4 grid gap-2">
+              <div className="mt-4 grid max-h-[22rem] gap-2 overflow-y-auto overscroll-contain pr-1">
                 {detail.actions.length > 0 ? detail.actions.map((action) => (
                   <div key={`${action.serverKey}-${action.occurredAt.toISOString()}-${action.command}`} className="server-metric p-3">
                     <p className="text-xs font-black uppercase text-white">{action.command ?? "admin_action"}</p>
@@ -503,7 +503,7 @@ export function PublicAdminActivityDetailPage({
                 eyebrow="RECRUITS"
                 title={t.recruits}
               />
-              <div className="mt-4 grid gap-2">
+              <div className="mt-4 grid max-h-[18rem] gap-2 overflow-y-auto overscroll-contain pr-1">
                 {detail.recruits.length > 0 ? detail.recruits.map((recruit) => (
                   <div key={`${recruit.serverKey}-${recruit.reportedAt.toISOString()}-${recruit.targetName}`} className="server-metric p-3">
                     <p className="text-xs font-black uppercase text-white">{recruit.targetName}</p>
