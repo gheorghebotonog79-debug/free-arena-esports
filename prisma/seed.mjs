@@ -6,7 +6,7 @@ const adminRoles = [
   {
     name: "helper",
     priority: 10,
-    permissions: ["tickets:read", "news:read", "servers:read"],
+    permissions: ["tickets:read", "news:read", "servers:read", "staffActivity:read"],
   },
   {
     name: "moderator",
@@ -16,6 +16,7 @@ const adminRoles = [
       "tickets:moderate",
       "news:read",
       "servers:read",
+      "staffActivity:read",
       "players:moderate",
     ],
   },
@@ -29,6 +30,8 @@ const adminRoles = [
       "news:write",
       "servers:read",
       "servers:write",
+      "staffActivity:read",
+      "staffActivity:write",
       "tournaments:read",
       "tournaments:write",
       "vip:read",
@@ -42,6 +45,7 @@ const adminRoles = [
       "tickets:*",
       "news:*",
       "servers:*",
+      "staffActivity:*",
       "tournaments:*",
       "vip:*",
       "players:*",

@@ -21,6 +21,9 @@ export type AdminPermission =
   | "servers:write"
   | "settings:read"
   | "settings:write"
+  | "staffActivity:*"
+  | "staffActivity:read"
+  | "staffActivity:write"
   | "tickets:*"
   | "tickets:read"
   | "tickets:moderate"
@@ -41,7 +44,7 @@ export const adminRoleDefinitions = [
   {
     name: "helper",
     priority: 10,
-    permissions: ["tickets:read", "news:read", "servers:read"],
+    permissions: ["tickets:read", "news:read", "servers:read", "staffActivity:read"],
   },
   {
     name: "moderator",
@@ -51,6 +54,7 @@ export const adminRoleDefinitions = [
       "tickets:moderate",
       "news:read",
       "servers:read",
+      "staffActivity:read",
       "players:moderate",
     ],
   },
@@ -64,6 +68,8 @@ export const adminRoleDefinitions = [
       "news:write",
       "servers:read",
       "servers:write",
+      "staffActivity:read",
+      "staffActivity:write",
       "tournaments:read",
       "tournaments:write",
       "vip:read",
@@ -77,6 +83,7 @@ export const adminRoleDefinitions = [
       "tickets:*",
       "news:*",
       "servers:*",
+      "staffActivity:*",
       "tournaments:*",
       "vip:*",
       "players:*",

@@ -57,15 +57,15 @@ model AdminAuditLog {
 }
 
 model AdminSession {
-  id        String   @id @default(cuid())
-  userId    String
-  tokenHash String   @unique
-  ip        String?
-  userAgent String?
-  createdAt DateTime @default(now())
+  id         String   @id @default(cuid())
+  userId     String
+  tokenHash  String   @unique
+  ip         String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
   lastSeenAt DateTime @default(now())
-  expiresAt DateTime
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt  DateTime
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([expiresAt])
@@ -162,4 +162,142 @@ model SystemSetting {
   value     Json
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model AdminMonitorAdmin {
+  id          String   @id @default(cuid())
+  steamId     String   @unique
+  currentName String
+  firstSeenAt DateTime @default(now())
+  lastSeenAt  DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([lastSeenAt])
+}
+
+model AdminMonitorSession {
+  id              String    @id @default(cuid())
+  serverKey       String
+  adminSteamId    String
+  adminName       String
+  startedAt       DateTime
+  lastHeartbeatAt DateTime
+  endedAt         DateTime?
+  minutesOnline   Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([serverKey, adminSteamId, lastHeartbeatAt])
+  @@index([endedAt])
+}
+
+model AdminMonitorEvent {
+  id            String   @id @default(cuid())
+  serverKey     String
+  eventType     String
+  adminSteamId  String
+  adminName     String
+  targetSteamId String?
+  targetName    String?
+  command       String?
+  metadata      Json     @default("{}")
+  occurredAt    DateTime
+  createdAt     DateTime @default(now())
+
+  @@index([serverKey, occurredAt])
+  @@index([adminSteamId, occurredAt])
+  @@index([eventType, occurredAt])
+  @@index([targetSteamId])
+}
+
+model AdminMonitorRecruit {
+  id                String    @id @default(cuid())
+  serverKey         String
+  adminSteamId      String
+  adminName         String
+  targetSteamId     String
+  targetName        String
+  status            String    @default("pending")
+  reportedAt        DateTime
+  acceptedAt        DateTime?
+  rejectedAt        DateTime?
+  initialPlayedTime Int?
+  currentPlayedTime Int?
+  requiredMinutes   Int       @default(60)
+  windowDays        Int       @default(7)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@unique([serverKey, targetSteamId])
+  @@index([serverKey, status, reportedAt])
+  @@index([adminSteamId, reportedAt])
+}
+
+model AdminMonitorDailyScore {
+  id              String   @id @default(cuid())
+  serverKey       String
+  adminSteamId    String
+  date            DateTime @db.Date
+  minutesOnline   Int      @default(0)
+  activeDayPoints Int      @default(0)
+  timePoints      Int      @default(0)
+  actionPoints    Int      @default(0)
+  recruitPoints   Int      @default(0)
+  penaltyPoints   Int      @default(0)
+  totalPoints     Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([serverKey, adminSteamId, date])
+  @@index([date])
+  @@index([adminSteamId, date])
+}
+
+model AdminMonitorMonthlyReport {
+  id               String   @id @default(cuid())
+  serverKey        String
+  month            String   @db.VarChar(6)
+  adminSteamId     String
+  minutesOnline    Int      @default(0)
+  activeDays       Int      @default(0)
+  actionsCount     Int      @default(0)
+  recruitsAccepted Int      @default(0)
+  penalties        Int      @default(0)
+  totalPoints      Int      @default(0)
+  rewardTier       String?
+  upgradeEligible  Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([serverKey, adminSteamId, month])
+  @@index([month, totalPoints])
+  @@index([adminSteamId, month])
+}
+
+model AdminMonitorPenalty {
+  id           String   @id @default(cuid())
+  serverKey    String
+  adminSteamId String
+  points       Int
+  reason       String
+  createdBy    String?
+  createdAt    DateTime @default(now())
+
+  @@index([serverKey, adminSteamId, createdAt])
+}
+
+model AdminMonitorReward {
+  id           String   @id @default(cuid())
+  serverKey    String
+  adminSteamId String
+  month        String   @db.VarChar(6)
+  tier         String
+  status       String   @default("pending")
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([serverKey, adminSteamId, month])
+  @@index([status, month])
 }

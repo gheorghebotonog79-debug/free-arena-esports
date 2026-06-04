@@ -88,6 +88,7 @@ export default async function AdminDashboardPage() {
               ["News", "/admin/news"],
               ["Turnee", "/admin/tournaments"],
               ["VIP", "/admin/vip"],
+              ["Staff activity", "/admin/staff-activity"],
               ["Audit", "/admin/audit"],
             ].map(([label, href]) => (
               <Link

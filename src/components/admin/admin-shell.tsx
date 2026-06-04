@@ -4,6 +4,7 @@ import {
   Activity,
   Gauge,
   Newspaper,
+  Radar,
   Server,
   Settings,
   ShieldAlert,
@@ -49,6 +50,13 @@ const adminNavigation: AdminNavigationItem[] = [
     permission: "tournaments:read",
   },
   { href: "/admin/vip", label: "VIP", key: "vip", icon: Zap, permission: "vip:read" },
+  {
+    href: "/admin/staff-activity",
+    label: "Staff activity",
+    key: "staff-activity",
+    icon: Radar,
+    permission: "staffActivity:read",
+  },
   {
     href: "/admin/settings",
     label: "Setari",
