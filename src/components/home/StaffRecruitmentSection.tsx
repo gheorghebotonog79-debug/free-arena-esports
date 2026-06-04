@@ -7,12 +7,12 @@ const DISCORD_URL = "https://discord.gg/freearena";
 
 const content = {
   ro: {
-    apply: "Aplica admin",
+    apply: "Aplică admin",
     copy:
       "Căutăm oameni maturi, activi seara, care pot ajuta jucătorii și pot ține serverele curate.",
-    discord: "Discuta pe Discord",
+    discord: "Discută pe Discord",
     eyebrow: "Recrutare admini",
-    title: "Cautam admini activi",
+    title: "Căutăm admini activi",
   },
   en: {
     apply: "Apply admin",
