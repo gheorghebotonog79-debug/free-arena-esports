@@ -1,6 +1,15 @@
 import { CheckCircle2, Clock3, MessageSquare, ShieldCheck, Trophy, UserPlus, type LucideIcon } from "lucide-react";
 import { TrackedAnchor } from "@/components/analytics/TrackedLink";
-import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
+import {
+  PublicPageShell,
+  TacticalActions,
+  TacticalBadge,
+  TacticalCard,
+  TacticalCardHeader,
+  TacticalGrid,
+  TacticalInfoBlock,
+  TacticalSection,
+} from "@/components/public/PublicPagePrimitives";
 import type { Locale } from "@/i18n/routing";
 import { forumLinks } from "@/lib/forum-links";
 
@@ -11,7 +20,7 @@ const content = {
     eyebrow: "Recrutare staff",
     title: "Căutăm admini activi pentru FREE-ARENA",
     copy:
-      "FREE-ARENA este la începutul unei etape în care comunitatea contează mai mult decât orice pagină. Avem nevoie de oameni maturi, prezenți seara, care pot ajuta jucătorii și pot ține serverele curate.",
+      "FREE-ARENA este într-o etapă în care comunitatea contează mai mult decât orice pagină. Avem nevoie de oameni maturi, prezenți seara, care pot ajuta jucătorii și pot ține serverele curate.",
     apply: "Aplică pe Forum",
     discord: "Discută pe Discord",
     requirementsTitle: "Cerințe",
@@ -19,6 +28,7 @@ const content = {
     noteTitle: "Ce căutăm de fapt",
     note:
       "Nu căutăm admini doar pentru comenzi. Căutăm oameni care pot vorbi normal cu jucătorii, pot calma conflicte și pot ajuta comunitatea să crească fără promisiuni false.",
+    routeTitle: "Traseu aplicare",
     requirements: [
       "Minim 16 ani.",
       "Activitate seara, când serverele au cea mai mare șansă să strângă jucători.",
@@ -46,12 +56,12 @@ const content = {
       "FREE-ARENA is entering a stage where the community matters more than any page. We need mature people who can be active in the evening, help players, and keep the servers clean.",
     apply: "Apply on Forum",
     discord: "Talk on Discord",
-    servers: "View servers",
     requirementsTitle: "Requirements",
     benefitsTitle: "Benefits",
     noteTitle: "What we actually need",
     note:
       "We are not looking for admins only for commands. We need people who can speak normally with players, calm conflicts, and help the community grow without fake promises.",
+    routeTitle: "Application route",
     requirements: [
       "Minimum age 16.",
       "Evening activity, when the servers have the best chance to gather players.",
@@ -80,12 +90,12 @@ export function JoinStaffLanding({ locale }: { locale: Locale }) {
   return (
     <PublicPageShell>
       <section className="neon-section px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[minmax(0,0.96fr)_minmax(22rem,0.78fr)] lg:items-center">
-          <div>
+        <div className="mx-auto grid w-full max-w-[92rem] gap-8 lg:grid-cols-[minmax(0,0.96fr)_minmax(22rem,0.78fr)] lg:items-stretch">
+          <div className="min-w-0">
             <p className="neon-kicker section-badge-label inline-flex px-4 py-2">
               {page.eyebrow}
             </p>
-            <h1 className="neon-heading neon-title neon-text-pulse mt-6 max-w-5xl font-display text-[clamp(3rem,8vw,7rem)] font-black uppercase leading-[0.84] text-white">
+            <h1 className="neon-heading neon-title neon-text-pulse mt-6 max-w-5xl break-words font-display text-[clamp(3rem,8vw,7rem)] font-black uppercase leading-[0.84] text-white">
               {page.title}
             </h1>
             <p className="mt-6 max-w-3xl text-base font-semibold leading-8 text-white/68 sm:text-lg">
@@ -98,7 +108,7 @@ export function JoinStaffLanding({ locale }: { locale: Locale }) {
                 rel="noopener noreferrer"
                 eventName="click_apply_staff"
                 eventPayload={{ location: "join_staff_hero", channel: "forum" }}
-                className="button-glow inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-arena-green px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
+                className="server-card--cs16 server-join-button inline-flex min-h-12 items-center justify-center gap-2 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] transition"
               >
                 <MessageSquare size={18} aria-hidden="true" />
                 {page.apply}
@@ -109,7 +119,7 @@ export function JoinStaffLanding({ locale }: { locale: Locale }) {
                 rel="noopener noreferrer"
                 eventName="click_join_discord"
                 eventPayload={{ location: "join_staff_hero" }}
-                className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#98a3ff]/35 bg-[#5865f2]/12 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-[#98a3ff]/70 hover:bg-[#5865f2]/20"
+                className="server-card--cs2 server-details-button inline-flex min-h-12 items-center justify-center gap-2 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition"
               >
                 <MessageSquare size={18} aria-hidden="true" />
                 {page.discord}
@@ -117,58 +127,65 @@ export function JoinStaffLanding({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          <aside className="premium-card glass-panel neon-hover animated-border rounded-lg p-5 sm:p-6">
-            <div className="flex items-center gap-3">
-              <span className="grid size-14 place-items-center rounded-lg border border-arena-gold/30 bg-arena-gold/12 text-arena-gold">
-                <UserPlus size={26} aria-hidden="true" />
-              </span>
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-white/42">FREE-ARENA</p>
-                <h2 className="mt-1 font-display text-3xl font-black uppercase text-white">
-                  Staff
-                </h2>
-              </div>
-            </div>
+          <TacticalCard as="aside" tone="cs16" className="min-h-96">
+            <TacticalCardHeader
+              Icon={UserPlus}
+              badge={<TacticalBadge dot>OPEN</TacticalBadge>}
+              eyebrow="FREE-ARENA"
+              title={page.routeTitle}
+            />
             <ol className="mt-6 grid gap-3">
               {page.steps.map((step, index) => (
-                <li key={step} className="server-metric flex gap-3 p-3 text-sm font-semibold leading-6 text-white/68">
-                  <span className="grid size-8 shrink-0 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 font-display text-sm font-black text-cyan-200">
-                    {index + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
+                <TacticalInfoBlock key={step} label={`0${index + 1}`} value={step} />
               ))}
             </ol>
-          </aside>
+          </TacticalCard>
         </div>
       </section>
 
-      <section className="neon-section px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-2">
-          <InfoPanel Icon={ShieldCheck} items={page.requirements} title={page.requirementsTitle} />
-          <InfoPanel Icon={Trophy} items={page.benefits} title={page.benefitsTitle} />
-        </div>
-      </section>
+      <TacticalSection className="pb-16">
+        <TacticalGrid columns="two">
+          <InfoPanel Icon={ShieldCheck} items={page.requirements} title={page.requirementsTitle} tone="cs2" />
+          <InfoPanel Icon={Trophy} items={page.benefits} title={page.benefitsTitle} tone="respawn" />
+        </TacticalGrid>
+      </TacticalSection>
 
-      <section className="neon-section px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="mx-auto w-full max-w-7xl">
-          <article className="premium-card glass-panel neon-hover rounded-lg p-5 sm:p-6">
-            <div className="flex items-start gap-3">
-              <span className="grid size-12 shrink-0 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
-                <Clock3 size={22} aria-hidden="true" />
-              </span>
-              <div>
-                <h2 className="font-display text-3xl font-black uppercase text-white">
-                  {page.noteTitle}
-                </h2>
-                <p className="mt-3 max-w-4xl text-sm font-semibold leading-7 text-white/64">
-                  {page.note}
-                </p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
+      <TacticalSection className="pb-20">
+        <TacticalCard tone="global">
+          <TacticalCardHeader
+            Icon={Clock3}
+            badge={<TacticalBadge>FREE-ARENA</TacticalBadge>}
+            eyebrow={page.eyebrow}
+            title={page.noteTitle}
+          >
+            <p className="mt-4 max-w-4xl text-sm font-semibold leading-7 text-white/64">
+              {page.note}
+            </p>
+          </TacticalCardHeader>
+          <TacticalActions className="sm:grid-cols-2 lg:max-w-xl">
+            <TrackedAnchor
+              href={forumLinks.adminRequests}
+              target="_blank"
+              rel="noopener noreferrer"
+              eventName="click_apply_staff"
+              eventPayload={{ location: "join_staff_note", channel: "forum" }}
+              className="server-join-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
+            >
+              {page.apply}
+            </TrackedAnchor>
+            <TrackedAnchor
+              href={DISCORD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              eventName="click_join_discord"
+              eventPayload={{ location: "join_staff_note" }}
+              className="server-details-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
+            >
+              {page.discord}
+            </TrackedAnchor>
+          </TacticalActions>
+        </TacticalCard>
+      </TacticalSection>
     </PublicPageShell>
   );
 }
@@ -177,29 +194,29 @@ function InfoPanel({
   Icon,
   items,
   title,
+  tone,
 }: {
   Icon: LucideIcon;
   items: readonly string[];
   title: string;
+  tone: "cs2" | "respawn";
 }) {
   return (
-    <article className="premium-card glass-panel neon-hover h-full rounded-lg p-5">
-      <div className="flex items-center gap-3">
-        <span className="grid size-12 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
-          <Icon size={22} aria-hidden="true" />
-        </span>
-        <h2 className="font-display text-3xl font-black uppercase text-white">
-          {title}
-        </h2>
-      </div>
+    <TacticalCard tone={tone} className="min-h-96">
+      <TacticalCardHeader
+        Icon={Icon}
+        badge={<TacticalBadge>STAFF</TacticalBadge>}
+        eyebrow="FREE-ARENA.RO"
+        title={title}
+      />
       <ul className="mt-6 grid gap-3">
         {items.map((item) => (
           <li key={item} className="flex gap-3 text-sm font-semibold leading-6 text-white/66">
-            <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-arena-green" aria-hidden="true" />
+            <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[color:var(--card-accent)]" aria-hidden="true" />
             <span>{item}</span>
           </li>
         ))}
       </ul>
-    </article>
+    </TacticalCard>
   );
 }

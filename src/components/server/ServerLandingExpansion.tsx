@@ -13,6 +13,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { TacticalCardChrome } from "@/components/public/PublicPagePrimitives";
 import { serverLandingPages, type ServerLandingPageContent } from "@/data/servers/landing-pages";
 import type { Locale } from "@/i18n/routing";
 import type { AnalyticsEventName } from "@/lib/analytics";
@@ -71,7 +72,8 @@ function PremiumOverview({ landing }: { landing: ServerLandingPageContent }) {
             {landing.title}
           </h2>
         </div>
-        <p className="premium-card glass-panel neon-hover rounded-lg p-5 text-base font-semibold leading-7 text-white/68">
+        <p className="premium-card glass-panel neon-hover server-tactical-card server-card--cs2 server-tactical-card--online min-h-0 rounded-lg p-5 text-base font-semibold leading-7 text-white/68" data-occupancy="low" data-status="online">
+          <TacticalCardChrome />
           {landing.intro}
         </p>
       </div>
@@ -98,14 +100,16 @@ function ConnectSection({ landing }: { landing: ServerLandingPageContent }) {
         </div>
         <div className="grid gap-3">
           {landing.connect.steps.map((step, index) => (
-            <div key={step} className="premium-card glass-panel neon-hover flex gap-4 rounded-lg p-4">
+            <div key={step} className="premium-card glass-panel neon-hover server-tactical-card server-card--cs16 server-tactical-card--online flex min-h-0 gap-4 rounded-lg p-4" data-occupancy="low" data-status="online">
+              <TacticalCardChrome />
               <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 font-display text-sm font-black text-cyan-200">
                 {index + 1}
               </span>
               <p className="text-sm font-semibold leading-6 text-white/68">{step}</p>
             </div>
           ))}
-          <p className="rounded-lg border border-arena-gold/20 bg-arena-gold/10 p-4 text-sm font-semibold leading-6 text-white/70">
+          <p className="server-tactical-card server-card--global server-tactical-card--pending min-h-0 rounded-lg border border-arena-gold/20 bg-arena-gold/10 p-4 text-sm font-semibold leading-6 text-white/70" data-occupancy="idle" data-status="pending">
+            <TacticalCardChrome />
             {landing.connect.note}
           </p>
         </div>
@@ -141,7 +145,8 @@ function CardSection({
         </div>
         <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {items.map((item) => (
-            <article key={item.title} className="premium-card glass-panel neon-hover h-full rounded-lg p-5">
+            <article key={item.title} className="premium-card glass-panel neon-hover server-tactical-card server-card--cs2 server-tactical-card--online h-full min-h-72 rounded-lg p-5" data-occupancy="low" data-status="online">
+              <TacticalCardChrome />
               <h3 className="font-display text-xl font-black uppercase text-white">
                 {item.title}
               </h3>
@@ -175,7 +180,8 @@ function RulesSection({ landing }: { landing: ServerLandingPageContent }) {
         </div>
         <div className="grid gap-3">
           {landing.rules.map((rule) => (
-            <div key={rule} className="premium-card glass-panel neon-hover flex gap-3 rounded-lg p-4">
+            <div key={rule} className="premium-card glass-panel neon-hover server-tactical-card server-card--respawn server-tactical-card--online flex min-h-0 gap-3 rounded-lg p-4" data-occupancy="low" data-status="online">
+              <TacticalCardChrome />
               <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-arena-green" aria-hidden="true" />
               <p className="text-sm font-semibold leading-6 text-white/68">{rule}</p>
             </div>
@@ -198,7 +204,8 @@ function CommunitySection({ landing }: { landing: ServerLandingPageContent }) {
             {landing.communityTitle}
           </h2>
         </div>
-        <article className="premium-card glass-panel neon-hover rounded-lg p-5">
+        <article className="premium-card glass-panel neon-hover server-tactical-card server-card--global server-tactical-card--online min-h-0 rounded-lg p-5" data-occupancy="low" data-status="online">
+          <TacticalCardChrome />
           <div className="grid gap-5 text-sm leading-7 text-white/66">
             {landing.communityBody.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -229,7 +236,8 @@ function GallerySection({ landing }: { landing: ServerLandingPageContent }) {
         </div>
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {landing.gallery.map((item) => (
-            <article key={item.title} className="premium-card glass-panel neon-hover overflow-hidden rounded-lg">
+            <article key={item.title} className="premium-card glass-panel neon-hover server-tactical-card server-card--cs16 server-tactical-card--online min-h-0 overflow-hidden rounded-lg" data-occupancy="low" data-status="online">
+              <TacticalCardChrome />
               <div className="grid aspect-[16/9] place-items-center bg-black/34 p-8">
                 <Image
                   src={item.image}
@@ -273,8 +281,11 @@ function DeepLinksSection({ landing, serverSlug }: { landing: ServerLandingPageC
               eventName={getInternalLinkEventName(item.href)}
               eventPayload={{ location: "server_landing_deep_links", server: serverSlug, target: item.href }}
               href={item.href}
-              className="premium-card glass-panel neon-hover group h-full rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+              className="premium-card glass-panel neon-hover group server-tactical-card server-card--global server-tactical-card--online h-full min-h-72 rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+              data-occupancy="low"
+              data-status="online"
             >
+              <TacticalCardChrome />
               <div className="flex items-start justify-between gap-3">
                 <h3 className="font-display text-xl font-black uppercase text-white">
                   {item.title}

@@ -1,4 +1,11 @@
 import type { LucideIcon } from "lucide-react";
+import {
+  TacticalBadge,
+  TacticalCard,
+  TacticalCardHeader,
+  TacticalGrid,
+  TacticalInfoBlock,
+} from "@/components/public/PublicPagePrimitives";
 
 export type ServerStatItem = {
   key: string;
@@ -25,14 +32,16 @@ export function ServerStats({
 }: ServerStatsProps) {
   if (pending) {
     return (
-      <section className="rounded-lg border border-arena-gold/24 bg-arena-gold/10 p-5">
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-arena-gold">
-          {pendingTitle}
-        </p>
+      <TacticalCard as="section" tone="global" status="pending" className="min-h-52">
+        <TacticalCardHeader
+          badge={<TacticalBadge>{pendingTitle}</TacticalBadge>}
+          eyebrow="SERVER STATUS"
+          title={pendingTitle}
+        />
         <p className="mt-3 max-w-2xl text-sm leading-7 text-white/68">
           {pendingCopy}
         </p>
-      </section>
+      </TacticalCard>
     );
   }
 
@@ -41,22 +50,17 @@ export function ServerStats({
       <h2 className="font-display text-2xl font-black uppercase text-white">
         {title}
       </h2>
-      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        {items.map(({ key, label, value, Icon, toneClass }) => (
-          <div
+      <TacticalGrid columns="auto" className="mt-4 2xl:grid-cols-5">
+        {items.map(({ key, label, value, Icon }, index) => (
+          <TacticalCard
             key={key}
-            className="premium-card glass-panel min-h-32 rounded-lg p-4"
+            tone={index % 4 === 0 ? "cs2" : index % 4 === 1 ? "cs16" : index % 4 === 2 ? "respawn" : "global"}
+            className="min-h-40"
           >
-            <Icon size={20} className={toneClass} aria-hidden="true" />
-            <p className="mt-5 break-words font-display text-2xl font-black leading-tight text-white">
-              {value}
-            </p>
-            <p className="mt-2 text-xs font-bold uppercase tracking-[0.14em] text-white/42">
-              {label}
-            </p>
-          </div>
+            <TacticalInfoBlock Icon={Icon} label={label} value={<span className="font-display text-2xl">{value}</span>} />
+          </TacticalCard>
         ))}
-      </div>
+      </TacticalGrid>
     </section>
   );
 }

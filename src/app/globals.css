@@ -561,6 +561,11 @@ img {
     transform: perspective(900px) translateY(-6px) scale(1.008) rotateX(0.5deg);
   }
 
+  .server-tactical-card > :not(.server-card__backdrop):not(.server-card__noise):not(.server-card__scanline):not(.server-card__shine):not([aria-hidden="true"]) {
+    position: relative;
+    z-index: 10;
+  }
+
   .community-portal-card.neon-hover:hover,
   .community-portal-card.neon-hover:focus-within {
     border-color: rgb(var(--community-card-glow-rgb) / 0.62);

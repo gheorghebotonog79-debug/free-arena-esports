@@ -1,5 +1,13 @@
 import { ArrowRight, Network } from "lucide-react";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
+import {
+  TacticalActions,
+  TacticalBadge,
+  TacticalCard,
+  TacticalCardHeader,
+  TacticalGrid,
+  TacticalSection,
+} from "@/components/public/PublicPagePrimitives";
 import { serverSeoPages, serverSeoSlugs } from "@/data/servers/seo-pages";
 import type { Locale } from "@/i18n/routing";
 import type { ServerSeoPageData } from "@/lib/serverSeo";
@@ -23,54 +31,57 @@ export function ServerInternalLinks({ labels, locale, page }: ServerInternalLink
     .map((slug) => serverSeoPages[slug]);
 
   return (
-    <section className="neon-section px-4 pb-16 sm:px-6 lg:px-8">
-      <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-[1fr_1.2fr]">
-        <div className="premium-card glass-panel neon-hover rounded-lg p-5">
-          <div className="flex items-center gap-3">
-            <Network size={22} className="text-cyan-200" aria-hidden="true" />
-            <h2 className="neon-title neon-text-pulse font-display text-2xl font-black uppercase text-white">
-              {labels.hub}
-            </h2>
-          </div>
-          <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-            <TrackedLink eventName="click_server_details" eventPayload={{ location: "server_internal_hub", server: page.slug, target: "servers" }} href="/servers" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10">
+    <TacticalSection className="pb-16">
+      <div className="grid gap-5 lg:grid-cols-[1fr_1.2fr]">
+        <TacticalCard tone="cs2" className="min-h-80">
+          <TacticalCardHeader
+            Icon={Network}
+            badge={<TacticalBadge>HUB</TacticalBadge>}
+            eyebrow="FREE-ARENA.RO"
+            title={labels.hub}
+          />
+          <TacticalActions className="sm:grid-cols-2 lg:grid-cols-1">
+            <TrackedLink eventName="click_server_details" eventPayload={{ location: "server_internal_hub", server: page.slug, target: "servers" }} href="/servers" className="server-details-button inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition">
               {labels.servers}
               <ArrowRight size={17} aria-hidden="true" />
             </TrackedLink>
-            <TrackedLink eventName="click_join_discord" eventPayload={{ location: "server_internal_hub", server: page.slug }} href="/discord" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-[#98a3ff]/60 hover:bg-[#5865f2]/10">
+            <TrackedLink eventName="click_join_discord" eventPayload={{ location: "server_internal_hub", server: page.slug }} href="/discord" className="server-details-button inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition">
               {labels.discord}
               <ArrowRight size={17} aria-hidden="true" />
             </TrackedLink>
-            <TrackedLink eventName="click_teamspeak" eventPayload={{ location: "server_internal_hub", server: page.slug }} href="/teamspeak" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10">
+            <TrackedLink eventName="click_teamspeak" eventPayload={{ location: "server_internal_hub", server: page.slug }} href="/teamspeak" className="server-details-button inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition">
               {labels.teamspeak}
               <ArrowRight size={17} aria-hidden="true" />
             </TrackedLink>
-            <TrackedLink eventName="click_apply_staff" eventPayload={{ location: "server_internal_hub", server: page.slug }} href="/join-staff" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-gold/60 hover:bg-arena-gold/10">
+            <TrackedLink eventName="click_apply_staff" eventPayload={{ location: "server_internal_hub", server: page.slug }} href="/join-staff" className="server-join-button inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] transition">
               {labels.staff}
               <ArrowRight size={17} aria-hidden="true" />
             </TrackedLink>
-          </div>
-        </div>
+          </TacticalActions>
+        </TacticalCard>
 
-        <div className="premium-card glass-panel neon-hover rounded-lg p-5">
-          <h2 className="neon-title neon-text-pulse font-display text-2xl font-black uppercase text-white">
-            {labels.related}
-          </h2>
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+        <TacticalCard tone="global" className="min-h-80">
+          <TacticalCardHeader
+            Icon={Network}
+            badge={<TacticalBadge>NETWORK</TacticalBadge>}
+            eyebrow="SERVER NETWORK"
+            title={labels.related}
+          />
+          <TacticalGrid columns="three" className="mt-5">
             {relatedServers.map((serverPage) => (
               <TrackedLink
                 key={serverPage.slug}
                 eventName="click_server_details"
                 eventPayload={{ location: "server_related_links", server: page.slug, target: serverPage.slug }}
                 href={`/server/${serverPage.slug}`}
-                className="neon-border neon-hover rounded-lg border border-white/10 bg-black/28 p-4 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                className="server-details-button inline-flex min-h-16 items-center justify-center px-4 py-3 text-center text-sm font-black uppercase tracking-[0.12em] text-white transition"
               >
                 {serverPage.hero[locale].name}
               </TrackedLink>
             ))}
-          </div>
-        </div>
+          </TacticalGrid>
+        </TacticalCard>
       </div>
-    </section>
+    </TacticalSection>
   );
 }

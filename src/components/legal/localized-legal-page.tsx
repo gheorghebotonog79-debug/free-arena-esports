@@ -4,10 +4,13 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import {
   CTAButton,
-  PremiumGlassCard,
   PublicPageHero,
   PublicPageShell,
   PublicSection,
+  TacticalBadge,
+  TacticalCard,
+  TacticalCardHeader,
+  TacticalInfoBlock,
 } from "@/components/public/PublicPagePrimitives";
 import { contactEmail } from "@/lib/routes";
 
@@ -37,24 +40,24 @@ export async function LocalizedLegalPage({ kind }: LocalizedLegalPageProps) {
           title={t("title")}
         />
         <PublicSection className="pt-0">
-          <PremiumGlassCard className="mx-auto max-w-4xl p-5 sm:p-7 lg:p-8">
-            <p className="text-sm font-semibold text-white/46">
-              {t("updated")}
-            </p>
+          <TacticalCard className="mx-auto max-w-4xl p-5 sm:p-7 lg:p-8" tone="global">
+            <TacticalCardHeader
+              badge={<TacticalBadge>{t("updated")}</TacticalBadge>}
+              eyebrow="FREE-ARENA.RO"
+              Icon={Mail}
+              title={t("title")}
+            />
 
             <div className="mt-7 grid gap-4">
               {legalSectionKeys[kind].map((sectionKey) => (
-                <section
+                <TacticalInfoBlock
                   key={sectionKey}
-                  className="rounded-lg border border-white/10 bg-black/24 p-4"
+                  label={t(`sections.${sectionKey}.title`)}
                 >
-                  <h2 className="font-display text-xl font-black text-white">
-                    {t(`sections.${sectionKey}.title`)}
-                  </h2>
-                  <p className="mt-3 text-sm leading-7 text-white/64">
+                  <p className="mt-2 text-sm font-semibold normal-case leading-7 text-white/64">
                     {t(`sections.${sectionKey}.body`, { contactEmail })}
                   </p>
-                </section>
+                </TacticalInfoBlock>
               ))}
             </div>
 
@@ -67,7 +70,7 @@ export async function LocalizedLegalPage({ kind }: LocalizedLegalPageProps) {
               <Mail size={17} aria-hidden="true" />
               {contactEmail}
             </CTAButton>
-          </PremiumGlassCard>
+          </TacticalCard>
         </PublicSection>
       </PublicPageShell>
       <SiteFooter />

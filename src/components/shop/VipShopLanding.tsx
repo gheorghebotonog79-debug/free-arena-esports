@@ -17,7 +17,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { TrackedAnchor } from "@/components/analytics/TrackedLink";
-import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
+import { PublicPageShell, TacticalCardChrome } from "@/components/public/PublicPagePrimitives";
 import type { Locale } from "@/i18n/routing";
 import { forumLinks } from "@/lib/forum-links";
 import {
@@ -73,6 +73,12 @@ const toneClasses: Record<
     icon: "border-cyan-200/42 bg-cyan-300/14 text-cyan-100",
     price: "text-cyan-100",
   },
+};
+
+const tierTacticalClass: Record<VipTierKey, string> = {
+  diamond: "server-card--cs2",
+  gold: "server-card--cs16",
+  queen: "server-card--global",
 };
 
 const packageMotion = {
@@ -145,11 +151,14 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
 
           <motion.aside
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="premium-card glass-panel neon-hover relative rounded-lg border border-cyan-200/22 p-5"
+            className="premium-card glass-panel neon-hover server-tactical-card server-card--cs16 server-tactical-card--online relative rounded-lg border border-cyan-200/22 p-5"
             data-motion-card="true"
+            data-occupancy="low"
+            data-status="online"
             initial={{ opacity: 0, scale: 0.96, y: 18 }}
             transition={{ duration: 0.5 }}
           >
+            <TacticalCardChrome />
             <div className="absolute inset-0 rounded-lg bg-[radial-gradient(circle_at_20%_18%,rgba(255,45,117,0.22),transparent_36%),radial-gradient(circle_at_84%_82%,rgba(0,229,255,0.2),transparent_38%)]" aria-hidden="true" />
             <div className="relative">
               <span className="grid size-16 place-items-center rounded-lg border border-orange-300/30 bg-orange-400/12 text-orange-100">
@@ -180,10 +189,13 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
       >
         <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
           <motion.article
-            className="premium-card glass-panel neon-hover animated-border relative overflow-hidden rounded-lg border border-arena-green/24 p-5 sm:p-6"
+            className="premium-card glass-panel neon-hover animated-border server-tactical-card server-card--cs16 server-tactical-card--online relative overflow-hidden rounded-lg border border-arena-green/24 p-5 sm:p-6"
             data-motion-card="true"
+            data-occupancy="medium"
+            data-status="online"
             variants={panelMotion}
           >
+            <TacticalCardChrome />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(57,255,136,0.16),transparent_34%),radial-gradient(circle_at_88%_75%,rgba(0,229,255,0.14),transparent_38%)]" aria-hidden="true" />
             <div className="relative">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-arena-green">
@@ -231,11 +243,14 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
           </motion.article>
 
           <motion.article
-            className="premium-card glass-panel neon-hover animated-border rounded-lg border border-cyan-200/24 p-5 sm:p-6"
+            className="premium-card glass-panel neon-hover animated-border server-tactical-card server-card--cs2 server-tactical-card--online rounded-lg border border-cyan-200/24 p-5 sm:p-6"
             custom={1}
             data-motion-card="true"
+            data-occupancy="low"
+            data-status="online"
             variants={panelMotion}
           >
+            <TacticalCardChrome />
             <span className="grid size-14 place-items-center rounded-lg border border-cyan-200/34 bg-cyan-300/12 text-cyan-100">
               <Headphones size={26} aria-hidden="true" />
             </span>
@@ -296,7 +311,8 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
         whileInView="visible"
       >
         <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
-          <motion.article className="premium-card glass-panel neon-hover animated-border rounded-lg border border-cyan-200/22 p-5 sm:p-6" data-motion-card="true" variants={panelMotion}>
+          <motion.article className="premium-card glass-panel neon-hover animated-border server-tactical-card server-card--cs2 server-tactical-card--online rounded-lg border border-cyan-200/22 p-5 sm:p-6" data-motion-card="true" data-occupancy="low" data-status="online" variants={panelMotion}>
+            <TacticalCardChrome />
             <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-100">
               FREE-ARENA VIP
             </p>
@@ -318,7 +334,8 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
             </ol>
           </motion.article>
 
-          <motion.article className="premium-card glass-panel neon-hover animated-border rounded-lg border border-fuchsia-300/22 p-5 sm:p-6" custom={1} data-motion-card="true" variants={panelMotion}>
+          <motion.article className="premium-card glass-panel neon-hover animated-border server-tactical-card server-card--global server-tactical-card--online rounded-lg border border-fuchsia-300/22 p-5 sm:p-6" custom={1} data-motion-card="true" data-occupancy="low" data-status="online" variants={panelMotion}>
+            <TacticalCardChrome />
             <span className="grid size-14 place-items-center rounded-lg border border-fuchsia-300/35 bg-fuchsia-400/14 text-fuchsia-100">
               <Sparkles size={26} aria-hidden="true" />
             </span>
@@ -362,7 +379,8 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
         whileInView="visible"
       >
         <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-          <motion.article className="premium-card glass-panel neon-hover animated-border rounded-lg border border-orange-300/20 p-5 sm:p-6" custom={0} data-motion-card="true" variants={panelMotion}>
+          <motion.article className="premium-card glass-panel neon-hover animated-border server-tactical-card server-card--cs16 server-tactical-card--online rounded-lg border border-orange-300/20 p-5 sm:p-6" custom={0} data-motion-card="true" data-occupancy="low" data-status="online" variants={panelMotion}>
+            <TacticalCardChrome />
             <div className="flex items-center gap-3">
               <span className="grid size-12 place-items-center rounded-lg border border-orange-300/30 bg-orange-400/12 text-orange-100">
                 <ShieldAlert size={22} aria-hidden="true" />
@@ -381,7 +399,8 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
             </ul>
           </motion.article>
 
-          <motion.article className="premium-card glass-panel neon-hover animated-border rounded-lg border border-cyan-200/24 p-5 sm:p-6" custom={1} data-motion-card="true" variants={panelMotion}>
+          <motion.article className="premium-card glass-panel neon-hover animated-border server-tactical-card server-card--respawn server-tactical-card--online rounded-lg border border-cyan-200/24 p-5 sm:p-6" custom={1} data-motion-card="true" data-occupancy="medium" data-status="online" variants={panelMotion}>
+            <TacticalCardChrome />
             <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-100">
               FREE-ARENA
             </p>
@@ -417,7 +436,8 @@ export function VipShopLanding({ locale }: { locale: Locale }) {
         whileInView="visible"
       >
         <div className="mx-auto w-full max-w-7xl">
-          <motion.article className="premium-card glass-panel neon-hover animated-border overflow-hidden rounded-lg border border-cyan-200/24 p-5 sm:p-6 lg:p-8" data-motion-card="true" variants={panelMotion}>
+          <motion.article className="premium-card glass-panel neon-hover animated-border server-tactical-card server-card--cs2 server-tactical-card--online overflow-hidden rounded-lg border border-cyan-200/24 p-5 sm:p-6 lg:p-8" data-motion-card="true" data-occupancy="low" data-status="online" variants={panelMotion}>
+            <TacticalCardChrome />
             <div className="grid gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-start">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-100">
@@ -481,15 +501,18 @@ function VipPackageCard({
 
   return (
     <motion.article
-      className={`premium-card glass-panel neon-hover relative flex min-h-full flex-col overflow-hidden rounded-lg border p-5 ${tone.border} ${tone.glow}`}
+      className={`premium-card glass-panel neon-hover server-tactical-card ${tierTacticalClass[tier]} server-tactical-card--online relative flex min-h-full flex-col overflow-hidden rounded-lg border p-5 ${tone.border} ${tone.glow}`}
       custom={index}
       data-motion-card="true"
+      data-occupancy={tier === "diamond" ? "high" : tier === "gold" ? "medium" : "low"}
+      data-status="online"
       initial="hidden"
       viewport={{ once: true, amount: 0.25 }}
       variants={packageMotion}
       whileInView="visible"
       whileHover={{ y: -6 }}
     >
+      <TacticalCardChrome />
       <div className={`absolute inset-0 bg-gradient-to-br ${tone.accent}`} aria-hidden="true" />
       <div className="relative flex min-h-full flex-col">
         <div className="flex items-start justify-between gap-3">
@@ -497,7 +520,7 @@ function VipPackageCard({
             <Icon size={26} aria-hidden="true" />
           </span>
           {vipPackage.badge ? (
-            <span className={`rounded-lg border px-3 py-1 text-[0.64rem] font-black uppercase tracking-[0.14em] ${tone.badge}`}>
+            <span className={`server-status-badge rounded-lg border px-3 py-1 text-[0.64rem] font-black uppercase tracking-[0.14em] ${tone.badge}`}>
               {vipPackage.badge}
             </span>
           ) : null}
@@ -537,7 +560,7 @@ function VipPackageCard({
 
         <div className="mt-auto grid gap-2 pt-6">
           <TrackedAnchor
-            className="button-ghost inline-flex min-h-12 items-center justify-center rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/12"
+            className="server-join-button inline-flex min-h-12 items-center justify-center rounded-lg px-4 py-3 text-xs font-black uppercase tracking-[0.12em] transition"
             eventName="click_shop_vip"
             eventPayload={{ location: "shop_package_card", package: tier }}
             href={DISCORD_TICKET_URL}
@@ -571,11 +594,14 @@ function SupportCard({
 }) {
   return (
     <motion.div
-      className="premium-card glass-panel neon-hover animated-border rounded-lg border border-white/10 bg-black/30 p-4"
+      className="premium-card glass-panel neon-hover animated-border server-tactical-card server-card--global server-tactical-card--online rounded-lg border border-white/10 bg-black/30 p-4"
       custom={index}
       data-motion-card="true"
+      data-occupancy="low"
+      data-status="online"
       variants={panelMotion}
     >
+      <TacticalCardChrome />
       <div className="flex items-start gap-3">
         <span className="grid size-12 shrink-0 place-items-center rounded-lg border border-cyan-200/30 bg-cyan-300/10 text-cyan-100">
           <Icon size={22} aria-hidden="true" />
@@ -593,7 +619,7 @@ function SupportCard({
         {copy}
       </p>
       <TrackedAnchor
-        className="button-ghost mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-cyan-100/70 hover:bg-cyan-300/12"
+        className="server-details-button mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-lg px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition"
         eventName={href.startsWith("ts3server") ? "click_teamspeak" : "click_shop_vip"}
         eventPayload={{ location: "shop_support", title }}
         href={href}

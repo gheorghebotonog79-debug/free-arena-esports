@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, Copy, Headphones, Lock, Map, MessageSquare, RadioTower, ShieldCheck, UserPlus, UsersRound, type LucideIcon } from "lucide-react";
+import { TacticalCardChrome } from "@/components/public/PublicPagePrimitives";
 import { CopyToast } from "@/components/ui/copy-toast";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
@@ -42,6 +43,13 @@ const statusClasses: Record<LiveServerStatusKind, string> = {
   online: "border-arena-green/34 bg-arena-green/12 text-arena-green",
   offline: "border-arena-red/34 bg-arena-red/12 text-arena-red",
   pending: "border-arena-gold/34 bg-arena-gold/12 text-arena-gold",
+};
+
+const serverToneClass: Record<PublicServerConfig["key"], string> = {
+  cs16: "server-card--cs16",
+  cs2: "server-card--cs2",
+  global: "server-card--global",
+  respawn: "server-card--respawn",
 };
 
 function isLiveServersResponse(value: unknown): value is LiveServersResponse {
@@ -154,7 +162,12 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
       <section className="neon-section relative overflow-hidden px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
         <div className="absolute inset-x-0 top-0 h-64 bg-[radial-gradient(circle_at_22%_20%,rgba(0,229,255,0.16),transparent_52%),radial-gradient(circle_at_78%_0%,rgba(255,0,51,0.12),transparent_48%)]" aria-hidden="true" />
         <div className="relative mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(22rem,0.78fr)] lg:items-stretch">
-          <div className="premium-card glass-panel animated-border rounded-lg p-6 sm:p-8">
+          <div
+            className={`premium-card glass-panel animated-border server-tactical-card ${serverToneClass[server.key]} server-tactical-card--${status} rounded-lg p-6 sm:p-8`}
+            data-occupancy={status === "online" ? "medium" : status === "pending" ? "idle" : "low"}
+            data-status={status}
+          >
+            <TacticalCardChrome />
             <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
               <div className="min-w-0">
                 <p className="neon-kicker section-badge-label inline-flex px-4 py-2">
@@ -193,7 +206,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
                   <button
                     type="button"
                     onClick={() => void handleCopyAddress()}
-                    className="button-ghost inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                    className="server-copy-button inline-flex min-h-11 items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
                   >
                     {copied ? <Check size={17} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
                     {copied ? labels.copied : labels.copyIp}
@@ -202,7 +215,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
                 {canConnect ? (
                   <a
                     href={server.connectHref}
-                    className="button-glow inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-arena-green px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-black transition hover:bg-white"
+                    className="server-join-button inline-flex min-h-11 items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
                     onClick={() => trackEvent("click_play_now", { location: "server_seo_hero", server: server.key })}
                   >
                     {labels.joinServer}
@@ -212,7 +225,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
                 <Link
                   href="/discord"
                   onClick={() => trackEvent("click_join_discord", { location: "server_seo_hero", server: server.key })}
-                  className="button-ghost inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-[#98a3ff]/35 bg-[#5865f2]/12 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition hover:border-[#98a3ff]/70 hover:bg-[#5865f2]/20"
+                  className="server-details-button inline-flex min-h-11 items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
                 >
                   <MessageSquare size={17} aria-hidden="true" />
                   {labels.discord}
@@ -220,7 +233,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
                 <Link
                   href="/join-staff"
                   onClick={() => trackEvent("click_apply_staff", { location: "server_seo_hero", server: server.key })}
-                  className="button-ghost inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition hover:border-arena-gold/60 hover:bg-arena-gold/10"
+                  className="server-details-button inline-flex min-h-11 items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
                 >
                   <UserPlus size={17} aria-hidden="true" />
                   {labels.staff}
@@ -236,7 +249,12 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
             </div>
           </div>
 
-          <aside className="premium-card glass-panel neon-hover rounded-lg p-5 sm:p-6">
+          <aside
+            className={`premium-card glass-panel neon-hover server-tactical-card ${serverToneClass[server.key]} server-tactical-card--${status} rounded-lg p-5 sm:p-6`}
+            data-occupancy="low"
+            data-status={status}
+          >
+            <TacticalCardChrome />
             <div className="flex items-start justify-between gap-4">
               <span className="grid size-20 shrink-0 place-items-center rounded-lg border border-cyan-300/20 bg-black/32">
                 <Image
@@ -260,7 +278,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
                 <Link
                   href="/teamspeak"
                   onClick={() => trackEvent("click_teamspeak", { location: "server_seo_hero", server: server.key })}
-                  className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                  className="server-details-button inline-flex min-h-12 items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition"
                 >
                   <Headphones size={16} aria-hidden="true" />
                   {labels.teamspeak}
@@ -268,7 +286,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
                 <Link
                   href="/servers"
                   onClick={() => trackEvent("click_server_details", { location: "server_seo_hero", target: "servers", server: server.key })}
-                  className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10"
+                  className="server-details-button inline-flex min-h-12 items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-white transition"
                 >
                   {locale === "ro" ? "Servere" : "Servers"}
                   <ArrowRight size={16} aria-hidden="true" />

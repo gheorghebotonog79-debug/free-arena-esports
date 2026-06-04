@@ -10,6 +10,7 @@ import {
   Trophy,
   UsersRound,
 } from "lucide-react";
+import { TacticalCardChrome } from "@/components/public/PublicPagePrimitives";
 import { Link } from "@/i18n/navigation";
 
 type HubCard = {
@@ -147,7 +148,8 @@ export function RomanianServersSeoHub() {
               FREE-ARENA ca punct central pentru servere CS active
             </h2>
           </div>
-          <article className="premium-card glass-panel rounded-lg p-5 sm:p-6">
+          <article className="premium-card glass-panel server-tactical-card server-card--cs2 server-tactical-card--online min-h-0 rounded-lg p-5 sm:p-6" data-occupancy="low" data-status="online">
+            <TacticalCardChrome />
             <div className="grid gap-5 text-sm font-semibold leading-7 text-white/66">
               <p>
                 FREE-ARENA este construit ca hub de servere gaming pentru Romania, cu focus pe Counter-Strike,
@@ -206,8 +208,11 @@ export function RomanianServersSeoHub() {
               <Link
                 key={server.href}
                 href={server.href}
-                className="premium-card glass-panel group h-full rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                className={`premium-card glass-panel group server-tactical-card ${server.href.includes("respawn") ? "server-card--respawn" : server.href.includes("cs2") ? "server-card--cs2" : server.href.includes("global") ? "server-card--global" : "server-card--cs16"} server-tactical-card--online h-full min-h-96 rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10`}
+                data-occupancy={server.href.includes("global") ? "idle" : "low"}
+                data-status="online"
               >
+                <TacticalCardChrome />
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-cyan-200">
                   {server.label}
                 </p>
@@ -244,7 +249,8 @@ export function RomanianServersSeoHub() {
               </p>
             </div>
           </div>
-          <article className="premium-card glass-panel rounded-lg p-5 sm:p-6">
+          <article className="premium-card glass-panel server-tactical-card server-card--global server-tactical-card--online min-h-0 rounded-lg p-5 sm:p-6" data-occupancy="low" data-status="online">
+            <TacticalCardChrome />
             <div className="grid gap-5 text-sm font-semibold leading-7 text-white/66">
               <p>
                 FREE-ARENA foloseste hubul de servere ca punct de pornire pentru toata experienta: intri pe server,
@@ -270,8 +276,11 @@ export function RomanianServersSeoHub() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="premium-card glass-panel group rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                className="premium-card glass-panel group server-tactical-card server-card--cs2 server-tactical-card--online min-h-72 rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                data-occupancy="low"
+                data-status="online"
               >
+                <TacticalCardChrome />
                 <span className="grid size-11 place-items-center rounded-lg border border-white/12 bg-white/[0.055] text-cyan-200">
                   <Icon size={20} aria-hidden="true" />
                 </span>
@@ -310,7 +319,8 @@ export function RomanianServersSeoHub() {
           </div>
           <div className="grid gap-3">
             {decisionPoints.map((point, index) => (
-              <div key={point} className="premium-card glass-panel flex gap-4 rounded-lg p-4">
+              <div key={point} className="premium-card glass-panel server-tactical-card server-card--respawn server-tactical-card--online flex min-h-0 gap-4 rounded-lg p-4" data-occupancy="low" data-status="online">
+                <TacticalCardChrome />
                 <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 font-display text-sm font-black text-cyan-200">
                   {index + 1}
                 </span>
@@ -338,7 +348,8 @@ export function RomanianServersSeoHub() {
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {romanianServersHubFaq.map((item) => (
-              <article key={item.question} className="premium-card glass-panel rounded-lg p-5">
+              <article key={item.question} className="premium-card glass-panel server-tactical-card server-card--global server-tactical-card--online min-h-72 rounded-lg p-5" data-occupancy="low" data-status="online">
+                <TacticalCardChrome />
                 <h3 className="font-display text-xl font-black uppercase text-white">
                   {item.question}
                 </h3>

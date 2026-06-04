@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Clock3, RefreshCw } from "lucide-react";
 import { ServerHudCard } from "@/components/home/ServerHudCard";
+import { TacticalCardChrome } from "@/components/public/PublicPagePrimitives";
 import { CopyToast } from "@/components/ui/copy-toast";
 import { useLocale, useTranslations } from "next-intl";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -267,7 +268,8 @@ export function ServerGrid() {
           as="h1"
         />
 
-        <div className="neon-border neon-hover neon-scanline mt-8 flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
+        <div className="neon-border neon-hover neon-scanline server-tactical-card server-card--global server-tactical-card--online mt-8 flex min-h-0 flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between" data-occupancy="low" data-status="online">
+          <TacticalCardChrome />
           <div className="flex min-w-0 items-center gap-2 text-sm font-semibold text-white/58" aria-live="polite">
             <Clock3 size={17} className="shrink-0 text-arena-cyan" aria-hidden="true" />
             <span className="min-w-0 truncate">
@@ -281,7 +283,7 @@ export function ServerGrid() {
             type="button"
             onClick={() => void loadServerStatuses()}
             disabled={isLoading || isRefreshing}
-            className="button-ghost inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-black/24 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10 disabled:cursor-not-allowed disabled:text-white/42 sm:w-auto"
+            className="server-details-button inline-flex w-full items-center justify-center gap-2 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-xl transition disabled:cursor-not-allowed disabled:text-white/42 sm:w-auto"
             aria-label={t("refresh.aria")}
           >
             <RefreshCw
@@ -294,25 +296,29 @@ export function ServerGrid() {
         </div>
 
         <div className="mt-4 grid gap-3 md:grid-cols-3">
-          <div className="neon-border neon-hover rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+          <div className="neon-border neon-hover server-tactical-card server-card--cs2 server-tactical-card--online min-h-0 rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl" data-occupancy="low" data-status="online">
+            <TacticalCardChrome />
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-arena-cyan">{hubLabels.active}</p>
             <p className="mt-2 font-display text-3xl font-black text-white">
               {activeServersLabel}
             </p>
           </div>
-          <div className="neon-border neon-hover rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+          <div className="neon-border neon-hover server-tactical-card server-card--cs16 server-tactical-card--online min-h-0 rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl" data-occupancy="medium" data-status="online">
+            <TacticalCardChrome />
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-arena-cyan">{hubLabels.players}</p>
             <p className="mt-2 font-display text-3xl font-black text-white">
               {playersLabel}
             </p>
           </div>
-          <div className="neon-border neon-hover rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+          <div className="neon-border neon-hover server-tactical-card server-card--respawn server-tactical-card--online min-h-0 rounded-lg border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl" data-occupancy="low" data-status="online">
+            <TacticalCardChrome />
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-arena-cyan">{hubLabels.avgPing}</p>
             <p className="mt-2 font-display text-3xl font-black text-white">{averagePingLabel}</p>
           </div>
         </div>
 
-        <div className="neon-border neon-hover mt-4 flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
+        <div className="neon-border neon-hover server-tactical-card server-card--global server-tactical-card--online mt-4 flex min-h-0 flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between" data-occupancy="idle" data-status="online">
+          <TacticalCardChrome />
           <p className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-white/46">{hubLabels.filter}</p>
           <div className="flex flex-wrap gap-2">
             {filterOptions.map((option) => {
@@ -378,7 +384,7 @@ export function ServerGrid() {
         </div>
 
         {visibleServerCards.length === 0 ? (
-          <p className="mt-4 rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-semibold text-white/58">
+          <p className="server-tactical-card server-card--global server-tactical-card--pending mt-4 min-h-0 rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-semibold text-white/58" data-occupancy="idle" data-status="pending">
             {locale === "ro" ? "Nu exista servere in acest status." : "No servers in this status."}
           </p>
         ) : null}

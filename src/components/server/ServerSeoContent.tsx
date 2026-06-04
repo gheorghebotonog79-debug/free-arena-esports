@@ -1,3 +1,4 @@
+import { TacticalCardChrome } from "@/components/public/PublicPagePrimitives";
 import type { Locale } from "@/i18n/routing";
 import type { ServerSeoPageData } from "@/lib/serverSeo";
 
@@ -25,7 +26,8 @@ export function ServerSeoContent({ label, locale, page }: ServerSeoContentProps)
           </p>
         </div>
 
-        <article className="premium-card glass-panel neon-hover rounded-lg p-5 sm:p-6">
+        <article className="premium-card glass-panel neon-hover server-tactical-card server-card--global server-tactical-card--online min-h-0 rounded-lg p-5 sm:p-6" data-occupancy="low" data-status="online">
+          <TacticalCardChrome />
           <div className="grid gap-5 text-sm leading-7 text-white/68 sm:text-base">
             {content.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>

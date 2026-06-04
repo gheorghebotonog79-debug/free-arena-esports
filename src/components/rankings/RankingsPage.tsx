@@ -3,6 +3,15 @@ import { Activity, ArrowRight, Clock, Crosshair, Gauge, Medal, Skull, Trophy } f
 import type { LucideIcon } from "lucide-react";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { TopPlayersSection } from "@/components/home/TopPlayersSection";
+import {
+  TacticalActions,
+  TacticalBadge,
+  TacticalCard,
+  TacticalCardHeader,
+  TacticalGrid,
+  TacticalInfoBlock,
+  TacticalSection,
+} from "@/components/public/PublicPagePrimitives";
 import { rankingsPageContent, type RankingMetricKey } from "@/data/rankings-page";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
@@ -55,42 +64,29 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
               </p>
             </div>
 
-            <aside className="premium-card glass-panel neon-hover rounded-lg p-5">
-              <div className="flex items-center gap-3">
-                <span className="grid size-12 place-items-center rounded-lg border border-arena-gold/30 bg-arena-gold/10 text-arena-gold">
-                  <Medal size={23} aria-hidden="true" />
-                </span>
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-white/42">FREE-ARENA</p>
-                  <p className="mt-1 font-display text-2xl font-black uppercase text-white">
-                    {content.topPlayersTitle}
-                  </p>
-                </div>
-              </div>
+            <TacticalCard as="aside" tone="cs16" className="min-h-80">
+              <TacticalCardHeader
+                Icon={Medal}
+                badge={<TacticalBadge dot>LIVE DATA</TacticalBadge>}
+                eyebrow="FREE-ARENA"
+                title={content.topPlayersTitle}
+              />
               <ul className="mt-5 grid gap-3 text-sm font-semibold leading-6 text-white/66">
-                {content.heroBullets.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-cyan-200 shadow-[0_0_14px_rgba(56,213,255,0.75)]" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
+                {content.heroBullets.map((item, index) => (
+                  <TacticalInfoBlock key={item} label={`0${index + 1}`} value={item} />
                 ))}
               </ul>
-            </aside>
+            </TacticalCard>
           </div>
         </div>
       </section>
 
-      <section className="neon-section px-4 pb-14 sm:px-6 lg:px-8">
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="flex items-center gap-3">
-            <span className="grid size-12 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
-              <Activity size={22} aria-hidden="true" />
-            </span>
-            <h2 className="neon-title neon-text-pulse font-display text-3xl font-black uppercase text-white">
-              {content.activityTitle}
-            </h2>
-          </div>
-          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <TacticalSection
+        className="pb-14"
+        eyebrow={<span className="inline-flex items-center gap-2"><Activity size={15} aria-hidden="true" /> FREE-ARENA</span>}
+        title={content.activityTitle}
+      >
+          <TacticalGrid columns="four">
             <ActivityStat
               Icon={Trophy}
               label={locale === "ro" ? "Jucatori urmariti" : "Tracked players"}
@@ -111,23 +107,27 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
               label={locale === "ro" ? "Timp jucat" : "Played time"}
               value={formatPlayedTime(progress.summary?.totalPlayedTime ?? sum(players, "playedTime"))}
             />
-          </div>
-        </div>
-      </section>
+          </TacticalGrid>
+      </TacticalSection>
 
-      <section className="neon-section px-4 pb-14 sm:px-6 lg:px-8">
-        <div className="mx-auto grid w-full max-w-7xl gap-4 lg:grid-cols-2">
+      <TacticalSection
+        className="pb-14"
+        eyebrow="HALL OF LEGENDS"
+        title={locale === "ro" ? "Top 5 jucători" : "Top 5 players"}
+        description={locale === "ro" ? "Clasamente reale din progresul live FREE-ARENA." : "Real leaderboards from FREE-ARENA live progress."}
+      >
+        <TacticalGrid columns="two">
           <RankingList emptyLabel={locale === "ro" ? "In verificare" : "Checking"} icon="players" players={topPlayers} title={content.topPlayersTitle} value={(player) => `${formatCompactNumber(player.xp)} XP`} />
           <RankingList emptyLabel={locale === "ro" ? "In verificare" : "Checking"} icon="kills" players={topKills} title={content.killsTitle} value={(player) => formatCompactNumber(player.kills)} />
           <RankingList emptyLabel={locale === "ro" ? "In verificare" : "Checking"} icon="headshots" players={topHeadshots} title={content.headshotsTitle} value={(player) => formatCompactNumber(player.headshots)} />
           <RankingList emptyLabel={locale === "ro" ? "In verificare" : "Checking"} icon="playtime" players={topPlaytime} title={content.playtimeTitle} value={(player) => formatPlayedTime(player.playedTime)} />
-        </div>
-      </section>
+        </TacticalGrid>
+      </TacticalSection>
 
       <TopPlayersSection />
 
-      <section className="neon-section px-4 pb-14 sm:px-6 lg:px-8">
-        <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-2">
+      <TacticalSection className="pb-14">
+        <TacticalGrid columns="two">
           <ContentPanel title={content.how.title}>
             {content.how.body.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -138,55 +138,48 @@ export function RankingsPage({ locale, progress }: RankingsPageProps) {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </ContentPanel>
-        </div>
-      </section>
+        </TacticalGrid>
+      </TacticalSection>
 
-      <section className="neon-section px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="flex items-center gap-3">
-            <span className="grid size-12 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
-              <Activity size={22} aria-hidden="true" />
-            </span>
-            <h2 className="neon-title neon-text-pulse font-display text-3xl font-black uppercase text-white">
-              {content.internalLinksTitle}
-            </h2>
-          </div>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+      <TacticalSection
+        className="pb-16"
+        eyebrow="SERVER NETWORK"
+        title={content.internalLinksTitle}
+      >
+          <TacticalGrid columns="three">
             {content.serverLinks.map((item) => (
-              <TrackedLink
-                key={item.href}
-                eventName="click_server_details"
-                eventPayload={{ location: "rankings_internal_links", target: item.href }}
-                href={item.href}
-                className="premium-card glass-panel neon-hover group rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-display text-xl font-black uppercase text-white">
-                    {item.title}
-                  </h3>
-                  <ArrowRight size={18} className="shrink-0 text-cyan-200 transition group-hover:translate-x-1" aria-hidden="true" />
-                </div>
+              <TacticalCard key={item.href} tone={item.href.includes("respawn") ? "respawn" : item.href.includes("cs2") ? "cs2" : "cs16"} className="min-h-64">
+                <TacticalCardHeader
+                  Icon={Trophy}
+                  badge={<TacticalBadge>SERVER</TacticalBadge>}
+                  eyebrow="FREE-ARENA.RO"
+                  title={item.title}
+                />
                 <p className="mt-3 text-sm leading-6 text-white/62">{item.copy}</p>
-              </TrackedLink>
+                <TacticalActions className="sm:grid-cols-1">
+                  <TrackedLink
+                    eventName="click_server_details"
+                    eventPayload={{ location: "rankings_internal_links", target: item.href }}
+                    href={item.href}
+                    className="server-details-button inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
+                  >
+                    {locale === "ro" ? "Detalii" : "Details"}
+                    <ArrowRight size={15} aria-hidden="true" />
+                  </TrackedLink>
+                </TacticalActions>
+              </TacticalCard>
             ))}
-          </div>
-        </div>
-      </section>
+          </TacticalGrid>
+      </TacticalSection>
     </>
   );
 }
 
 function ActivityStat({ Icon, label, value }: { Icon: LucideIcon; label: string; value: string }) {
   return (
-    <article className="premium-card glass-panel neon-hover rounded-lg p-5">
-      <div className="flex items-center gap-3">
-        <span className="grid size-11 place-items-center rounded-lg border border-white/12 bg-white/[0.055] text-cyan-200">
-          <Icon size={20} aria-hidden="true" />
-        </span>
-        <p className="text-xs font-black uppercase tracking-[0.16em] text-white/42">{label}</p>
-      </div>
-      <p className="mt-5 font-display text-4xl font-black uppercase text-white">{value}</p>
-    </article>
+    <TacticalCard tone="cs2" className="min-h-40">
+      <TacticalInfoBlock Icon={Icon} label={label} value={<span className="font-display text-3xl">{value}</span>} />
+    </TacticalCard>
   );
 }
 
@@ -204,15 +197,16 @@ function RankingList({
   value: (player: RankedPlayer) => string;
 }) {
   const Icon = metricIcons[icon];
+  const tone = icon === "kills" ? "respawn" : icon === "headshots" ? "cs16" : icon === "playtime" ? "global" : "cs2";
 
   return (
-    <article className="premium-card glass-panel neon-hover rounded-lg p-5">
-      <div className="flex items-center gap-3">
-        <span className="grid size-11 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
-          <Icon size={20} aria-hidden="true" />
-        </span>
-        <h2 className="neon-title neon-text-pulse font-display text-2xl font-black uppercase text-white">{title}</h2>
-      </div>
+    <TacticalCard tone={tone} className="min-h-[28rem]">
+      <TacticalCardHeader
+        Icon={Icon}
+        badge={<TacticalBadge dot>{players.length > 0 ? "LIVE" : emptyLabel}</TacticalBadge>}
+        eyebrow="FREE-ARENA.RO"
+        title={title}
+      />
       <ol className="mt-5 grid gap-3">
         {players.length > 0 ? players.map((player, index) => (
           <li key={`${title}-${player.player}`} className="server-metric flex items-center gap-3 p-3">
@@ -228,18 +222,23 @@ function RankingList({
           <li className="server-metric p-3 text-sm font-semibold text-white/54">{emptyLabel}</li>
         )}
       </ol>
-    </article>
+    </TacticalCard>
   );
 }
 
 function ContentPanel({ children, title }: { children: ReactNode; title: string }) {
   return (
-    <article className="premium-card glass-panel neon-hover rounded-lg p-5">
-      <h2 className="neon-title neon-text-pulse font-display text-3xl font-black uppercase text-white">{title}</h2>
+    <TacticalCard tone="global" className="min-h-96">
+      <TacticalCardHeader
+        badge={<TacticalBadge>INFO</TacticalBadge>}
+        eyebrow="FREE-ARENA.RO"
+        Icon={Activity}
+        title={title}
+      />
       <div className="mt-5 grid gap-5 text-sm leading-7 text-white/66">
         {children}
       </div>
-    </article>
+    </TacticalCard>
   );
 }
 

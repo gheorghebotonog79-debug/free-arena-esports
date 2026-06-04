@@ -1,4 +1,5 @@
 import { Activity, Gauge, Map, RadioTower, Server, UsersRound } from "lucide-react";
+import { TacticalCard, TacticalGrid, TacticalInfoBlock, TacticalSection } from "@/components/public/PublicPagePrimitives";
 import type { Locale } from "@/i18n/routing";
 import type { ServerSeoPageData } from "@/lib/serverSeo";
 import type { PublicServerConfig } from "@/lib/servers";
@@ -32,27 +33,18 @@ export function ServerInfoSection({ labels, locale, page, server }: ServerInfoSe
   ];
 
   return (
-    <section className="neon-section px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto w-full max-w-7xl">
-        <h2 className="neon-title neon-text-pulse font-display text-3xl font-black uppercase text-white">
-          {labels.title}
-        </h2>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map(({ Icon, key, label, tone, value }) => (
-            <div key={key} className="premium-card glass-panel neon-hover min-h-32 rounded-lg p-4">
-              <div className="flex items-start justify-between gap-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-white/40">
-                  {label}
-                </p>
-                <Icon size={20} className={tone} aria-hidden="true" />
-              </div>
-              <p className="mt-5 break-words text-base font-black leading-6 text-white">
-                {value}
-              </p>
-            </div>
+    <TacticalSection
+      className="py-12"
+      eyebrow="SERVER INTEL"
+      title={labels.title}
+    >
+        <TacticalGrid columns="three">
+          {items.map(({ Icon, key, label, value }, index) => (
+            <TacticalCard key={key} tone={index % 3 === 0 ? "cs2" : index % 3 === 1 ? "cs16" : "respawn"} className="min-h-40">
+              <TacticalInfoBlock Icon={Icon} label={label} value={value} />
+            </TacticalCard>
           ))}
-        </div>
-      </div>
-    </section>
+        </TacticalGrid>
+    </TacticalSection>
   );
 }

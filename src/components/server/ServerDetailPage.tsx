@@ -20,7 +20,7 @@ import {
   UsersRound,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
+import { PublicPageShell, TacticalCardChrome } from "@/components/public/PublicPagePrimitives";
 import { CopyToast } from "@/components/ui/copy-toast";
 import { ServerContactSupportCard } from "@/components/server/ServerContactSupportCard";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -39,6 +39,13 @@ const statusClasses: Record<LiveServerStatusKind, string> = {
   online: "bg-arena-green/12 text-arena-green border border-arena-green/30",
   offline: "bg-arena-red/12 text-arena-red border border-arena-red/30",
   pending: "bg-arena-gold/12 text-arena-gold border border-arena-gold/30",
+};
+
+const serverToneClass: Record<PublicServerConfig["key"], string> = {
+  cs16: "server-card--cs16",
+  cs2: "server-card--cs2",
+  global: "server-card--global",
+  respawn: "server-card--respawn",
 };
 
 type ServerDetailPageProps = {
@@ -258,7 +265,12 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
           </Link>
 
           <section className="mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
-            <div className="premium-card glass-panel animated-border rounded-lg p-6 sm:p-8">
+            <div
+              className={`premium-card glass-panel animated-border server-tactical-card ${serverToneClass[server.key]} server-tactical-card--${status} rounded-lg p-6 sm:p-8`}
+              data-occupancy={isOnline ? "medium" : isPending ? "idle" : "low"}
+              data-status={status}
+            >
+              <TacticalCardChrome />
               <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
                 <div className="flex min-w-0 gap-4">
                   <span className="animated-border grid size-16 shrink-0 place-items-center rounded-lg border border-white/10 bg-black/30 shadow-[0_0_34px_rgba(56,213,255,0.1)]">
@@ -316,7 +328,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
                   <button
                     type="button"
                     onClick={() => void handleCopyAddress()}
-                    className="button-ghost inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
+                    className="server-copy-button inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap px-4 py-3 text-sm font-black uppercase tracking-[0.12em] transition"
                   >
                     {copied ? <Check size={17} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
                     {copied ? t("actions.copied") : t("actions.copyIp")}
@@ -325,7 +337,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
                 {server.connectable && isOnline ? (
                   <a
                     href={server.connectHref}
-                    className="button-glow inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-arena-green px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
+                    className="server-join-button inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap px-4 py-3 text-sm font-black uppercase tracking-[0.12em] transition"
                     onClick={() => trackEvent("click_play_now", { location: "legacy_server_page", server: server.key })}
                   >
                     {t("actions.connect")}
@@ -335,7 +347,12 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
               </div>
             </div>
 
-            <div className="premium-card glass-panel rounded-lg p-6 sm:p-8">
+            <div
+              className={`premium-card glass-panel server-tactical-card ${serverToneClass[server.key]} server-tactical-card--${status} rounded-lg p-6 sm:p-8`}
+              data-occupancy="low"
+              data-status={status}
+            >
+              <TacticalCardChrome />
               <SectionHeading
                 eyebrow={t("overview.eyebrow")}
                 title={server.pending ? t("pending.title") : t("overview.title")}
@@ -373,7 +390,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
                   type="button"
                   onClick={() => void loadServer()}
                   disabled={isLoading || isRefreshing}
-                  className="button-ghost mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10 disabled:cursor-not-allowed disabled:text-white/36"
+                  className="server-details-button mt-6 inline-flex w-full items-center justify-center gap-2 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition disabled:cursor-not-allowed disabled:text-white/36"
                 >
                   <RefreshCw size={17} className={isRefreshing ? "animate-spin text-arena-cyan" : "text-arena-cyan"} aria-hidden="true" />
                   {isRefreshing ? t("actions.refreshing") : t("actions.refresh")}
@@ -424,7 +441,12 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
             </InfoPanel>
           </div>
 
-          <section className="mt-10 rounded-lg border border-white/10 bg-white/[0.04] p-5 shadow-panel backdrop-blur-xl sm:p-6">
+          <section
+            className={`mt-10 rounded-lg border border-white/10 bg-white/[0.04] p-5 shadow-panel backdrop-blur-xl sm:p-6 server-tactical-card ${serverToneClass[server.key]} server-tactical-card--online`}
+            data-occupancy="low"
+            data-status="online"
+          >
+            <TacticalCardChrome />
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-arena-green">
@@ -438,15 +460,15 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
                 </p>
               </div>
               <div className="grid gap-2 sm:grid-cols-3 lg:w-[34rem]">
-                <a href="https://discord.gg/freearena" target="_blank" rel="noopener noreferrer" className="button-glow inline-flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-arena-green" onClick={() => trackEvent("click_join_discord", { location: "legacy_server_community", server: server.key })}>
+                <a href="https://discord.gg/freearena" target="_blank" rel="noopener noreferrer" className="server-join-button inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] transition" onClick={() => trackEvent("click_join_discord", { location: "legacy_server_community", server: server.key })}>
                   <MessageSquare size={17} aria-hidden="true" />
                   Discord
                 </a>
-                <a href="ts3server://ts.free-arena.ro" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10" onClick={() => trackEvent("click_teamspeak", { location: "legacy_server_community", server: server.key })}>
+                <a href="ts3server://ts.free-arena.ro" className="server-details-button inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition" onClick={() => trackEvent("click_teamspeak", { location: "legacy_server_community", server: server.key })}>
                   <Headphones size={17} aria-hidden="true" />
                   TeamSpeak
                 </a>
-                <a href={forumLinks.support} target="_blank" rel="noopener noreferrer" className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-green/60 hover:bg-arena-green/10" onClick={() => trackEvent("click_forum", { location: "legacy_server_community", server: server.key })}>
+                <a href={forumLinks.support} target="_blank" rel="noopener noreferrer" className="server-details-button inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition" onClick={() => trackEvent("click_forum", { location: "legacy_server_community", server: server.key })}>
                   <MessageSquare size={17} aria-hidden="true" />
                   Forum
                 </a>
@@ -471,7 +493,8 @@ function InfoPanel({
   children: ReactNode;
 }) {
   return (
-    <section className="premium-card glass-panel h-full rounded-lg p-5">
+    <section className="premium-card glass-panel server-tactical-card server-card--global server-tactical-card--online h-full min-h-80 rounded-lg p-5" data-occupancy="low" data-status="online">
+      <TacticalCardChrome />
       <div className="flex items-center justify-between gap-4">
         <h2 className="font-display text-2xl font-black uppercase text-white">{title}</h2>
         {icon}
