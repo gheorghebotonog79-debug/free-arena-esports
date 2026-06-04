@@ -36,6 +36,7 @@ export const ADMIN_MONITOR_LIMITS = {
   actionPointsPerDay: 6,
   heartbeatMinutesPerEvent: 30,
   minutesPerDay: 1440,
+  recruitMaxInitialPlayedMinutes: 30,
   recruitPoints: 10,
   recruitPointsPerMonth: 40,
   timePointsPerDay: 5,

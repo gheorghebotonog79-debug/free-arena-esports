@@ -259,15 +259,20 @@ async function createRecruitIfMissing(input: ValidatedAdminMonitorEvent) {
     playerName: input.targetName,
     steamId: input.targetSteamId,
   });
+  const isExistingPlayer = initialPlayedTime !== null
+    && initialPlayedTime > ADMIN_MONITOR_LIMITS.recruitMaxInitialPlayedMinutes;
 
   try {
     const recruit = await db.adminMonitorRecruit.create({
       data: {
         adminName: input.adminName,
         adminSteamId: input.adminSteamId,
+        currentPlayedTime: initialPlayedTime,
         initialPlayedTime,
         reportedAt: input.occurredAt,
+        rejectedAt: isExistingPlayer ? input.occurredAt : null,
         serverKey: input.serverKey,
+        status: isExistingPlayer ? "rejected" : "pending",
         targetName: input.targetName,
         targetSteamId: input.targetSteamId,
       },

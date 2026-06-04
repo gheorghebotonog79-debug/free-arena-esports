@@ -18,7 +18,7 @@ import {
   AdminStatCard,
 } from "@/components/admin/admin-shell";
 import { AdminApiForm } from "@/components/admin/admin-api-form";
-import { getMonthKey, getMonthRange } from "@/lib/admin-monitor/scoring";
+import { ADMIN_MONITOR_LIMITS, getMonthKey, getMonthRange } from "@/lib/admin-monitor/scoring";
 import { requireAdminPageAccess } from "@/lib/admin/guards";
 import { hasAdminPermission } from "@/lib/admin/rbac";
 import { db } from "@/lib/db";
@@ -222,7 +222,7 @@ export default async function AdminStaffActivityPage() {
                 fields={[
                   {
                     defaultValue: 25,
-                    helper: "Verifica recrutari pending in ordinea raportarii. Nu inventeaza playedTime daca RSU nu raspunde.",
+                    helper: `Verifica recrutari pending in ordinea raportarii. Playerii cu peste ${ADMIN_MONITOR_LIMITS.recruitMaxInitialPlayedMinutes} minute deja jucate in RSU sunt respinsi ca vechi.`,
                     label: "Limit",
                     max: 100,
                     min: 1,
