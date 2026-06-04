@@ -31,27 +31,27 @@ export const romanianServersHubFaq = [
   {
     question: "Ce server FREE-ARENA este potrivit pentru un jucator nou?",
     answer:
-      "Pentru inceput, CS 1.6 Classic este alegerea cea mai simpla: ritm clar, harti cunoscute si conectare rapida. Daca vrei actiune continua, Respawn este mai potrivit pentru antrenament, warm-up si sesiuni scurte.",
+      "Pentru început, CS 1.6 Classic este alegerea cea mai simplă: ritm clar, hărți cunoscute și conectare rapidă. Dacă vrei acțiune continuă, Respawn este mai potrivit pentru antrenament, warm-up și sesiuni scurte.",
   },
   {
-    question: "Serverele FREE-ARENA au ranking si progres pentru jucatori?",
+    question: "Serverele FREE-ARENA au ranking și progres pentru jucători?",
     answer:
-      "Da. Pagina de rankings grupeaza jucatorii activi si ajuta comunitatea sa urmareasca performanta, kill-urile, headshot-urile si timpul jucat. Linkurile catre clasament sunt vizibile si utile pentru jucatori.",
+      "Da. Pagina de rankings grupează jucătorii activi și ajută comunitatea să urmărească performanța, kill-urile, headshot-urile și timpul jucat. Linkurile către clasament sunt vizibile și utile pentru jucători.",
   },
   {
     question: "Cum intru rapid pe Discord sau TeamSpeak?",
     answer:
-      "Din hubul de servere poti intra direct pe paginile dedicate Discord si TeamSpeak. Discord este util pentru anunturi, suport si comunitate, iar TeamSpeak ramane potrivit pentru voice rapid in timpul meciurilor.",
+      "Din hubul de servere poți intra direct pe paginile dedicate Discord și TeamSpeak. Discord este util pentru anunțuri, suport și comunitate, iar TeamSpeak rămâne potrivit pentru voice rapid în timpul meciurilor.",
   },
   {
     question: "De ce exista pagini separate pentru fiecare server?",
     answer:
-      "Fiecare server are reguli, mod, harti, instructiuni si intentie diferita. Paginile dedicate pentru CS 1.6 Classic, Respawn, CS2 si Global dau context complet si explica mai bine diferentele decat o lista scurta de IP-uri.",
+      "Fiecare server are reguli, mod, hărți, instrucțiuni și intenție diferită. Paginile dedicate pentru CS 1.6 Classic, Respawn, CS2 și Global dau context complet și explică mai bine diferențele decât o listă scurtă de IP-uri.",
   },
   {
-    question: "Ce inseamna Global / Coming Soon in lista de servere?",
+    question: "Ce înseamnă Global / Coming Soon în lista de servere?",
     answer:
-      "Global este zona pregatita pentru extinderi viitoare FREE-ARENA. Pagina ramane vizibila ca punct de informare pentru jucatorii care urmaresc lansari noi, evenimente si servere internationale.",
+      "Global este zona pregătită pentru extinderi viitoare FREE-ARENA. Pagina rămâne vizibilă ca punct de informare pentru jucătorii care urmăresc lansări noi, evenimente și servere internaționale.",
   },
 ] as const;
 
@@ -61,28 +61,28 @@ const serverCards: readonly HubCard[] = [
     label: "Server CS 1.6 Romania",
     href: "/server/cs16-classic",
     copy:
-      "CS 1.6 Classic este baza comunitatii FREE-ARENA: gameplay curat, harti recognoscibile, runde citibile si o experienta apropiata de Counter-Strike-ul clasic. Pagina dedicata explica IP-ul, conectarea, regulile, beneficiile VIP si motivele pentru care serverul merita salvat la favorite.",
+      "CS 1.6 Classic este baza comunității FREE-ARENA: gameplay curat, hărți recognoscibile, runde citibile și o experiență apropiată de Counter-Strike-ul clasic. Pagina dedicată explică IP-ul, conectarea, regulile, beneficiile VIP și motivele pentru care serverul merită salvat la favorite.",
   },
   {
     title: "Respawn",
     label: "Actiune rapida",
     href: "/server/respawn",
     copy:
-      "Respawn este pentru jucatorii care vor dueluri dese, reincarcare rapida in joc si progres prin volum. Este ideal pentru incalzire, antrenament de aim, testarea armelor si sesiuni scurte in care nu astepti finalul rundei ca sa reintri in actiune.",
+      "Respawn este pentru jucătorii care vor dueluri dese, reîncărcare rapidă în joc și progres prin volum. Este ideal pentru încălzire, antrenament de aim, testarea armelor și sesiuni scurte în care nu aștepți finalul rundei ca să reintri în acțiune.",
   },
   {
     title: "CS2",
     label: "Counter-Strike modern",
     href: "/server/cs2",
     copy:
-      "CS2 aduce directia moderna a platformei FREE-ARENA: tick modern, vizibilitate mai buna, competitie actuala si potential pentru evenimente noi. Hubul trimite catre pagina dedicata, unde jucatorii gasesc status, context, comunitate si informatii utile pentru conectare.",
+      "CS2 aduce direcția modernă a platformei FREE-ARENA: tick modern, vizibilitate mai bună, competiție actuală și potențial pentru evenimente noi. Hubul trimite către pagina dedicată, unde jucătorii găsesc status, context, comunitate și informații utile pentru conectare.",
   },
   {
     title: "Global / Coming Soon",
     label: "Extindere FREE-ARENA",
     href: "/server/global",
     copy:
-      "Global pregateste urmatorul pas pentru serverele FREE-ARENA. Pagina pastreaza un loc clar pentru lansari, testari, moduri internationale si anunturi, fara sa incurce serverele active. Este utila pentru jucatorii care urmaresc evolutia comunitatii.",
+      "Global pregătește următorul pas pentru serverele FREE-ARENA. Pagina păstrează un loc clar pentru lansări, testări, moduri internaționale și anunțuri, fără să încurce serverele active. Este utilă pentru jucătorii care urmăresc evoluția comunității.",
   },
 ];
 
@@ -92,36 +92,36 @@ const ecosystemLinks: readonly EcosystemLink[] = [
     href: "/rankings",
     icon: Trophy,
     copy:
-      "Clasamentul FREE-ARENA aduna jucatorii activi si transforma activitatea zilnica in competitie vizibila.",
+      "Clasamentul FREE-ARENA adună jucătorii activi și transformă activitatea zilnică în competiție vizibilă.",
   },
   {
     title: "Discord",
     href: "/discord",
     icon: MessageSquare,
     copy:
-      "Discord este locul pentru anunturi, suport, discutii rapide, recrutare si feedback direct catre comunitate.",
+      "Discord este locul pentru anunțuri, suport, discuții rapide, recrutare și feedback direct către comunitate.",
   },
   {
     title: "TeamSpeak",
     href: "/teamspeak",
     icon: Headphones,
     copy:
-      "TeamSpeak ramane canalul rapid pentru voice in timpul meciurilor, mixurilor si sesiunilor de echipa.",
+      "TeamSpeak rămâne canalul rapid pentru voice în timpul meciurilor, mixurilor și sesiunilor de echipă.",
   },
   {
     title: "Homepage",
     href: "/",
     icon: UsersRound,
     copy:
-      "Prima pagina leaga serverele, topul de jucatori, comunitatea si zonele principale FREE-ARENA intr-un traseu simplu.",
+      "Prima pagină leagă serverele, topul de jucători, comunitatea și zonele principale FREE-ARENA într-un traseu simplu.",
   },
 ];
 
 const decisionPoints = [
-  "Alege CS 1.6 Classic daca vrei o experienta traditionala, cu harti cunoscute si runde in care comunicarea conteaza.",
-  "Alege Respawn daca vrei sa intri direct in dueluri, sa faci warm-up sau sa te antrenezi fara pauze lungi.",
-  "Alege CS2 daca preferi Counter-Strike-ul modern si vrei sa urmaresti directia competitiva noua a comunitatii.",
-  "Urmareste Global daca te intereseaza lansarile viitoare, testele si extinderea FREE-ARENA in afara serverelor active.",
+  "Alege CS 1.6 Classic dacă vrei o experiență tradițională, cu hărți cunoscute și runde în care comunicarea contează.",
+  "Alege Respawn dacă vrei să intri direct în dueluri, să faci warm-up sau să te antrenezi fără pauze lungi.",
+  "Alege CS2 dacă preferi Counter-Strike-ul modern și vrei să urmărești direcția competitivă nouă a comunității.",
+  "Urmărește Global dacă te interesează lansările viitoare, testele și extinderea FREE-ARENA în afara serverelor active.",
 ] as const;
 
 export function RomanianServersSeoHub() {
@@ -153,15 +153,15 @@ export function RomanianServersSeoHub() {
             <div className="grid gap-5 text-sm font-semibold leading-7 text-white/66">
               <p>
                 FREE-ARENA este construit ca hub de servere gaming pentru Romania, cu focus pe Counter-Strike,
-                comunitate activa si pagini clare pentru fiecare mod important. Scopul acestei pagini nu este
+                comunitate activă și pagini clare pentru fiecare mod important. Scopul acestei pagini nu este
                 doar sa afiseze statusul live, ci sa te ajute sa alegi rapid serverul potrivit, sa gasesti linkul
-                corect de conectare si sa intelegi unde se intampla activitatea principala a comunitatii.
+                corect de conectare și să înțelegi unde se întâmplă activitatea principală a comunității.
               </p>
               <p>
-                Pentru jucatori, hubul leaga paginile care conteaza: serverul de CS 1.6 Classic,
-                modul Respawn, zona CS2, pagina Global, clasamentul FREE-ARENA, Discord si TeamSpeak. Fiecare
-                link este HTML normal, usor de accesat si gandit sa duca rapid catre pagina potrivita,
-                unde exista detalii despre conectare, reguli, harti, beneficii VIP si intrebari frecvente.
+                Pentru jucători, hubul leagă paginile care contează: serverul de CS 1.6 Classic,
+                modul Respawn, zona CS2, pagina Global, clasamentul FREE-ARENA, Discord și TeamSpeak. Fiecare
+                link este HTML normal, ușor de accesat și gândit să ducă rapid către pagina potrivită,
+                unde există detalii despre conectare, reguli, hărți, beneficii VIP și întrebări frecvente.
               </p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -198,8 +198,8 @@ export function RomanianServersSeoHub() {
                 Servere FREE-ARENA
               </h2>
               <p className="mt-3 text-sm font-semibold leading-7 text-white/62">
-                Lista live de mai sus arata statusul, harta, ping-ul si numarul de jucatori. Cardurile de mai jos
-                explica rolul fiecarui server si trimit catre paginile oficiale pentru detalii complete.
+                Lista live de mai sus arată statusul, harta, ping-ul și numărul de jucători. Cardurile de mai jos
+                explică rolul fiecărui server și trimit către paginile oficiale pentru detalii complete.
               </p>
             </div>
           </div>
@@ -241,11 +241,11 @@ export function RomanianServersSeoHub() {
             </span>
             <div>
               <h2 className="font-display text-3xl font-black uppercase text-white">
-                Comunitate, competitie si activitate
+                Comunitate, competiție și activitate
               </h2>
               <p className="mt-3 text-sm font-semibold leading-7 text-white/62">
                 Un server bun nu inseamna doar IP online. Conteaza jucatorii care revin, staff-ul prezent,
-                canalele de comunicare si un traseu simplu catre competitie.
+                canalele de comunicare și un traseu simplu către competiție.
               </p>
             </div>
           </div>
@@ -254,14 +254,14 @@ export function RomanianServersSeoHub() {
             <div className="grid gap-5 text-sm font-semibold leading-7 text-white/66">
               <p>
                 FREE-ARENA foloseste hubul de servere ca punct de pornire pentru toata experienta: intri pe server,
-                verifici cine joaca, urmaresti clasamentul si ramai aproape de comunitate pe Discord sau TeamSpeak.
-                Rankings transforma activitatea zilnica in motivatie, iar paginile de servere ajuta jucatorii noi sa
+                verifici cine joacă, urmărești clasamentul și rămâi aproape de comunitate pe Discord sau TeamSpeak.
+                Rankings transformă activitatea zilnică în motivație, iar paginile de servere ajută jucătorii noi să
                 inteleaga diferenta dintre moduri fara sa caute informatii imprastiate.
               </p>
               <p>
-                Pentru competitie, conteaza semnalele constante: servere accesibile, reguli scurte, harti potrivite,
-                conectare rapida si linkuri interne care nu se pierd in meniuri. De aceea hubul leaga homepage-ul,
-                landing page-urile, voice-ul si clasamentul intr-o structura clara, usor de parcurs de jucatori si
+                Pentru competiție, contează semnalele constante: servere accesibile, reguli scurte, hărți potrivite,
+                conectare rapidă și linkuri interne care nu se pierd în meniuri. De aceea hubul leagă homepage-ul,
+                landing page-urile, voice-ul și clasamentul într-o structură clară, ușor de parcurs de jucători și
                 usor de descoperit de motoarele de cautare.
               </p>
             </div>
@@ -312,8 +312,8 @@ export function RomanianServersSeoHub() {
                 Cum alegi serverul potrivit
               </h2>
               <p className="mt-3 text-sm font-semibold leading-7 text-white/62">
-                Fiecare mod are o intentie diferita. Alege in functie de ritm, obiectiv si felul in care vrei sa
-                te implici in comunitate.
+                Fiecare mod are o intenție diferită. Alege în funcție de ritm, obiectiv și felul în care vrei să
+                te implici în comunitate.
               </p>
             </div>
           </div>
@@ -342,7 +342,7 @@ export function RomanianServersSeoHub() {
                 Intrebari frecvente despre serverele FREE-ARENA
               </h2>
               <p className="mt-3 text-sm font-semibold leading-7 text-white/62">
-                FAQ-ul raspunde direct intrebarilor importante pentru jucatori si completeaza informatiile vizibile de pe pagina.
+                FAQ-ul răspunde direct întrebărilor importante pentru jucători și completează informațiile vizibile de pe pagină.
               </p>
             </div>
           </div>

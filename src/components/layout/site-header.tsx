@@ -97,7 +97,7 @@ export function SiteHeader() {
   }, [pathname, hash]);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 1536px)");
+    const mediaQuery = window.matchMedia("(min-width: 1720px)");
     const updateDesktopNav = () => setIsDesktopNav(mediaQuery.matches);
 
     updateDesktopNav();
@@ -222,7 +222,7 @@ export function SiteHeader() {
         </Link>
 
         {isDesktopNav ? (
-          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-1 2xl:flex" aria-label={t("aria.main")}>
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-1 min-[1720px]:flex" aria-label={t("aria.main")}>
             {primaryNavigationItems.slice(0, 2).map((item) => {
               const active = !item.external && isActive(item.href);
               const className = `neon-nav-link header-nav-link inline-flex min-h-12 items-center gap-2 whitespace-nowrap px-2.5 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] transition ${
@@ -313,7 +313,7 @@ export function SiteHeader() {
           </div>
           <button
             type="button"
-            className="header-menu-button inline-flex size-10 items-center justify-center 2xl:hidden"
+            className="header-menu-button inline-flex size-10 items-center justify-center min-[1720px]:hidden"
             aria-controls="site-mobile-navigation"
             aria-expanded={isMenuOpen}
             aria-label={isMenuOpen ? t("aria.closeMenu") : t("aria.openMenu")}
@@ -355,7 +355,7 @@ export function SiteHeader() {
       ) : null}
 
       <div
-        className={`header-mobile-panel mx-auto w-full max-w-7xl px-3 sm:px-6 2xl:hidden ${
+        className={`header-mobile-panel mx-auto w-full max-w-7xl px-3 sm:px-6 min-[1720px]:hidden ${
           isMenuOpen ? "header-mobile-panel--open pb-3" : ""
         }`}
       >

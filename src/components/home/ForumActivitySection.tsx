@@ -35,12 +35,12 @@ const content: Record<
     eyebrow: "Forum FREE-ARENA",
     title: "Activitate pe forum",
     copy:
-      "Forumul ramane locul pentru cereri, reguli, suport si anunturi care trebuie sa ramana usor de gasit.",
+      "Forumul rămâne locul pentru cereri, reguli, suport și anunțuri care trebuie să rămână ușor de găsit.",
     cta: "Deschide pe forum",
     cards: [
       {
         Icon: ShieldCheck,
-        copy: "Locul potrivit pentru jucatorii care vor sa ajute comunitatea ca admini.",
+        copy: "Locul potrivit pentru jucătorii care vor să ajute comunitatea ca admini.",
         href: forumLinks.adminRequests,
         status: "OPEN",
         tags: ["admin", "forum"],
@@ -49,7 +49,7 @@ const content: Record<
       },
       {
         Icon: Sparkles,
-        copy: "Intrebari despre pachete, activare manuala si beneficii VIP.",
+        copy: "Întrebări despre pachete, activare manuală și beneficii VIP.",
         href: forumLinks.vipRequests,
         status: "VIP",
         tags: ["vip", "shop"],
@@ -58,7 +58,7 @@ const content: Record<
       },
       {
         Icon: FileText,
-        copy: "Reguli generale, comportament pe server si informatii pentru jucatori noi.",
+        copy: "Reguli generale, comportament pe server și informații pentru jucători noi.",
         href: forumLinks.rules,
         status: "RULES",
         tags: ["reguli", "servere"],
@@ -76,7 +76,7 @@ const content: Record<
       },
       {
         Icon: Megaphone,
-        copy: "Update-uri, mentenanta si anunturi importante pentru FREE-ARENA.",
+        copy: "Update-uri, mentenanță și anunțuri importante pentru FREE-ARENA.",
         href: forumLinks.announcements,
         status: "NEWS",
         tags: ["anunturi", "updates"],

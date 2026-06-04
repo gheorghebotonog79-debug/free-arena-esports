@@ -151,7 +151,7 @@
       "latest": "Ultimele topicuri",
       "latestFallback": "Forum",
       "checked": "Live",
-      "unknown": "In verificare",
+      "unknown": "În verificare",
       "fallback": "Forum API nu răspunde încă. Verifică permisiunile read-only din AdminCP.",
       "permissionFallback": "Cheia API există, dar endpointurile read-only nu sunt încă activate.",
       "rateLimitFallback": "Forum API a limitat temporar cererile. Revine automat.",
@@ -234,13 +234,13 @@
       "serverCopied": "IP copiat: {address}"
     },
     "loading": {
-      "value": "Se verifica..."
+      "value": "Se verifică..."
     },
     "fallback": {
-      "map": "In verificare",
+      "map": "În verificare",
       "players": "0/32",
       "ping": "Monitorizat",
-      "unavailable": "In pregatire"
+      "unavailable": "În pregătire"
     },
     "modal": {
       "eyebrow": "Detalii server",
@@ -298,7 +298,7 @@
       "copied": "Copiat",
       "connect": "Conectează-te",
       "refresh": "Refresh status",
-      "refreshing": "Se actualizeaza"
+      "refreshing": "Se actualizează"
     },
     "toast": {
       "copied": "IP copiat: {address}"
@@ -311,8 +311,8 @@
     },
     "community": {
       "eyebrow": "Comunitate",
-      "title": "Continua in hub-ul FREE-ARENA",
-      "copy": "Foloseste Discord, TeamSpeak si forumul pentru suport, anunturi, voice si discutii cu staff-ul."
+      "title": "Continuă în hub-ul FREE-ARENA",
+      "copy": "Folosește Discord, TeamSpeak și forumul pentru suport, anunțuri, voice și discuții cu staff-ul."
     },
     "support": {
       "eyebrow": "Suport conectare",
@@ -322,59 +322,59 @@
     },
     "items": {
       "cs16": {
-        "description": "Serverul clasic CS 1.6 FREE-ARENA.RO, cu rank, VIP, harti stabile si comunitate activa.",
+        "description": "Serverul clasic CS 1.6 FREE-ARENA.RO, cu rank, VIP, hărți stabile și comunitate activă.",
         "rules": [
-          "Respecta jucatorii si deciziile adminilor.",
-          "Fara coduri, exploituri, scripturi abuzive sau reclama.",
-          "Joaca obiectivul hartii si pastreaza chatul curat."
+          "Respectă jucătorii și deciziile adminilor.",
+          "Fără coduri, exploituri, scripturi abuzive sau reclamă.",
+          "Joacă obiectivul hărții și păstrează chatul curat."
         ],
         "vipBenefits": [
           "Acces la beneficii VIP configurate pe server.",
-          "Prioritate pentru experiente si evenimente comunitare.",
-          "Identitate vizibila in ecosistemul FREE-ARENA."
+          "Prioritate pentru experiențe și evenimente comunitare.",
+          "Identitate vizibilă în ecosistemul FREE-ARENA."
         ],
         "plannedFeatures": []
       },
       "respawn": {
-        "description": "Respawn este spatiul rapid pentru warmup, fraguri, progres constant si sesiuni scurte.",
+        "description": "Respawn este spațiul rapid pentru warmup, fraguri, progres constant și sesiuni scurte.",
         "rules": [
-          "Fara camp excesiv sau blocarea intentionata a jocului.",
-          "Respecta ritmul modului respawn si jucatorii noi.",
-          "Raporteaza problemele pe Discord, TeamSpeak sau forum."
+          "Fără camp excesiv sau blocarea intenționată a jocului.",
+          "Respectă ritmul modului respawn și jucătorii noi.",
+          "Raportează problemele pe Discord, TeamSpeak sau forum."
         ],
         "vipBenefits": [
           "Beneficii VIP adaptate modului respawn.",
-          "Acces la bonusuri si evenimente rapide.",
-          "Progres vizibil in hub-ul comunitatii."
+          "Acces la bonusuri și evenimente rapide.",
+          "Progres vizibil în hub-ul comunității."
         ],
         "plannedFeatures": []
       },
       "cs2": {
-        "description": "Serverul CS2 pregatit pentru experienta moderna FREE-ARENA, cu focus pe competitivitate si comunitate.",
+        "description": "Serverul CS2 pregătit pentru experiența modernă FREE-ARENA, cu focus pe competitivitate și comunitate.",
         "rules": [
-          "Joaca fair si evita comportamentul toxic.",
-          "Nu abuza de buguri, exploituri sau setari care strica jocul.",
-          "Respecta echipa, comunicarea si obiectivul."
+          "Joacă fair și evită comportamentul toxic.",
+          "Nu abuza de buguri, exploituri sau setări care strică jocul.",
+          "Respectă echipa, comunicarea și obiectivul."
         ],
         "vipBenefits": [
           "Beneficii VIP pentru sesiuni moderne CS2.",
-          "Acces prioritar la testari, evenimente si feedback.",
-          "Integrare treptata cu progresia platformei."
+          "Acces prioritar la testări, evenimente și feedback.",
+          "Integrare treptată cu progresia platformei."
         ],
         "plannedFeatures": []
       },
       "global": {
-        "description": "Global este slotul planificat pentru urmatorul pas al retelei FREE-ARENA.RO.",
+        "description": "Global este slotul planificat pentru următorul pas al rețelei FREE-ARENA.RO.",
         "rules": [
-          "Regulile finale vor fi publicate cand serverul devine activ.",
-          "Accesul live va fi anuntat pe comunitate.",
-          "Nu sunt afisate statistici false pana la lansare."
+          "Regulile finale vor fi publicate când serverul devine activ.",
+          "Accesul live va fi anunțat pe comunitate.",
+          "Nu sunt afișate statistici false până la lansare."
         ],
         "vipBenefits": [],
         "plannedFeatures": [
-          "Status live dupa activare.",
-          "Reguli si mod de joc publicate din timp.",
-          "Integrare cu comunitatea si progresia jucatorilor."
+          "Status live după activare.",
+          "Reguli și mod de joc publicate din timp.",
+          "Integrare cu comunitatea și progresia jucătorilor."
         ]
       }
     }
@@ -624,8 +624,8 @@
         "title": "Discord",
         "description": "Chat rapid, noutăți, evenimente și comunicare cu staff-ul.",
         "activity": "Discord comunitate",
-        "cta": "Intra pe Discord",
-        "secondary": "Aplica staff"
+        "cta": "Intră pe Discord",
+        "secondary": "Aplică staff"
       },
       "teamspeak": {
         "title": "TeamSpeak",
@@ -633,10 +633,10 @@
         "activityFallback": "TS3 voice server",
         "activityOnline": "TS3 online",
         "activityUsers": "{users}/{maxUsers} online",
-        "cta": "Conecteaza-te",
-        "copy": "Copiaza adresa",
+        "cta": "Conectează-te",
+        "copy": "Copiază adresa",
         "copied": "Copiat",
-        "toastCopied": "Adresa copiata: {address}"
+        "toastCopied": "Adresa copiată: {address}"
       },
       "contact": {
         "title": "Contact",
@@ -812,30 +812,30 @@
     "heading": {
       "eyebrow": "Player Progress",
       "title": "Clasament live",
-      "copy": "Date reale din RSU MySQL: XP, fraguri, headshot-uri, timp jucat si cautare rapida dupa jucator."
+      "copy": "Date reale din RSU MySQL: XP, fraguri, headshot-uri, timp jucat și căutare rapidă după jucător."
     },
     "status": {
       "live": "RSU live"
     },
     "actions": {
       "refresh": "Refresh stats",
-      "refreshing": "Se actualizeaza"
+      "refreshing": "Se actualizează"
     },
     "stats": {
-      "players": "Jucatori",
+      "players": "Jucători",
       "kills": "Kill-uri",
       "headshots": "Headshot-uri",
       "played": "Timp jucat"
     },
     "states": {
-      "loadingValue": "Se verifica",
+      "loadingValue": "Se verifică",
       "notAvailable": "Monitorizat",
-      "error": "Statisticile RSU nu au putut fi incarcate acum. Reincercam automat.",
-      "empty": "Nu exista inca jucatori in clasament."
+      "error": "Statisticile RSU nu au putut fi încărcate acum. Reîncercăm automat.",
+      "empty": "Nu există încă jucători în clasament."
     },
     "leaderboard": {
       "eyebrow": "Top 15",
-      "title": "Jucatori activi",
+      "title": "Jucători activi",
       "updated": "Actualizat: {time}"
     },
     "player": {
@@ -847,18 +847,18 @@
     },
     "feature": {
       "eyebrow": "Player of the moment",
-      "empty": "In asteptare"
+      "empty": "În așteptare"
     },
     "search": {
-      "label": "Cauta jucator",
+      "label": "Caută jucător",
       "placeholder": "Nick sau SteamID",
-      "min": "Tasteaza cel putin 2 caractere.",
-      "loading": "Cautam in RSU...",
-      "error": "Cautarea nu este disponibila momentan.",
-      "empty": "Niciun jucator gasit."
+      "min": "Tastează cel puțin 2 caractere.",
+      "loading": "Căutăm în RSU...",
+      "error": "Căutarea nu este disponibilă momentan.",
+      "empty": "Niciun jucător găsit."
     },
     "community": {
-      "eyebrow": "Conecteaza comunitatea"
+      "eyebrow": "Conectează comunitatea"
     }
   },
   "LiveChat": {
@@ -870,42 +870,42 @@
       "eyebrow": "Live chat",
       "title": "Community live",
       "status": "Online",
-      "copy": "Chatul real cu conturi va intra in faza de backend. Pana atunci, jucatorii pot intra rapid pe Discord, TeamSpeak sau forum pentru suport si discutii live."
+      "copy": "Chatul real cu conturi va intra în faza de backend. Până atunci, jucătorii pot intra rapid pe Discord, TeamSpeak sau forum pentru suport și discuții live."
     },
     "actions": {
       "discord": {
         "title": "Discord live",
-        "copy": "Anunturi, suport si comunitate."
+        "copy": "Anunțuri, suport și comunitate."
       },
       "teamspeak": {
         "title": "TeamSpeak voice",
-        "copy": "Voice rapid pentru mixuri si suport."
+        "copy": "Voice rapid pentru mixuri și suport."
       },
       "forum": {
         "title": "Forum FREE-ARENA",
-        "copy": "Topicuri, reguli si cereri staff."
+        "copy": "Topicuri, reguli și cereri staff."
       }
     },
     "card": {
       "eyebrow": "Community live",
-      "title": "Intra direct in comunitate",
-      "copy": "Zona de competitie ramane conectata la canalele reale ale comunitatii: forum pentru anunturi, Discord pentru discutii si TeamSpeak pentru voice.",
+      "title": "Intră direct în comunitate",
+      "copy": "Zona de competiție rămâne conectată la canalele reale ale comunității: forum pentru anunțuri, Discord pentru discuții și TeamSpeak pentru voice.",
       "channels": {
         "discord": {
           "title": "Discord",
-          "copy": "Chat comunitate si anunturi rapide.",
+          "copy": "Chat comunitate și anunțuri rapide.",
           "status": "Live",
           "cta": "Intra"
         },
         "teamspeak": {
           "title": "TeamSpeak",
-          "copy": "Voice pentru public, CS si suport.",
+          "copy": "Voice pentru public, CS și suport.",
           "status": "Voice",
           "cta": "Conecteaza"
         },
         "forum": {
           "title": "Forum",
-          "copy": "Reguli, cereri si topicuri active.",
+          "copy": "Reguli, cereri și topicuri active.",
           "status": "Online",
           "cta": "Deschide"
         }

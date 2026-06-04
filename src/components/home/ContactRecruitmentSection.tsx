@@ -44,9 +44,9 @@ const content: Record<
 > = {
   ro: {
     eyebrow: "Contact & recrutare",
-    title: "Ai intrebari? Hai sa discutam.",
+    title: "Ai întrebări? Hai să discutăm.",
     body: [
-      "Suntem mereu deschisi la idei noi, sugestii si oameni care vor sa contribuie la dezvoltarea FREE-ARENA.",
+      "Suntem mereu deschiși la idei noi, sugestii și oameni care vor să contribuie la dezvoltarea FREE-ARENA.",
       "Fie ca doresti sa aplici pentru staff, sa propui un joc nou, sa organizezi un proiect sau sa ajuti comunitatea sa creasca, te incurajam sa ne contactezi.",
     ],
     ctaTitle: "Vrei sa faci parte din echipa?",
@@ -56,7 +56,7 @@ const content: Record<
     cards: [
       {
         Icon: MessageCircle,
-        description: "Alatura-te comunitatii si discuta direct cu echipa.",
+        description: "Alătură-te comunității și discută direct cu echipa.",
         eventName: "click_join_discord",
         href: DISCORD_URL,
         label: "Discord",

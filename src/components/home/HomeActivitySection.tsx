@@ -47,7 +47,7 @@ const content: Record<
         status: "EVENT",
         tags: ["classic", "community"],
         tone: "cs16",
-        copy: "Seara dedicata rundelor clasice, hartilor cunoscute si jucatorilor care vor meciuri curate.",
+        copy: "Seara dedicată rundelor clasice, hărților cunoscute și jucătorilor care vor meciuri curate.",
       },
       {
         Icon: Sparkles,
@@ -56,7 +56,7 @@ const content: Record<
         status: "OPEN",
         tags: ["discord", "forum"],
         tone: "cs2",
-        copy: "Highlight-uri si faze bune trimise de comunitate, pregatite pentru Discord si forum.",
+        copy: "Highlight-uri și faze bune trimise de comunitate, pregătite pentru Discord și forum.",
       },
       {
         Icon: Gift,
@@ -65,7 +65,7 @@ const content: Record<
         status: "REWARD",
         tags: ["vip", "activity"],
         tone: "global",
-        copy: "Premii mici si beneficii VIP pot fi oferite treptat pentru activitate reala pe servere.",
+        copy: "Premii mici și beneficii VIP pot fi oferite treptat pentru activitate reală pe servere.",
       },
       {
         Icon: ShieldCheck,
@@ -74,7 +74,7 @@ const content: Record<
         status: "OPEN",
         tags: ["admin", "rules"],
         tone: "respawn",
-        copy: "Cautam oameni maturi care pot ajuta seara, pot tine comunitatea curata si pot raspunde pe Discord.",
+        copy: "Căutăm oameni maturi care pot ajuta seara, pot ține comunitatea curată și pot răspunde pe Discord.",
       },
     ],
   },

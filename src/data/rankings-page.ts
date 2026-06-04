@@ -38,22 +38,22 @@ export type RankingsPageContent = {
 
 export const rankingsPageContent: Record<Locale, RankingsPageContent> = {
   ro: {
-    metadataTitle: "Clasament FREE-ARENA | Top jucatori CS 1.6 si CS2",
+    metadataTitle: "Clasament FREE-ARENA | Top jucători CS 1.6 și CS2",
     metadataDescription:
-      "Vezi clasamentul FREE-ARENA cu top jucatori, kill-uri, headshot-uri, timp jucat si activitate pe serverele CS 1.6, Respawn si CS2.",
-    imageAlt: "Clasament FREE-ARENA cu top jucatori si statistici Counter-Strike",
+      "Vezi clasamentul FREE-ARENA cu top jucători, kill-uri, headshot-uri, timp jucat și activitate pe serverele CS 1.6, Respawn și CS2.",
+    imageAlt: "Clasament FREE-ARENA cu top jucători și statistici Counter-Strike",
     breadcrumb: {
-      home: "Acasa",
+      home: "Acasă",
       current: "Clasament",
     },
     eyebrow: "Rankings live",
     h1: "Clasament FREE-ARENA",
     description:
-      "Clasamentul FREE-ARENA este pagina centrala pentru progresul jucatorilor, activitate si competitie. Aici vezi cine urca in top, cine domina la kill-uri, cine tine ritmul la headshot-uri si cine investeste cel mai mult timp pe serverele comunitatii. Datele sunt gandite ca un reper rapid pentru jucatori, admini si membri noi care vor sa inteleaga nivelul competitiv al comunitatii.",
+      "Clasamentul FREE-ARENA este pagina centrală pentru progresul jucătorilor, activitate și competiție. Aici vezi cine urcă în top, cine domină la kill-uri, cine ține ritmul la headshot-uri și cine investește cel mai mult timp pe serverele comunității. Datele sunt gândite ca un reper rapid pentru jucători, admini și membri noi care vor să înțeleagă nivelul competitiv al comunității.",
     heroBullets: [
-      "Top jucatori dupa XP si performanta generala.",
-      "Liste clare pentru kill-uri, headshot-uri si timp jucat.",
-      "Legaturi directe catre serverele unde poti intra imediat.",
+      "Top jucători după XP și performanță generală.",
+      "Liste clare pentru kill-uri, headshot-uri și timp jucat.",
+      "Legături directe către serverele unde poți intra imediat.",
     ],
     topPlayersTitle: "Top Players",
     killsTitle: "Top Kills",
@@ -61,38 +61,38 @@ export const rankingsPageContent: Record<Locale, RankingsPageContent> = {
     playtimeTitle: "Top Playtime",
     activityTitle: "Top Server Activity",
     how: {
-      title: "Cum functioneaza clasamentul",
+      title: "Cum funcționează clasamentul",
       body: [
-        "Clasamentul foloseste statistici asociate activitatii reale din ecosistemul FREE-ARENA. Pentru fiecare jucator sunt urmarite valori precum XP, kill-uri, headshot-uri, timp jucat si eficienta in dueluri. Ordinea principala este orientata spre progres si activitate, nu doar spre un singur numar izolat. Asta ajuta comunitatea sa vada cine joaca constant, cine contribuie la ritmul serverelor si cine revine suficient de des incat sa conteze in top.",
-        "Top Kills arata jucatorii care produc cel mai mult impact ofensiv. Top Headshots scoate in fata precizia si controlul armei. Top Playtime este important pentru comunitate, pentru ca un server puternic nu inseamna doar fraguri, ci si prezenta constanta. Cand aceste liste sunt citite impreuna, un jucator poate intelege mai bine unde sta: poate nu este primul la XP, dar poate fi foarte sus la timp jucat sau la headshot-uri.",
-        "Datele pot fi actualizate periodic si pot afisa fallback-uri curate daca sursa live nu raspunde temporar. Pagina ramane utila pentru utilizatori deoarece explica transparent ce masoara clasamentul si cum se leaga de serverele active.",
-        "Clasamentul nu este gandit ca o promisiune de status permanent. Este un instrument viu, util pentru motivatie si pentru decizii de comunitate: ce server atrage activitate, ce mod merita evenimente si ce tip de jucator revine cel mai des.",
+        "Clasamentul folosește statistici asociate activității reale din ecosistemul FREE-ARENA. Pentru fiecare jucător sunt urmărite valori precum XP, kill-uri, headshot-uri, timp jucat și eficiență în dueluri. Ordinea principală este orientată spre progres și activitate, nu doar spre un singur număr izolat. Asta ajută comunitatea să vadă cine joacă constant, cine contribuie la ritmul serverelor și cine revine suficient de des încât să conteze în top.",
+        "Top Kills arată jucătorii care produc cel mai mult impact ofensiv. Top Headshots scoate în față precizia și controlul armei. Top Playtime este important pentru comunitate, pentru că un server puternic nu înseamnă doar fraguri, ci și prezență constantă. Când aceste liste sunt citite împreună, un jucător poate înțelege mai bine unde stă: poate nu este primul la XP, dar poate fi foarte sus la timp jucat sau la headshot-uri.",
+        "Datele pot fi actualizate periodic și pot afișa fallback-uri curate dacă sursa live nu răspunde temporar. Pagina rămâne utilă pentru utilizatori deoarece explică transparent ce măsoară clasamentul și cum se leagă de serverele active.",
+        "Clasamentul nu este gândit ca o promisiune de status permanent. Este un instrument viu, util pentru motivație și pentru decizii de comunitate: ce server atrage activitate, ce mod merită evenimente și ce tip de jucător revine cel mai des.",
       ],
     },
     why: {
-      title: "De ce sa joci pe FREE-ARENA",
+      title: "De ce să joci pe FREE-ARENA",
       body: [
-        "FREE-ARENA este construit ca un ecosistem pentru jucatori care vor servere stabile, reguli clare si comunitate activa. Clasamentul adauga un motiv simplu de revenire: fiecare sesiune poate conta. Daca intri pe CS 1.6 Classic pentru joc echilibrat, pe Respawn pentru warm-up sau pe CS2 pentru directia moderna, progresul tau devine parte dintr-o imagine mai mare.",
-        "Pentru jucatorii noi, pagina de rankings functioneaza ca o usa de intrare. Vezi nume active, intelegi ce servere sunt importante si ai linkuri directe catre paginile oficiale. Pentru jucatorii vechi, pagina devine un punct de verificare: cine a urcat, cine a ramas constant, cine domina la precizie si cine tine comunitatea vie prin activitate.",
-        "Pe termen lung, acest clasament poate sustine evenimente, provocari saptamanale, premii VIP, continut pentru Discord si topicuri pe forum. Fundatia corecta este importanta acum: traseu stabil, pagina clara si linkuri interne catre serverele principale.",
+        "FREE-ARENA este construit ca un ecosistem pentru jucători care vor servere stabile, reguli clare și comunitate activă. Clasamentul adaugă un motiv simplu de revenire: fiecare sesiune poate conta. Dacă intri pe CS 1.6 Classic pentru joc echilibrat, pe Respawn pentru warm-up sau pe CS2 pentru direcția modernă, progresul tău devine parte dintr-o imagine mai mare.",
+        "Pentru jucătorii noi, pagina de rankings funcționează ca o ușă de intrare. Vezi nume active, înțelegi ce servere sunt importante și ai linkuri directe către paginile oficiale. Pentru jucătorii vechi, pagina devine un punct de verificare: cine a urcat, cine a rămas constant, cine domină la precizie și cine ține comunitatea vie prin activitate.",
+        "Pe termen lung, acest clasament poate susține evenimente, provocări săptămânale, premii VIP, conținut pentru Discord și topicuri pe forum. Fundația corectă este importantă acum: traseu stabil, pagină clară și linkuri interne către serverele principale.",
       ],
     },
-    internalLinksTitle: "Intra pe serverele FREE-ARENA",
+    internalLinksTitle: "Intră pe serverele FREE-ARENA",
     serverLinks: [
       {
         href: "/server/cs16-classic",
         title: "CS 1.6 Classic",
-        copy: "Serverul clasic pentru runde echilibrate, harti cunoscute si progres competitiv.",
+        copy: "Serverul clasic pentru runde echilibrate, hărți cunoscute și progres competitiv.",
       },
       {
         href: "/server/respawn",
         title: "Respawn",
-        copy: "Warm-up rapid, dueluri constante si un mod bun pentru antrenament zilnic.",
+        copy: "Warm-up rapid, dueluri constante și un mod bun pentru antrenament zilnic.",
       },
       {
         href: "/server/cs2",
         title: "CS2",
-        copy: "Directia moderna FREE-ARENA pentru jucatori competitivi si comunitate activa.",
+        copy: "Direcția modernă FREE-ARENA pentru jucători competitivi și comunitate activă.",
       },
     ],
   },

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { siteUrl } from "@/lib/seo";
 import { serverSeoSlugs } from "@/lib/serverSeo";
+import { publicServerSlugs } from "@/lib/servers";
 
 const lastModified = new Date();
 
@@ -9,6 +10,12 @@ const serverSeoSitemapPages = serverSeoSlugs.map((slug) => ({
   path: `/server/${slug}`,
   changeFrequency: "weekly" as const,
   priority: 0.85,
+}));
+
+const legacyServerSitemapPages = publicServerSlugs.map((slug) => ({
+  path: `/servers/${slug}`,
+  changeFrequency: "weekly" as const,
+  priority: 0.72,
 }));
 
 const localizedPages = [
@@ -23,6 +30,7 @@ const localizedPages = [
   { path: "/terms", changeFrequency: "monthly", priority: 0.5 },
   { path: "/privacy", changeFrequency: "monthly", priority: 0.5 },
   ...serverSeoSitemapPages,
+  ...legacyServerSitemapPages,
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

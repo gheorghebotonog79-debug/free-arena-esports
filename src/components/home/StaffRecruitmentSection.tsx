@@ -9,7 +9,7 @@ const content = {
   ro: {
     apply: "Aplica admin",
     copy:
-      "Cautam oameni maturi, activi seara, care pot ajuta jucatorii si pot tine serverele curate.",
+      "Căutăm oameni maturi, activi seara, care pot ajuta jucătorii și pot ține serverele curate.",
     discord: "Discuta pe Discord",
     eyebrow: "Recrutare admini",
     title: "Cautam admini activi",

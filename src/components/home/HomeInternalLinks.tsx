@@ -60,10 +60,10 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
     eyebrow: "Directii principale",
     ipLabel: "IP server",
     regionLabel: "Zona",
-    title: "Intra rapid in ecosistemul FREE-ARENA",
+    title: "Intră rapid în ecosistemul FREE-ARENA",
     links: [
       {
-        actionLabel: "Joaca",
+        actionLabel: "Joacă",
         coreLabel: "Mod joc",
         coreValue: "CS 1.6",
         detailsLabel: "Detalii",
@@ -75,10 +75,10 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
         tags: ["classic", "ranked", "vip"],
         title: "CS 1.6 Classic",
         tone: "cs16",
-        copy: "Serverul clasic FREE-ARENA pentru runde curate, harti cunoscute si conectare rapida.",
+        copy: "Serverul clasic FREE-ARENA pentru runde curate, hărți cunoscute și conectare rapidă.",
       },
       {
-        actionLabel: "Joaca",
+        actionLabel: "Joacă",
         coreLabel: "Mod joc",
         coreValue: "RESPAWN",
         detailsLabel: "Detalii",
@@ -90,10 +90,10 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
         tags: ["warm-up", "ranked", "vip"],
         title: "Respawn",
         tone: "respawn",
-        copy: "Warm-up rapid, dueluri continue, progres si activitate zilnica pentru jucatori activi.",
+        copy: "Warm-up rapid, dueluri continue, progres și activitate zilnică pentru jucători activi.",
       },
       {
-        actionLabel: "Joaca",
+        actionLabel: "Joacă",
         coreLabel: "Mod joc",
         coreValue: "CS2",
         detailsLabel: "Detalii",
@@ -105,11 +105,11 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
         tags: ["premier", "modern", "anti-cheat"],
         title: "CS2",
         tone: "cs2",
-        copy: "Directia moderna FREE-ARENA pentru jucatori competitivi si meciuri actuale.",
+        copy: "Direcția modernă FREE-ARENA pentru jucători competitivi și meciuri actuale.",
       },
       {
-        actionLabel: "Vezi top jucatori",
-        coreLabel: "Actiune",
+        actionLabel: "Vezi top jucători",
+        coreLabel: "Acțiune",
         coreValue: "TOP",
         href: "/rankings",
         Icon: Trophy,
@@ -123,7 +123,7 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
         tags: ["clasament", "progres"],
         title: "Clasament",
         tone: "rankings",
-        copy: "Top jucatori, kill-uri, headshot-uri, timp jucat si activitate pe servere.",
+        copy: "Top jucători, kill-uri, headshot-uri, timp jucat și activitate pe servere.",
       },
       {
         actionLabel: "Vezi pachete",
@@ -141,7 +141,7 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
         tags: ["queen", "gold", "diamond"],
         title: "Shop VIP",
         tone: "shop",
-        copy: "Pachete VIP, QUEEN gratuit pentru fete, test VIP si activare prin comunitate.",
+        copy: "Pachete VIP, QUEEN gratuit pentru fete, test VIP și activare prin comunitate.",
       },
       {
         actionLabel: "Aplica admin",
@@ -177,7 +177,7 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
         tags: ["status", "servere"],
         title: "Toate serverele",
         tone: "servers",
-        copy: "Hub-ul cu status live, IP-uri de conectare si serverele active FREE-ARENA.",
+        copy: "Hub-ul cu status live, IP-uri de conectare și serverele active FREE-ARENA.",
       },
     ],
   },
@@ -311,7 +311,7 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
 export function HomeInternalLinks({ locale }: { locale: Locale }) {
   const page = content[locale];
   const intro = locale === "ro"
-    ? "Pentru jucatori, staff si comunitate: server, top, VIP, admin sau hub complet."
+    ? "Pentru jucători, staff și comunitate: server, top, VIP, admin sau hub complet."
     : "For players, staff, and community: server, top, VIP, admin, or the full hub.";
 
   return (

@@ -37,13 +37,13 @@ const content: Record<
     eyebrow: "Trust proof",
     title: "Comunitate reala. Activitate reala.",
     copy:
-      "Nu folosim cifre inventate. Statusul live, rankings RSU, forumul si voice-ul sunt traseele verificabile pentru activitatea FREE-ARENA.",
+      "Nu folosim cifre inventate. Statusul live, rankings RSU, forumul și voice-ul sunt traseele verificabile pentru activitatea FREE-ARENA.",
     cta: "Deschide",
     proofLabel: "Activitate verificabila",
     cards: [
       {
         Icon: Server,
-        copy: "Statusul live si IP-urile serverelor raman vizibile pentru jucatori.",
+        copy: "Statusul live și IP-urile serverelor rămân vizibile pentru jucători.",
         href: "/servers",
         linkType: "internal",
         status: "LIVE",
@@ -53,7 +53,7 @@ const content: Record<
       },
       {
         Icon: Trophy,
-        copy: "Clasamentul arata progresul jucatorilor fara promisiuni artificiale.",
+        copy: "Clasamentul arată progresul jucătorilor fără promisiuni artificiale.",
         href: "/rankings",
         linkType: "internal",
         status: "TOP",
@@ -63,7 +63,7 @@ const content: Record<
       },
       {
         Icon: MessageSquare,
-        copy: "Forumul este locul pentru cereri, reguli, suport si anunturi.",
+        copy: "Forumul este locul pentru cereri, reguli, suport și anunțuri.",
         href: forumLinks.home,
         linkType: "external",
         status: "FORUM",
@@ -73,7 +73,7 @@ const content: Record<
       },
       {
         Icon: Headphones,
-        copy: "TeamSpeak si Discord raman canalele rapide pentru voice si discutii.",
+        copy: "TeamSpeak și Discord rămân canalele rapide pentru voice și discuții.",
         href: "ts3server://ts.free-arena.ro",
         linkType: "external",
         status: "VOICE",
