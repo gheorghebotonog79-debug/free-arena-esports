@@ -10,6 +10,8 @@ import {
   UserPlus,
   Users,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import type {
@@ -17,14 +19,10 @@ import type {
   PublicAdminActivitySummary,
 } from "@/lib/admin-monitor/public-activity";
 import {
-  PublicPageHero,
   TacticalBadge,
   TacticalCard,
-  TacticalCardHeader,
-  TacticalGrid,
-  TacticalInfoBlock,
-  TacticalSection,
 } from "@/components/public/PublicPagePrimitives";
+import type { TacticalStatus, TacticalTone } from "@/components/public/PublicPagePrimitives";
 
 type PublicAdminActivityHubProps = {
   admins: PublicAdminActivitySummary[];
@@ -43,6 +41,199 @@ type PublicAdminActivityDetailProps = {
   detail: PublicAdminActivityDetail;
   locale: Locale;
 };
+
+function classes(...values: Array<false | null | string | undefined>) {
+  return values.filter(Boolean).join(" ");
+}
+
+function CompactCard({
+  as,
+  children,
+  className,
+  status,
+  tone = "cs2",
+}: {
+  as?: "article" | "aside" | "div" | "section";
+  children: ReactNode;
+  className?: string;
+  status?: TacticalStatus;
+  tone?: TacticalTone;
+}) {
+  return (
+    <TacticalCard
+      as={as}
+      tone={tone}
+      status={status}
+      className={classes("!p-3 sm:!p-4", className)}
+    >
+      {children}
+    </TacticalCard>
+  );
+}
+
+function CompactHeader({
+  badge,
+  children,
+  eyebrow,
+  Icon,
+  title,
+}: {
+  badge?: ReactNode;
+  children?: ReactNode;
+  eyebrow?: ReactNode;
+  Icon?: LucideIcon;
+  title: ReactNode;
+}) {
+  return (
+    <div>
+      <div className="flex items-start justify-between gap-3">
+        {Icon ? (
+          <span className="server-card__icon grid size-11 shrink-0 place-items-center sm:size-12">
+            <Icon size={23} className="server-card__accent-icon" aria-hidden="true" />
+          </span>
+        ) : null}
+        {badge}
+      </div>
+      {eyebrow ? (
+        <p className="server-card__region mt-4 text-[0.62rem] font-black uppercase tracking-[0.16em]">
+          {eyebrow}
+        </p>
+      ) : null}
+      <h3 className="server-card__title mt-1 font-display text-[clamp(1.35rem,2.25vw,2.15rem)] font-black uppercase leading-none text-white">
+        {title}
+      </h3>
+      {children}
+    </div>
+  );
+}
+
+function CompactInfoBlock({
+  Icon,
+  label,
+  value,
+}: {
+  Icon?: LucideIcon;
+  label: ReactNode;
+  value: ReactNode;
+}) {
+  return (
+    <div className="server-metric min-w-0 p-2.5">
+      <p className="flex items-center gap-1.5 text-[0.58rem] font-black uppercase tracking-[0.13em] text-white/36">
+        {Icon ? <Icon size={13} className="server-card__accent-icon shrink-0" aria-hidden="true" /> : null}
+        {label}
+      </p>
+      <div className="mt-1.5 break-words text-xs font-black uppercase text-white sm:text-[0.82rem]">
+        {value}
+      </div>
+    </div>
+  );
+}
+
+function CompactPageHero({
+  actions,
+  aside,
+  description,
+  eyebrow,
+  Icon,
+  meta,
+  title,
+}: {
+  actions?: ReactNode;
+  aside?: ReactNode;
+  description: ReactNode;
+  eyebrow: ReactNode;
+  Icon: LucideIcon;
+  meta?: ReactNode;
+  title: ReactNode;
+}) {
+  return (
+    <section className="neon-section px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+      <div className="mx-auto grid w-full max-w-[92rem] gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.42fr)] lg:items-stretch">
+        <CompactCard tone="cs2" className="!p-4 sm:!p-5">
+          <div className="flex items-start justify-between gap-3">
+            <span className="server-card__icon grid size-12 shrink-0 place-items-center sm:size-14">
+              <Icon size={27} className="server-card__accent-icon" aria-hidden="true" />
+            </span>
+            {meta ? (
+              <TacticalBadge className="max-w-[58%] whitespace-normal break-all text-right">
+                {meta}
+              </TacticalBadge>
+            ) : null}
+          </div>
+          <p className="server-card__region mt-5 text-[0.66rem] font-black uppercase tracking-[0.18em]">
+            {eyebrow}
+          </p>
+          <h1 className="neon-heading mt-2 font-display text-[clamp(2.05rem,5.2vw,4.25rem)] font-black uppercase leading-[0.88] text-white">
+            {title}
+          </h1>
+          <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-white/62 sm:text-[0.95rem]">
+            {description}
+          </p>
+          {actions ? <div className="mt-4 flex flex-wrap gap-2">{actions}</div> : null}
+        </CompactCard>
+        {aside}
+      </div>
+    </section>
+  );
+}
+
+function CompactSection({
+  children,
+  className,
+  description,
+  eyebrow,
+  title,
+}: {
+  children: ReactNode;
+  className?: string;
+  description?: ReactNode;
+  eyebrow?: ReactNode;
+  title?: ReactNode;
+}) {
+  return (
+    <section className={classes("neon-section px-4 py-8 sm:px-6 lg:px-8 lg:py-10", className)}>
+      <div className="mx-auto w-full max-w-[92rem]">
+        {eyebrow || title || description ? (
+          <div className="mb-5 max-w-4xl">
+            {eyebrow ? (
+              <p className="neon-kicker section-badge-label inline-flex px-3 py-1.5 text-[0.66rem]">
+                {eyebrow}
+              </p>
+            ) : null}
+            {title ? (
+              <h2 className="neon-heading mt-3 font-display text-[clamp(1.75rem,4vw,3.45rem)] font-black uppercase leading-[0.9] text-white">
+                {title}
+              </h2>
+            ) : null}
+            {description ? (
+              <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/60">
+                {description}
+              </p>
+            ) : null}
+          </div>
+        ) : null}
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function CompactActionLink({
+  children,
+  href,
+}: {
+  children: ReactNode;
+  href: string;
+}) {
+  return (
+    <Link
+      className="server-details-button mt-auto inline-flex min-h-10 items-center justify-center gap-2 px-3 py-2 text-[0.72rem] font-black uppercase tracking-[0.11em] text-white transition"
+      href={href}
+    >
+      {children}
+    </Link>
+  );
+}
 
 const content = {
   ro: {
@@ -135,82 +326,79 @@ export function PublicAdminActivityHub({
 
   return (
     <>
-      <PublicPageHero
+      <CompactPageHero
         Icon={RadioTower}
         description={t.copy}
         eyebrow="FREE-ARENA STAFF"
         meta={month}
         title={t.title}
         aside={
-          <TacticalCard as="aside" tone="respawn" className="min-h-80">
-            <TacticalCardHeader
+          <CompactCard as="aside" tone="respawn">
+            <CompactHeader
               Icon={ShieldCheck}
               badge={<TacticalBadge dot>{month}</TacticalBadge>}
               eyebrow="LIVE MONITOR"
               title={t.topAdmins}
             />
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              <TacticalInfoBlock Icon={Users} label={t.adminCount} value={formatNumber(totals.admins, locale)} />
-              <TacticalInfoBlock Icon={Star} label={t.points} value={formatNumber(totals.points, locale)} />
-              <TacticalInfoBlock Icon={Clock} label={t.minutes} value={formatMinutes(totals.minutes, locale)} />
-              <TacticalInfoBlock Icon={UserPlus} label={t.recruits} value={formatNumber(totals.recruits, locale)} />
+            <div className="mt-4 grid gap-2 sm:grid-cols-2">
+              <CompactInfoBlock Icon={Users} label={t.adminCount} value={formatNumber(totals.admins, locale)} />
+              <CompactInfoBlock Icon={Star} label={t.points} value={formatNumber(totals.points, locale)} />
+              <CompactInfoBlock Icon={Clock} label={t.minutes} value={formatMinutes(totals.minutes, locale)} />
+              <CompactInfoBlock Icon={UserPlus} label={t.recruits} value={formatNumber(totals.recruits, locale)} />
             </div>
-          </TacticalCard>
+          </CompactCard>
         }
       />
 
-      <TacticalSection
-        className="pt-6"
+      <CompactSection
+        className="pt-5 lg:pt-6"
         description={t.copy}
         eyebrow="ADMIN ACTIVITY"
         title={t.topAdmins}
       >
         {admins.length > 0 ? (
-          <TacticalGrid columns="three">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {admins.map((admin, index) => (
-              <TacticalCard key={admin.adminSteamId} tone={index % 3 === 0 ? "cs2" : index % 3 === 1 ? "respawn" : "cs16"}>
-                <TacticalCardHeader
+              <CompactCard key={admin.adminSteamId} tone={index % 3 === 0 ? "cs2" : index % 3 === 1 ? "respawn" : "cs16"}>
+                <CompactHeader
                   Icon={Trophy}
                   badge={<TacticalBadge dot>{admin.serverKey}</TacticalBadge>}
                   eyebrow={`#${index + 1}`}
                   title={admin.currentName}
                 >
-                  <p className="mt-3 break-words text-xs font-semibold uppercase tracking-[0.12em] text-white/42">
+                  <p className="mt-2 break-words text-[0.64rem] font-semibold uppercase tracking-[0.1em] text-white/42">
                     {admin.adminSteamId}
                   </p>
-                </TacticalCardHeader>
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <TacticalInfoBlock Icon={Star} label={t.points} value={formatNumber(admin.totalPoints, locale)} />
-                  <TacticalInfoBlock Icon={Clock} label={t.minutes} value={formatMinutes(admin.minutesOnline, locale)} />
-                  <TacticalInfoBlock Icon={CalendarDays} label={t.activeDays} value={formatNumber(admin.activeDays, locale)} />
-                  <TacticalInfoBlock Icon={Activity} label={t.actions} value={formatNumber(admin.actionsCount, locale)} />
+                </CompactHeader>
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  <CompactInfoBlock Icon={Star} label={t.points} value={formatNumber(admin.totalPoints, locale)} />
+                  <CompactInfoBlock Icon={Clock} label={t.minutes} value={formatMinutes(admin.minutesOnline, locale)} />
+                  <CompactInfoBlock Icon={CalendarDays} label={t.activeDays} value={formatNumber(admin.activeDays, locale)} />
+                  <CompactInfoBlock Icon={Activity} label={t.actions} value={formatNumber(admin.actionsCount, locale)} />
                 </div>
-                <div className="mt-6 flex flex-wrap gap-2">
+                <div className="mt-4 flex flex-wrap gap-1.5">
                   {admin.rewardTier ? <TacticalBadge>{admin.rewardTier}</TacticalBadge> : null}
                   {admin.upgradeEligible ? <TacticalBadge>{t.upgrade}</TacticalBadge> : null}
                   <TacticalBadge>{formatDate(admin.lastSeenAt, locale)}</TacticalBadge>
                 </div>
-                <Link
-                  className="server-details-button mt-auto inline-flex min-h-12 items-center justify-center gap-2 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition"
-                  href={profileHref(admin.adminSteamId)}
-                >
+                <CompactActionLink href={profileHref(admin.adminSteamId)}>
                   {t.view}
-                  <ArrowRight size={18} aria-hidden="true" />
-                </Link>
-              </TacticalCard>
+                  <ArrowRight size={16} aria-hidden="true" />
+                </CompactActionLink>
+              </CompactCard>
             ))}
-          </TacticalGrid>
+          </div>
         ) : (
-          <TacticalCard tone="global" status="pending">
-            <TacticalCardHeader
+          <CompactCard tone="global" status="pending">
+            <CompactHeader
               Icon={RadioTower}
               badge={<TacticalBadge>WAITING</TacticalBadge>}
               eyebrow="AMXX API"
               title={t.empty}
             />
-          </TacticalCard>
+          </CompactCard>
         )}
-      </TacticalSection>
+      </CompactSection>
     </>
   );
 }
@@ -224,61 +412,58 @@ export function PublicAdminActivityDetailPage({
 
   return (
     <>
-      <PublicPageHero
+      <CompactPageHero
         Icon={ShieldCheck}
         description={`${t.lastSeen}: ${formatDateTime(detail.admin.lastSeenAt, locale)}.`}
         eyebrow="ADMIN PROFILE"
         meta={detail.admin.steamId}
         title={detail.admin.currentName}
         actions={
-          <Link
-            className="server-details-button inline-flex min-h-12 items-center justify-center gap-2 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition"
-            href="/admin-activity"
-          >
+          <CompactActionLink href="/admin-activity">
             {t.back}
-          </Link>
+          </CompactActionLink>
         }
         aside={
-          <TacticalCard as="aside" tone="cs2" className="min-h-80">
-            <TacticalCardHeader
+          <CompactCard as="aside" tone="cs2">
+            <CompactHeader
               Icon={Trophy}
               badge={<TacticalBadge dot>{bestReport?.serverKey ?? "global"}</TacticalBadge>}
               eyebrow={t.month}
               title={bestReport ? bestReport.totalPoints : 0}
             />
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              <TacticalInfoBlock Icon={Clock} label={t.minutes} value={formatMinutes(bestReport?.minutesOnline ?? 0, locale)} />
-              <TacticalInfoBlock Icon={CalendarDays} label={t.activeDays} value={formatNumber(bestReport?.activeDays ?? 0, locale)} />
-              <TacticalInfoBlock Icon={Activity} label={t.actions} value={formatNumber(bestReport?.actionsCount ?? 0, locale)} />
-              <TacticalInfoBlock Icon={UserPlus} label={t.recruits} value={formatNumber(bestReport?.recruitsAccepted ?? 0, locale)} />
+            <div className="mt-4 grid gap-2 sm:grid-cols-2">
+              <CompactInfoBlock Icon={Clock} label={t.minutes} value={formatMinutes(bestReport?.minutesOnline ?? 0, locale)} />
+              <CompactInfoBlock Icon={CalendarDays} label={t.activeDays} value={formatNumber(bestReport?.activeDays ?? 0, locale)} />
+              <CompactInfoBlock Icon={Activity} label={t.actions} value={formatNumber(bestReport?.actionsCount ?? 0, locale)} />
+              <CompactInfoBlock Icon={UserPlus} label={t.recruits} value={formatNumber(bestReport?.recruitsAccepted ?? 0, locale)} />
             </div>
-          </TacticalCard>
+          </CompactCard>
         }
       />
 
-      <TacticalSection className="pt-6" eyebrow="PROFILE DATA" title={t.daily}>
-        <div className="grid gap-5 xl:grid-cols-[1fr_0.72fr]">
-          <TacticalCard tone="cs2">
-            <TacticalCardHeader
+      <CompactSection className="pt-5 lg:pt-6" eyebrow="PROFILE DATA" title={t.daily}>
+        <div className="grid gap-4 xl:grid-cols-[1fr_0.72fr]">
+          <CompactCard tone="cs2">
+            <CompactHeader
               Icon={CalendarDays}
               badge={<TacticalBadge>{detail.dailyScores.length}</TacticalBadge>}
               eyebrow={t.month}
               title={t.daily}
             />
             {detail.dailyScores.length > 0 ? (
-              <div className="mt-6 grid gap-3">
+              <div className="mt-4 grid gap-2">
                 {detail.dailyScores.map((score) => (
-                  <div key={`${score.serverKey}-${score.date.toISOString()}`} className="server-metric p-4">
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div key={`${score.serverKey}-${score.date.toISOString()}`} className="server-metric p-3">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                       <div>
-                        <p className="text-xs font-black uppercase tracking-[0.16em] text-cyan-200">
+                        <p className="text-[0.68rem] font-black uppercase tracking-[0.14em] text-cyan-200">
                           {formatDate(score.date, locale)} / {score.serverKey}
                         </p>
-                        <p className="mt-1 text-sm font-semibold text-white/56">
+                        <p className="mt-1 text-xs font-semibold text-white/56">
                           {formatMinutes(score.minutesOnline, locale)}
                         </p>
                       </div>
-                      <p className="font-display text-3xl font-black text-white">
+                      <p className="font-display text-2xl font-black text-white">
                         {formatNumber(score.totalPoints, locale)}
                       </p>
                     </div>
@@ -286,78 +471,78 @@ export function PublicAdminActivityDetailPage({
                 ))}
               </div>
             ) : (
-              <p className="mt-6 text-sm font-semibold leading-7 text-white/56">{t.empty}</p>
+              <p className="mt-4 text-sm font-semibold leading-6 text-white/56">{t.empty}</p>
             )}
-          </TacticalCard>
+          </CompactCard>
 
-          <div className="grid gap-5">
-            <TacticalCard tone="respawn">
-              <TacticalCardHeader
+          <div className="grid gap-4">
+            <CompactCard tone="respawn">
+              <CompactHeader
                 Icon={Activity}
                 badge={<TacticalBadge>{detail.actions.length}</TacticalBadge>}
                 eyebrow="ACTIONS"
                 title={t.latestActions}
               />
-              <div className="mt-6 grid gap-3">
+              <div className="mt-4 grid gap-2">
                 {detail.actions.length > 0 ? detail.actions.map((action) => (
-                  <div key={`${action.serverKey}-${action.occurredAt.toISOString()}-${action.command}`} className="server-metric p-4">
-                    <p className="text-sm font-black uppercase text-white">{action.command ?? "admin_action"}</p>
-                    <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-white/42">
+                  <div key={`${action.serverKey}-${action.occurredAt.toISOString()}-${action.command}`} className="server-metric p-3">
+                    <p className="text-xs font-black uppercase text-white">{action.command ?? "admin_action"}</p>
+                    <p className="mt-1 text-[0.66rem] font-semibold uppercase tracking-[0.1em] text-white/42">
                       {action.serverKey} / {formatDateTime(action.occurredAt, locale)}
                     </p>
                   </div>
                 )) : <p className="text-sm font-semibold leading-7 text-white/56">{t.empty}</p>}
               </div>
-            </TacticalCard>
+            </CompactCard>
 
-            <TacticalCard tone="cs16">
-              <TacticalCardHeader
+            <CompactCard tone="cs16">
+              <CompactHeader
                 Icon={UserPlus}
                 badge={<TacticalBadge>{detail.recruits.length}</TacticalBadge>}
                 eyebrow="RECRUITS"
                 title={t.recruits}
               />
-              <div className="mt-6 grid gap-3">
+              <div className="mt-4 grid gap-2">
                 {detail.recruits.length > 0 ? detail.recruits.map((recruit) => (
-                  <div key={`${recruit.serverKey}-${recruit.reportedAt.toISOString()}-${recruit.targetName}`} className="server-metric p-4">
-                    <p className="text-sm font-black uppercase text-white">{recruit.targetName}</p>
-                    <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-white/42">
+                  <div key={`${recruit.serverKey}-${recruit.reportedAt.toISOString()}-${recruit.targetName}`} className="server-metric p-3">
+                    <p className="text-xs font-black uppercase text-white">{recruit.targetName}</p>
+                    <p className="mt-1 text-[0.66rem] font-semibold uppercase tracking-[0.1em] text-white/42">
                       {recruit.serverKey} / {recruit.status} / {formatDate(recruit.reportedAt, locale)}
                     </p>
                   </div>
                 )) : <p className="text-sm font-semibold leading-7 text-white/56">{t.empty}</p>}
               </div>
-            </TacticalCard>
+            </CompactCard>
           </div>
         </div>
-      </TacticalSection>
+      </CompactSection>
 
-      <TacticalSection className="pt-0" eyebrow="REPORTS" title={t.reports}>
+      <CompactSection className="pt-0" eyebrow="REPORTS" title={t.reports}>
         {detail.monthlyReports.length > 0 ? (
-          <TacticalGrid columns="three">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {detail.monthlyReports.map((report) => (
-              <TacticalCard key={`${report.serverKey}-${report.adminSteamId}-${report.month}`} tone="global">
-                <TacticalCardHeader
+              <CompactCard key={`${report.serverKey}-${report.adminSteamId}-${report.month}`} tone="global">
+                <CompactHeader
                   Icon={Star}
                   badge={<TacticalBadge>{report.serverKey}</TacticalBadge>}
                   eyebrow={report.month}
                   title={report.totalPoints}
                 />
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <TacticalInfoBlock label={t.minutes} value={formatMinutes(report.minutesOnline, locale)} />
-                  <TacticalInfoBlock label={t.activeDays} value={formatNumber(report.activeDays, locale)} />
-                  <TacticalInfoBlock label={t.actions} value={formatNumber(report.actionsCount, locale)} />
-                  <TacticalInfoBlock label={t.recruits} value={formatNumber(report.recruitsAccepted, locale)} />
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  <CompactInfoBlock label={t.minutes} value={formatMinutes(report.minutesOnline, locale)} />
+                  <CompactInfoBlock label={t.activeDays} value={formatNumber(report.activeDays, locale)} />
+                  <CompactInfoBlock label={t.actions} value={formatNumber(report.actionsCount, locale)} />
+                  <CompactInfoBlock label={t.recruits} value={formatNumber(report.recruitsAccepted, locale)} />
                 </div>
-              </TacticalCard>
+              </CompactCard>
             ))}
-          </TacticalGrid>
+          </div>
         ) : (
-          <TacticalCard tone="global" status="pending">
-            <p className="relative z-10 text-sm font-semibold leading-7 text-white/56">{t.empty}</p>
-          </TacticalCard>
+          <CompactCard tone="global" status="pending">
+            <p className="relative z-10 text-sm font-semibold leading-6 text-white/56">{t.empty}</p>
+          </CompactCard>
         )}
-      </TacticalSection>
+      </CompactSection>
     </>
   );
 }
