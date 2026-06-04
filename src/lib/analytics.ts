@@ -1,4 +1,5 @@
 export type AnalyticsEventName =
+  | "click_admin_activity"
   | "click_apply_staff"
   | "click_contact"
   | "click_copy_ip"

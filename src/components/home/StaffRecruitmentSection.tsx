@@ -1,7 +1,8 @@
-import { ArrowRight, MessageSquare, ShieldCheck, UserPlus } from "lucide-react";
+import { Activity, ArrowRight, MessageSquare, ShieldCheck, UserPlus } from "lucide-react";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { TacticalCardChrome, TacticalMetric, TacticalStatusBadge, TacticalTag } from "@/components/home/HomeTacticalPrimitives";
 import type { Locale } from "@/i18n/routing";
+import { routes } from "@/lib/routes";
 
 const DISCORD_URL = "https://discord.gg/freearena";
 
@@ -71,7 +72,7 @@ export function StaffRecruitmentSection({ locale }: { locale: Locale }) {
                 <TacticalTag label="forum" />
                 <TacticalTag label="discord" />
               </div>
-              <div className="mt-auto grid gap-3 pt-7 sm:grid-cols-2">
+              <div className="mt-auto grid gap-3 pt-7 md:grid-cols-3">
                 <TrackedLink
                   className="server-join-button inline-flex min-h-12 items-center justify-center gap-2 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] transition"
                   eventName="click_apply_staff"
@@ -81,6 +82,15 @@ export function StaffRecruitmentSection({ locale }: { locale: Locale }) {
                   <UserPlus size={18} aria-hidden="true" />
                   {page.apply}
                   <ArrowRight size={18} aria-hidden="true" />
+                </TrackedLink>
+                <TrackedLink
+                  className="server-details-button inline-flex min-h-12 items-center justify-center gap-2 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition"
+                  eventName="click_admin_activity"
+                  eventPayload={{ location: "homepage_staff_block" }}
+                  href={routes.adminActivity}
+                >
+                  <Activity size={18} aria-hidden="true" />
+                  Admin Activity
                 </TrackedLink>
                 <TrackedAnchor
                   className="server-details-button inline-flex min-h-12 items-center justify-center gap-2 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition"
