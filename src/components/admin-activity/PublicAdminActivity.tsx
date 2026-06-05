@@ -317,6 +317,28 @@ function profileHref(steamId: string) {
   return `/admin-activity/${encodeURIComponent(steamId)}`;
 }
 
+function formatServerLabel(serverKey: string | null | undefined) {
+  const key = (serverKey ?? "").toLowerCase();
+
+  if (key === "cs16" || key === "csfree") {
+    return "CS 1.6";
+  }
+
+  if (key === "respawn") {
+    return "Respawn";
+  }
+
+  if (key === "cs2") {
+    return "CS2";
+  }
+
+  if (key === "global") {
+    return "Global";
+  }
+
+  return serverKey ?? "FREE-ARENA";
+}
+
 export function PublicAdminActivityHub({
   admins,
   locale,
@@ -363,7 +385,7 @@ export function PublicAdminActivityHub({
               <CompactCard key={admin.adminSteamId} tone={index % 3 === 0 ? "cs2" : index % 3 === 1 ? "respawn" : "cs16"}>
                 <CompactHeader
                   Icon={Trophy}
-                  badge={<TacticalBadge dot>{admin.serverKey}</TacticalBadge>}
+                  badge={<TacticalBadge dot>{formatServerLabel(admin.serverKey)}</TacticalBadge>}
                   eyebrow={`#${index + 1}`}
                   title={admin.currentName}
                 >
@@ -428,7 +450,7 @@ export function PublicAdminActivityDetailPage({
           <CompactCard as="aside" tone="cs2">
             <CompactHeader
               Icon={Trophy}
-              badge={<TacticalBadge dot>{bestReport?.serverKey ?? "global"}</TacticalBadge>}
+              badge={<TacticalBadge dot>{formatServerLabel(bestReport?.serverKey ?? "global")}</TacticalBadge>}
               eyebrow={t.month}
               title={bestReport ? bestReport.totalPoints : 0}
             />
@@ -458,7 +480,7 @@ export function PublicAdminActivityDetailPage({
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                       <div>
                         <p className="text-[0.68rem] font-black uppercase tracking-[0.14em] text-cyan-200">
-                          {formatDate(score.date, locale)} / {score.serverKey}
+                          {formatDate(score.date, locale)} / {formatServerLabel(score.serverKey)}
                         </p>
                         <p className="mt-1 text-xs font-semibold text-white/56">
                           {formatMinutes(score.minutesOnline, locale)}
@@ -489,7 +511,7 @@ export function PublicAdminActivityDetailPage({
                   <div key={`${action.serverKey}-${action.occurredAt.toISOString()}-${action.command}`} className="server-metric p-3">
                     <p className="text-xs font-black uppercase text-white">{action.command ?? "admin_action"}</p>
                     <p className="mt-1 text-[0.66rem] font-semibold uppercase tracking-[0.1em] text-white/42">
-                      {action.serverKey} / {formatDateTime(action.occurredAt, locale)}
+                      {formatServerLabel(action.serverKey)} / {formatDateTime(action.occurredAt, locale)}
                     </p>
                   </div>
                 )) : <p className="text-sm font-semibold leading-7 text-white/56">{t.empty}</p>}
@@ -508,7 +530,7 @@ export function PublicAdminActivityDetailPage({
                   <div key={`${recruit.serverKey}-${recruit.reportedAt.toISOString()}-${recruit.targetName}`} className="server-metric p-3">
                     <p className="text-xs font-black uppercase text-white">{recruit.targetName}</p>
                     <p className="mt-1 text-[0.66rem] font-semibold uppercase tracking-[0.1em] text-white/42">
-                      {recruit.serverKey} / {recruit.status} / {formatDate(recruit.reportedAt, locale)}
+                      {formatServerLabel(recruit.serverKey)} / {recruit.status} / {formatDate(recruit.reportedAt, locale)}
                     </p>
                   </div>
                 )) : <p className="text-sm font-semibold leading-7 text-white/56">{t.empty}</p>}
@@ -525,7 +547,7 @@ export function PublicAdminActivityDetailPage({
               <CompactCard key={`${report.serverKey}-${report.adminSteamId}-${report.month}`} tone="global">
                 <CompactHeader
                   Icon={Star}
-                  badge={<TacticalBadge>{report.serverKey}</TacticalBadge>}
+                  badge={<TacticalBadge>{formatServerLabel(report.serverKey)}</TacticalBadge>}
                   eyebrow={report.month}
                   title={report.totalPoints}
                 />

@@ -43,6 +43,15 @@ export const ADMIN_MONITOR_LIMITS = {
 } as const;
 
 const eventTypeSet = new Set<string>(ADMIN_MONITOR_EVENT_TYPES);
+const serverKeyAliases: Record<string, string> = {
+  classic: "cs16",
+  cs: "cs16",
+  "cs-1-6": "cs16",
+  "cs1-6": "cs16",
+  "cs16-classic": "cs16",
+  cs16classic: "cs16",
+  csfree: "cs16",
+};
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -126,13 +135,18 @@ export function normalizeAdminName(value: string | null | undefined) {
 }
 
 export function normalizeServerKey(value: string | null | undefined) {
-  const normalized = (value ?? "").trim().toLowerCase().slice(0, 40);
+  const normalized = (value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[.\s]+/g, "-")
+    .slice(0, 40);
+  const canonical = serverKeyAliases[normalized] ?? normalized;
 
-  if (!/^[a-z0-9_-]+$/.test(normalized)) {
+  if (!/^[a-z0-9_-]+$/.test(canonical)) {
     return null;
   }
 
-  return normalized;
+  return canonical;
 }
 
 export function normalizeCommand(value: string | null | undefined) {
