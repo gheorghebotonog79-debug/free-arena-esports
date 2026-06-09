@@ -460,7 +460,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
                 </p>
               </div>
               <div className="grid gap-2 sm:grid-cols-3 lg:w-[34rem]">
-                <a href="https://discord.gg/freearena" target="_blank" rel="noopener noreferrer" className="server-join-button inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] transition" onClick={() => trackEvent("click_join_discord", { location: "legacy_server_community", server: server.key })}>
+                <a href="https://discord.gg/Unu756zZ" target="_blank" rel="noopener noreferrer" className="server-join-button inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] transition" onClick={() => trackEvent("click_join_discord", { location: "legacy_server_community", server: server.key })}>
                   <MessageSquare size={17} aria-hidden="true" />
                   Discord
                 </a>

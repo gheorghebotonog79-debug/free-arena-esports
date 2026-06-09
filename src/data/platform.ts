@@ -95,9 +95,9 @@ export const communityChannels: CommunityChannel[] = [
   {
     key: "discord",
     icon: MessageSquare,
-    endpoint: "discord.gg/freearena",
+    endpoint: "discord.gg/Unu756zZ",
     members: "1.8K",
-    href: "https://discord.gg/freearena",
+    href: "https://discord.gg/Unu756zZ",
     external: true,
     iconClass: "bg-[#5865f2]/14 text-[#98a3ff] border border-[#98a3ff]/30",
     statusClass: "bg-arena-green/12 text-arena-green border border-arena-green/30",

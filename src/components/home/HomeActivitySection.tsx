@@ -145,7 +145,7 @@ export function HomeActivitySection({ locale }: { locale: Locale }) {
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <TrackedAnchor
-                href="https://discord.gg/freearena"
+                href="https://discord.gg/Unu756zZ"
                 target="_blank"
                 rel="noopener noreferrer"
                 eventName="click_join_discord"

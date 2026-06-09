@@ -1,7 +1,7 @@
 import { forumLinks } from "@/lib/forum-links";
 
 export const officialContactChannels = {
-  discordUrl: "https://discord.gg/freearena",
+  discordUrl: "https://discord.gg/Unu756zZ",
   forumUrl: forumLinks.home,
   generalEmail: "contact@free-arena.ro",
   partnershipsEmail: "parteneriate@free-arena.ro",

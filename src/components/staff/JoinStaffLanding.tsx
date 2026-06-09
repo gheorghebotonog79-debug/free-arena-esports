@@ -13,7 +13,7 @@ import {
 import type { Locale } from "@/i18n/routing";
 import { forumLinks } from "@/lib/forum-links";
 
-const DISCORD_URL = "https://discord.gg/freearena";
+const DISCORD_URL = "https://discord.gg/Unu756zZ";
 
 const content = {
   ro: {

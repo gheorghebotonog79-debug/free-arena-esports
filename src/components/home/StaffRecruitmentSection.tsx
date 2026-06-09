@@ -4,7 +4,7 @@ import { TacticalCardChrome, TacticalMetric, TacticalStatusBadge, TacticalTag } 
 import type { Locale } from "@/i18n/routing";
 import { routes } from "@/lib/routes";
 
-const DISCORD_URL = "https://discord.gg/freearena";
+const DISCORD_URL = "https://discord.gg/Unu756zZ";
 
 const content = {
   ro: {

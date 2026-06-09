@@ -6,7 +6,7 @@ import { forumLinks } from "@/lib/forum-links";
 const channels = [
   {
     key: "discord",
-    href: "https://discord.gg/freearena",
+    href: "https://discord.gg/Unu756zZ",
     Icon: MessageSquare,
     external: true,
     status: "LIVE CHAT",

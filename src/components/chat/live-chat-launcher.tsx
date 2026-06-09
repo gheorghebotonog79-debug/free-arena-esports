@@ -14,7 +14,7 @@ import { useTranslations } from "next-intl";
 import { trackEvent } from "@/lib/analytics";
 import { forumLinks } from "@/lib/forum-links";
 
-const DISCORD_URL = "https://discord.gg/freearena";
+const DISCORD_URL = "https://discord.gg/Unu756zZ";
 const TEAMSPEAK_URL = "ts3server://ts.free-arena.ro";
 
 export function LiveChatLauncher() {

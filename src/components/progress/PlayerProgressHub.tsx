@@ -340,7 +340,7 @@ export function PlayerProgressHub() {
                 {t("community.eyebrow")}
               </p>
               <div className="mt-4 grid gap-2 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                <CommunityLink eventName="click_join_discord" href="https://discord.gg/freearena" label="Discord" Icon={MessageSquare} external />
+                <CommunityLink eventName="click_join_discord" href="https://discord.gg/Unu756zZ" label="Discord" Icon={MessageSquare} external />
                 <CommunityLink eventName="click_teamspeak" href="ts3server://ts.free-arena.ro" label="TeamSpeak" Icon={Headphones} />
                 <CommunityLink eventName="click_forum" href={forumLinks.home} label="Forum" Icon={ExternalLink} external />
               </div>

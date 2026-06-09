@@ -12,7 +12,7 @@ import { routes } from "@/lib/routes";
 import type { ForumStatusResponse } from "@/lib/forum-status";
 import type { TeamSpeakStatusResponse } from "@/lib/teamspeak-status";
 
-const DISCORD_URL = "https://discord.gg/freearena";
+const DISCORD_URL = "https://discord.gg/Unu756zZ";
 const TEAMSPEAK_ADDRESS = "ts.free-arena.ro";
 const TEAMSPEAK_URL = `ts3server://${TEAMSPEAK_ADDRESS}`;
 

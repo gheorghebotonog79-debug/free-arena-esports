@@ -5,7 +5,7 @@ import type { Locale } from "@/i18n/routing";
 import { forumLinks } from "@/lib/forum-links";
 import { contactEmail } from "@/lib/routes";
 
-const DISCORD_URL = "https://discord.gg/freearena";
+const DISCORD_URL = "https://discord.gg/Unu756zZ";
 const TEAMSPEAK_URL = "ts3server://ts.free-arena.ro";
 
 type ContactCard = {

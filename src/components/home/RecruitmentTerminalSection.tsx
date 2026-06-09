@@ -20,7 +20,7 @@ import { forumLinks } from "@/lib/forum-links";
 import type { AnalyticsEventName } from "@/lib/analytics";
 import { contactEmail, routes } from "@/lib/routes";
 
-const DISCORD_URL = "https://discord.gg/freearena";
+const DISCORD_URL = "https://discord.gg/Unu756zZ";
 const EMAIL_URL = `mailto:${contactEmail}?subject=FREE-ARENA%20staff%20application`;
 const FORUM_STAFF_APPLICATION_URL = "https://free-arena.ro/index.php?/forum/10-aplic%C4%83-pentru-grad/";
 const TS3_STAFF_APPLICATION_URL = "https://free-arena.ro/index.php?/forum/77-aplic%C4%83-pentru-grad/";

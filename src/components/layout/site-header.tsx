@@ -35,7 +35,7 @@ const primaryNavigationItems = [
 
 const communityNavigationItems = [
   { href: forumLinks.home, key: "forum", external: true, Icon: MessageCircle },
-  { href: "https://discord.gg/freearena", key: "discord", external: true, Icon: MessageCircle },
+  { href: "https://discord.gg/Unu756zZ", key: "discord", external: true, Icon: MessageCircle },
   { href: "ts3server://ts.free-arena.ro", key: "ts3", external: true, Icon: Headphones },
 ] as const;
 

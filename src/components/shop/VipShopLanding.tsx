@@ -29,7 +29,7 @@ import {
   type VipTierKey,
 } from "@/data/vip-shop";
 
-const DISCORD_TICKET_URL = "https://discord.gg/freearena";
+const DISCORD_TICKET_URL = "https://discord.gg/Unu756zZ";
 const PRIMARY_SERVER_CONNECT_URL = "steam://connect/217.156.22.74:27015";
 
 const tierIcons: Record<VipTierKey, LucideIcon> = {

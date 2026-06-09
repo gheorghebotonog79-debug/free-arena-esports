@@ -32,13 +32,13 @@ const content: Record<
     description:
       "Discord-ul FREE-ARENA adună comunitatea pentru anunțuri, discuții, evenimente și suport rapid.",
     highlights: [
-      "Invitație publică: discord.gg/freearena",
+      "Invitație publică: discord.gg/Unu756zZ",
       "Canale pentru servere, evenimente, staff și comunitate.",
       "Conectat cu serverele FREE-ARENA CS 1.6, CS2 și TeamSpeak.",
     ],
     action: {
       external: true,
-      href: "https://discord.gg/freearena",
+      href: "https://discord.gg/Unu756zZ",
       label: "Intră pe Discord",
     },
   },
@@ -51,13 +51,13 @@ const content: Record<
     description:
       "FREE-ARENA Discord brings the community together for announcements, conversations, events and quick support.",
     highlights: [
-      "Public invite: discord.gg/freearena",
+      "Public invite: discord.gg/Unu756zZ",
       "Channels for servers, events, staff and community updates.",
       "Connected with FREE-ARENA CS 1.6, CS2 and TeamSpeak.",
     ],
     action: {
       external: true,
-      href: "https://discord.gg/freearena",
+      href: "https://discord.gg/Unu756zZ",
       label: "Join Discord",
     },
   },

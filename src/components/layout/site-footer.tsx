@@ -10,7 +10,7 @@ import { routes } from "@/lib/routes";
 import { getCanonicalServerPath } from "@/lib/server-url";
 import { publicServers, type PublicServerSlug } from "@/lib/servers";
 
-const DISCORD_URL = "https://discord.gg/freearena";
+const DISCORD_URL = "https://discord.gg/Unu756zZ";
 const TEAMSPEAK_ADDRESS = "ts.free-arena.ro";
 const TEAMSPEAK_URL = `ts3server://${TEAMSPEAK_ADDRESS}`;
 const FOOTER_CONTACT_EMAIL = officialContactChannels.generalEmail;

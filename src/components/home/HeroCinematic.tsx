@@ -80,7 +80,7 @@ const heroCopy: Record<
         title: "Stai aproape",
         copy: "Discord, TeamSpeak și forum pentru anunțuri, suport și voice.",
         cta: "Intră pe Discord",
-        href: "https://discord.gg/freearena",
+        href: "https://discord.gg/Unu756zZ",
         eventName: "click_join_discord",
         external: true,
       },
@@ -125,7 +125,7 @@ const heroCopy: Record<
         title: "Stay close",
         copy: "Discord, TeamSpeak, and forum for announcements, support, and voice.",
         cta: "Join Discord",
-        href: "https://discord.gg/freearena",
+        href: "https://discord.gg/Unu756zZ",
         eventName: "click_join_discord",
         external: true,
       },
@@ -209,7 +209,7 @@ export function HeroCinematic() {
               <ArrowRight size={18} aria-hidden="true" />
             </TrackedLink>
             <TrackedAnchor
-              href="https://discord.gg/freearena"
+              href="https://discord.gg/Unu756zZ"
               target="_blank"
               rel="noopener noreferrer"
               eventName="click_join_discord"
