@@ -1,95 +1,156 @@
 import type { ForumStatusResponse, ForumTopic } from "@/lib/forum-status";
 
 const DEFAULT_FORUM_BASE_URL = "https://free-arena.ro";
-const DEFAULT_FORUM_API_URL = "https://free-arena.ro/api/index.php?";
 const FORUM_TIMEOUT_MS = 7_000;
 const TOPIC_LIMIT = 4;
 
-type ForumConfig = {
+type PhpBbForumConfig = {
   baseUrl: string;
-  apiUrl: string;
-  apiKey: string;
+  feedUrl: string;
 };
-
-type IpsPayload = Record<string, unknown> | unknown[];
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
-function readString(value: unknown): string | undefined {
-  if (typeof value === "string" && value.trim()) {
-    return value.trim();
-  }
-
-  if (isRecord(value)) {
-    const localized = value.ro ?? value.en ?? value.default ?? value.value;
-    return readString(localized);
-  }
-
-  return undefined;
-}
-
-function readNumber(value: unknown): number | undefined {
-  const number = Number(value);
-  return Number.isFinite(number) ? number : undefined;
-}
-
-function readIdentifier(value: unknown): string | undefined {
-  if (typeof value === "number" && Number.isFinite(value)) {
-    return String(value);
-  }
-
-  return readString(value);
-}
-
-function getForumConfig(): ForumConfig | null {
-  const apiKey = cleanEnvValue(process.env.FORUM_API_KEY);
-
-  if (!apiKey) {
-    return null;
-  }
-
-  return {
-    baseUrl: cleanEnvValue(process.env.FORUM_BASE_URL, DEFAULT_FORUM_BASE_URL).replace(/\/+$/, ""),
-    apiUrl: cleanEnvValue(process.env.FORUM_API_URL, DEFAULT_FORUM_API_URL),
-    apiKey,
-  };
-}
 
 function cleanEnvValue(value: string | undefined, fallback = "") {
   return (value || fallback).replace(/^\uFEFF/, "").trim();
 }
 
-function buildIpsUrl(config: ForumConfig, route: string, params: Record<string, string> = {}) {
-  const normalizedRoute = route.replace(/^\/+/, "");
-  const apiUrl = config.apiUrl.trim();
-  const endpoint = apiUrl.includes("index.php?")
-    ? `${apiUrl.replace(/\?\/?$/, "?/")}${normalizedRoute}`
-    : `${apiUrl.replace(/\/+$/, "")}/${normalizedRoute}`;
-  const query = new URLSearchParams({
-    key: config.apiKey,
-    ...params,
-  });
+function getForumConfig(): PhpBbForumConfig {
+  const baseUrl = cleanEnvValue(process.env.FORUM_BASE_URL, DEFAULT_FORUM_BASE_URL).replace(/\/+$/, "");
 
-  return `${endpoint}${endpoint.includes("?") ? "&" : "?"}${query.toString()}`;
+  return {
+    baseUrl,
+    feedUrl: cleanEnvValue(process.env.FORUM_FEED_URL, `${baseUrl}/feed.php?mode=topics`),
+  };
 }
 
-async function fetchIpsEndpoint(
-  config: ForumConfig,
-  route: string,
-  params?: Record<string, string>,
-): Promise<IpsPayload> {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), FORUM_TIMEOUT_MS);
-  const basicAuth = Buffer.from(`${config.apiKey}:`).toString("base64");
+function decodeHtmlEntities(value: string) {
+  const named: Record<string, string> = {
+    amp: "&",
+    apos: "'",
+    gt: ">",
+    lt: "<",
+    nbsp: " ",
+    quot: "\"",
+  };
+
+  return value.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (match, entity: string) => {
+    if (entity.startsWith("#x")) {
+      const codePoint = Number.parseInt(entity.slice(2), 16);
+      return Number.isFinite(codePoint) ? String.fromCodePoint(codePoint) : match;
+    }
+
+    if (entity.startsWith("#")) {
+      const codePoint = Number.parseInt(entity.slice(1), 10);
+      return Number.isFinite(codePoint) ? String.fromCodePoint(codePoint) : match;
+    }
+
+    return named[entity] ?? match;
+  });
+}
+
+function normalizeText(value: string | undefined) {
+  if (!value) {
+    return undefined;
+  }
+
+  return decodeHtmlEntities(value)
+    .replace(/^<!\[CDATA\[([\s\S]*?)\]\]>$/u, "$1")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim() || undefined;
+}
+
+function readXmlTag(block: string, tagName: string) {
+  const match = block.match(new RegExp(`<${tagName}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tagName}>`, "i"));
+  return normalizeText(match?.[1]);
+}
+
+function readXmlAuthor(block: string) {
+  const authorBlock = block.match(/<author(?:\s[^>]*)?>([\s\S]*?)<\/author>/i)?.[1];
+  return authorBlock ? readXmlTag(authorBlock, "name") : undefined;
+}
+
+function readXmlHref(block: string) {
+  return block.match(/<link\b[^>]*href="([^"]+)"/i)?.[1];
+}
+
+function normalizeForumUrl(value: string | undefined, baseUrl: string) {
+  if (!value) {
+    return baseUrl;
+  }
 
   try {
-    const response = await fetch(buildIpsUrl(config, route, params), {
+    const url = new URL(decodeHtmlEntities(value), baseUrl);
+    url.searchParams.delete("sid");
+    return url.href;
+  } catch {
+    return baseUrl;
+  }
+}
+
+function readTopicId(url: string, fallback: string) {
+  try {
+    const parsed = new URL(url);
+    return parsed.searchParams.get("t") ?? parsed.searchParams.get("p") ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function parseAtomFeed(xml: string, baseUrl: string): ForumTopic[] {
+  return [...xml.matchAll(/<entry(?:\s[^>]*)?>([\s\S]*?)<\/entry>/gi)]
+    .map((match, index): ForumTopic | null => {
+      const entry = match[1] ?? "";
+      const title = readXmlTag(entry, "title");
+
+      if (!title) {
+        return null;
+      }
+
+      const url = normalizeForumUrl(readXmlHref(entry), baseUrl);
+
+      return {
+        id: readTopicId(url, readXmlTag(entry, "id") ?? String(index + 1)),
+        title,
+        url,
+        authorName: readXmlAuthor(entry),
+        lastPostAt: readXmlTag(entry, "updated") ?? readXmlTag(entry, "published"),
+      };
+    })
+    .filter((topic): topic is ForumTopic => topic !== null)
+    .slice(0, TOPIC_LIMIT);
+}
+
+function readTotal(label: string, text: string) {
+  const match = text.match(new RegExp(`${label}\\s+([0-9.,]+)`, "i"));
+
+  if (!match?.[1]) {
+    return undefined;
+  }
+
+  const value = Number(match[1].replace(/[.,]/g, ""));
+  return Number.isFinite(value) ? value : undefined;
+}
+
+function parseForumStats(html: string) {
+  const text = normalizeText(html) ?? "";
+
+  return {
+    membersTotal: readTotal("Total members", text),
+    postsTotal: readTotal("Total posts", text),
+    topicsTotal: readTotal("Total topics", text),
+  };
+}
+
+async function fetchForumText(url: string) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), FORUM_TIMEOUT_MS);
+
+  try {
+    const response = await fetch(url, {
       cache: "no-store",
       headers: {
-        Accept: "application/json",
-        Authorization: `Basic ${basicAuth}`,
+        Accept: "application/atom+xml, application/xml, text/html;q=0.9",
+        "User-Agent": "FREE-ARENA play.free-arena.ro forum monitor",
       },
       signal: controller.signal,
     });
@@ -106,102 +167,10 @@ async function fetchIpsEndpoint(
       throw new Error("api_failed");
     }
 
-    return (await response.json()) as IpsPayload;
+    return response.text();
   } finally {
     clearTimeout(timeout);
   }
-}
-
-function extractItems(payload: IpsPayload): unknown[] {
-  if (Array.isArray(payload)) {
-    return payload;
-  }
-
-  const candidates = [
-    payload.results,
-    payload.items,
-    payload.data,
-    payload.topics,
-    payload.posts,
-    payload.members,
-  ];
-
-  return candidates.find(Array.isArray) ?? [];
-}
-
-function extractTotal(payload: IpsPayload): number | undefined {
-  if (Array.isArray(payload)) {
-    return payload.length;
-  }
-
-  const pagination = isRecord(payload.pagination) ? payload.pagination : null;
-
-  return (
-    readNumber(payload.totalResults) ??
-    readNumber(payload.total) ??
-    readNumber(payload.count) ??
-    readNumber(payload.resultsCount) ??
-    readNumber(pagination?.total)
-  );
-}
-
-function readNestedString(value: unknown, path: string[]): string | undefined {
-  let current = value;
-
-  for (const part of path) {
-    if (!isRecord(current)) {
-      return undefined;
-    }
-
-    current = current[part];
-  }
-
-  return readString(current);
-}
-
-function normalizeTopic(topic: unknown, baseUrl: string): ForumTopic | null {
-  if (!isRecord(topic)) {
-    return null;
-  }
-
-  const id = readIdentifier(topic.id) ?? readIdentifier(topic.tid) ?? readIdentifier(topic.topic_id);
-  const title = readString(topic.title) ?? readString(topic.name);
-
-  if (!id || !title) {
-    return null;
-  }
-
-  const url =
-    readString(topic.url) ??
-    readString(topic.link) ??
-    readString(topic.href) ??
-    `${baseUrl}/topic/${encodeURIComponent(id)}`;
-
-  return {
-    id,
-    title,
-    url,
-    authorName:
-      readNestedString(topic.author, ["name"]) ??
-      readNestedString(topic.startedBy, ["name"]) ??
-      readNestedString(topic.lastPoster, ["name"]) ??
-      readNestedString(topic.lastPost, ["author", "name"]) ??
-      readNestedString(topic.firstPost, ["author", "name"]) ??
-      readString(topic.authorName),
-    replies:
-      readNumber(topic.replies) ??
-      readNumber(topic.posts) ??
-      readNumber(topic.comments) ??
-      readNumber(topic.commentCount),
-    views: readNumber(topic.views) ?? readNumber(topic.viewsCount),
-    lastPostAt:
-      readString(topic.lastPost) ??
-      readNestedString(topic.lastPost, ["date"]) ??
-      readNestedString(topic.firstPost, ["date"]) ??
-      readString(topic.last_post) ??
-      readString(topic.updated) ??
-      readString(topic.date),
-  };
 }
 
 function fallbackForumStatus(
@@ -211,7 +180,7 @@ function fallbackForumStatus(
   return {
     status,
     ok: false,
-    forumUrl: cleanEnvValue(process.env.FORUM_BASE_URL, DEFAULT_FORUM_BASE_URL),
+    forumUrl: getForumConfig().baseUrl,
     latestTopics: [],
     checkedAt: new Date().toISOString(),
     message,
@@ -231,42 +200,33 @@ function normalizeError(error: unknown): ForumStatusResponse["message"] {
 export async function queryForumStatus(): Promise<ForumStatusResponse> {
   const config = getForumConfig();
 
-  if (!config) {
-    return fallbackForumStatus("missing_config", "missing_config");
-  }
-
   try {
-    const topicsPayload = await fetchIpsEndpoint(config, "forums/topics", {
-      perPage: String(TOPIC_LIMIT),
-    });
-    const [postsResult, membersResult] = await Promise.allSettled([
-      fetchIpsEndpoint(config, "forums/posts", {
-        perPage: "1",
-      }),
-      fetchIpsEndpoint(config, "core/members", {
-        perPage: "1",
-      }),
+    const [feedResult, indexResult] = await Promise.allSettled([
+      fetchForumText(config.feedUrl),
+      fetchForumText(config.baseUrl),
     ]);
-    const fulfilledPayloads = [postsResult, membersResult]
-      .filter((result): result is PromiseFulfilledResult<IpsPayload> => result.status === "fulfilled")
-      .map((result) => result.value);
-    const postsPayload = postsResult.status === "fulfilled" ? postsResult.value : undefined;
-    const membersPayload = membersResult.status === "fulfilled" ? membersResult.value : undefined;
-    const latestTopics = extractItems(topicsPayload)
-      .map((topic) => normalizeTopic(topic, config.baseUrl))
-      .filter((topic): topic is ForumTopic => topic !== null)
-      .slice(0, TOPIC_LIMIT);
+
+    if (feedResult.status === "rejected" && indexResult.status === "rejected") {
+      return fallbackForumStatus(normalizeError(feedResult.reason));
+    }
+
+    const latestTopics = feedResult.status === "fulfilled"
+      ? parseAtomFeed(feedResult.value, config.baseUrl)
+      : [];
+    const stats = indexResult.status === "fulfilled" ? parseForumStats(indexResult.value) : {};
+    const ok = latestTopics.length > 0 || Object.values(stats).some((value) => typeof value === "number");
+    const status = feedResult.status === "fulfilled" && indexResult.status === "fulfilled"
+      ? "online"
+      : "degraded";
 
     return {
-      status: fulfilledPayloads.length === 2 ? "online" : "degraded",
-      ok: latestTopics.length > 0 || fulfilledPayloads.length > 0,
+      status,
+      ok,
       forumUrl: config.baseUrl,
-      membersTotal: membersPayload ? extractTotal(membersPayload) : undefined,
-      topicsTotal: extractTotal(topicsPayload),
-      postsTotal: postsPayload ? extractTotal(postsPayload) : undefined,
+      ...stats,
       latestTopics,
       checkedAt: new Date().toISOString(),
-      message: fulfilledPayloads.length === 2 ? undefined : "api_failed",
+      message: status === "online" ? undefined : "api_failed",
     };
   } catch (error) {
     return fallbackForumStatus(normalizeError(error));

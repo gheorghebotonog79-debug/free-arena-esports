@@ -152,9 +152,9 @@
       "latestFallback": "Forum",
       "checked": "Live",
       "unknown": "În verificare",
-      "fallback": "Forum API nu răspunde încă. Verifică permisiunile read-only din AdminCP.",
-      "permissionFallback": "Cheia API există, dar endpointurile read-only nu sunt încă activate.",
-      "rateLimitFallback": "Forum API a limitat temporar cererile. Revine automat.",
+      "fallback": "Feed-ul phpBB nu raspunde momentan. Reincercam automat.",
+      "permissionFallback": "Forum phpBB nu permite citirea publica pentru feed/status.",
+      "rateLimitFallback": "Feed-ul phpBB a limitat temporar cererile. Revine automat.",
       "open": "Intră pe forum",
       "replies": "{count} răspunsuri"
     }
@@ -492,7 +492,7 @@
           "status": "Live"
         },
         "forum": {
-          "label": "Forum API",
+          "label": "Forum phpBB",
           "status": "Live"
         },
         "teamspeak": {

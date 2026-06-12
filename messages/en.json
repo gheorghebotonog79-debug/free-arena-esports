@@ -152,9 +152,9 @@
       "latestFallback": "Forum",
       "checked": "Live",
       "unknown": "Checking",
-      "fallback": "Forum API is not responding yet. Check the read-only permissions in AdminCP.",
-      "permissionFallback": "The API key exists, but read-only endpoints are not enabled yet.",
-      "rateLimitFallback": "Forum API temporarily rate-limited requests. It will retry automatically.",
+      "fallback": "The phpBB feed is not responding yet. It will retry automatically.",
+      "permissionFallback": "phpBB does not allow public feed/status reads yet.",
+      "rateLimitFallback": "The phpBB feed temporarily rate-limited requests. It will retry automatically.",
       "open": "Open forum",
       "replies": "{count} replies"
     }
@@ -492,7 +492,7 @@
           "status": "Live"
         },
         "forum": {
-          "label": "Forum API",
+          "label": "phpBB forum",
           "status": "Live"
         },
         "teamspeak": {
