@@ -238,7 +238,7 @@
     },
     "fallback": {
       "map": "Checking",
-      "players": "0/32",
+      "players": "Checking...",
       "ping": "Monitored",
       "unavailable": "In preparation"
     },
@@ -284,7 +284,7 @@
       "loadingValue": "Checking...",
       "unknown": "Checking",
       "notAvailable": "Monitored",
-      "offlinePlayers": "0/32",
+      "offlinePlayers": "Monitored",
       "offline": "The server is not responding to the live query right now. The address remains available for copying.",
       "error": "Live status could not be loaded right now. You can retry without leaving the page."
     },

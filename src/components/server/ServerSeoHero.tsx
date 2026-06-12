@@ -151,6 +151,11 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
   const players = status === "loading" || status === "pending" ? 0 : liveServer?.players ?? 0;
   const maxPlayers = status === "pending" ? server.fallbackMaxPlayers : liveServer?.maxPlayers ?? server.fallbackMaxPlayers;
   const isPending = status === "pending";
+  const playersValue = status === "loading"
+    ? labels.checking
+    : isPending
+      ? labels.plannedLaunch
+      : `${players}/${maxPlayers}`;
   const map = status === "loading" ? labels.checking : isPending ? labels.plannedLaunch : liveServer?.map || labels.checking;
   const ping = isPending ? labels.plannedLaunch : formatPing(liveServer?.ping, labels.monitored);
   const addressValue = isPending ? labels.dnsPending : server.address;
@@ -242,7 +247,7 @@ export function ServerSeoHero({ labels, locale, page, server }: ServerSeoHeroPro
             </div>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-              <Metric Icon={UsersRound} label={labels.players} value={`${players}/${maxPlayers}`} />
+              <Metric Icon={UsersRound} label={labels.players} value={playersValue} />
               <Metric Icon={Map} label={labels.map} value={map} />
               <Metric Icon={RadioTower} label="Ping" value={ping} />
               <Metric Icon={ShieldCheck} label={labels.status} value={statusLabel} />

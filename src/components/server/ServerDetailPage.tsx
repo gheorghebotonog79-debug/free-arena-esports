@@ -204,7 +204,7 @@ export function ServerDetailPage({ server }: ServerDetailPageProps) {
       key: "players",
       label: t("stats.players"),
       value: isLoading && !liveServer
-        ? `0/${server.fallbackMaxPlayers}`
+        ? t("states.loadingValue")
         : isPending
           ? t("pending.title")
         : liveServer

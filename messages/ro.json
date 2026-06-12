@@ -238,7 +238,7 @@
     },
     "fallback": {
       "map": "În verificare",
-      "players": "0/32",
+      "players": "Se verifică...",
       "ping": "Monitorizat",
       "unavailable": "În pregătire"
     },
@@ -284,7 +284,7 @@
       "loadingValue": "Se verifică...",
       "unknown": "În verificare",
       "notAvailable": "Monitorizat",
-      "offlinePlayers": "0/32",
+      "offlinePlayers": "Monitorizat",
       "offline": "Serverul nu răspunde momentan la interogarea live. Adresa rămâne disponibilă pentru copiere.",
       "error": "Statusul live nu a putut fi încărcat acum. Poți reîncerca fără să părăsești pagina."
     },
