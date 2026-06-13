@@ -301,3 +301,56 @@ model AdminMonitorReward {
   @@index([serverKey, adminSteamId, month])
   @@index([status, month])
 }
+
+model ForumVipCode {
+  id               String    @id @default(cuid())
+  code             String    @unique
+  serverKey        String
+  steamId          String
+  nickname         String
+  ipHash           String?
+  subnetHash       String?
+  status           String    @default("issued")
+  reason           String?
+  forumUserId      Int?
+  forumUsername    String?
+  approvedPosts    Int?
+  firstPostId      Int?
+  firstPostTopicId Int?
+  firstPostForumId Int?
+  issuedAt         DateTime  @default(now())
+  expiresAt        DateTime
+  verifiedAt       DateTime?
+  redeemedAt       DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([serverKey, steamId, status])
+  @@index([expiresAt])
+  @@index([forumUserId])
+  @@index([ipHash])
+  @@index([subnetHash])
+}
+
+model ForumVipReward {
+  id            String   @id @default(cuid())
+  serverKey     String
+  steamId       String   @unique
+  forumUserId   Int      @unique
+  forumUsername String
+  code          String   @unique
+  rewardType    String   @default("vip_diamond")
+  flags         String   @default("tx")
+  status        String   @default("active")
+  ipHash        String?
+  subnetHash    String?
+  startsAt      DateTime @default(now())
+  expiresAt     DateTime
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([serverKey, status, expiresAt])
+  @@index([expiresAt])
+  @@index([ipHash])
+  @@index([subnetHash])
+}
