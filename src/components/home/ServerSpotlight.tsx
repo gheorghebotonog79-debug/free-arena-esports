@@ -114,7 +114,7 @@ const sectionCopy: Record<
   en: {
     eyebrow: "Live servers",
     title: "SERVER NETWORK",
-    copy: "Choose your server and jump straight into the game.",
+    copy: "Choose a FREE-ARENA Europe server and jump straight into Counter-Strike.",
     features: "Features",
     mapUnavailable: "Checking",
     pendingAddress: "DNS not live yet",
@@ -133,6 +133,7 @@ const popularSearchCopy: Record<
   ro: {
     label: "Căutări populare",
     links: [
+      { href: "/counter-strike-servers-europe", label: "Counter-Strike Europe" },
       { href: "/cs2-servers", label: "CS2 servers" },
       { href: "/respawn-server", label: "Respawn server" },
       { href: "/cs-1-6-servers", label: "Servere CS 1.6" },
@@ -141,6 +142,7 @@ const popularSearchCopy: Record<
   en: {
     label: "Popular searches",
     links: [
+      { href: "/counter-strike-servers-europe", label: "Counter-Strike Europe" },
       { href: "/cs2-servers", label: "CS2 servers" },
       { href: "/respawn-server", label: "Respawn server" },
       { href: "/cs-1-6-servers", label: "CS 1.6 servers" },

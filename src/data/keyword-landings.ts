@@ -1,6 +1,6 @@
 import type { Locale } from "@/i18n/routing";
 
-export const keywordLandingSlugs = ["cs2-servers", "respawn-server", "cs-1-6-servers"] as const;
+export const keywordLandingSlugs = ["cs2-servers", "respawn-server", "cs-1-6-servers", "counter-strike-servers-europe"] as const;
 
 export type KeywordLandingSlug = (typeof keywordLandingSlugs)[number];
 
@@ -16,7 +16,7 @@ export type KeywordLandingFaq = {
 
 export type KeywordLandingPageContent = {
   slug: KeywordLandingSlug;
-  tone: "cs16" | "cs2" | "respawn";
+  tone: "cs16" | "cs2" | "global" | "respawn";
   metadata: {
     title: string;
     description: string;
@@ -101,29 +101,29 @@ export const keywordLandingPages: Record<KeywordLandingSlug, Record<Locale, Keyw
       slug: "cs2-servers",
       tone: "cs2",
       metadata: {
-        title: "CS2 servers FREE-ARENA | Counter-Strike 2 community",
+        title: "CS2 servers Europe FREE-ARENA | Counter-Strike 2 community",
         description:
-          "Looking for CS2 servers? FREE-ARENA links the Counter-Strike 2 server, direct IP, Discord, TeamSpeak, support and competitive community.",
-        imageAlt: "FREE-ARENA CS2 servers",
+          "Looking for CS2 servers Europe? FREE-ARENA links EU players to Counter-Strike 2, direct IP, Discord, TeamSpeak, support and English-friendly community.",
+        imageAlt: "FREE-ARENA CS2 servers Europe",
       },
       hero: {
         eyebrow: "CS2 servers",
-        title: "FREE-ARENA CS2 servers",
+        title: "FREE-ARENA CS2 servers Europe",
         description:
-          "A focused landing page for players searching for CS2 servers, Counter-Strike 2 community and quick access to FREE-ARENA.",
+          "A focused landing page for EU players searching for CS2 servers, Counter-Strike 2 community and quick access to FREE-ARENA.",
       },
       primaryAction: { href: "/server/cs2", label: "Open CS2 server" },
       secondaryAction: { href: "/servers", label: "All servers" },
       stats: [
         { title: "Server IP", copy: "135.125.208.88:27015" },
-        { title: "Community", copy: "Discord, TeamSpeak and forum connected to the FREE-ARENA identity." },
-        { title: "Focus", copy: "Competitive Counter-Strike 2 with support, rules and long-term growth." },
+        { title: "Community", copy: "English-friendly Discord, TeamSpeak and forum connected to the FREE-ARENA identity." },
+        { title: "Focus", copy: "Competitive Counter-Strike 2 for EU players with support, rules and long-term growth." },
       ],
       sections: [
         {
           title: "Why a dedicated CS2 servers page",
           copy:
-            "A CS2 servers search is broader than a raw IP page. Players want community, support, voice, rules and a clear direction. FREE-ARENA connects those signals to the dedicated CS2 server page.",
+            "A CS2 servers Europe search is broader than a raw IP page. Players want community, support, voice, rules and a clear direction. FREE-ARENA connects those signals to the dedicated CS2 server page.",
         },
         {
           title: "Connection and support",
@@ -133,7 +133,7 @@ export const keywordLandingPages: Record<KeywordLandingSlug, Record<Locale, Keyw
         {
           title: "Part of the FREE-ARENA ecosystem",
           copy:
-            "CS2 is connected with CS 1.6 Classic, Respawn, rankings, Discord and TeamSpeak so players can move from server discovery to community quickly.",
+            "CS2 is connected with CS 1.6 Classic, Respawn, rankings, Discord and TeamSpeak so EU players can move from server discovery to community quickly.",
         },
       ],
       faq: [
@@ -203,23 +203,23 @@ export const keywordLandingPages: Record<KeywordLandingSlug, Record<Locale, Keyw
       slug: "respawn-server",
       tone: "respawn",
       metadata: {
-        title: "Respawn server CS 1.6 FREE-ARENA",
+        title: "Respawn server CS 1.6 Europe | FREE-ARENA",
         description:
-          "FREE-ARENA Respawn server for CS 1.6 warm-up, aim practice, fast duels, direct IP, staff, Discord, TeamSpeak and active community.",
-        imageAlt: "FREE-ARENA Respawn server",
+          "FREE-ARENA Respawn server for EU CS 1.6 players: warm-up, aim practice, fast duels, direct IP, staff, Discord, TeamSpeak and active community.",
+        imageAlt: "FREE-ARENA Respawn server Europe",
       },
       hero: {
         eyebrow: "Respawn server",
-        title: "CS 1.6 Respawn server",
+        title: "CS 1.6 Respawn server Europe",
         description:
-          "A page for players searching for a fast respawn server for warm-up, aim practice, frequent duels and quick connection.",
+          "A page for EU players searching for a fast respawn server for warm-up, aim practice, frequent duels and quick connection.",
       },
       primaryAction: { href: "/server/respawn", label: "Open Respawn" },
       secondaryAction: { href: "/servers", label: "All servers" },
       stats: [
         { title: "Server IP", copy: "51.38.97.243:27015" },
         { title: "Mode", copy: "Respawn for continuous action, practice and short sessions." },
-        { title: "Support", copy: "Discord, TeamSpeak and forum for reports, staff and community." },
+        { title: "Support", copy: "English-friendly Discord, TeamSpeak and forum for reports, staff and community." },
       ],
       sections: [
         {
@@ -235,7 +235,7 @@ export const keywordLandingPages: Record<KeywordLandingSlug, Record<Locale, Keyw
         {
           title: "Quick player path",
           copy:
-            "The page connects IP, canonical server page, Discord, TeamSpeak and rankings so players can join, get support and follow the community quickly.",
+            "The page connects IP, canonical server page, Discord, TeamSpeak and rankings so EU players can join, get support and follow the community quickly.",
         },
       ],
       faq: [
@@ -305,23 +305,23 @@ export const keywordLandingPages: Record<KeywordLandingSlug, Record<Locale, Keyw
       slug: "cs-1-6-servers",
       tone: "cs16",
       metadata: {
-        title: "CS 1.6 servers Romania | FREE-ARENA Classic and Respawn",
+        title: "CS 1.6 servers Europe | FREE-ARENA Classic and Respawn",
         description:
-          "FREE-ARENA CS 1.6 servers in Romania: Classic, Respawn, direct IPs, rankings, Discord, TeamSpeak, active staff and community.",
-        imageAlt: "FREE-ARENA CS 1.6 servers Romania",
+          "FREE-ARENA CS 1.6 servers Europe: Classic, Respawn, direct IPs, rankings, Discord, TeamSpeak, active staff and English-friendly community.",
+        imageAlt: "FREE-ARENA CS 1.6 servers Europe",
       },
       hero: {
         eyebrow: "CS 1.6 servers",
-        title: "CS 1.6 servers Romania",
+        title: "CS 1.6 servers Europe",
         description:
-          "A clear path for players searching for Romanian Counter-Strike 1.6 servers, Classic mode, Respawn, direct IPs and active community.",
+          "A clear path for EU players searching for Counter-Strike 1.6 servers, Classic mode, Respawn, direct IPs and active community.",
       },
       primaryAction: { href: "/server/cs16-classic", label: "CS 1.6 Classic" },
       secondaryAction: { href: "/server/respawn", label: "Respawn" },
       stats: [
         { title: "Classic IP", copy: "217.156.22.74:27015" },
         { title: "Respawn IP", copy: "51.38.97.243:27015" },
-        { title: "Community", copy: "Rankings, Discord, TeamSpeak and forum for support and activity." },
+        { title: "Community", copy: "Rankings, Discord, TeamSpeak and forum for English-friendly support and activity." },
       ],
       sections: [
         {
@@ -337,7 +337,7 @@ export const keywordLandingPages: Record<KeywordLandingSlug, Record<Locale, Keyw
         {
           title: "Why FREE-ARENA",
           copy:
-            "FREE-ARENA connects CS 1.6 servers to a real community: staff, rules, rankings, Discord, TeamSpeak and pages that explain each mode without fake data.",
+            "FREE-ARENA connects CS 1.6 servers Europe to a real community: staff, rules, rankings, Discord, TeamSpeak and pages that explain each mode without fake data.",
         },
       ],
       faq: [
@@ -349,6 +349,108 @@ export const keywordLandingPages: Record<KeywordLandingSlug, Record<Locale, Keyw
         { href: "/server/cs16-classic", title: "CS 1.6 Classic", copy: "The official classic server page." },
         { href: "/server/respawn", title: "Respawn", copy: "Warm-up and fast action." },
         { href: "/rankings", title: "Rankings", copy: "FREE-ARENA player rankings." },
+      ],
+    },
+  },
+  "counter-strike-servers-europe": {
+    ro: {
+      slug: "counter-strike-servers-europe",
+      tone: "global",
+      metadata: {
+        title: "Counter-Strike servers Europe | FREE-ARENA",
+        description:
+          "FREE-ARENA conecteaza jucatori europeni la servere Counter-Strike: CS2, CS 1.6 Classic, Respawn, IP direct, Discord, TeamSpeak si rankings.",
+        imageAlt: "FREE-ARENA Counter-Strike servers Europe",
+      },
+      hero: {
+        eyebrow: "Europe hub",
+        title: "Counter-Strike servers Europe",
+        description:
+          "Hub pentru jucatori din Europa care cauta servere Counter-Strike accesibile, comunitate English-friendly si rute rapide catre CS2, CS 1.6 Classic si Respawn.",
+      },
+      primaryAction: { href: "/servers", label: "Vezi serverele" },
+      secondaryAction: { href: "/discord", label: "Intra pe Discord" },
+      stats: [
+        { title: "CS2 IP", copy: "135.125.208.88:27015" },
+        { title: "CS 1.6 Classic IP", copy: "217.156.22.74:27015" },
+        { title: "Respawn IP", copy: "51.38.97.243:27015" },
+      ],
+      sections: [
+        {
+          title: "O ruta clara pentru Europa",
+          copy:
+            "FREE-ARENA este construit in Romania, dar serverele si comunitatea pot primi jucatori din Europa. Pagina aduna IP-urile, modurile active si canalele de suport intr-un singur traseu.",
+        },
+        {
+          title: "CS2, CS 1.6 si Respawn",
+          copy:
+            "Jucatorii pot alege Counter-Strike 2 pentru directia moderna, CS 1.6 Classic pentru runde traditionale sau Respawn pentru warm-up si dueluri rapide.",
+        },
+        {
+          title: "Comunitate English-friendly",
+          copy:
+            "Discord, TeamSpeak, forumul si rankings ajuta jucatorii noi sa inteleaga unde intra, cum cer suport si cum urmaresc activitatea comunitatii.",
+        },
+      ],
+      faq: [
+        { question: "FREE-ARENA accepta jucatori internationali?", answer: "Da. Comunitatea este romaneasca la baza, dar jucatorii internationali sunt bineveniti daca respecta regulile." },
+        { question: "Ce servere Counter-Strike sunt listate?", answer: "Hub-ul leaga CS2, CS 1.6 Classic si Respawn, fiecare cu pagina dedicata si IP direct." },
+        { question: "Unde gasesc suport?", answer: "Discord, TeamSpeak si forumul FREE-ARENA sunt canalele principale pentru suport si comunitate." },
+      ],
+      related: [
+        { href: "/cs2-servers", title: "CS2 servers", copy: "Pagina pentru jucatori care cauta servere CS2 si comunitate Counter-Strike 2." },
+        { href: "/cs-1-6-servers", title: "CS 1.6 servers", copy: "Classic si Respawn pentru Counter-Strike 1.6." },
+        { href: "/respawn-server", title: "Respawn server", copy: "Warm-up, aim si dueluri rapide." },
+      ],
+    },
+    en: {
+      slug: "counter-strike-servers-europe",
+      tone: "global",
+      metadata: {
+        title: "Counter-Strike servers Europe | FREE-ARENA CS2 and CS 1.6",
+        description:
+          "FREE-ARENA connects EU players to Counter-Strike servers: CS2, CS 1.6 Classic, Respawn, direct IPs, Discord, TeamSpeak, rankings and English-friendly community.",
+        imageAlt: "FREE-ARENA Counter-Strike servers Europe",
+      },
+      hero: {
+        eyebrow: "Europe server hub",
+        title: "Counter-Strike servers Europe",
+        description:
+          "A Europe-focused hub for players looking for CS2 servers, CS 1.6 servers, Respawn practice, direct IPs and an English-friendly FREE-ARENA community.",
+      },
+      primaryAction: { href: "/servers", label: "View all servers" },
+      secondaryAction: { href: "/discord", label: "Join Discord" },
+      stats: [
+        { title: "CS2 IP", copy: "135.125.208.88:27015" },
+        { title: "CS 1.6 Classic IP", copy: "217.156.22.74:27015" },
+        { title: "Respawn IP", copy: "51.38.97.243:27015" },
+      ],
+      sections: [
+        {
+          title: "A clear European entry point",
+          copy:
+            "FREE-ARENA is rooted in Romania but built to welcome EU players. This hub gives international players one clear path to the live Counter-Strike servers, support channels and community pages.",
+        },
+        {
+          title: "CS2, CS 1.6 Classic and Respawn",
+          copy:
+            "Players can choose Counter-Strike 2 for the modern direction, CS 1.6 Classic for traditional rounds, or Respawn for warm-up, aim practice and fast duels.",
+        },
+        {
+          title: "English-friendly community signals",
+          copy:
+            "Discord, TeamSpeak, rankings and server pages help international players understand where to join, how to get support and how to follow FREE-ARENA activity.",
+        },
+      ],
+      faq: [
+        { question: "Is FREE-ARENA open to international players?", answer: "Yes. FREE-ARENA is rooted in Romania, but EU and international players are welcome if they follow the rules." },
+        { question: "Which Counter-Strike servers are available?", answer: "The hub links CS2, CS 1.6 Classic and Respawn, with direct IPs and dedicated pages for each server." },
+        { question: "Where can English-speaking players get support?", answer: "Use FREE-ARENA Discord, TeamSpeak or the forum. The English pages keep the main connection and support paths clear." },
+      ],
+      related: [
+        { href: "/cs2-servers", title: "CS2 servers Europe", copy: "A focused path for Counter-Strike 2 players and EU server discovery." },
+        { href: "/cs-1-6-servers", title: "CS 1.6 servers Europe", copy: "Classic Counter-Strike and Respawn practice in the FREE-ARENA network." },
+        { href: "/respawn-server", title: "Respawn server", copy: "Warm-up, aim practice and fast Counter-Strike duels." },
       ],
     },
   },

@@ -137,10 +137,10 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         imageAlt: "FREE-ARENA CS 1.6 Classic server România",
       },
       en: {
-        title: "CS 1.6 Classic FREE-ARENA Romania Server",
+        title: "CS 1.6 Classic FREE-ARENA Europe Server",
         description:
-          "Play FREE-ARENA CS 1.6 Classic Romania: classic Counter-Strike gameplay, active staff, anti-cheat, events and a competitive community.",
-        imageAlt: "FREE-ARENA CS 1.6 Classic Romania server",
+          "Play FREE-ARENA CS 1.6 Classic Europe: classic Counter-Strike gameplay, direct IP, active staff, anti-cheat, events and English-friendly community.",
+        imageAlt: "FREE-ARENA CS 1.6 Classic Europe server",
       },
     },
     hero: {
@@ -155,7 +155,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         eyebrow: "Counter-Strike 1.6 server",
         name: "CS 1.6 Classic",
         description:
-          "The classic FREE-ARENA server for players who want clean rounds, familiar maps and an active Romanian community.",
+          "The classic FREE-ARENA server for EU players who want clean rounds, familiar maps and an English-friendly community rooted in Romania.",
         statusLabel: "Live status in hub",
       },
     },
@@ -189,12 +189,12 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
       en: {
         heading: "CS 1.6 Classic on FREE-ARENA Romania",
         intro:
-          "CS 1.6 Classic is the dedicated page for the main FREE-ARENA Counter-Strike 1.6 server in Romania.",
+          "CS 1.6 Classic is the dedicated page for the main FREE-ARENA Counter-Strike 1.6 server for Romania and EU players.",
         paragraphs: [
           "FREE-ARENA CS 1.6 Classic keeps the rhythm that made Counter-Strike 1.6 last for so many years: fast rounds, readable duels, team economy and maps that the community already understands. This page gives players a clear destination for the server, with information about the address, support channels, rules and the community around it.",
           "The gameplay is built for players who want competitive Counter-Strike without unnecessary noise. FREE-ARENA focuses on clean matches, team communication and an environment where real skill matters. The server can be used for casual sessions, but it also fits players who want to test aim, positioning, reactions and discipline on classic maps.",
           "The community is what keeps the server alive. Players can join Discord, TeamSpeak or the forum for support, announcements, conversations and reports. Active staff helps enforce rules, while anti-cheat systems and administrative checks reduce behavior that hurts the match experience. We do not present the server as magic; we build a place where issues can be seen and handled.",
-          "For Romania, FREE-ARENA aims to be more than another IP in a server list. The CS 1.6 Classic page prepares the foundation for events, competitive evenings, rankings and editorial content around the server. Later phases can add a stronger cinematic design, richer live stats and modules focused on player progress.",
+          "For EU players, FREE-ARENA aims to be more than another IP in a server list. The CS 1.6 Classic page prepares the foundation for events, competitive evenings, rankings and editorial content around the server. Later phases can add a stronger cinematic design, richer live stats and modules focused on player progress.",
           "If you want Counter-Strike 1.6 with a clear identity, active community, fast support and a stable technical base, CS 1.6 Classic is the starting point. Use the actions above to connect, join Discord or open TeamSpeak, and come back for updates about maps, events and improvements.",
         ],
       },
@@ -281,10 +281,10 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         imageAlt: "FREE-ARENA Respawn CS 1.6 România",
       },
       en: {
-        title: "Respawn CS 1.6 FREE-ARENA Romania Server",
+        title: "Respawn CS 1.6 FREE-ARENA Europe Server",
         description:
-          "FREE-ARENA Respawn Romania for CS 1.6: fast action, active staff, anti-cheat, rankings, events, community support, and quick practice sessions.",
-        imageAlt: "FREE-ARENA Respawn CS 1.6 Romania",
+          "FREE-ARENA Respawn Europe for CS 1.6: fast action, warm-up, active staff, anti-cheat, rankings, community support and quick practice sessions.",
+        imageAlt: "FREE-ARENA Respawn CS 1.6 Europe",
       },
     },
     hero: {
@@ -299,7 +299,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         eyebrow: "CS 1.6 Respawn server",
         name: "Respawn",
         description:
-          "The FREE-ARENA server for players who want fast pacing, instant re-entry and many duels in a short session.",
+          "The FREE-ARENA server for EU players who want fast pacing, instant re-entry and many duels in a short session.",
         statusLabel: "Live status in hub",
       },
     },
@@ -333,11 +333,11 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
       en: {
         heading: "Fast Respawn for the FREE-ARENA community",
         intro:
-          "Respawn is the dedicated FREE-ARENA page for players who want continuous Counter-Strike 1.6 action.",
+          "Respawn is the dedicated FREE-ARENA page for EU players who want continuous Counter-Strike 1.6 action.",
         paragraphs: [
           "FREE-ARENA Respawn is built for players who do not want to wait long between duels. The respawn format changes the energy of a Counter-Strike 1.6 session: you return quickly, try another angle, adjust aim and collect many more situations in a short amount of time. It works well for warm-up, practice and short gaming sessions.",
           "The gameplay focuses on movement, reaction and adaptation. Unlike a classic server, where each round has natural pauses, Respawn keeps you close to the action. That makes it useful for players who want to train spray control, positioning, prefire and reactions. FREE-ARENA wants that pace to stay enjoyable, not chaotic, with clear rules and active oversight.",
-          "The Romanian community needs servers where players can join quickly and feel that their time is respected. Respawn uses the same FREE-ARENA base: Discord, TeamSpeak and forum support, active staff, anti-cheat and room for events. When issues appear, players have clear channels for reporting bad behavior or bugs.",
+          "EU players need servers where they can join quickly and feel that their time is respected. Respawn uses the same FREE-ARENA base: Discord, TeamSpeak and forum support, active staff, anti-cheat and room for events. When issues appear, players have clear channels for reporting bad behavior or bugs.",
           "The Respawn page prepares the server for later expansion. Future phases can add visual stats, dedicated leaderboards, event highlights and a cinematic design that brings the energy of respawn gameplay forward. The current foundation separates content, data and components so upgrades can move quickly.",
           "If you want a CS 1.6 server where you jump straight into the action, Respawn is the natural choice. Connect to the server, join Discord or use TeamSpeak for team voice and support. It is part of the FREE-ARENA ecosystem together with CS 1.6 Classic, CS2 and the Global project.",
         ],
@@ -425,10 +425,10 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         imageAlt: "FREE-ARENA CS2 România server",
       },
       en: {
-        title: "CS2 FREE-ARENA Romania | Competitive Server",
+        title: "CS2 FREE-ARENA Europe | Competitive Server",
         description:
-          "FREE-ARENA CS2 Romania server for competitive players: active community, staff, anti-cheat, events, rankings and support.",
-        imageAlt: "FREE-ARENA CS2 Romania server",
+          "FREE-ARENA CS2 Europe server for competitive players: direct IP, active community, staff, anti-cheat, events, rankings and support.",
+        imageAlt: "FREE-ARENA CS2 Europe server",
       },
     },
     hero: {
@@ -443,7 +443,7 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         eyebrow: "Counter-Strike 2 server",
         name: "CS2",
         description:
-          "The FREE-ARENA server for the new Counter-Strike generation, prepared for competitive matches and a modern community.",
+          "The FREE-ARENA server for the new Counter-Strike generation, prepared for EU competitive matches and a modern community.",
         statusLabel: "Live status in hub",
       },
     },
@@ -477,11 +477,11 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
       en: {
         heading: "Competitive CS2 in the FREE-ARENA ecosystem",
         intro:
-          "CS2 is the dedicated FREE-ARENA page for Counter-Strike 2 and the community building a modern scene in Romania.",
+          "CS2 is the dedicated FREE-ARENA page for Counter-Strike 2 and the community building a modern scene for Romania and EU players.",
         paragraphs: [
           "FREE-ARENA CS2 is designed as a bridge between the classic community and the new Counter-Strike generation. Players coming from CS 1.6 find a modern direction here, while players already focused on CS2 get a local point for matches, communication and progress. This page gives the server a clear identity, not just a mention inside a menu.",
           "CS2 gameplay rewards discipline, sound, communication and quick decisions. FREE-ARENA prepares the server for competitive sessions while keeping the accessibility of an open community. The goal is simple: players should know how to join, where to find support, how Discord and TeamSpeak connect to the server, and where to return for events or announcements.",
-          "Romania has many players looking for stable servers, visible staff and clear rules. FREE-ARENA focuses on anti-cheat, fast support and responsible administration. The page avoids exaggerated promises and describes a foundation that can improve through feedback, reports and technical updates.",
+          "EU players look for stable servers, visible staff and clear rules. FREE-ARENA focuses on anti-cheat, fast support and responsible administration. The page avoids exaggerated promises and describes a foundation that can improve through feedback, reports and technical updates.",
           "CS2 is also a natural candidate for the next cinematic phase. The current structure can receive stronger visual systems, live statistics, highlight clips, leaderboards and event previews. The content explains the server in natural language with relevant details around Counter-Strike 2, competition, community and Romania.",
           "If you want to follow the modern FREE-ARENA direction, the CS2 page is the right place. Use the internal links to Discord, TeamSpeak and the server list, and when you join the server, play responsibly, communicate and help the community stay clean and competitive.",
         ],

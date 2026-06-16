@@ -17,7 +17,7 @@ export function getLocalizedAlternates(locale: Locale, path = ""): Metadata["alt
     languages: {
       ro: `${siteUrl}/ro${suffix}`,
       en: `${siteUrl}/en${suffix}`,
-      "x-default": `${siteUrl}/ro${suffix}`,
+      "x-default": `${siteUrl}/en${suffix}`,
     },
   };
 }

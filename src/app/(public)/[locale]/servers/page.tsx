@@ -8,6 +8,10 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
 import { ServerGrid } from "@/components/sections/server-grid";
 import {
+  InternationalServersSeoHub,
+  internationalServersHubFaq,
+} from "@/components/servers/InternationalServersSeoHub";
+import {
   RomanianServersSeoHub,
   romanianServersHubFaq,
 } from "@/components/servers/RomanianServersSeoHub";
@@ -28,10 +32,10 @@ const seo: Record<Locale, { description: string; imageAlt: string; title: string
     imageAlt: "Servere CS Romania FREE-ARENA",
   },
   en: {
-    title: "FREE-ARENA Game Servers | CS 1.6 and CS2",
+    title: "Counter-Strike Servers Europe | FREE-ARENA CS 1.6 and CS2",
     description:
-      "Browse FREE-ARENA CS 1.6, Respawn and CS2 servers with live status, connection IPs, TeamSpeak voice, and community support.",
-    imageAlt: "FREE-ARENA CS 1.6 and CS2 servers",
+      "Browse FREE-ARENA Counter-Strike servers Europe: CS2, CS 1.6 Classic, Respawn, live status, connection IPs, Discord, TeamSpeak and English-friendly support.",
+    imageAlt: "FREE-ARENA Counter-Strike servers Europe",
   },
 };
 
@@ -61,7 +65,7 @@ export default async function ServersPage({ params }: ServersPageProps) {
       <SiteHeader />
       <PublicPageShell>
         <ServerGrid />
-        {locale === "ro" ? <RomanianServersSeoHub /> : null}
+        {locale === "ro" ? <RomanianServersSeoHub /> : <InternationalServersSeoHub />}
       </PublicPageShell>
       <SiteFooter />
       <LiveChatLauncher />
@@ -113,22 +117,18 @@ function buildServersStructuredData(locale: Locale) {
         },
       ],
     },
-    ...(locale === "ro"
-      ? [
-          {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "@id": `${url}#faq`,
-            mainEntity: romanianServersHubFaq.map((item) => ({
-              "@type": "Question",
-              name: item.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: item.answer,
-              },
-            })),
-          },
-        ]
-      : []),
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: (locale === "ro" ? romanianServersHubFaq : internationalServersHubFaq).map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    },
   ];
 }
