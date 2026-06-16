@@ -6,6 +6,7 @@ import {
   Headphones,
   MessageSquare,
   RadioTower,
+  Search,
   ShieldCheck,
   Trophy,
   UsersRound,
@@ -17,6 +18,7 @@ type HubCard = {
   copy: string;
   href: string;
   label: string;
+  tone: "cs16" | "cs2" | "global" | "respawn";
   title: string;
 };
 
@@ -29,60 +31,91 @@ type EcosystemLink = {
 
 export const romanianServersHubFaq = [
   {
-    question: "Ce server FREE-ARENA este potrivit pentru un jucator nou?",
+    question: "Ce server FREE-ARENA este potrivit pentru un jucător nou?",
     answer:
-      "Pentru început, CS 1.6 Classic este alegerea cea mai simplă: ritm clar, hărți cunoscute și conectare rapidă. Dacă vrei acțiune continuă, Respawn este mai potrivit pentru antrenament, warm-up și sesiuni scurte.",
+      "Pentru început, CS 1.6 Classic este alegerea cea mai simplă: ritm clar, hărți cunoscute și conectare rapidă. Dacă vrei acțiune continuă, Respawn este mai potrivit pentru warm-up, aim și sesiuni scurte.",
   },
   {
     question: "Serverele FREE-ARENA au ranking și progres pentru jucători?",
     answer:
-      "Da. Pagina de rankings grupează jucătorii activi și ajută comunitatea să urmărească performanța, kill-urile, headshot-urile și timpul jucat. Linkurile către clasament sunt vizibile și utile pentru jucători.",
+      "Da. Pagina de rankings grupează jucătorii activi și ajută comunitatea să urmărească XP, kill-uri, headshot-uri, timp jucat și progres real pe servere.",
   },
   {
     question: "Cum intru rapid pe Discord sau TeamSpeak?",
     answer:
-      "Din hubul de servere poți intra direct pe paginile dedicate Discord și TeamSpeak. Discord este util pentru anunțuri, suport și comunitate, iar TeamSpeak rămâne potrivit pentru voice rapid în timpul meciurilor.",
+      "Din hubul de servere poți intra direct pe paginile dedicate Discord și TeamSpeak. Discord este util pentru anunțuri și suport, iar TeamSpeak rămâne canalul rapid pentru voice în timpul meciurilor.",
   },
   {
-    question: "De ce exista pagini separate pentru fiecare server?",
+    question: "De ce există pagini separate pentru fiecare server?",
     answer:
-      "Fiecare server are reguli, mod, hărți, instrucțiuni și intenție diferită. Paginile dedicate pentru CS 1.6 Classic, Respawn, CS2 și Global dau context complet și explică mai bine diferențele decât o listă scurtă de IP-uri.",
+      "Fiecare server are mod, reguli, hărți, ritm și intenție diferită. Paginile dedicate pentru CS 1.6 Classic, Respawn, CS2 și Global explică mai bine diferențele decât o listă scurtă de IP-uri.",
   },
   {
     question: "Ce înseamnă Global / Coming Soon în lista de servere?",
     answer:
-      "Global este zona pregătită pentru extinderi viitoare FREE-ARENA. Pagina rămâne vizibilă ca punct de informare pentru jucătorii care urmăresc lansări noi, evenimente și servere internaționale.",
+      "Global este zona pregătită pentru extinderi viitoare FREE-ARENA. Pagina rămâne vizibilă ca punct de informare pentru jucătorii care urmăresc lansări, evenimente și servere conectate.",
   },
 ] as const;
 
 const serverCards: readonly HubCard[] = [
   {
     title: "CS 1.6 Classic",
-    label: "Server CS 1.6 Romania",
+    label: "Server CS 1.6 România",
     href: "/server/cs16-classic",
+    tone: "cs16",
     copy:
-      "CS 1.6 Classic este baza comunității FREE-ARENA: gameplay curat, hărți recognoscibile, runde citibile și o experiență apropiată de Counter-Strike-ul clasic. Pagina dedicată explică IP-ul, conectarea, regulile, beneficiile VIP și motivele pentru care serverul merită salvat la favorite.",
+      "Serverul clasic FREE-ARENA pentru runde clare, hărți cunoscute, IP direct și comunitate românească activă. Pagina dedicată explică regulile, conectarea, suportul și beneficiile VIP.",
   },
   {
     title: "Respawn",
-    label: "Actiune rapida",
+    label: "Warm-up și dueluri rapide",
     href: "/server/respawn",
+    tone: "respawn",
     copy:
-      "Respawn este pentru jucătorii care vor dueluri dese, reîncărcare rapidă în joc și progres prin volum. Este ideal pentru încălzire, antrenament de aim, testarea armelor și sesiuni scurte în care nu aștepți finalul rundei ca să reintri în acțiune.",
+      "Respawn este pentru jucătorii care vor acțiune continuă, reintrare rapidă în joc, antrenament de aim și fraguri dese fără așteptarea finalului de rundă.",
   },
   {
     title: "CS2",
     label: "Counter-Strike modern",
     href: "/server/cs2",
+    tone: "cs2",
     copy:
-      "CS2 aduce direcția modernă a platformei FREE-ARENA: tick modern, vizibilitate mai bună, competiție actuală și potențial pentru evenimente noi. Hubul trimite către pagina dedicată, unde jucătorii găsesc status, context, comunitate și informații utile pentru conectare.",
+      "CS2 este direcția modernă FREE-ARENA pentru jucători competitivi, server dedicat, comunitate conectată la Discord și TeamSpeak și dezvoltare pe termen lung.",
   },
   {
-    title: "Global / Coming Soon",
+    title: "Global",
     label: "Extindere FREE-ARENA",
     href: "/server/global",
+    tone: "global",
     copy:
-      "Global pregătește următorul pas pentru serverele FREE-ARENA. Pagina păstrează un loc clar pentru lansări, testări, moduri internaționale și anunțuri, fără să încurce serverele active. Este utilă pentru jucătorii care urmăresc evoluția comunității.",
+      "Global pregătește următorul pas al rețelei: servere conectate, evenimente cross-server, anunțuri și o zonă centrală pentru dezvoltarea comunității.",
+  },
+];
+
+const popularSearchLinks: readonly HubCard[] = [
+  {
+    title: "CS2 servers",
+    label: "Căutare Google",
+    href: "/cs2-servers",
+    tone: "cs2",
+    copy:
+      "Landing page pentru jucătorii care caută servere CS2, comunitate Counter-Strike 2 și informații rapide despre conectarea pe FREE-ARENA.",
+  },
+  {
+    title: "Respawn server",
+    label: "Căutare Google",
+    href: "/respawn-server",
+    tone: "respawn",
+    copy:
+      "Pagină dedicată pentru intenția de căutare Respawn server: warm-up, aim, IP direct, reguli scurte și legături către serverul live.",
+  },
+  {
+    title: "CS 1.6 servers",
+    label: "Căutare Google",
+    href: "/cs-1-6-servers",
+    tone: "cs16",
+    copy:
+      "Pagină orientată către căutări pentru servere CS 1.6 România, Counter-Strike clasic, IP direct și comunitate activă.",
   },
 ];
 
@@ -91,29 +124,25 @@ const ecosystemLinks: readonly EcosystemLink[] = [
     title: "Rankings",
     href: "/rankings",
     icon: Trophy,
-    copy:
-      "Clasamentul FREE-ARENA adună jucătorii activi și transformă activitatea zilnică în competiție vizibilă.",
+    copy: "Clasamentul transformă activitatea zilnică în progres vizibil pentru jucători.",
   },
   {
     title: "Discord",
     href: "/discord",
     icon: MessageSquare,
-    copy:
-      "Discord este locul pentru anunțuri, suport, discuții rapide, recrutare și feedback direct către comunitate.",
+    copy: "Canal pentru anunțuri, suport, recrutare staff, feedback și comunitate.",
   },
   {
     title: "TeamSpeak",
     href: "/teamspeak",
     icon: Headphones,
-    copy:
-      "TeamSpeak rămâne canalul rapid pentru voice în timpul meciurilor, mixurilor și sesiunilor de echipă.",
+    copy: "Voice rapid pentru mixuri, sesiuni de joc și suport în timp real.",
   },
   {
     title: "Homepage",
     href: "/",
     icon: UsersRound,
-    copy:
-      "Prima pagină leagă serverele, topul de jucători, comunitatea și zonele principale FREE-ARENA într-un traseu simplu.",
+    copy: "Punctul central care leagă serverele, topul de jucători și comunitatea.",
   },
 ];
 
@@ -133,7 +162,7 @@ export function RomanianServersSeoHub() {
           className="flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-white/44"
         >
           <Link href="/" className="transition hover:text-cyan-200">
-            Acasa
+            Acasă
           </Link>
           <span aria-hidden="true">/</span>
           <span className="text-cyan-200">Servere</span>
@@ -142,26 +171,25 @@ export function RomanianServersSeoHub() {
         <div className="mt-10 grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div>
             <p className="neon-kicker section-badge-label inline-flex px-4 py-2">
-              Hub servere Romania
+              Hub servere România
             </p>
             <h2 className="mt-5 font-display text-3xl font-black uppercase leading-tight text-white sm:text-4xl">
               FREE-ARENA ca punct central pentru servere CS active
             </h2>
           </div>
+
           <article className="premium-card glass-panel server-tactical-card server-card--cs2 server-tactical-card--online min-h-0 rounded-lg p-5 sm:p-6" data-occupancy="low" data-status="online">
             <TacticalCardChrome />
             <div className="grid gap-5 text-sm font-semibold leading-7 text-white/66">
               <p>
-                FREE-ARENA este construit ca hub de servere gaming pentru Romania, cu focus pe Counter-Strike,
+                FREE-ARENA este construit ca hub de servere gaming pentru România, cu focus pe Counter-Strike,
                 comunitate activă și pagini clare pentru fiecare mod important. Scopul acestei pagini nu este
-                doar sa afiseze statusul live, ci sa te ajute sa alegi rapid serverul potrivit, sa gasesti linkul
-                corect de conectare și să înțelegi unde se întâmplă activitatea principală a comunității.
+                doar să afișeze statusul live, ci să ajute jucătorii să aleagă rapid serverul potrivit.
               </p>
               <p>
-                Pentru jucători, hubul leagă paginile care contează: serverul de CS 1.6 Classic,
-                modul Respawn, zona CS2, pagina Global, clasamentul FREE-ARENA, Discord și TeamSpeak. Fiecare
-                link este HTML normal, ușor de accesat și gândit să ducă rapid către pagina potrivită,
-                unde există detalii despre conectare, reguli, hărți, beneficii VIP și întrebări frecvente.
+                Pentru jucători, hubul leagă serverul de CS 1.6 Classic, modul Respawn, zona CS2,
+                pagina Global, clasamentul FREE-ARENA, Discord și TeamSpeak. Fiecare link este HTML normal,
+                ușor de accesat și gândit să ducă rapid către informația potrivită.
               </p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -169,7 +197,7 @@ export function RomanianServersSeoHub() {
                 href="/server/cs16-classic"
                 className="button-glow inline-flex items-center justify-center gap-2 rounded-lg bg-arena-cyan px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
               >
-                Joaca acum
+                Joacă acum
                 <ArrowRight size={17} aria-hidden="true" />
               </Link>
               <Link
@@ -182,57 +210,26 @@ export function RomanianServersSeoHub() {
                 href="/discord"
                 className="button-ghost inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 bg-white/[0.055] px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10"
               >
-                Intra pe Discord
+                Intră pe Discord
               </Link>
             </div>
           </article>
         </div>
 
-        <div className="mt-14">
-          <div className="flex max-w-4xl items-start gap-3">
-            <span className="grid size-12 shrink-0 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
-              <Gamepad2 size={22} aria-hidden="true" />
-            </span>
-            <div>
-              <h2 className="font-display text-3xl font-black uppercase text-white">
-                Servere FREE-ARENA
-              </h2>
-              <p className="mt-3 text-sm font-semibold leading-7 text-white/62">
-                Lista live de mai sus arată statusul, harta, ping-ul și numărul de jucători. Cardurile de mai jos
-                explică rolul fiecărui server și trimit către paginile oficiale pentru detalii complete.
-              </p>
-            </div>
-          </div>
-          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {serverCards.map((server) => (
-              <Link
-                key={server.href}
-                href={server.href}
-                className={`premium-card glass-panel group server-tactical-card ${server.href.includes("respawn") ? "server-card--respawn" : server.href.includes("cs2") ? "server-card--cs2" : server.href.includes("global") ? "server-card--global" : "server-card--cs16"} server-tactical-card--online h-full min-h-96 rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10`}
-                data-occupancy={server.href.includes("global") ? "idle" : "low"}
-                data-status="online"
-              >
-                <TacticalCardChrome />
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-cyan-200">
-                  {server.label}
-                </p>
-                <div className="mt-3 flex items-start justify-between gap-3">
-                  <h3 className="font-display text-xl font-black uppercase text-white">
-                    {server.title}
-                  </h3>
-                  <ArrowRight
-                    size={18}
-                    className="shrink-0 text-cyan-200 transition group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </div>
-                <p className="mt-4 text-sm font-semibold leading-7 text-white/62">
-                  {server.copy}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </div>
+        <HubGrid
+          Icon={Gamepad2}
+          copy="Lista live arată statusul, harta, ping-ul și numărul de jucători. Cardurile de mai jos explică rolul fiecărui server și trimit către paginile oficiale."
+          items={serverCards}
+          title="Servere FREE-ARENA"
+        />
+
+        <HubGrid
+          Icon={Search}
+          copy="Aceste pagini sunt construite pentru căutări reale și trimit autoritate către serverele principale."
+          items={popularSearchLinks}
+          title="Căutări populare"
+          columns="three"
+        />
 
         <div className="mt-14 grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
           <div className="flex items-start gap-3">
@@ -244,8 +241,8 @@ export function RomanianServersSeoHub() {
                 Comunitate, competiție și activitate
               </h2>
               <p className="mt-3 text-sm font-semibold leading-7 text-white/62">
-                Un server bun nu inseamna doar IP online. Conteaza jucatorii care revin, staff-ul prezent,
-                canalele de comunicare și un traseu simplu către competiție.
+                Un server bun nu înseamnă doar IP online. Contează jucătorii care revin, staff-ul prezent,
+                canalele de comunicare și traseul simplu către competiție.
               </p>
             </div>
           </div>
@@ -253,16 +250,12 @@ export function RomanianServersSeoHub() {
             <TacticalCardChrome />
             <div className="grid gap-5 text-sm font-semibold leading-7 text-white/66">
               <p>
-                FREE-ARENA foloseste hubul de servere ca punct de pornire pentru toata experienta: intri pe server,
+                FREE-ARENA folosește hubul de servere ca punct de pornire pentru toată experiența: intri pe server,
                 verifici cine joacă, urmărești clasamentul și rămâi aproape de comunitate pe Discord sau TeamSpeak.
-                Rankings transformă activitatea zilnică în motivație, iar paginile de servere ajută jucătorii noi să
-                inteleaga diferenta dintre moduri fara sa caute informatii imprastiate.
               </p>
               <p>
-                Pentru competiție, contează semnalele constante: servere accesibile, reguli scurte, hărți potrivite,
-                conectare rapidă și linkuri interne care nu se pierd în meniuri. De aceea hubul leagă homepage-ul,
-                landing page-urile, voice-ul și clasamentul într-o structură clară, ușor de parcurs de jucători și
-                usor de descoperit de motoarele de cautare.
+                Pentru competiție contează semnalele constante: servere accesibile, reguli scurte, hărți potrivite,
+                conectare rapidă și linkuri interne care nu se pierd în meniuri.
               </p>
             </div>
           </article>
@@ -288,11 +281,7 @@ export function RomanianServersSeoHub() {
                   <h3 className="font-display text-xl font-black uppercase text-white">
                     {item.title}
                   </h3>
-                  <ArrowRight
-                    size={18}
-                    className="shrink-0 text-cyan-200 transition group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
+                  <ArrowRight size={18} className="shrink-0 text-cyan-200 transition group-hover:translate-x-1" aria-hidden="true" />
                 </div>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/62">
                   {item.copy}
@@ -312,8 +301,8 @@ export function RomanianServersSeoHub() {
                 Cum alegi serverul potrivit
               </h2>
               <p className="mt-3 text-sm font-semibold leading-7 text-white/62">
-                Fiecare mod are o intenție diferită. Alege în funcție de ritm, obiectiv și felul în care vrei să
-                te implici în comunitate.
+                Fiecare mod are o intenție diferită. Alege în funcție de ritm, obiectiv și felul în care vrei
+                să te implici în comunitate.
               </p>
             </div>
           </div>
@@ -339,7 +328,7 @@ export function RomanianServersSeoHub() {
             </span>
             <div>
               <h2 className="font-display text-3xl font-black uppercase text-white">
-                Intrebari frecvente despre serverele FREE-ARENA
+                Întrebări frecvente despre serverele FREE-ARENA
               </h2>
               <p className="mt-3 text-sm font-semibold leading-7 text-white/62">
                 FAQ-ul răspunde direct întrebărilor importante pentru jucători și completează informațiile vizibile de pe pagină.
@@ -362,5 +351,62 @@ export function RomanianServersSeoHub() {
         </div>
       </div>
     </section>
+  );
+}
+
+function HubGrid({
+  columns = "four",
+  copy,
+  Icon,
+  items,
+  title,
+}: {
+  columns?: "four" | "three";
+  copy: string;
+  Icon: LucideIcon;
+  items: readonly HubCard[];
+  title: string;
+}) {
+  return (
+    <div className="mt-14">
+      <div className="flex max-w-4xl items-start gap-3">
+        <span className="grid size-12 shrink-0 place-items-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
+          <Icon size={22} aria-hidden="true" />
+        </span>
+        <div>
+          <h2 className="font-display text-3xl font-black uppercase text-white">
+            {title}
+          </h2>
+          <p className="mt-3 text-sm font-semibold leading-7 text-white/62">
+            {copy}
+          </p>
+        </div>
+      </div>
+      <div className={columns === "three" ? "mt-6 grid gap-4 md:grid-cols-3" : "mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4"}>
+        {items.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`premium-card glass-panel group server-tactical-card server-card--${item.tone} server-tactical-card--online h-full min-h-80 rounded-lg p-5 transition hover:border-arena-cyan/60 hover:bg-arena-cyan/10`}
+            data-occupancy={item.tone === "global" ? "idle" : "low"}
+            data-status="online"
+          >
+            <TacticalCardChrome />
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-cyan-200">
+              {item.label}
+            </p>
+            <div className="mt-3 flex items-start justify-between gap-3">
+              <h3 className="font-display text-xl font-black uppercase text-white">
+                {item.title}
+              </h3>
+              <ArrowRight size={18} className="shrink-0 text-cyan-200 transition group-hover:translate-x-1" aria-hidden="true" />
+            </div>
+            <p className="mt-4 text-sm font-semibold leading-7 text-white/62">
+              {item.copy}
+            </p>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }

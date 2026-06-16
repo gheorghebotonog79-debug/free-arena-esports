@@ -15,6 +15,11 @@ import { publicServers, type PublicServerConfig } from "@/lib/servers";
 const REFRESH_MS = 30_000;
 const COVER_IMAGE = "/assets/hero/free-arena-global-hero.png";
 
+type PopularSearchLink = {
+  href: string;
+  label: string;
+};
+
 type SpotlightServer = {
   address: string;
   connectHref: string;
@@ -115,6 +120,31 @@ const sectionCopy: Record<
     pendingAddress: "DNS not live yet",
     pendingAddressLabel: "Launch",
     planned: "Ready for launch",
+  },
+};
+
+const popularSearchCopy: Record<
+  Locale,
+  {
+    label: string;
+    links: readonly PopularSearchLink[];
+  }
+> = {
+  ro: {
+    label: "Căutări populare",
+    links: [
+      { href: "/cs2-servers", label: "CS2 servers" },
+      { href: "/respawn-server", label: "Respawn server" },
+      { href: "/cs-1-6-servers", label: "Servere CS 1.6" },
+    ],
+  },
+  en: {
+    label: "Popular searches",
+    links: [
+      { href: "/cs2-servers", label: "CS2 servers" },
+      { href: "/respawn-server", label: "Respawn server" },
+      { href: "/cs-1-6-servers", label: "CS 1.6 servers" },
+    ],
   },
 };
 
@@ -269,6 +299,7 @@ export function ServerSpotlight() {
   }
 
   const labels = sectionCopy[locale];
+  const popularSearch = popularSearchCopy[locale];
   const serverCopy = productCopy[locale];
   const spotlightServers = publicServers.map((server) => (
     buildSpotlightServer({
@@ -326,6 +357,26 @@ export function ServerSpotlight() {
               server={server}
             />
           ))}
+        </div>
+
+        <div className="mt-6 flex flex-col gap-3 border-t border-cyan-300/15 pt-5 sm:flex-row sm:items-center">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-white/38">
+            {popularSearch.label}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {popularSearch.links.map((link) => (
+              <TrackedLink
+                className="server-tag inline-flex items-center gap-2 px-3 py-2 text-[0.7rem] font-black uppercase tracking-[0.12em] text-white/64 transition hover:text-white"
+                eventName="click_server_details"
+                eventPayload={{ location: "server_spotlight_popular_searches", target: link.href }}
+                href={link.href}
+                key={link.href}
+              >
+                {link.label}
+                <ArrowRight size={13} aria-hidden="true" />
+              </TrackedLink>
+            ))}
+          </div>
         </div>
       </div>
       <CopyToast message={toastMessage} />

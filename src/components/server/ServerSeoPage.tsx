@@ -1,7 +1,7 @@
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
 import { PublicPageShell } from "@/components/public/PublicPagePrimitives";
-import { ServerFaq } from "@/components/server/ServerFaq";
 import { ServerContactSupportCard } from "@/components/server/ServerContactSupportCard";
+import { ServerFaq } from "@/components/server/ServerFaq";
 import { ServerFeatureGrid } from "@/components/server/ServerFeatureGrid";
 import { ServerInfoSection } from "@/components/server/ServerInfoSection";
 import { ServerInternalLinks } from "@/components/server/ServerInternalLinks";
@@ -21,7 +21,7 @@ type ServerSeoPageProps = {
 const labels = {
   ro: {
     hero: {
-      address: "Adresa",
+      address: "Adresă",
       checking: "Se verifică...",
       copied: "Copiat",
       copyIp: "Copiază IP",
