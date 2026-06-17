@@ -635,7 +635,7 @@ img {
       0 0 34px rgb(var(--neon-orange-rgb) / 0.09);
   }
 
-  .premium-card:is(.server-card--cs16, .server-card--respawn, .server-card--cs2, .server-card--global) {
+  .premium-card:is(.server-card--cs16, .server-card--respawn, .server-card--cs2, .server-card--fivem, .server-card--global) {
     border-color: rgb(var(--card-glow-rgb) / 0.32);
     box-shadow:
       inset 0 0 0 1px rgb(255 255 255 / 0.045),
@@ -644,8 +644,8 @@ img {
       0 0 30px rgb(var(--card-glow-rgb) / 0.12);
   }
 
-  .premium-card.neon-hover:is(.server-card--cs16, .server-card--respawn, .server-card--cs2, .server-card--global):hover,
-  .premium-card.neon-hover:is(.server-card--cs16, .server-card--respawn, .server-card--cs2, .server-card--global):focus-within {
+  .premium-card.neon-hover:is(.server-card--cs16, .server-card--respawn, .server-card--cs2, .server-card--fivem, .server-card--global):hover,
+  .premium-card.neon-hover:is(.server-card--cs16, .server-card--respawn, .server-card--cs2, .server-card--fivem, .server-card--global):focus-within {
     border-color: rgb(var(--card-glow-rgb) / 0.58);
     box-shadow:
       inset 0 0 0 1px rgb(255 255 255 / 0.065),

@@ -9,6 +9,7 @@ export const keywordLandingSlugs = [
   "cs-1-6-servers-balkans",
   "cs-1-6-servers-eastern-europe",
   "cs-1-6-servers-brazil",
+  "fivem-server",
 ] as const;
 
 export type KeywordLandingSlug = (typeof keywordLandingSlugs)[number];
@@ -29,13 +30,13 @@ export type KeywordLandingAction = {
   eventPayload?: AnalyticsPayload;
   href?: string;
   label: string;
-  tone?: "cs16" | "cs2" | "global" | "respawn";
+  tone?: "cs16" | "cs2" | "fivem" | "global" | "respawn";
   variant?: "glow" | "ghost";
 };
 
 export type KeywordLandingPageContent = {
   slug: KeywordLandingSlug;
-  tone: "cs16" | "cs2" | "global" | "respawn";
+  tone: "cs16" | "cs2" | "fivem" | "global" | "respawn";
   metadata: {
     title: string;
     description: string;
@@ -568,6 +569,170 @@ export const keywordLandingPages: Record<KeywordLandingSlug, KeywordLandingLocal
         { href: "/cs-1-6-servers-balkans", title: "CS 1.6 Balkans", copy: "A Balkan-focused page for Romania, Moldova, Bulgaria, Serbia, Greece and Turkey." },
         { href: "/cs-1-6-servers-eastern-europe", title: "CS 1.6 Eastern Europe", copy: "A discovery route for Poland, Ukraine, Russia, Belarus, Moldova and the Baltics." },
         { href: "/cs-1-6-servers-brazil", title: "CS 1.6 Brazil test", copy: "A transparent EU-hosted test page for Brazilian players checking ping and community fit." },
+      ],
+    },
+  },
+  "fivem-server": {
+    ro: {
+      slug: "fivem-server",
+      tone: "fivem",
+      metadata: {
+        title: "FiveM server FREE-ARENA | GTA V Roleplay Romania",
+        description:
+          "Pagina FiveM FREE-ARENA pentru GTA V Roleplay Romania: coming soon, Discord, whitelist, reguli, staff, update-uri si comunitate.",
+        imageAlt: "FiveM server FREE-ARENA GTA V Roleplay Romania",
+      },
+      hero: {
+        eyebrow: "FiveM server",
+        title: "FiveM server FREE-ARENA",
+        description:
+          "Pagina dedicata pentru viitorul server FiveM FREE-ARENA: roleplay, whitelist, reguli, staff, Discord si update-uri intr-un singur loc.",
+      },
+      primaryAction: { href: "/server/fivem", label: "Vezi pagina FiveM" },
+      secondaryAction: { href: "/discord", label: "Intra pe Discord" },
+      quickActions: [
+        {
+          href: "/server/fivem",
+          label: "Pagina FiveM",
+          eventName: "click_server_details",
+          eventPayload: { server: "fivem" },
+          tone: "fivem",
+          variant: "glow",
+        },
+        {
+          href: "/discord",
+          label: "Discord FiveM",
+          eventName: "click_join_discord",
+          eventPayload: { server: "fivem" },
+          tone: "global",
+        },
+        {
+          href: "/join-staff",
+          label: "Aplica staff",
+          eventName: "click_apply_staff",
+          eventPayload: { server: "fivem" },
+          tone: "respawn",
+        },
+        {
+          href: "/servers",
+          label: "Server hub",
+          eventName: "click_server_details",
+          eventPayload: { target: "servers", server: "fivem" },
+          tone: "cs2",
+        },
+      ],
+      stats: [
+        { title: "Status", copy: "Coming soon, fara statistici inventate inainte de lansare." },
+        { title: "Adresa rezervata", copy: "fivem.free-arena.ro:30120, confirmata public cand serverul este live." },
+        { title: "Focus", copy: "GTA V Roleplay Romania, whitelist, reguli clare, staff si comunitate." },
+      ],
+      sections: [
+        {
+          title: "De ce pagina separata pentru FiveM",
+          copy:
+            "FiveM are nevoie de continut propriu: whitelist, reguli RP, economie, joburi, factiuni, politie, EMS si update-uri. O pagina dedicata evita amestecarea cu serverele Counter-Strike si ofera jucatorilor un traseu clar.",
+        },
+        {
+          title: "Ce publicam aici",
+          copy:
+            "Aici pot aparea ghidul de conectare, regulamentul, cerintele de whitelist, cererile staff, anunturile de wipe, changelog-ul si noutatile despre orasul FREE-ARENA FiveM.",
+        },
+        {
+          title: "Lansare transparenta",
+          copy:
+            "Pana la deschidere, pagina ramane coming soon. Cand serverul este pregatit, schimbam statusul, adaugam buton de conectare si publicam informatiile reale fara sa schimbam URL-ul.",
+        },
+      ],
+      faq: [
+        { question: "Serverul FiveM este live acum?", answer: "Nu. Este marcat coming soon pana cand infrastructura si regulile sunt pregatite pentru public." },
+        { question: "Unde intru pentru noutati FiveM?", answer: "Discord-ul FREE-ARENA este canalul principal pentru anunturi, feedback si recrutare staff." },
+        { question: "Va exista whitelist?", answer: "Directia recomandata este whitelist controlat pentru roleplay mai curat si comunitate mai usor de moderat." },
+      ],
+      related: [
+        { href: "/server/fivem", title: "Pagina canonica FiveM", copy: "Tot ce tine de serverul FiveM FREE-ARENA." },
+        { href: "/discord", title: "Discord FREE-ARENA", copy: "Anunturi, discutii, feedback si pregatirea comunitatii FiveM." },
+        { href: "/join-staff", title: "Recrutare staff", copy: "Locul pentru aplicatii staff cand proiectul FiveM intra in faza activa." },
+      ],
+    },
+    en: {
+      slug: "fivem-server",
+      tone: "fivem",
+      metadata: {
+        title: "FREE-ARENA FiveM server | GTA V Roleplay Europe",
+        description:
+          "FREE-ARENA FiveM server page for GTA V Roleplay: coming soon, Discord, whitelist, rules, staff, updates and community.",
+        imageAlt: "FREE-ARENA FiveM server GTA V Roleplay Europe",
+      },
+      hero: {
+        eyebrow: "FiveM server",
+        title: "FREE-ARENA FiveM server",
+        description:
+          "A dedicated page for the future FREE-ARENA FiveM server: roleplay, whitelist, rules, staff, Discord and updates in one place.",
+      },
+      primaryAction: { href: "/server/fivem", label: "Open FiveM page" },
+      secondaryAction: { href: "/discord", label: "Join Discord" },
+      quickActions: [
+        {
+          href: "/server/fivem",
+          label: "FiveM page",
+          eventName: "click_server_details",
+          eventPayload: { server: "fivem" },
+          tone: "fivem",
+          variant: "glow",
+        },
+        {
+          href: "/discord",
+          label: "FiveM Discord",
+          eventName: "click_join_discord",
+          eventPayload: { server: "fivem" },
+          tone: "global",
+        },
+        {
+          href: "/join-staff",
+          label: "Apply staff",
+          eventName: "click_apply_staff",
+          eventPayload: { server: "fivem" },
+          tone: "respawn",
+        },
+        {
+          href: "/servers",
+          label: "Server hub",
+          eventName: "click_server_details",
+          eventPayload: { target: "servers", server: "fivem" },
+          tone: "cs2",
+        },
+      ],
+      stats: [
+        { title: "Status", copy: "Coming soon, with no invented live statistics before launch." },
+        { title: "Reserved address", copy: "fivem.free-arena.ro:30120, confirmed publicly when the server is live." },
+        { title: "Focus", copy: "GTA V Roleplay, whitelist, clear rules, staff and community." },
+      ],
+      sections: [
+        {
+          title: "Why FiveM needs its own page",
+          copy:
+            "FiveM needs its own content: whitelist, RP rules, economy, jobs, factions, police, EMS and updates. A dedicated page keeps it separate from Counter-Strike and gives players a clear path.",
+        },
+        {
+          title: "What will be posted here",
+          copy:
+            "This page can host the connection guide, rules, whitelist requirements, staff applications, wipe announcements, changelog and updates about the FREE-ARENA FiveM city.",
+        },
+        {
+          title: "Transparent launch",
+          copy:
+            "Until opening, the page stays coming soon. When the server is ready, we update status, add the connection action and publish real information without changing the URL.",
+        },
+      ],
+      faq: [
+        { question: "Is the FiveM server live now?", answer: "No. It is marked coming soon until infrastructure and rules are ready for public access." },
+        { question: "Where can I follow FiveM updates?", answer: "FREE-ARENA Discord is the main channel for announcements, feedback and staff recruitment." },
+        { question: "Will there be whitelist?", answer: "The recommended direction is controlled whitelist for cleaner roleplay and easier moderation." },
+      ],
+      related: [
+        { href: "/server/fivem", title: "Canonical FiveM page", copy: "Everything about the FREE-ARENA FiveM server." },
+        { href: "/discord", title: "FREE-ARENA Discord", copy: "Announcements, discussion, feedback and FiveM community preparation." },
+        { href: "/join-staff", title: "Staff recruitment", copy: "The route for staff applications when FiveM becomes active." },
       ],
     },
   },

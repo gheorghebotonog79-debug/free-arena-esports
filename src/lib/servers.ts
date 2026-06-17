@@ -1,6 +1,6 @@
 const iconBase = "/assets/game-icons";
 
-export type PublicServerSlug = "cs16" | "respawn" | "cs2" | "global";
+export type PublicServerSlug = "cs16" | "respawn" | "cs2" | "fivem" | "global";
 
 export type PublicServerConfig = {
   key: PublicServerSlug;
@@ -76,6 +76,23 @@ export const publicServers: readonly PublicServerConfig[] = [
     connectable: true,
     liveQueryable: true,
     tags: ["premier", "faceitStyle", "antiCheat"],
+  },
+  {
+    key: "fivem",
+    slug: "fivem",
+    icon: `${iconBase}/GTA.png`,
+    game: "FiveM / GTA V",
+    region: "Romania / EU",
+    address: "fivem.free-arena.ro:30120",
+    host: "fivem.free-arena.ro",
+    port: 30120,
+    fallbackName: "FREE-ARENA.RO FiveM",
+    fallbackMaxPlayers: 0,
+    connectHref: "",
+    connectable: false,
+    liveQueryable: false,
+    pending: true,
+    tags: ["gta", "roleplay", "whitelist", "soon", "community"],
   },
   {
     key: "global",

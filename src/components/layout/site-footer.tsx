@@ -15,23 +15,25 @@ const TEAMSPEAK_ADDRESS = "ts.free-arena.ro";
 const TEAMSPEAK_URL = `ts3server://${TEAMSPEAK_ADDRESS}`;
 const FOOTER_CONTACT_EMAIL = officialContactChannels.generalEmail;
 
-type FooterTone = "cs16" | "respawn" | "cs2" | "global";
+type FooterTone = "cs16" | "respawn" | "cs2" | "fivem" | "global";
 
 const footerToneClass: Record<FooterTone, string> = {
   cs16: "server-card--cs16",
   respawn: "server-card--respawn",
   cs2: "server-card--cs2",
+  fivem: "server-card--fivem",
   global: "server-card--global",
 };
 
 const footerServerLabelKeys = {
   cs16: "servers.cs16",
   cs2: "servers.cs2",
+  fivem: "servers.fivem",
   global: "servers.global",
   respawn: "servers.respawn",
 } as const satisfies Record<PublicServerSlug, string>;
 
-const footerServerOrder: PublicServerSlug[] = ["cs16", "respawn", "cs2", "global"];
+const footerServerOrder: PublicServerSlug[] = ["cs16", "respawn", "cs2", "fivem", "global"];
 
 const footerValues = ["fairPlay", "activePlayers", "realCompetition"] as const;
 

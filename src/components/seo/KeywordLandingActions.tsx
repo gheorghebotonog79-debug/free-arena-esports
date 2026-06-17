@@ -14,6 +14,7 @@ type KeywordLandingActionsProps = {
 const toneClasses: Record<NonNullable<KeywordLandingAction["tone"]>, string> = {
   cs16: "border-orange-300/24 bg-orange-300/10 text-orange-100 hover:border-orange-200/60 hover:bg-orange-300/18",
   cs2: "border-fuchsia-300/24 bg-fuchsia-300/10 text-fuchsia-100 hover:border-fuchsia-200/60 hover:bg-fuchsia-300/18",
+  fivem: "border-emerald-300/28 bg-emerald-300/10 text-emerald-100 hover:border-emerald-200/70 hover:bg-emerald-300/18",
   global: "border-cyan-300/24 bg-cyan-300/10 text-cyan-100 hover:border-cyan-200/60 hover:bg-cyan-300/18",
   respawn: "border-red-300/24 bg-red-300/10 text-red-100 hover:border-red-200/60 hover:bg-red-300/18",
 };

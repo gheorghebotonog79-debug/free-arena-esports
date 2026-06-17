@@ -5,6 +5,7 @@ export const serverSeoSlugByPublicSlug: Record<PublicServerSlug, ServerSeoSlug> 
   cs16: "cs16-classic",
   respawn: "respawn",
   cs2: "cs2",
+  fivem: "fivem",
   global: "global",
 };
 

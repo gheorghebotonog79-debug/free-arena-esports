@@ -195,7 +195,7 @@ function TrackedCTA({
   eventName: AnalyticsEventName;
   eventPayload: AnalyticsPayload;
   href: string;
-  tone?: "cs16" | "cs2" | "cyan" | "global" | "respawn";
+  tone?: "cs16" | "cs2" | "cyan" | "fivem" | "global" | "respawn";
   variant?: "glow" | "ghost";
 }) {
   return (
@@ -217,12 +217,14 @@ function TrackedCTA({
   );
 }
 
-function getToneClass(tone: "cs16" | "cs2" | "cyan" | "global" | "respawn") {
+function getToneClass(tone: "cs16" | "cs2" | "cyan" | "fivem" | "global" | "respawn") {
   switch (tone) {
     case "cs16":
       return "border-orange-300/24 bg-orange-300/10 text-orange-100 hover:border-orange-200/60 hover:bg-orange-300/18";
     case "cs2":
       return "border-fuchsia-300/24 bg-fuchsia-300/10 text-fuchsia-100 hover:border-fuchsia-200/60 hover:bg-fuchsia-300/18";
+    case "fivem":
+      return "border-emerald-300/28 bg-emerald-300/10 text-emerald-100 hover:border-emerald-200/70 hover:bg-emerald-300/18";
     case "respawn":
       return "border-red-300/24 bg-red-300/10 text-red-100 hover:border-red-200/60 hover:bg-red-300/18";
     case "global":

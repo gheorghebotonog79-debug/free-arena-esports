@@ -47,6 +47,7 @@ const cardVariantClass: Record<LiveServerKey, string> = {
   cs16: "server-card--cs16",
   respawn: "server-card--respawn",
   cs2: "server-card--cs2",
+  fivem: "server-card--fivem",
   global: "server-card--global",
 };
 

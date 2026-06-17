@@ -3,7 +3,7 @@ import type { LucideIcon } from "lucide-react";
 import { NeonAtmosphere } from "@/components/effects/NeonAtmosphere";
 
 type Tone = "cyan" | "red" | "orange" | "green" | "gold" | "discord";
-export type TacticalTone = "cs16" | "respawn" | "cs2" | "global";
+export type TacticalTone = "cs16" | "respawn" | "cs2" | "fivem" | "global";
 export type TacticalStatus = "loading" | "offline" | "online" | "pending";
 
 function classes(...values: Array<false | null | string | undefined>) {
@@ -22,6 +22,7 @@ const toneClasses: Record<Tone, string> = {
 const tacticalToneClasses: Record<TacticalTone, string> = {
   cs16: "server-card--cs16",
   cs2: "server-card--cs2",
+  fivem: "server-card--fivem",
   global: "server-card--global",
   respawn: "server-card--respawn",
 };

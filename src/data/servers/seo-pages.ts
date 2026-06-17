@@ -1,7 +1,7 @@
 import type { Locale } from "@/i18n/routing";
 import type { PublicServerSlug } from "@/lib/servers";
 
-export const serverSeoSlugs = ["cs16-classic", "respawn", "cs2", "global"] as const;
+export const serverSeoSlugs = ["cs16-classic", "respawn", "cs2", "fivem", "global"] as const;
 
 export type ServerSeoSlug = (typeof serverSeoSlugs)[number];
 
@@ -119,6 +119,72 @@ const enFeatures: readonly ServerSeoFeature[] = [
     key: "rankings",
     title: "Rankings",
     description: "Competitive progress and rankings give players clear reasons to return.",
+  },
+];
+
+const roFiveMFeatures: readonly ServerSeoFeature[] = [
+  {
+    key: "activeAdmins",
+    title: "Staff RP",
+    description: "Roluri dedicate pentru suport, whitelist, reguli si moderare pe viitorul server FiveM.",
+  },
+  {
+    key: "antiCheat",
+    title: "Reguli clare",
+    description: "Regulamentul RP va fi publicat inainte de lansare, cu asteptari clare pentru jucatori.",
+  },
+  {
+    key: "fastSupport",
+    title: "Discord conectat",
+    description: "Anunturile, feedback-ul, intrebarile si cererile staff vor ramane vizibile pe canalele oficiale.",
+  },
+  {
+    key: "stableServers",
+    title: "Lansare controlata",
+    description: "Nu afisam date false; statusul trece live doar cand infrastructura FiveM este pregatita.",
+  },
+  {
+    key: "events",
+    title: "Evenimente RP",
+    description: "Pagina este pregatita pentru eventuri, wipe announcements, changelog si update-uri de oras.",
+  },
+  {
+    key: "rankings",
+    title: "Identitate comunitate",
+    description: "FiveM va fi legat de ecosistemul FREE-ARENA: Discord, forum, staff si server hub.",
+  },
+];
+
+const enFiveMFeatures: readonly ServerSeoFeature[] = [
+  {
+    key: "activeAdmins",
+    title: "RP staff",
+    description: "Dedicated roles for support, whitelist, rules and moderation on the future FiveM server.",
+  },
+  {
+    key: "antiCheat",
+    title: "Clear rules",
+    description: "RP rules will be published before launch, with clear expectations for players.",
+  },
+  {
+    key: "fastSupport",
+    title: "Connected Discord",
+    description: "Announcements, feedback, questions and staff requests stay visible on official channels.",
+  },
+  {
+    key: "stableServers",
+    title: "Controlled launch",
+    description: "No fake data is shown; status becomes live only when the FiveM infrastructure is ready.",
+  },
+  {
+    key: "events",
+    title: "RP events",
+    description: "The page is prepared for events, wipe announcements, changelog and city updates.",
+  },
+  {
+    key: "rankings",
+    title: "Community identity",
+    description: "FiveM will be connected to the FREE-ARENA ecosystem: Discord, forum, staff and server hub.",
   },
 ];
 
@@ -551,6 +617,130 @@ export const serverSeoPages: Record<ServerSeoSlug, ServerSeoPageData> = {
         {
           question: "Will CS2 have rankings?",
           answer: "The FREE-ARENA structure is prepared for rankings and competitive progress in later phases.",
+        },
+      ],
+    },
+  },
+  fivem: {
+    slug: "fivem",
+    publicServerSlug: "fivem",
+    gameName: "FiveM / GTA V",
+    genres: ["Roleplay", "Open World", "Multiplayer"],
+    platforms: ["PC", "FiveM", "GTA V"],
+    seo: {
+      ro: {
+        title: "FiveM FREE-ARENA Romania | GTA V Roleplay Coming Soon",
+        description:
+          "Pagina dedicata FiveM FREE-ARENA: GTA V roleplay Romania, Discord, reguli, whitelist, staff, update-uri si lansare coming soon.",
+        imageAlt: "FREE-ARENA FiveM GTA V Roleplay Romania",
+      },
+      en: {
+        title: "FREE-ARENA FiveM Europe | GTA V Roleplay Coming Soon",
+        description:
+          "Dedicated FREE-ARENA FiveM page for GTA V roleplay: Discord, rules, whitelist, staff, updates and coming soon launch information.",
+        imageAlt: "FREE-ARENA FiveM GTA V Roleplay Europe",
+      },
+    },
+    hero: {
+      ro: {
+        eyebrow: "Server FiveM / GTA V",
+        name: "FiveM",
+        description:
+          "Zona FREE-ARENA pentru viitorul server FiveM: roleplay, comunitate, reguli, whitelist si anunturi intr-o pagina dedicata.",
+        statusLabel: "Coming soon",
+      },
+      en: {
+        eyebrow: "FiveM / GTA V server",
+        name: "FiveM",
+        description:
+          "The FREE-ARENA area for the future FiveM server: roleplay, community, rules, whitelist and updates in one dedicated page.",
+        statusLabel: "Coming soon",
+      },
+    },
+    info: {
+      ro: {
+        status: "Coming soon",
+        players: "Nu este deschis inca",
+        map: "Romania RP / oras in pregatire",
+        latency: "Va fi masurata dupa lansare",
+      },
+      en: {
+        status: "Coming soon",
+        players: "Not open yet",
+        map: "Romania RP / city in preparation",
+        latency: "To be measured after launch",
+      },
+    },
+    content: {
+      ro: {
+        heading: "FiveM FREE-ARENA pentru GTA V Roleplay",
+        intro:
+          "FiveM este pagina dedicata noului proiect FREE-ARENA pentru jucatori GTA V care vor roleplay, comunitate si reguli clare.",
+        paragraphs: [
+          "Serverul FiveM este pregatit ca urmatoarea directie FREE-ARENA, separata clar de serverele Counter-Strike. Pagina ramane publica din timp pentru ca jucatorii sa stie unde vor aparea informatiile despre whitelist, reguli, Discord, staff, update-uri si data lansarii.",
+          "In faza curenta nu afisam statistici false si nu promitem un oras live daca serverul nu este deschis. Cardul ramane marcat corect ca coming soon, iar adresa publica poate fi actualizata imediat cand infrastructura FiveM este finalizata.",
+          "Directia recomandata este roleplay curat, cu regulament usor de inteles, staff matur si canale de suport vizibile. Comunitatea poate urmari Discord-ul FREE-ARENA pentru anunturi, cereri staff, discutii despre economie, joburi, factiuni, politie, EMS si reguli de conduita.",
+          "Aceasta pagina poate deveni centrul pentru tot ce tine de FiveM: ghid de conectare, whitelist, lista de joburi, reguli RP, changelog, anunturi de wipe, evenimente, clipuri, screenshot-uri si intrebari frecvente. URL-ul ramane stabil, deci putem construi autoritate SEO fara sa schimbam traseul jucatorilor.",
+          "Cand serverul devine live, actualizam aici IP-ul final, statusul, butonul de conectare, hartile/zonele importante si orice cerinta de whitelist. Pana atunci, pagina pregateste comunitatea si leaga FiveM de Discord, forum, staff si restul ecosistemului FREE-ARENA.",
+        ],
+      },
+      en: {
+        heading: "FREE-ARENA FiveM for GTA V Roleplay",
+        intro:
+          "FiveM is the dedicated FREE-ARENA page for GTA V players who want roleplay, community and clear rules.",
+        paragraphs: [
+          "The FiveM server is prepared as the next FREE-ARENA direction, clearly separated from the Counter-Strike servers. This page is public early so players know where whitelist, rules, Discord, staff, updates and launch information will appear.",
+          "At this stage we do not show fake statistics and we do not claim the city is live before the server opens. The card is correctly marked as coming soon, while the public address can be updated as soon as the FiveM infrastructure is finalized.",
+          "The recommended direction is clean roleplay, easy-to-read rules, mature staff and visible support channels. Players can follow FREE-ARENA Discord for announcements, staff applications, economy ideas, jobs, factions, police, EMS and conduct rules.",
+          "This page can become the center for everything FiveM: connection guide, whitelist, job list, RP rules, changelog, wipe announcements, events, clips, screenshots and FAQ. The URL stays stable, so SEO authority can build without changing the player path.",
+          "When the server goes live, we will update the final IP, status, connect action, important map areas and whitelist requirements here. Until then, the page prepares the community and connects FiveM with Discord, forum, staff and the wider FREE-ARENA ecosystem.",
+        ],
+      },
+    },
+    features: { ro: roFiveMFeatures, en: enFiveMFeatures },
+    faq: {
+      ro: [
+        {
+          question: "FREE-ARENA are server FiveM?",
+          answer: "FiveM este planificat si are pagina dedicata. Serverul este marcat corect ca coming soon pana la lansarea reala.",
+        },
+        {
+          question: "Unde vor aparea regulile FiveM?",
+          answer: "Regulile, whitelist-ul, cerintele de conectare si update-urile vor fi publicate pe aceasta pagina si anuntate pe Discord.",
+        },
+        {
+          question: "Va exista whitelist pentru FiveM?",
+          answer: "Directia recomandata este whitelist controlat, pentru roleplay mai curat si comunitate mai usor de moderat.",
+        },
+        {
+          question: "Pot aplica pentru staff FiveM?",
+          answer: "Da. Poti urmari pagina de recrutare staff si Discord-ul FREE-ARENA pentru roluri dedicate FiveM cand proiectul intra in faza activa.",
+        },
+        {
+          question: "Care este adresa serverului FiveM?",
+          answer: "Adresa rezervata este fivem.free-arena.ro:30120, dar conectarea publica va fi confirmata cand serverul este pregatit live.",
+        },
+      ],
+      en: [
+        {
+          question: "Does FREE-ARENA have a FiveM server?",
+          answer: "FiveM is planned and has a dedicated page. The server is correctly marked as coming soon until the real launch.",
+        },
+        {
+          question: "Where will FiveM rules be published?",
+          answer: "Rules, whitelist, connection requirements and updates will be published on this page and announced on Discord.",
+        },
+        {
+          question: "Will FiveM use whitelist?",
+          answer: "The recommended direction is controlled whitelist for cleaner roleplay and easier moderation.",
+        },
+        {
+          question: "Can I apply for FiveM staff?",
+          answer: "Yes. Follow the staff recruitment page and FREE-ARENA Discord for FiveM roles when the project becomes active.",
+        },
+        {
+          question: "What is the FiveM server address?",
+          answer: "The reserved address is fivem.free-arena.ro:30120, but public connection will be confirmed when the server is ready live.",
         },
       ],
     },

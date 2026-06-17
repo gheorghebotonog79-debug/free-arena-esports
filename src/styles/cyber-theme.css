@@ -392,6 +392,20 @@
     linear-gradient(180deg, rgba(7, 17, 28, 0.96), rgba(3, 6, 13, 0.99));
 }
 
+.server-card--fivem {
+  --card-accent: #45ff86;
+  --card-accent-2: #00e6ff;
+  --card-glow-rgb: 69 255 134;
+  --card-cover-glow:
+    radial-gradient(430px 230px at 18% 0%, rgba(69, 255, 134, 0.24), transparent 64%),
+    radial-gradient(360px 240px at 88% 100%, rgba(0, 230, 255, 0.18), transparent 70%);
+  --card-bg:
+    linear-gradient(145deg, rgba(69, 255, 134, 0.14), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(0, 230, 255, 0.16), transparent 34%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 13px),
+    linear-gradient(180deg, rgba(5, 22, 17, 0.96), rgba(2, 8, 8, 0.99));
+}
+
 .server-card--global {
   --card-accent: #a56bff;
   --card-accent-2: #d946ef;

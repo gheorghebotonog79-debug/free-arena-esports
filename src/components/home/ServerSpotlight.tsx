@@ -58,6 +58,11 @@ const productCopy: Record<
       name: "CS2",
       summary: "Direcția modernă FREE-ARENA pentru jucători competitivi și meciuri actuale.",
     },
+    fivem: {
+      coverPosition: "44% center",
+      name: "FiveM",
+      summary: "Viitorul server GTA V Roleplay FREE-ARENA, pregatit pentru whitelist si comunitate.",
+    },
     global: {
       coverPosition: "50% center",
       name: "Global",
@@ -79,6 +84,11 @@ const productCopy: Record<
       coverPosition: "72% center",
       name: "CS2",
       summary: "FREE-ARENA's modern direction for competitive players and current matches.",
+    },
+    fivem: {
+      coverPosition: "44% center",
+      name: "FiveM",
+      summary: "The future FREE-ARENA GTA V Roleplay server, prepared for whitelist and community.",
     },
     global: {
       coverPosition: "50% center",
@@ -135,6 +145,7 @@ const popularSearchCopy: Record<
     links: [
       { href: "/counter-strike-servers-europe", label: "Counter-Strike Europe" },
       { href: "/cs2-servers", label: "CS2 servers" },
+      { href: "/fivem-server", label: "FiveM server" },
       { href: "/respawn-server", label: "Respawn server" },
       { href: "/cs-1-6-servers", label: "Servere CS 1.6" },
     ],
@@ -144,6 +155,7 @@ const popularSearchCopy: Record<
     links: [
       { href: "/counter-strike-servers-europe", label: "Counter-Strike Europe" },
       { href: "/cs2-servers", label: "CS2 servers" },
+      { href: "/fivem-server", label: "FiveM server" },
       { href: "/respawn-server", label: "Respawn server" },
       { href: "/cs-1-6-servers", label: "CS 1.6 servers" },
       { href: "/cs-1-6-servers-balkans", label: "CS 1.6 Balkans" },
@@ -157,6 +169,7 @@ const cardToneClass: Record<LiveServerKey, string> = {
   cs16: "server-card--cs16",
   respawn: "server-card--respawn",
   cs2: "server-card--cs2",
+  fivem: "server-card--fivem",
   global: "server-card--global",
 };
 
@@ -341,7 +354,7 @@ export function ServerSpotlight() {
           </button>
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-2 2xl:grid-cols-4">
+        <div className="mt-10 grid gap-5 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5">
           {spotlightServers.map((server) => (
             <SpotlightCard
               copied={copiedServer === server.key}

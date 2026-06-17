@@ -64,6 +64,7 @@
       "cs16": "CS 1.6 Classic",
       "respawn": "Respawn",
       "cs2": "CS2",
+      "fivem": "FiveM",
       "global": "Global"
     },
     "columns": {
@@ -191,6 +192,10 @@
         "name": "CS2",
         "region": "EU Central"
       },
+      "fivem": {
+        "name": "FiveM",
+        "region": "Romania / EU"
+      },
       "respawn": {
         "name": "Respawn",
         "region": "Romania"
@@ -207,6 +212,9 @@
       "faceitStyle": "FACEIT style",
       "antiCheat": "Anti-cheat",
       "respawn": "Respawn",
+      "gta": "GTA V",
+      "roleplay": "Roleplay",
+      "whitelist": "Whitelist",
       "soon": "Soon",
       "events": "Events"
     },
@@ -375,6 +383,20 @@
           "Live status after activation.",
           "Rules and game mode published ahead of time.",
           "Integration with community and player progression."
+        ]
+      },
+      "fivem": {
+        "description": "FiveM is the FREE-ARENA project for GTA V Roleplay, prepared for whitelist, clear rules, staff and community.",
+        "rules": [
+          "Final RP rules will be published before the server opens.",
+          "Whitelist and public access will be announced on Discord and on the FiveM page.",
+          "No fake statistics are shown before the server becomes live."
+        ],
+        "vipBenefits": [],
+        "plannedFeatures": [
+          "Whitelist and connection guide.",
+          "RP rules, jobs, factions and economy published clearly.",
+          "Updates, announcements and staff recruitment dedicated to FiveM."
         ]
       }
     }

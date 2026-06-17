@@ -44,6 +44,7 @@ const statusClasses: Record<LiveServerStatusKind, string> = {
 const serverToneClass: Record<PublicServerConfig["key"], string> = {
   cs16: "server-card--cs16",
   cs2: "server-card--cs2",
+  fivem: "server-card--fivem",
   global: "server-card--global",
   respawn: "server-card--respawn",
 };

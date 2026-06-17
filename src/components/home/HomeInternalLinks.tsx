@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight, ExternalLink, Gamepad2, ListChecks, RadioTower, Server, ShoppingCart, Trophy, UserPlus } from "lucide-react";
+import { ArrowRight, ExternalLink, Gamepad2, ListChecks, Lock, RadioTower, Server, ShoppingCart, Trophy, UserPlus } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import type { Locale } from "@/i18n/routing";
@@ -13,7 +13,7 @@ type ServerHomeLinkItem = {
   detailsLabel: string;
   href: string;
   kind: "server";
-  serverKey: Extract<PublicServerSlug, "cs16" | "respawn" | "cs2">;
+  serverKey: Extract<PublicServerSlug, "cs16" | "respawn" | "cs2" | "fivem">;
   statusLabel: string;
   tag: string;
   tags: readonly string[];
@@ -41,12 +41,13 @@ type ActionHomeLinkItem = {
 };
 
 type HomeLinkItem = ServerHomeLinkItem | ActionHomeLinkItem;
-type HomeCardTone = "cs16" | "respawn" | "cs2" | "rankings" | "shop" | "staff" | "servers";
+type HomeCardTone = "cs16" | "respawn" | "cs2" | "fivem" | "rankings" | "shop" | "staff" | "servers";
 
 const cardVariantClass: Record<HomeLinkItem["tone"], string> = {
   cs16: "server-card--cs16",
   respawn: "server-card--respawn",
   cs2: "server-card--cs2",
+  fivem: "server-card--fivem",
   rankings: "server-card--global",
   shop: "server-card--cs16",
   staff: "server-card--respawn",
@@ -106,6 +107,21 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
         title: "CS2",
         tone: "cs2",
         copy: "Direcția modernă FREE-ARENA pentru jucători competitivi și meciuri actuale.",
+      },
+      {
+        actionLabel: "Vezi FiveM",
+        coreLabel: "Mod joc",
+        coreValue: "FIVEM",
+        detailsLabel: "Detalii",
+        href: "/server/fivem",
+        kind: "server",
+        serverKey: "fivem",
+        statusLabel: "SOON",
+        tag: "GTA V",
+        tags: ["roleplay", "whitelist", "staff"],
+        title: "FiveM",
+        tone: "fivem",
+        copy: "Pagina dedicata pentru GTA V Roleplay FREE-ARENA: whitelist, reguli, update-uri si comunitate.",
       },
       {
         actionLabel: "Vezi top jucători",
@@ -233,6 +249,21 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
         copy: "The modern FREE-ARENA direction for competitive players and current matches.",
       },
       {
+        actionLabel: "Open FiveM",
+        coreLabel: "Game mode",
+        coreValue: "FIVEM",
+        detailsLabel: "Details",
+        href: "/server/fivem",
+        kind: "server",
+        serverKey: "fivem",
+        statusLabel: "SOON",
+        tag: "GTA V",
+        tags: ["roleplay", "whitelist", "staff"],
+        title: "FiveM",
+        tone: "fivem",
+        copy: "Dedicated page for FREE-ARENA GTA V Roleplay: whitelist, rules, updates and community.",
+      },
+      {
         actionLabel: "View top players",
         coreLabel: "Action",
         coreValue: "TOP",
@@ -352,12 +383,14 @@ function ServerPathCard({
   labels: { ipLabel: string; regionLabel: string };
 }) {
   const server = serverByKey[item.serverKey];
+  const status = server.pending ? "pending" : "online";
+  const canConnect = server.connectable && Boolean(server.connectHref);
 
   return (
     <article
-      className={`server-tactical-card neon-hover ${cardVariantClass[item.tone]} server-tactical-card--online home-path-card group flex h-full min-w-0 flex-col p-4 sm:p-5`}
+      className={`server-tactical-card neon-hover ${cardVariantClass[item.tone]} server-tactical-card--${status} home-path-card group flex h-full min-w-0 flex-col p-4 sm:p-5`}
       data-occupancy="low"
-      data-status="online"
+      data-status={status}
     >
       <CardChrome />
       <div className="relative z-10 flex h-full flex-col">
@@ -415,15 +448,22 @@ function ServerPathCard({
           </div>
 
           <div className="server-actions-grid mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-            <TrackedAnchor
-              href={server.connectHref}
-              eventName="click_play_now"
-              eventPayload={{ location: "homepage_internal_links", server: item.serverKey }}
-              className="server-join-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
-            >
-              {item.actionLabel}
-              <ExternalLink size={15} aria-hidden="true" />
-            </TrackedAnchor>
+            {canConnect ? (
+              <TrackedAnchor
+                href={server.connectHref}
+                eventName="click_play_now"
+                eventPayload={{ location: "homepage_internal_links", server: item.serverKey }}
+                className="server-join-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] transition"
+              >
+                {item.actionLabel}
+                <ExternalLink size={15} aria-hidden="true" />
+              </TrackedAnchor>
+            ) : (
+              <span className="server-disabled-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white/46">
+                <Lock size={15} aria-hidden="true" />
+                {item.statusLabel}
+              </span>
+            )}
             <TrackedLink
               href={item.href}
               eventName="click_server_details"
