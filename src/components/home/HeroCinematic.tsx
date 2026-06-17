@@ -142,12 +142,11 @@ export function HeroCinematic() {
       <ParticlesBackground />
       <Image
         src="/assets/hero/free-arena-global-hero.png"
-        alt=""
+        alt="FREE-ARENA Counter-Strike gaming community"
         fill
         priority
         sizes="100vw"
         className="hero-cinematic-art absolute inset-0 -z-30 size-full object-cover object-[68%_center] opacity-90"
-        aria-hidden="true"
       />
       <div
         className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(0,0,0,0.96)_0%,rgba(0,0,0,0.86)_28%,rgba(0,0,0,0.48)_55%,rgba(0,0,0,0.24)_76%,rgba(0,0,0,0.72)_100%)]"
