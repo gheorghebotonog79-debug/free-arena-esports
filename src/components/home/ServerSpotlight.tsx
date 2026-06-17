@@ -146,6 +146,9 @@ const popularSearchCopy: Record<
       { href: "/cs2-servers", label: "CS2 servers" },
       { href: "/respawn-server", label: "Respawn server" },
       { href: "/cs-1-6-servers", label: "CS 1.6 servers" },
+      { href: "/cs-1-6-servers-balkans", label: "CS 1.6 Balkans" },
+      { href: "/cs-1-6-servers-eastern-europe", label: "CS 1.6 Eastern Europe" },
+      { href: "/cs-1-6-servers-brazil", label: "CS 1.6 Brazil test" },
     ],
   },
 };

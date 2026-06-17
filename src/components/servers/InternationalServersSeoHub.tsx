@@ -69,6 +69,33 @@ const serverCards: readonly HubCard[] = [
   },
 ];
 
+const cs16CountryRoutes: readonly HubCard[] = [
+  {
+    title: "CS 1.6 Balkans",
+    href: "/cs-1-6-servers-balkans",
+    label: "Balkan focus",
+    tone: "cs16",
+    copy:
+      "A route for players from Romania, Moldova, Bulgaria, Serbia, Croatia, Bosnia, North Macedonia, Greece and Turkey.",
+  },
+  {
+    title: "CS 1.6 Eastern Europe",
+    href: "/cs-1-6-servers-eastern-europe",
+    label: "Eastern Europe",
+    tone: "global",
+    copy:
+      "A discovery page for Poland, Ukraine, Russia, Belarus, Moldova and the Baltics with honest EU-hosted server context.",
+  },
+  {
+    title: "CS 1.6 Brazil test",
+    href: "/cs-1-6-servers-brazil",
+    label: "Ping test",
+    tone: "respawn",
+    copy:
+      "A transparent test page for Brazilian players: FREE-ARENA is EU-hosted, so the first step is checking ping.",
+  },
+];
+
 const ecosystemLinks: readonly HubCard[] = [
   {
     title: "Rankings",
@@ -166,6 +193,13 @@ export function InternationalServersSeoHub() {
           copy="These English pages target real player intent without creating thin parallel routes."
           items={serverCards}
           title="Popular international searches"
+        />
+
+        <HubGrid
+          Icon={Globe2}
+          copy="These country routes are deliberately limited, useful and honest about EU hosting."
+          items={cs16CountryRoutes}
+          title="CS 1.6 country routes"
         />
 
         <HubGrid

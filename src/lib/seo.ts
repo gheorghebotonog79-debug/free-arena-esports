@@ -9,16 +9,22 @@ export const openGraphLocales: Record<Locale, string> = {
   en: "en_US",
 };
 
-export function getLocalizedAlternates(locale: Locale, path = ""): Metadata["alternates"] {
+export function getLocalizedAlternates(
+  locale: Locale,
+  path = "",
+  availableLocales: readonly Locale[] = routing.locales,
+): Metadata["alternates"] {
   const suffix = getLocalizedPathSuffix(path);
+  const languages = Object.fromEntries(
+    availableLocales.map((availableLocale) => [availableLocale, `${siteUrl}/${availableLocale}${suffix}`]),
+  );
+  const defaultLocale = availableLocales.includes("en") ? "en" : availableLocales[0] ?? routing.defaultLocale;
+
+  languages["x-default"] = `${siteUrl}/${defaultLocale}${suffix}`;
 
   return {
     canonical: `${siteUrl}/${locale}${suffix}`,
-    languages: {
-      ro: `${siteUrl}/ro${suffix}`,
-      en: `${siteUrl}/en${suffix}`,
-      "x-default": `${siteUrl}/en${suffix}`,
-    },
+    languages,
   };
 }
 
@@ -27,12 +33,14 @@ export function getLocalizedUrl(locale: Locale, path = "") {
 }
 
 export function buildPublicMetadata({
+  availableLocales,
   description,
   imageAlt,
   locale,
   path = "",
   title,
 }: {
+  availableLocales?: readonly Locale[];
   description: string;
   imageAlt: string;
   locale: Locale;
@@ -42,7 +50,7 @@ export function buildPublicMetadata({
   return {
     title,
     description,
-    alternates: getLocalizedAlternates(locale, path),
+    alternates: getLocalizedAlternates(locale, path, availableLocales),
     openGraph: {
       title,
       description,
@@ -50,7 +58,7 @@ export function buildPublicMetadata({
       siteName: "FREE-ARENA",
       images: [{ url: openGraphImageUrl, width: 1200, height: 630, alt: imageAlt }],
       locale: openGraphLocales[locale],
-      alternateLocale: getAlternateLocaleCodes(locale),
+      alternateLocale: getAlternateLocaleCodes(locale, availableLocales),
       type: "website",
     },
     twitter: {
@@ -62,8 +70,8 @@ export function buildPublicMetadata({
   };
 }
 
-export function getAlternateLocaleCodes(locale: Locale) {
-  return routing.locales
+export function getAlternateLocaleCodes(locale: Locale, availableLocales: readonly Locale[] = routing.locales) {
+  return availableLocales
     .filter((item) => item !== locale)
     .map((item) => openGraphLocales[item]);
 }

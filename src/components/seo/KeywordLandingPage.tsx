@@ -1,9 +1,10 @@
 import { ArrowRight, ListChecks, RadioTower, Search, Server, ShieldCheck } from "lucide-react";
+import type { ReactNode } from "react";
+import { TrackedAnchor } from "@/components/analytics/TrackedLink";
 import { LiveChatLauncher } from "@/components/chat/live-chat-launcher";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import {
-  CTAButton,
   PublicPageHero,
   PublicPageShell,
   TacticalActions,
@@ -14,8 +15,10 @@ import {
   TacticalInfoBlock,
   TacticalSection,
 } from "@/components/public/PublicPagePrimitives";
+import { KeywordLandingActions } from "@/components/seo/KeywordLandingActions";
 import type { Locale } from "@/i18n/routing";
 import type { KeywordLandingPageContent } from "@/data/keyword-landings";
+import type { AnalyticsEventName, AnalyticsPayload } from "@/lib/analytics";
 
 type KeywordLandingPageProps = {
   content: KeywordLandingPageContent;
@@ -34,13 +37,23 @@ export function KeywordLandingPage({ content, locale }: KeywordLandingPageProps)
           Icon={Search}
           actions={(
             <>
-              <CTAButton href={primaryHref} variant="glow">
+              <TrackedCTA
+                eventName={getEventNameForHref(content.primaryAction.href)}
+                eventPayload={buildEventPayload(content, "keyword_landing_hero", content.primaryAction.href)}
+                href={primaryHref}
+                variant="glow"
+              >
                 {content.primaryAction.label}
                 <ArrowRight size={17} aria-hidden="true" />
-              </CTAButton>
-              <CTAButton href={secondaryHref} tone="cyan">
+              </TrackedCTA>
+              <TrackedCTA
+                eventName={getEventNameForHref(content.secondaryAction.href)}
+                eventPayload={buildEventPayload(content, "keyword_landing_hero", content.secondaryAction.href)}
+                href={secondaryHref}
+                tone="cyan"
+              >
                 {content.secondaryAction.label}
-              </CTAButton>
+              </TrackedCTA>
             </>
           )}
           aside={(
@@ -62,6 +75,24 @@ export function KeywordLandingPage({ content, locale }: KeywordLandingPageProps)
           eyebrow={content.hero.eyebrow}
           title={content.hero.title}
         />
+
+        {content.quickActions?.length ? (
+          <TacticalSection
+            eyebrow={locale === "ro" ? "Acțiuni rapide" : "Quick actions"}
+            title={locale === "ro" ? "Intră direct în joc" : "Join or check the server"}
+            description={locale === "ro"
+              ? "IP-uri și canale de comunitate la vedere, ca jucătorul să poată testa serverul fără pași inutili."
+              : "Direct IPs and community routes stay visible so players can test the server without extra steps."}
+          >
+            <KeywordLandingActions
+              actions={content.quickActions.map((action) =>
+                action.href ? { ...action, href: localizeHref(locale, action.href) } : action
+              )}
+              landing={content.slug}
+              location="keyword_landing_quick_actions"
+            />
+          </TacticalSection>
+        ) : null}
 
         <TacticalSection
           eyebrow="Player Intent"
@@ -131,10 +162,15 @@ export function KeywordLandingPage({ content, locale }: KeywordLandingPageProps)
                   {item.copy}
                 </p>
                 <TacticalActions className="sm:grid-cols-1">
-                  <CTAButton href={localizeHref(locale, item.href)} tone="cyan">
+                  <TrackedCTA
+                    eventName={getEventNameForHref(item.href)}
+                    eventPayload={buildEventPayload(content, "keyword_landing_related", item.href)}
+                    href={localizeHref(locale, item.href)}
+                    tone="cyan"
+                  >
                     {locale === "ro" ? "Deschide" : "Open"}
                     <ArrowRight size={17} aria-hidden="true" />
-                  </CTAButton>
+                  </TrackedCTA>
                 </TacticalActions>
               </TacticalCard>
             ))}
@@ -147,8 +183,84 @@ export function KeywordLandingPage({ content, locale }: KeywordLandingPageProps)
   );
 }
 
+function TrackedCTA({
+  children,
+  eventName,
+  eventPayload,
+  href,
+  tone = "cyan",
+  variant = "ghost",
+}: {
+  children: ReactNode;
+  eventName: AnalyticsEventName;
+  eventPayload: AnalyticsPayload;
+  href: string;
+  tone?: "cs16" | "cs2" | "cyan" | "global" | "respawn";
+  variant?: "glow" | "ghost";
+}) {
+  return (
+    <TrackedAnchor
+      eventName={eventName}
+      eventPayload={eventPayload}
+      href={href}
+      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      className={[
+        "inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-black uppercase tracking-[0.12em] transition",
+        variant === "glow"
+          ? "button-glow border border-transparent bg-arena-cyan text-black hover:bg-white"
+          : `button-ghost border ${getToneClass(tone)}`,
+      ].join(" ")}
+    >
+      {children}
+    </TrackedAnchor>
+  );
+}
+
+function getToneClass(tone: "cs16" | "cs2" | "cyan" | "global" | "respawn") {
+  switch (tone) {
+    case "cs16":
+      return "border-orange-300/24 bg-orange-300/10 text-orange-100 hover:border-orange-200/60 hover:bg-orange-300/18";
+    case "cs2":
+      return "border-fuchsia-300/24 bg-fuchsia-300/10 text-fuchsia-100 hover:border-fuchsia-200/60 hover:bg-fuchsia-300/18";
+    case "respawn":
+      return "border-red-300/24 bg-red-300/10 text-red-100 hover:border-red-200/60 hover:bg-red-300/18";
+    case "global":
+    case "cyan":
+      return "border-cyan-300/24 bg-cyan-300/10 text-cyan-100 hover:border-cyan-200/60 hover:bg-cyan-300/18";
+  }
+}
+
+function getEventNameForHref(href: string): AnalyticsEventName {
+  if (href.includes("discord")) {
+    return "click_join_discord";
+  }
+
+  if (href.includes("teamspeak") || href.startsWith("ts3server:")) {
+    return "click_teamspeak";
+  }
+
+  if (href.includes("join-staff")) {
+    return "click_apply_staff";
+  }
+
+  if (href.includes("shop")) {
+    return "click_shop_vip";
+  }
+
+  return "click_server_details";
+}
+
+function buildEventPayload(content: KeywordLandingPageContent, location: string, target: string): AnalyticsPayload {
+  return {
+    landing: content.slug,
+    location,
+    target,
+  };
+}
+
 function localizeHref(locale: Locale, href: string) {
-  if (href.startsWith("http") || href.startsWith("ts3server:")) {
+  if (/^[a-z][a-z0-9+.-]*:/i.test(href)) {
     return href;
   }
 
