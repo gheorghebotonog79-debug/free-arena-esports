@@ -171,7 +171,7 @@ export function ForumActivitySection({ locale }: { locale: Locale }) {
             </TrackedAnchor>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {page.cards.map(({ Icon, copy, href, status, tags, title, tone }) => (
               <TrackedAnchor
                 key={title}

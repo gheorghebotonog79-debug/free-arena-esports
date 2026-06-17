@@ -11,7 +11,7 @@ const TEAMSPEAK_URL = "ts3server://ts.free-arena.ro";
 type ContactCard = {
   Icon: LucideIcon;
   description?: string;
-  eventName: "click_forum" | "click_join_discord" | "click_teamspeak";
+  eventName: "click_contact" | "click_forum" | "click_join_discord" | "click_teamspeak";
   href: string;
   label: string;
   rel?: string;
@@ -90,7 +90,7 @@ const content: Record<
       },
       {
         Icon: Mail,
-        eventName: "click_forum",
+        eventName: "click_contact",
         href: `mailto:${contactEmail}`,
         label: "Email",
         status: "CONTACT",
@@ -148,7 +148,7 @@ const content: Record<
       },
       {
         Icon: Mail,
-        eventName: "click_forum",
+        eventName: "click_contact",
         href: `mailto:${contactEmail}`,
         label: "Email",
         status: "CONTACT",

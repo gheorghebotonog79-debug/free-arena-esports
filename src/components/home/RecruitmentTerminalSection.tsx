@@ -23,7 +23,7 @@ import { contactEmail, routes } from "@/lib/routes";
 const DISCORD_URL = "https://discord.gg/Unu756zZ";
 const EMAIL_URL = `mailto:${contactEmail}?subject=FREE-ARENA%20staff%20application`;
 const FORUM_STAFF_APPLICATION_URL = forumLinks.adminRequests;
-const TS3_STAFF_APPLICATION_URL = "https://free-arena.ro/viewforum.php?f=10";
+const TS3_STAFF_APPLICATION_URL = forumLinks.teamspeakStaffRequests;
 
 type RecruitmentStatus = "open" | "limited";
 type ContactRoute = "forum" | "discord" | "email";
