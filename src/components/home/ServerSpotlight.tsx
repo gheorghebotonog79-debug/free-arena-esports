@@ -442,7 +442,7 @@ function SpotlightCard({
         <div className="relative z-10 flex h-full min-h-48 flex-col justify-between p-4">
           <div className="flex items-start justify-between gap-3">
             <span className="server-card__icon grid size-14 shrink-0 place-items-center">
-              <Image src={server.icon} alt="" width={44} height={44} className="size-10 object-contain" aria-hidden="true" />
+              <Image src={server.icon} alt={`${server.displayName} server icon`} width={44} height={44} className="size-10 object-contain" />
             </span>
             <span className="server-status-badge inline-flex shrink-0 items-center gap-2 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em]">
               <span className="server-status-badge__dot size-2 rounded-full" aria-hidden="true" />
