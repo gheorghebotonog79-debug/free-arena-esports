@@ -35,6 +35,8 @@
     "smoke:admin:login:local": "node scripts/smoke-local-admin-login.mjs",
     "smoke:admin": "node scripts/smoke-admin-routes.mjs",
     "smoke:headers": "node scripts/smoke-security-headers.mjs",
+    "indexnow": "node scripts/submit-indexnow.mjs",
+    "indexnow:all": "node scripts/submit-indexnow.mjs --all-sitemap",
     "vercel:env:audit": "node scripts/vercel-env-audit.mjs",
     "vercel:env:audit:strict": "node scripts/vercel-env-audit.mjs --strict"
   },
