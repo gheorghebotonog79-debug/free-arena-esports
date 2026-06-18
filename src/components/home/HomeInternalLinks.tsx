@@ -112,8 +112,8 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
         actionLabel: "Vezi FiveM",
         coreLabel: "Mod joc",
         coreValue: "FIVEM",
-        detailsLabel: "Detalii",
-        href: "/server/fivem",
+        detailsLabel: "Pagina FiveM",
+        href: "/fivem",
         kind: "server",
         serverKey: "fivem",
         statusLabel: "SOON",
@@ -252,8 +252,8 @@ const content: Record<Locale, { eyebrow: string; ipLabel: string; regionLabel: s
         actionLabel: "Open FiveM",
         coreLabel: "Game mode",
         coreValue: "FIVEM",
-        detailsLabel: "Details",
-        href: "/server/fivem",
+        detailsLabel: "FiveM page",
+        href: "/fivem",
         kind: "server",
         serverKey: "fivem",
         statusLabel: "SOON",
@@ -464,15 +464,27 @@ function ServerPathCard({
                 {item.statusLabel}
               </span>
             )}
-            <TrackedLink
-              href={item.href}
-              eventName="click_server_details"
-              eventPayload={{ location: "homepage_internal_links", server: item.serverKey, target: item.href }}
-              className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
-            >
-              {item.detailsLabel}
-              <ArrowRight size={15} aria-hidden="true" />
-            </TrackedLink>
+            {item.href === "/fivem" ? (
+              <TrackedAnchor
+                href={item.href}
+                eventName="click_server_details"
+                eventPayload={{ location: "homepage_internal_links", server: item.serverKey, target: item.href }}
+                className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
+              >
+                {item.detailsLabel}
+                <ArrowRight size={15} aria-hidden="true" />
+              </TrackedAnchor>
+            ) : (
+              <TrackedLink
+                href={item.href}
+                eventName="click_server_details"
+                eventPayload={{ location: "homepage_internal_links", server: item.serverKey, target: item.href }}
+                className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition"
+              >
+                {item.detailsLabel}
+                <ArrowRight size={15} aria-hidden="true" />
+              </TrackedLink>
+            )}
           </div>
         </div>
       </div>

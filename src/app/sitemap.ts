@@ -34,6 +34,20 @@ const localizedPages = [
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const standalonePages = [
+    {
+      url: `${siteUrl}/fivem`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          "x-default": `${siteUrl}/fivem`,
+        },
+      },
+    },
+  ];
+
   const standardPages = routing.locales.flatMap((locale) =>
     localizedPages.map((page) => buildSitemapEntry(locale, page, routing.locales)),
   );
@@ -49,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return availableLocales.map((locale) => buildSitemapEntry(locale, page, availableLocales));
   });
 
-  return [...standardPages, ...keywordPages];
+  return [...standalonePages, ...standardPages, ...keywordPages];
 }
 
 function buildSitemapEntry(

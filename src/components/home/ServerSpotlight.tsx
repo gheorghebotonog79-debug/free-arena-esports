@@ -145,7 +145,7 @@ const popularSearchCopy: Record<
     links: [
       { href: "/counter-strike-servers-europe", label: "Counter-Strike Europe" },
       { href: "/cs2-servers", label: "CS2 servers" },
-      { href: "/fivem-server", label: "FiveM server" },
+      { href: "/fivem", label: "FiveM server" },
       { href: "/respawn-server", label: "Respawn server" },
       { href: "/cs-1-6-servers", label: "Servere CS 1.6" },
     ],
@@ -155,7 +155,7 @@ const popularSearchCopy: Record<
     links: [
       { href: "/counter-strike-servers-europe", label: "Counter-Strike Europe" },
       { href: "/cs2-servers", label: "CS2 servers" },
-      { href: "/fivem-server", label: "FiveM server" },
+      { href: "/fivem", label: "FiveM server" },
       { href: "/respawn-server", label: "Respawn server" },
       { href: "/cs-1-6-servers", label: "CS 1.6 servers" },
       { href: "/cs-1-6-servers-balkans", label: "CS 1.6 Balkans" },
@@ -383,16 +383,29 @@ export function ServerSpotlight() {
           </p>
           <div className="flex flex-wrap gap-2">
             {popularSearch.links.map((link) => (
-              <TrackedLink
-                className="server-tag inline-flex items-center gap-2 px-3 py-2 text-[0.7rem] font-black uppercase tracking-[0.12em] text-white/64 transition hover:text-white"
-                eventName="click_server_details"
-                eventPayload={{ location: "server_spotlight_popular_searches", target: link.href }}
-                href={link.href}
-                key={link.href}
-              >
-                {link.label}
-                <ArrowRight size={13} aria-hidden="true" />
-              </TrackedLink>
+              link.href === "/fivem" ? (
+                <TrackedAnchor
+                  className="server-tag inline-flex items-center gap-2 px-3 py-2 text-[0.7rem] font-black uppercase tracking-[0.12em] text-white/64 transition hover:text-white"
+                  eventName="click_server_details"
+                  eventPayload={{ location: "server_spotlight_popular_searches", target: link.href }}
+                  href={link.href}
+                  key={link.href}
+                >
+                  {link.label}
+                  <ArrowRight size={13} aria-hidden="true" />
+                </TrackedAnchor>
+              ) : (
+                <TrackedLink
+                  className="server-tag inline-flex items-center gap-2 px-3 py-2 text-[0.7rem] font-black uppercase tracking-[0.12em] text-white/64 transition hover:text-white"
+                  eventName="click_server_details"
+                  eventPayload={{ location: "server_spotlight_popular_searches", target: link.href }}
+                  href={link.href}
+                  key={link.href}
+                >
+                  {link.label}
+                  <ArrowRight size={13} aria-hidden="true" />
+                </TrackedLink>
+              )
             ))}
           </div>
         </div>
@@ -427,6 +440,7 @@ function SpotlightCard({
 }) {
   const isPending = server.status === "pending";
   const canConnect = server.connectable && server.status === "online";
+  const detailsHref = server.key === "fivem" ? "/fivem" : getCanonicalServerPath(server.key);
   const progress = server.status === "online" && server.maxPlayers > 0
     ? Math.min(100, Math.round((server.players / server.maxPlayers) * 100))
     : 0;
@@ -542,15 +556,27 @@ function SpotlightCard({
               {copied ? labels.copied : labels.copyIp}
             </button>
           )}
-          <TrackedLink
-            href={getCanonicalServerPath(server.key)}
-            eventName="click_server_details"
-            eventPayload={{ location: "server_spotlight", server: server.key }}
-            className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition sm:col-span-2"
-          >
-            {labels.details}
-            <ArrowRight size={15} aria-hidden="true" />
-          </TrackedLink>
+          {server.key === "fivem" ? (
+            <TrackedAnchor
+              href={detailsHref}
+              eventName="click_server_details"
+              eventPayload={{ location: "server_spotlight", server: server.key }}
+              className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition sm:col-span-2"
+            >
+              {labels.details}
+              <ArrowRight size={15} aria-hidden="true" />
+            </TrackedAnchor>
+          ) : (
+            <TrackedLink
+              href={detailsHref}
+              eventName="click_server_details"
+              eventPayload={{ location: "server_spotlight", server: server.key }}
+              className="server-details-button inline-flex items-center justify-center gap-2 px-3 py-3 text-xs font-black uppercase tracking-[0.1em] text-white transition sm:col-span-2"
+            >
+              {labels.details}
+              <ArrowRight size={15} aria-hidden="true" />
+            </TrackedLink>
+          )}
         </div>
       </div>
     </article>

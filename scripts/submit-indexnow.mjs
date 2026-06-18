@@ -15,6 +15,7 @@ const priorityPaths = [
   "/en/cs-1-6-servers-eastern-europe",
   "/en/cs-1-6-servers-brazil",
   "/en/counter-strike-servers-europe",
+  "/fivem",
   "/ro/fivem-server",
   "/en/fivem-server",
   "/ro/server/fivem",
